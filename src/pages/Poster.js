@@ -4,7 +4,7 @@ import jsPDF from "jspdf";
 import html2PDF from "html2pdf.js";
 import MessageIcon from "@mui/icons-material/Message";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
-import { BASE_URL } from "../middleware/config";
+import { BASE_URL, DOMAIN_URL } from "../middleware/config";
 // import { QRCode } from "react-qr-svg"; // Import QRCode component
 import QRCode from "react-qr-code"; // Updated import statement
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
@@ -465,7 +465,7 @@ const Poster = ({ pet }) => {
               </Typography> */}
               {/* Generate QR code with pet ID or any relevant information */}
               <QRCode
-                value={`${BASE_URL}/pets/${pet.id}`} // Change URL to your endpoint or pet details page
+                value={`${DOMAIN_URL}/pets/${pet.id}`} // Change URL to your endpoint or pet details page
                 style={{ width: 200, height: 200 }}
               />
             </Box>
