@@ -8,9 +8,14 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import { Link as MuiLink } from "@mui/material";
-import SupportImg from "../images/helping_a_partner_rafiki.svg";
+// import SupportImg from "../images/helping_a_partner_rafiki.svg";
+// import SupportImg from "../images/dog_paw_bro.svg";
+import SupportImg from "../images/cat_stronaut_cuate.svg";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+{
+  /* <a href="https://storyset.com/cute">Cute illustrations by Storyset</a> */
+}
 
 function SupportPage() {
   const creditLink = "https://storyset.com/business";

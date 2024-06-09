@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
@@ -30,213 +30,87 @@ import TomTomMap from "../components/map/TomTomMap";
 import "@tomtom-international/web-sdk-maps/dist/maps.css";
 import ImageUploader from "../components/pets/ImageUploader";
 import PetHealth from "../components/petcard/PetHealth";
+import { AuthContext } from "../middleware/AuthContext";
 
 function CreatePetPage() {
+  const { user } = useContext(AuthContext);
+
+  const getCurrentDate = () => {
+    const now = new Date();
+    return now.toISOString().slice(0, 10); // Returns date in YYYY-MM-DD format
+  };
+
   const getCurrentTime = () => {
     const now = new Date();
     return now.toTimeString().slice(0, 5); // Returns time in HH:MM format
   };
-  const [formState, setFormState] = useState({
-    petStatus: "",
-    petCategory: "",
-    petIdentifier: "",
-    petSize: "",
-    petGender: "",
-    petBehavior: "",
-    petAge: "",
-    petBreed: "",
-    healthIssues: {},
-    otherHealthIssues: "",
-    petLocation: { lat: null, lng: null },
-    markingPattern: "",
-    mainColor: "",
-    markingColors: [],
-    petLostOrFoundDate: new Date().toISOString().slice(0, 10),
-    petLostOrFoundTime: getCurrentTime(),
-    petImage:
-      "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    contactPhone: "",
-    contactEmail: "",
-    notes: "",
-    petLastStatus: "",
-    petLastStatusDescription: "",
-  });
 
+  const [formState, setFormState] = useState({
+    initialStatus: "",
+    category: "",
+    identifier: "",
+    size: "",
+    gender: "",
+    behavior: "",
+    age: "",
+    breed: "",
+    health: [],
+    healthDetails: "",
+    location: { lat: null, lng: null },
+    mainColor: "",
+    markingPattern: "solid",
+    markingColors: [],
+    date: getCurrentDate(),
+    time: getCurrentTime(),
+    mainImage:
+      "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    phone: "",
+    phoneCode: "",
+    email: "",
+    notes: "",
+    updatedStatus: "",
+    updatedStatusDescription: "",
+    isPublic: true,
+    isClosed: false,
+  });
+  const [formErrors, setFormErrors] = useState({});
   const [mainColorDialogOpen, setMainColorDialogOpen] = useState(false);
   const [markingColorDialogOpen, setMarkingColorDialogOpen] = useState(false);
 
-  const coatPatternOptions = [
-    // { value: "solid", label: "Solid" },
-    { value: "", label: "No" },
-    { value: "striped", label: "Striped" },
-    { value: "spotted", label: "Spotted" },
-    { value: "patched", label: "Patched" },
-    { value: "marbled", label: "Marbled" },
+  const initialStatusOptions = [
+    { value: "missing", label: "Missing" },
+    { value: "found", label: "Found" },
+    { value: "seen", label: "Seen" },
   ];
 
-  const colorsList = [
-    { name: "Black", hexCode: "#000000" },
-    { name: "Gray", hexCode: "#BEBEBE" },
-    { name: "White", hexCode: "#f7f7f7" },
-    { name: "Cream", hexCode: "#FFF1B9" },
-    { name: "Yellow", hexCode: "#FCDC5C" },
-    { name: "Golden", hexCode: "#FFA500" },
-    { name: "Brown", hexCode: "#C37C4D" },
-    { name: "Red", hexCode: "#A71A20" },
-    { name: "Lilac", hexCode: "#BA97AA" },
-    { name: "Blue", hexCode: "#1A355E" },
-    { name: "Green", hexCode: "#5F6F52" },
-    { name: "Khaki", hexCode: "#BDB76B" },
-    // { name: "Gray", hexCode: "#808080" },
-    // { name: "Beige", hexCode: "#E5DECA" },
-    // { name: "Red", hexCode: "#C30F16" },
-    // { name: "Golden", hexCode: "#FFD700" },
-    // { name: "Wine Red", hexCode: "#7B0323" },
-    // { name: "Chestnut", hexCode: "#954535" },
-    // { name: "Tan", hexCode: "#D2B48C" },
-    // { name: "Emerald Green", hexCode: "#046307" },
-
-    // { name: "Fawn", hexCode: "#E5AA70" },
-
-    // { name: "Wine Red", hexCode: "#7B0323" },
-  ];
-
-  const petCategories = [
+  const categoriesOptions = [
     { value: "dog", label: "Dog" },
     { value: "cat", label: "Cat" },
     { value: "cow", label: "Cow" },
     { value: "horse", label: "Horse" },
   ];
 
-  const petBehaviorOptions = [
-    { value: "friendly", label: "Friendly" },
-    { value: "aggressive", label: "Aggressive" },
-    { value: "shy", label: "Shy" },
-    { value: "playful", label: "Playful" },
-    { value: "energetic", label: "Energetic" },
-    { value: "calm", label: "Calm" },
-    { value: "independent", label: "Independent" },
-    { value: "protective", label: "Protective" },
-    { value: "curious", label: "Curious" },
-    { value: "anxious", label: "Anxious" },
-  ];
-
-  const petStatusOptions = [
-    { value: "missing", label: "Missing" },
-    { value: "found", label: "Found" },
-    { value: "seen", label: "Seen" },
-    // { value: "reunited", label: "Reunited" },
-    // { value: "adopted", label: "Adopted" },
-    // { value: "sheltered", label: "Sheltered" },
-    // { value: "deceased", label: "Deceased" },
-  ];
-
-  const petLastStatusOptions = [
-    // { value: "missing", label: "Missing" },
-    // { value: "found", label: "Found" },
-    { value: "reunited", label: "Reunited" },
-    { value: "adopted", label: "Adopted" },
-    { value: "sheltered", label: "Sheltered" },
-    // { value: "deceased", label: "Deceased" },
-  ];
-
-  // const petCoatLengthOptions = [
-  //   { value: "", label: "None" },
-  //   { value: "hairless", label: "Hairless" },
-  //   { value: "short", label: "Short" },
-  //   { value: "medium", label: "Medium" },
-  //   { value: "long", label: "Long" },
-  // ];
-
-  const petSizeOptions = [
+  const sizeOptions = [
     { value: "", label: "None" },
     { value: "small", label: "Small" },
     { value: "medium", label: "Medium" },
     { value: "large", label: "Large" },
   ];
 
-  const petGenderOptions = [
+  const genderOptions = [
     { value: "", label: "None" },
     { value: "he", label: "He" },
     { value: "she", label: "She" },
   ];
 
-  const handleChange = (field, value) => {
-    setFormState((prevState) => ({
-      ...prevState,
-      [field]: value,
-    }));
-  };
-
-  // const handleMainColorChange = (colorName) => {
-  //   setFormState((prevState) => ({
-  //     ...prevState,
-  //     mainColor: colorName,
-  //   }));
-  // };
-
-  // const handleMainColorChange = (colorName) => {
-  //   setFormState((prevState) => ({
-  //     ...prevState,
-  //     mainColor: prevState.mainColor === colorName ? "" : colorName,
-  //   }));
-  // };
-
-  const handleMainColorChange = (colorName) => {
-    handleChange("mainColor", colorName);
-    setMainColorDialogOpen(false);
-  };
-
-  const handleLocationChange = (coords) => {
-    setFormState((prevState) => ({
-      ...prevState,
-      petLocation: coords,
-    }));
-  };
-
-  const handleMarkingPatternChange = (event) => {
-    const value = event.target.value;
-    handleChange("markingPattern", value);
-  };
-
-  // const handleMarkingColorChange = (colorName) => {
-  //   const { markingColors } = formState;
-  //   const isSelected = markingColors.includes(colorName);
-
-  //   if (isSelected) {
-  //     setFormState((prevState) => ({
-  //       ...prevState,
-  //       markingColors: markingColors.filter((color) => color !== colorName),
-  //     }));
-  //   } else if (markingColors.length < 2) {
-  //     setFormState((prevState) => ({
-  //       ...prevState,
-  //       markingColors: [...markingColors, colorName],
-  //     }));
-  //   }
-  // };
-
-  const handleMarkingColorChange = (colorName) => {
-    const currentMarkingColors = [...formState.markingColors];
-    if (currentMarkingColors.includes(colorName)) {
-      handleChange(
-        "markingColors",
-        currentMarkingColors.filter((color) => color !== colorName)
-      );
-    } else {
-      handleChange("markingColors", [...currentMarkingColors, colorName]);
-    }
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      await axios.post(`${BASE_URL}/pets`, formState);
-      console.log("Pet details sent successfully to the backend.");
-    } catch (error) {
-      console.error("Failed to send pet details to the backend:", error);
-    }
-  };
+  const behaviorOptions = [
+    { value: "", label: "None" },
+    { value: "friendly", label: "Friendly" },
+    { value: "aggressive", label: "Aggressive" },
+    { value: "protective", label: "Protective" },
+    { value: "playful", label: "Playful" },
+    { value: "calm", label: "Calm" },
+  ];
 
   const getAgeOptions = () => {
     const ageOptionsMap = {
@@ -269,11 +143,135 @@ function CreatePetPage() {
         { value: "senior", label: "Senior" },
       ],
     };
-    return ageOptionsMap[formState.petCategory] || [];
+    return ageOptionsMap[formState.category] || [];
   };
 
-  const getLastStatusOptions = () => {
-    const statusOptionsMap = {
+  const markingPatternOptions = [
+    { value: "solid", label: "No" },
+    { value: "striped", label: "Striped" },
+    { value: "spotted", label: "Spotted" },
+    { value: "patched", label: "Patched" },
+    { value: "marbled", label: "Marbled" },
+  ];
+
+  const phoneCodeOptions = [
+    { value: "", label: "N/A" },
+    { value: "+371", label: "+371" },
+    { value: "+372", label: "+372" },
+    { value: "+370", label: "+370" },
+  ];
+
+  const colorsListOptions = [
+    { name: "Black", hexCode: "#000000" },
+    { name: "Gray", hexCode: "#BEBEBE" },
+    { name: "White", hexCode: "#f7f7f7" },
+    { name: "Cream", hexCode: "#FFF1B9" },
+    { name: "Yellow", hexCode: "#FCDC5C" },
+    { name: "Golden", hexCode: "#FFA500" },
+    { name: "Brown", hexCode: "#C37C4D" },
+    { name: "Red", hexCode: "#A71A20" },
+    { name: "Lilac", hexCode: "#BA97AA" },
+    { name: "Blue", hexCode: "#1A355E" },
+    { name: "Green", hexCode: "#5F6F52" },
+    { name: "Khaki", hexCode: "#BDB76B" },
+    { name: "Beige", hexCode: "#E5DECA" },
+    { name: "Tan", hexCode: "#D2B48C" },
+    { name: "Fawn", hexCode: "#E5AA70" },
+    { name: "Chestnut", hexCode: "#954535" },
+  ];
+
+  const handleChange = (field, value) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
+
+    // Clear the error message for the field
+    setFormErrors((prevErrors) => ({
+      ...prevErrors,
+      [field]: "", // Clear the error message for the field
+    }));
+  };
+
+  const handleMainColorChange = (colorName) => {
+    handleChange("mainColor", colorName);
+    setMainColorDialogOpen(false);
+  };
+
+  const handleLocationChange = (coords) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      location: coords,
+    }));
+  };
+
+  const handleMarkingPatternChange = (event) => {
+    const value = event.target.value;
+    handleChange("markingPattern", value);
+  };
+
+  const handleMarkingColorChange = (colorName) => {
+    const currentMarkingColors = [...formState.markingColors];
+    if (currentMarkingColors.includes(colorName)) {
+      handleChange(
+        "markingColors",
+        currentMarkingColors.filter((color) => color !== colorName)
+      );
+    } else {
+      handleChange("markingColors", [...currentMarkingColors, colorName]);
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      // await axios.post(`${BASE_URL}/pets`, { ...formState, author: user.id });
+      const token = localStorage.getItem("token"); // assuming the token is stored in local storage
+      await axios.post(
+        `${BASE_URL}/pets`,
+        { ...formState, author: user.id },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      console.log("Pet details sent successfully to the backend.");
+    } catch (error) {
+      //   console.log("Error response from the backend:", error.response); // Add this log statement
+      //   if (error.response && error.response.data && error.response.data.errors) {
+      //     // If backend returns errors, update formErrors state with received errors
+      //     setFormErrors(error.response.data.errors);
+      //   } else {
+      //     console.error("Failed to send pet details to the backend:", error);
+      //   }
+      // }
+      console.log("Error response from the backend:", error.response);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.errors &&
+        Array.isArray(error.response.data.errors)
+      ) {
+        // If backend returns errors, update formErrors state with received errors
+        const receivedErrors = error.response.data.errors;
+        const newFormErrors = {};
+        receivedErrors.forEach((error) => {
+          newFormErrors[error.path] = error.msg;
+        });
+        setFormErrors(newFormErrors);
+        console.log("Form errors:", formErrors); // Add this log statement
+      } else {
+        console.error("Failed to send pet details to the backend:", error);
+      }
+    }
+  };
+
+  // Function to get error message for a specific field
+  const getErrorMessage = (field) => {
+    return formErrors[field] ? formErrors[field].msg : "";
+  };
+
+  const getUpdatedStatusOptions = () => {
+    const updatedStatusOptionsMap = {
       missing: [
         { value: "", label: "None" },
         { value: "activelySearching", label: "Actively Searching" },
@@ -302,7 +300,7 @@ function CreatePetPage() {
         { value: "other", label: "Other" },
       ],
     };
-    return statusOptionsMap[formState.petStatus] || [];
+    return updatedStatusOptionsMap[formState.initialStatus] || [];
   };
 
   const getBreedOptions = () => {
@@ -359,7 +357,7 @@ function CreatePetPage() {
         { value: "tennesseeWalkingHorse", label: "Tennessee Walking Horse" },
       ],
     };
-    return breedOptionsMap[formState.petCategory] || [];
+    return breedOptionsMap[formState.category] || [];
   };
 
   return (
@@ -370,94 +368,113 @@ function CreatePetPage() {
             Report a Pet
           </Typography>
           <form onSubmit={handleSubmit}>
-            <Grid item xs={12}>
-              <Typography
-                variant="body1"
-                style={{ fontWeight: "500" }}
-                gutterBottom
-                textAlign="left"
-              >
-                Pet Details
-              </Typography>
-            </Grid>
             <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Typography
+                  variant="body1"
+                  style={{ fontWeight: "500" }}
+                  gutterBottom
+                  textAlign="left"
+                >
+                  Pet Details
+                </Typography>
+              </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
-                  <InputLabel id="petStatus-label" shrink>
+                  <InputLabel id="initialStatus-label" shrink>
                     Status*
                   </InputLabel>
                   <Select
-                    labelId="petStatus-label"
-                    id="petStatus"
-                    value={formState.petStatus}
-                    onChange={(e) => handleChange("petStatus", e.target.value)}
+                    labelId="initialStatus-label"
+                    id="initialStatus"
+                    value={formState.initialStatus}
+                    onChange={(e) =>
+                      handleChange("initialStatus", e.target.value)
+                    }
+                    error={Boolean(formErrors.initialStatus)}
                     label="Status*"
                     notched
                   >
-                    {petStatusOptions.map((status) => (
+                    {initialStatusOptions.map((status) => (
                       <MenuItem key={status.value} value={status.value}>
                         {status.label}
                       </MenuItem>
                     ))}
                   </Select>
+                  {/* Display error message if there's an error for the initial status field */}
+
+                  {/* {getErrorMessage("initialStatus") && (
+                    <Typography variant="body2" color="error">
+                      {getErrorMessage("initialStatus")}
+                    </Typography>
+                  )} */}
+                  {formErrors.initialStatus && (
+                    <Typography variant="body2" color="error">
+                      {formErrors.initialStatus}
+                    </Typography>
+                  )}
                 </FormControl>
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
-                  <InputLabel id="petCategory-label" shrink>
+                  <InputLabel id="category-label" shrink>
                     Category*
                   </InputLabel>
                   <Select
-                    labelId="petCategory-label"
-                    id="petCategory"
-                    value={formState.petCategory}
+                    labelId="category-label"
+                    id="category"
+                    value={formState.category}
                     label="Category*"
+                    error={Boolean(formErrors.category)}
                     notched
                     onChange={(e) => {
-                      handleChange("petCategory", e.target.value);
-                      handleChange("petAge", "");
+                      handleChange("category", e.target.value);
+                      handleChange("age", "");
                     }}
                   >
-                    {petCategories.map((category) => (
+                    {categoriesOptions.map((category) => (
                       <MenuItem key={category.value} value={category.value}>
                         {category.label}
                       </MenuItem>
                     ))}
                   </Select>
+                  {formErrors.category && (
+                    <Typography variant="body2" color="error">
+                      {formErrors.category}
+                    </Typography>
+                  )}
                 </FormControl>
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <TextField
-                  id="petIdentifier"
-                  name="petIdentifier"
+                  id="identifier"
+                  name="identifier"
                   label="Identifier"
                   fullWidth
-                  autoComplete="petIdentifier"
                   InputLabelProps={{
                     shrink: true,
                   }}
                   variant="outlined"
-                  value={formState.petIdentifier}
+                  value={formState.identifier}
                   placeholder="Pet's name or identifier (e.g. name on necklace, tag on ear)"
-                  onChange={(e) =>
-                    handleChange("petIdentifier", e.target.value)
-                  }
+                  onChange={(e) => handleChange("identifier", e.target.value)}
                 />
               </Grid>
+
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
-                  <InputLabel id="petSize-label" shrink>
+                  <InputLabel id="size-label" shrink>
                     Size
                   </InputLabel>
                   <Select
-                    labelId="petSize-label"
-                    id="petSize"
-                    value={formState.petSize}
+                    labelId="size-label"
+                    id="size"
+                    value={formState.size}
                     label="Size"
                     notched
-                    onChange={(e) => handleChange("petSize", e.target.value)}
+                    onChange={(e) => handleChange("size", e.target.value)}
                   >
-                    {petSizeOptions.map((size) => (
+                    {sizeOptions.map((size) => (
                       <MenuItem key={size.value} value={size.value}>
                         {size.label}
                       </MenuItem>
@@ -467,18 +484,18 @@ function CreatePetPage() {
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
-                  <InputLabel id="petGender-label" shrink>
+                  <InputLabel id="gender-label" shrink>
                     Gender
                   </InputLabel>
                   <Select
-                    labelId="petGender-label"
-                    id="petGender"
-                    value={formState.petGender}
+                    labelId="gender-label"
+                    id="gender"
+                    value={formState.gender}
                     label="Gender"
                     notched
-                    onChange={(e) => handleChange("petGender", e.target.value)}
+                    onChange={(e) => handleChange("gender", e.target.value)}
                   >
-                    {petGenderOptions.map((gender) => (
+                    {genderOptions.map((gender) => (
                       <MenuItem key={gender.value} value={gender.value}>
                         {gender.label}
                       </MenuItem>
@@ -488,20 +505,18 @@ function CreatePetPage() {
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
-                  <InputLabel id="petBehavior-label" shrink>
+                  <InputLabel id="behavior-label" shrink>
                     Behavior
                   </InputLabel>
                   <Select
-                    labelId="petBehavior-label"
-                    id="petBehavior"
-                    value={formState.petBehavior}
-                    onChange={(e) =>
-                      handleChange("petBehavior", e.target.value)
-                    }
+                    labelId="behavior-label"
+                    id="behavior"
+                    value={formState.behavior}
+                    onChange={(e) => handleChange("behavior", e.target.value)}
                     label="Behavior"
                     notched
                   >
-                    {petBehaviorOptions.map((behavior) => (
+                    {behaviorOptions.map((behavior) => (
                       <MenuItem key={behavior.value} value={behavior.value}>
                         {behavior.label}
                       </MenuItem>
@@ -512,17 +527,17 @@ function CreatePetPage() {
 
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
-                  <InputLabel id="petAge-label" shrink>
+                  <InputLabel id="age-label" shrink>
                     Age
                   </InputLabel>
                   <Select
-                    labelId="petAge-label"
-                    id="petAge"
-                    value={formState.petAge}
-                    disabled={!formState.petCategory}
+                    labelId="age-label"
+                    id="age"
+                    value={formState.age}
+                    disabled={!formState.category}
                     label="Age"
                     notched
-                    onChange={(e) => handleChange("petAge", e.target.value)}
+                    onChange={(e) => handleChange("age", e.target.value)}
                   >
                     {getAgeOptions().map((age) => (
                       <MenuItem key={age.value} value={age.value}>
@@ -534,15 +549,15 @@ function CreatePetPage() {
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
-                  <InputLabel id="petBreed-label" shrink>
+                  <InputLabel id="breed-label" shrink>
                     Breed
                   </InputLabel>
                   <Select
-                    labelId="petBreed-label"
-                    id="petBreed"
-                    value={formState.petBreed}
-                    disabled={!formState.petCategory}
-                    onChange={(e) => handleChange("petBreed", e.target.value)}
+                    labelId="breed-label"
+                    id="breed"
+                    value={formState.breed}
+                    disabled={!formState.category}
+                    onChange={(e) => handleChange("breed", e.target.value)}
                     label="Breed"
                     notched
                   >
@@ -554,6 +569,7 @@ function CreatePetPage() {
                   </Select>
                 </FormControl>
               </Grid>
+
               <Grid item xs={12} sm={12} md={12} lg={12}>
                 <PetHealth formState={formState} setFormState={setFormState} />
               </Grid>
@@ -568,156 +584,9 @@ function CreatePetPage() {
                 </Typography>
               </Grid>
               <Grid item xs={12}>
-                {/* <Typography variant="body1" gutterBottom textAlign="left">
-                  Pinpoint Pet Location
-                </Typography> */}
                 <TomTomMap onLocationChange={handleLocationChange} />
               </Grid>
-              {/* <Grid item xs={12}>
-                <Typography
-                  variant="body1"
-                  style={{ fontWeight: "500" }}
-                  gutterBottom
-                  textAlign="left"
-                >
-                  Appearance
-                </Typography>
-              </Grid> */}
-              {/* <Grid item xs={12}>
-                <Typography
-                  variant="body1"
-                  style={{ fontWeight: "500" }}
-                  gutterBottom
-                  textAlign="left"
-                >
-                  Main Color
-                </Typography>
-                <FormGroup row>
-                  {colorsList.map((color) => (
-                    <div
-                      key={color.name}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        marginRight: "15px",
-                        cursor: "pointer",
-                        width: "100px",
-                      }}
-                      onClick={(e) => {
-                        handleMainColorChange(color.name);
-                        // handleChange("petCoatPattern", "");
-                        // handleChange("hasMarkings", e.target.checked);
 
-                        // handleChange("markingPattern", "");
-                        // handleChange("markingColors", []);
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: "30px",
-                          height: "30px",
-                          borderRadius: "50%",
-                          backgroundColor: color.hexCode,
-                          marginRight: "8px",
-                          marginBottom: "12px",
-                          border:
-                            formState.mainColor === color.name
-                              ? "2px solid #2a9df4"
-                              : "0px solid #dadada",
-                        }}
-                      ></div>
-                      <Typography variant="body1">{color.name}</Typography>
-                    </div>
-                  ))}
-                </FormGroup>
-              </Grid> */}
-
-              {/* <>
-                <Grid item xs={12}>
-                  <FormControl component="fieldset">
-                    <FormLabel component="legend">
-                      Does the pet have markings?
-                    </FormLabel>
-                    <RadioGroup
-                      value={formState.markingPattern}
-                      onChange={handleMarkingPatternChange}
-                    >
-                      {coatPatternOptions.map((pattern) => (
-                        <FormControlLabel
-                          key={pattern.value}
-                          value={pattern.value}
-                          control={<Radio />}
-                          label={pattern.label}
-                        />
-                      ))}
-                      <FormControlLabel
-                        value="No"
-                        control={<Radio />}
-                        label="No"
-                      />
-                    </RadioGroup>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography
-                    variant="body1"
-                    style={{ fontWeight: "500" }}
-                    gutterBottom
-                    textAlign="left"
-                  >
-                    Marking Colors
-                  </Typography>
-                  <FormGroup row>
-                    {colorsList.map((color) => (
-                      <div
-                        key={color.name}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          marginRight: "15px",
-                          cursor:
-                            formState.markingPattern !== "No"
-                              ? "pointer"
-                              : "not-allowed",
-                          width: "100px",
-                          opacity: formState.markingPattern !== "No" ? 1 : 0.5, // Adjust opacity based on marking pattern selection
-                        }}
-                        onClick={() =>
-                          formState.markingPattern !== "No" &&
-                          handleMarkingColorChange(color.name)
-                        } // Only allow click if marking pattern is not "No"
-                      >
-                        <div
-                          style={{
-                            width: "30px",
-                            height: "30px",
-                            borderRadius: "50%",
-                            backgroundColor: color.hexCode,
-                            marginRight: "8px",
-                            marginBottom: "12px",
-                            border: formState.markingColors.includes(color.name)
-                              ? "2px solid #2a9df4"
-                              : "0px solid #dadada",
-                          }}
-                        ></div>
-                        <Typography variant="body1">{color.name}</Typography>
-                      </div>
-                    ))}
-                  </FormGroup>
-                </Grid>
-              </> */}
-              {/* <> */}
-              {/* <Grid container spacing={2}> */}
-              {/* <Grid item xs={12}>
-                <Typography
-                  variant="body1"
-                  style={{ fontWeight: "500" }}
-                  gutterBottom
-                  textAlign="left"
-                >
-                  Appearance
-                </Typography>
-              </Grid> */}
               <Grid item xs={12}>
                 <FormControl component="fieldset">
                   {/* <FormLabel component="legend">
@@ -736,7 +605,7 @@ function CreatePetPage() {
                     value={formState.markingPattern}
                     onChange={handleMarkingPatternChange}
                   >
-                    {coatPatternOptions.map((pattern) => (
+                    {markingPatternOptions.map((pattern) => (
                       <FormControlLabel
                         key={pattern.value}
                         value={pattern.value}
@@ -780,7 +649,7 @@ function CreatePetPage() {
                         width: "30px",
                         height: "30px",
                         borderRadius: "50%",
-                        backgroundColor: colorsList.find(
+                        backgroundColor: colorsListOptions.find(
                           (color) => color.name === formState.mainColor
                         ).hexCode,
                         marginRight: "10px",
@@ -808,17 +677,17 @@ function CreatePetPage() {
                     display: "flex",
                     alignItems: "center",
                     cursor:
-                      formState.markingPattern === ""
+                      formState.markingPattern === "solid"
                         ? "not-allowed"
                         : "pointer",
                     border: "1px solid #dadada",
                     borderRadius: "5px",
                     padding: "10px",
                     justifyContent: "center",
-                    opacity: formState.markingPattern === "" ? 0.5 : 1,
+                    opacity: formState.markingPattern === "solid" ? 0.5 : 1,
                   }}
                   onClick={() =>
-                    formState.markingPattern !== "" &&
+                    formState.markingPattern !== "solid" &&
                     setMarkingColorDialogOpen(true)
                   }
                 >
@@ -837,7 +706,7 @@ function CreatePetPage() {
                             width: "30px",
                             height: "30px",
                             borderRadius: "50%",
-                            backgroundColor: colorsList.find(
+                            backgroundColor: colorsListOptions.find(
                               (color) => color.name === colorName
                             ).hexCode,
                             marginRight: "10px",
@@ -857,77 +726,7 @@ function CreatePetPage() {
                   </Typography>
                 </div>
               </Grid>
-              {/* <Grid item xs={12}>
-                <FormControl component="fieldset">
-                  <FormLabel component="legend">
-                    Does the pet have markings?
-                  </FormLabel>
-                  <RadioGroup
-                    value={formState.markingPattern}
-                    onChange={handleMarkingPatternChange}
-                  >
-                    {coatPatternOptions.map((pattern) => (
-                      <FormControlLabel
-                        key={pattern.value}
-                        value={pattern.value}
-                        control={<Radio />}
-                        label={pattern.label}
-                      />
-                    ))}
-                    <FormControlLabel value="" control={<Radio />} label="No" />
-                  </RadioGroup>
-                </FormControl>
-              </Grid> */}
             </Grid>
-
-            {/* {formState.markingPattern !== "" && (
-              <Grid item xs={12} sm={12} md={6} lg={6}>
-                <Typography
-                  variant="body1"
-                  style={{ fontWeight: "500" }}
-                  gutterBottom
-                  textAlign="left"
-                >
-                  Marking Colors
-                </Typography>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    cursor: "pointer",
-                    border: "1px solid #dadada",
-                    borderRadius: "5px",
-                    padding: "10px",
-                    justifyContent: "center",
-                  }}
-                  onClick={() => setMarkingColorDialogOpen(true)}
-                >
-                  {formState.markingColors.length > 0 ? (
-                    <div style={{ display: "flex" }}>
-                      {formState.markingColors.map((colorName) => (
-                        <div
-                          key={colorName}
-                          style={{
-                            width: "30px",
-                            height: "30px",
-                            borderRadius: "50%",
-                            backgroundColor: colorsList.find(
-                              (color) => color.name === colorName
-                            ).hexCode,
-                            marginRight: "10px",
-                          }}
-                        />
-                      ))}
-                    </div>
-                  ) : null}
-                  <Typography variant="body1">
-                    {formState.markingColors.length > 0
-                      ? "Click to change colors"
-                      : "Click to choose colors"}
-                  </Typography>
-                </div>
-              </Grid>
-            )} */}
 
             {/* Main Color Dialog */}
             <Dialog
@@ -950,7 +749,7 @@ function CreatePetPage() {
               </DialogTitle>
               <DialogContent>
                 <FormGroup row>
-                  {colorsList.map((color) => (
+                  {colorsListOptions.map((color) => (
                     <div
                       key={color.name}
                       style={{
@@ -959,7 +758,7 @@ function CreatePetPage() {
                         marginRight: "1rem",
                         marginBottom: "1rem",
                         cursor: "pointer",
-                        width: "100px",
+                        minWidth: "100px",
                       }}
                       onClick={() => handleMainColorChange(color.name)}
                     >
@@ -1007,7 +806,7 @@ function CreatePetPage() {
               </DialogTitle>
               <DialogContent>
                 <FormGroup row>
-                  {colorsList.map((color) => (
+                  {colorsListOptions.map((color) => (
                     <div
                       key={color.name}
                       style={{
@@ -1016,7 +815,7 @@ function CreatePetPage() {
                         marginRight: "1rem",
                         marginBottom: "1rem",
                         cursor: "pointer",
-                        width: "100px",
+                        minWidth: "100px",
                       }}
                       onClick={() => handleMarkingColorChange(color.name)}
                     >
@@ -1061,9 +860,9 @@ function CreatePetPage() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <TextField
-                  required
-                  id="petLostOrFoundDate"
-                  name="petLostOrFoundDate"
+                  // required
+                  id="date"
+                  name="date"
                   label="Date"
                   type="date"
                   fullWidth
@@ -1071,17 +870,15 @@ function CreatePetPage() {
                     shrink: true,
                   }}
                   variant="outlined"
-                  value={formState.petLostOrFoundDate}
-                  onChange={(e) =>
-                    handleChange("petLostOrFoundDate", e.target.value)
-                  }
+                  value={formState.date}
+                  onChange={(e) => handleChange("date", e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <TextField
-                  required
+                  // required
                   id="time"
-                  name="petLostOrFoundDate"
+                  name="time"
                   label="Time"
                   type="time"
                   fullWidth
@@ -1089,22 +886,22 @@ function CreatePetPage() {
                     shrink: true,
                   }}
                   variant="outlined"
-                  value={formState.petLostOrFoundTime}
-                  onChange={(e) =>
-                    handleChange("petLostOrFoundTime", e.target.value)
-                  }
+                  value={formState.time}
+                  onChange={(e) => handleChange("time", e.target.value)}
                 />
               </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <Typography
-                variant="body1"
-                style={{ fontWeight: "500" }}
-                gutterBottom
-                textAlign="left"
-              >
-                Upload File
-              </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Typography
+                  variant="body1"
+                  style={{ fontWeight: "500" }}
+                  gutterBottom
+                  textAlign="left"
+                >
+                  Upload File
+                </Typography>
+              </Grid>
             </Grid>
             <Grid item xs={12}>
               <ImageUploader />
@@ -1120,34 +917,58 @@ function CreatePetPage() {
                   Contact Information
                 </Typography>
               </Grid>
-              <Grid item xs={12} sm={12} md={6} lg={6}>
+
+              <Grid item xs={3} sm={3} md={2} lg={2}>
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel id="phoneCode-label" shrink>
+                    Code
+                  </InputLabel>
+                  <Select
+                    labelId="phoneCode-label"
+                    id="phoneCode"
+                    value={formState.phoneCode}
+                    onChange={(e) => handleChange("phoneCode", e.target.value)}
+                    label="Code"
+                    notched
+                  >
+                    {phoneCodeOptions.map((code) => (
+                      <MenuItem key={code.value} value={code.value}>
+                        {code.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={9} sm={9} md={4} lg={4}>
                 <TextField
-                  id="contactPhone"
-                  name="contactPhone"
+                  id="phone"
+                  name="phone"
                   label="Phone"
                   type="text"
                   fullWidth
+                  placeholder="12345678"
                   InputLabelProps={{
                     shrink: true,
                   }}
                   variant="outlined"
-                  value={formState.contactPhone}
-                  onChange={(e) => handleChange("contactPhone", e.target.value)}
+                  value={formState.phone}
+                  onChange={(e) => handleChange("phone", e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <TextField
-                  id="contactEmail"
-                  name="contactEmail"
+                  id="email"
+                  name="email"
                   label="Email"
                   type="email"
                   fullWidth
+                  placeholder="example@gmail.com"
                   InputLabelProps={{
                     shrink: true,
                   }}
                   variant="outlined"
-                  value={formState.contactEmail}
-                  onChange={(e) => handleChange("contactEmail", e.target.value)}
+                  value={formState.email}
+                  onChange={(e) => handleChange("email", e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -1169,45 +990,34 @@ function CreatePetPage() {
                 {/* <InputLabel htmlFor="notes">Notes</InputLabel> */}
               </Grid>
 
-              {/* <Grid item xs={12} sm={12} md={12} lg={12}>
-                <FormControl fullWidth variant="outlined">
-                  <InputLabel id="petStatus-label" shrink>
-                    Follow-Up Updates
-                  </InputLabel>
-                  <Select
-                    labelId="petStatus-label"
-                    id="petStatus"
-                    value={formState.petStatus}
-                    onChange={(e) => handleChange("petStatus", e.target.value)}
-                    label="Follow-Up Updates"
-                    notched
-                  >
-                    {petLastStatusOptions.map((status) => (
-                      <MenuItem key={status.value} value={status.value}>
-                        {status.label}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Grid> */}
+              <Grid item xs={12}>
+                <Typography
+                  variant="body1"
+                  style={{ fontWeight: "500" }}
+                  gutterBottom
+                  textAlign="left"
+                >
+                  Current Status
+                </Typography>
+              </Grid>
 
               <Grid item xs={12} sm={12} md={12} lg={12}>
                 <FormControl fullWidth variant="outlined">
-                  <InputLabel id="petLastStatus-label" shrink>
+                  <InputLabel id="updatedStatus-label" shrink>
                     Updated Status
                   </InputLabel>
                   <Select
-                    labelId="petLastStatus-label"
-                    id="petLastStatus"
-                    value={formState.petLastStatus}
-                    disabled={!formState.petStatus}
+                    labelId="updatedStatus-label"
+                    id="updatedStatus"
+                    value={formState.updatedStatus}
+                    disabled={!formState.initialStatus}
                     label="Follow Up Updates"
                     notched
                     onChange={(e) =>
-                      handleChange("petLastStatus", e.target.value)
+                      handleChange("updatedStatus", e.target.value)
                     }
                   >
-                    {getLastStatusOptions().map((status) => (
+                    {getUpdatedStatusOptions().map((status) => (
                       <MenuItem key={status.value} value={status.value}>
                         {status.label}
                       </MenuItem>
@@ -1218,17 +1028,17 @@ function CreatePetPage() {
 
               <Grid item xs={12}>
                 <TextField
-                  id="petLastStatusDescription"
-                  name="petLastStatusDescription"
+                  id="updatedStatusDescription"
+                  name="updatedStatusDescription"
                   label="Updated Status Description"
                   disabled={!formState.petLastStatus}
                   fullWidth
                   // multiline
                   // rows={4}
                   variant="outlined"
-                  value={formState.petLastStatusDescription}
+                  value={formState.updatedStatusDescription}
                   onChange={(e) =>
-                    handleChange("petLastStatusDescription", e.target.value)
+                    handleChange("updatedStatusDescription", e.target.value)
                   }
                   placeholder="Enter details such as where the pet was found, shelter name, vet clinic name, and any additional information."
                   InputLabelProps={{

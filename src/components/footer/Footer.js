@@ -355,10 +355,10 @@ const Footer = () => {
               style={{ fontWeight: "300" }}
             >
               <Link
-                to="/partnerships"
-                style={{ color: "darkgray", textDecoration: "none" }}
+                to="/sponsors-and-partners#partners"
+                style={{ color: "#fff", textDecoration: "none" }}
               >
-                Partnerships
+                Partners
               </Link>
             </Typography>
             <Typography
@@ -379,10 +379,10 @@ const Footer = () => {
               style={{ fontWeight: "300" }}
             >
               <Link
-                to="/sponsorships"
-                style={{ color: "darkgray", textDecoration: "none" }}
+                to="/sponsors-and-partners#sponsors"
+                style={{ color: "#fff", textDecoration: "none" }}
               >
-                Sponsorships
+                Sponsors
               </Link>
             </Typography>
           </Grid>

@@ -21,8 +21,9 @@ import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import EditCalendarIcon from "@mui/icons-material/EditCalendar";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import EventRepeatIcon from "@mui/icons-material/EventRepeat";
+import LocationOffIcon from "@mui/icons-material/LocationOff";
 
-const LocationHistory = ({ locations }) => {
+const LocationHistory = ({ pet }) => {
   return (
     <>
       <Grid item xs={12} style={{ paddingLeft: "0" }}>
@@ -37,10 +38,11 @@ const LocationHistory = ({ locations }) => {
               }}
             >
               <Avatar style={{ background: "#555" }}>
-                <EventBusyIcon />
+                <EventAvailableIcon />
               </Avatar>
               <Typography variant="body1">
-                Pet Lost on May 24th 2024, 08:34:10 pm
+                Pet was {pet.initialStatus}{" "}
+                {moment(`${pet.date}T${pet.time}`).fromNow()}
               </Typography>
             </Box>
           </CardContent>
@@ -61,13 +63,62 @@ const LocationHistory = ({ locations }) => {
                 <EditCalendarIcon />
               </Avatar>
               <Typography variant="body1">
-                Post created on May 24th 2024, 09:54:19 pm
+                Post created {moment(pet.createdAt).fromNow()}
               </Typography>
             </Box>
           </CardContent>
         </Card>
       </Grid>
-      {locations && locations.length > 0 ? (
+      {/* {loc.location.coordinates} */}
+      {pet && pet.locationHistory && pet.locationHistory.length > 0 ? (
+        <Grid item xs={12} style={{ paddingLeft: "0" }}>
+          <Card>
+            <CardContent>
+              <List>
+                {pet.locationHistory.map((loc, index) => (
+                  <ListItem key={loc._id} divider style={{ paddingLeft: "0" }}>
+                    <ListItemAvatar>
+                      <Avatar style={{ background: "#555" }}>
+                        <LocationOnIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={`Show on map`}
+                      secondary={`Added by ${loc.userId.username} on ${moment(
+                        loc.date
+                      ).format("MMMM Do YYYY, HH:mm")}`}
+                    />
+                  </ListItem>
+                ))}
+              </List>
+            </CardContent>
+          </Card>
+        </Grid>
+      ) : (
+        <Grid item xs={12} style={{ paddingLeft: "0" }}>
+          <Card>
+            <CardContent>
+              <Box
+                gap={2}
+                style={{
+                  display: "flex",
+                  justifyContent: "start",
+                  alignItems: "center",
+                }}
+              >
+                <Avatar style={{ background: "#555" }}>
+                  <LocationOffIcon />
+                </Avatar>
+                <Typography variant="body1">
+                  No location history available
+                </Typography>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+      )}
+
+      {/* {locations && locations.length > 0 ? (
         <Grid item xs={12} style={{ paddingLeft: "0" }}>
           <Card>
             <CardContent>
@@ -97,6 +148,75 @@ const LocationHistory = ({ locations }) => {
             No location history available.
           </Typography>
         </Grid>
+      )} */}
+      {pet && pet.updatedStatus ? (
+        <Grid item xs={12} style={{ paddingLeft: "0" }}>
+          <Card>
+            <CardContent>
+              <Box
+                gap={2}
+                style={{
+                  display: "flex",
+                  justifyContent: "start",
+                  alignItems: "center",
+                }}
+              >
+                <Avatar style={{ background: "#555" }}>
+                  <AssistantPhotoIcon />
+                </Avatar>
+                {/* <Typography variant="body1">Reunited</Typography> */}
+                <Box>
+                  <Typography variant="body1">{pet.updatedStatus}</Typography>
+                  <ListItemText
+                    // primary={`He was hiding in the city park.`}
+                    secondary={`${moment(pet.updatedAt).format(
+                      "MMMM Do YYYY, h:mm a"
+                    )}`}
+                  />
+                </Box>
+              </Box>
+              <Box>
+                <Grid item xs={12} style={{ marginTop: "1rem" }}>
+                  <TextField
+                    id="petLastStatusDescription"
+                    name="petLastStatusDescription"
+                    label="Comment"
+                    fullWidth
+                    value="He was hiding in the city park."
+                    // multiline
+                    // rows={4}
+                    variant="outlined"
+                    placeholder="Enter details such as where the pet was found, shelter name, vet clinic name, and any additional information."
+                    InputLabelProps={{
+                      shrink: true, // Always shrink the label
+                    }}
+                  />
+                </Grid>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+      ) : (
+        <Grid item xs={12} style={{ paddingLeft: "0" }}>
+          <Card>
+            <CardContent>
+              <Box
+                gap={2}
+                style={{
+                  display: "flex",
+                  justifyContent: "start",
+                  alignItems: "center",
+                }}
+              >
+                <Avatar style={{ background: "#555" }}>
+                  {/* <EventRepeatIcon /> */}
+                  <EventBusyIcon />
+                </Avatar>
+                <Typography variant="body1">No updates available</Typography>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
       )}
       {/* <Grid item xs={12} style={{ paddingLeft: "0" }}>
         <Card>
@@ -112,12 +232,13 @@ const LocationHistory = ({ locations }) => {
               <Avatar style={{ background: "#555" }}>
                 <EventRepeatIcon />
               </Avatar>
-              <Typography variant="body1">Still Missing</Typography>
+              <Typography variant="body1">No Updates</Typography>
             </Box>
           </CardContent>
         </Card>
       </Grid> */}
-      <Grid item xs={12} style={{ paddingLeft: "0" }}>
+
+      {/* <Grid item xs={12} style={{ paddingLeft: "0" }}>
         <Card>
           <CardContent>
             <Box
@@ -131,7 +252,7 @@ const LocationHistory = ({ locations }) => {
               <Avatar style={{ background: "#555" }}>
                 <AssistantPhotoIcon />
               </Avatar>
-              {/* <Typography variant="body1">Reunited</Typography> */}
+     
               <Box>
                 <Typography variant="body1">Reunited</Typography>
                 <ListItemText
@@ -144,17 +265,7 @@ const LocationHistory = ({ locations }) => {
             </Box>
             <Box>
               <Grid item xs={12} style={{ marginTop: "1rem" }}>
-                {/* <Typography variant="body1">
-                  He was hiding in the city park.
-                </Typography> */}
-
-                {/* <ListItemText
-                  primary={`He was hiding in the city park.`}
-                  secondary={`${moment(locations[0].timestamp).format(
-                    "MMMM Do YYYY, h:mm:ss a"
-                  )}`}
-                /> */}
-                {/* <TextField
+                <TextField
                   id="petLastStatusDescription"
                   name="petLastStatusDescription"
                   label="Comment"
@@ -166,12 +277,12 @@ const LocationHistory = ({ locations }) => {
                   InputLabelProps={{
                     shrink: true, // Always shrink the label
                   }}
-                /> */}
+                />
               </Grid>
             </Box>
           </CardContent>
         </Card>
-      </Grid>
+      </Grid> */}
     </>
   );
 };

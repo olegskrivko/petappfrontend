@@ -22,6 +22,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { BASE_URL } from "../../middleware/config";
 import PetsIcon from "@mui/icons-material/Pets";
 // Custom Components
+// import { useAuth } from "../../middleware/AuthContext";
 import { useAuth } from "../../middleware/AuthContext";
 
 const drawerWidth = 240;
@@ -32,15 +33,17 @@ const navItems = {
   // "/about": "About",
   "/services": "Services",
   // "/contact": "Contact",
+  "/user/profile": "Profile",
   "/admin/dashboard": "Dashboard",
-  "/auth": "Users",
+  // "/login": "Login",
 };
 
 function DrawerAppBar(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const { isAuthenticated, logout } = useAuth();
+  // const { isAuthenticated, logout } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
-
+  console.log("user", user);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -74,7 +77,7 @@ function DrawerAppBar(props) {
               alignItems: "center",
             }}
           >
-            <PetsIcon sx={{ marginRight: "0.4rem" }} /> Pawclix
+            <PetsIcon sx={{ marginRight: "0.4rem" }} /> PawClix
           </Link>
         </Typography>
       </Box>
@@ -90,7 +93,7 @@ function DrawerAppBar(props) {
             </ListItemButton>
           </ListItem>
         ))}
-        {isAuthenticated() && (
+        {/* {isAuthenticated() && (
           <ListItem disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
               <Link
@@ -101,7 +104,7 @@ function DrawerAppBar(props) {
               </Link>
             </ListItemButton>
           </ListItem>
-        )}
+        )} */}
       </List>
     </Box>
   );
@@ -144,7 +147,7 @@ function DrawerAppBar(props) {
                 }}
               >
                 <PetsIcon sx={{ marginRight: "0.4rem", color: "#ffc107" }} />
-                Pawclix
+                PawClix
               </Link>
             </Typography>
 
@@ -156,13 +159,19 @@ function DrawerAppBar(props) {
                   </Button>
                 </Link>
               ))}
-              {isAuthenticated() && (
-                <Link to="/auth">
+              {user ? (
+                <Link to="/">
                   <Button
                     onClick={handleLogout}
                     sx={{ color: "#fff", fontWeight: "400" }}
                   >
                     Logout
+                  </Button>
+                </Link>
+              ) : (
+                <Link to="/login">
+                  <Button sx={{ color: "#fff", fontWeight: "400" }}>
+                    Login
                   </Button>
                 </Link>
               )}

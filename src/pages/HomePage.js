@@ -12,11 +12,16 @@ import PetsIcon from "@mui/icons-material/Pets";
 import CardMedia from "@mui/material/CardMedia";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import { useAuth } from "../middleware/AuthContext";
 
 // Import Images
 import BannerImg from "../images/animals_floating_with_balloons_rafiki.svg";
 
 function HomePage() {
+  const { user } = useAuth();
+  // Check if user is logged in
+  const isLoggedIn = !!user;
+  console.log("isLoggedIn", isLoggedIn);
   const creditLink = "https://storyset.com/animal";
   const credit = "Animal illustrations by Storyset";
   const theme = useTheme();
@@ -38,6 +43,13 @@ function HomePage() {
             <span style={{ color: "#ffc107" }}>PawClix</span> - Lost Pet
             Reunions, One Click Away
           </Typography>
+          {/* <div>
+            {isLoggedIn ? (
+              <p>User is logged in</p>
+            ) : (
+              <p>User is not logged in</p>
+            )}
+          </div> */}
           <Typography
             variant="body1"
             textAlign="center"

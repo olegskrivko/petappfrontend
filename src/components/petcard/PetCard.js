@@ -16,7 +16,7 @@ const PetCard = ({ pet }) => {
         to={`/pets/${pet._id}`}
         style={{ textDecoration: "none", color: "inherit" }}
       >
-        <CardMedia component="img" src={pet.petImage} alt="" />
+        <CardMedia component="img" src={pet.mainImage} alt="" />
       </Link>
       <CardActions
         disableSpacing

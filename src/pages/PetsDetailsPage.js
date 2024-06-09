@@ -1,192 +1,5 @@
-// import React from "react";
-// import Typography from "@mui/material/Typography";
-// import Grid from "@mui/material/Grid";
-// import Card from "@mui/material/Card";
-// import CardContent from "@mui/material/CardContent";
-// import Box from "@mui/material/Box";
-// import { Link } from "react-router-dom";
-
-// // Import MUI Icons
-// import AppShortcutIcon from "@mui/icons-material/AppShortcut";
-// import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
-// import NotificationsIcon from "@mui/icons-material/Notifications";
-// import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
-// import ArticleIcon from "@mui/icons-material/Article";
-// import NewspaperIcon from "@mui/icons-material/Newspaper";
-// import PostAddIcon from "@mui/icons-material/PostAdd";
-// import ShareIcon from "@mui/icons-material/Share";
-// import StorageIcon from "@mui/icons-material/Storage";
-// import TuneIcon from "@mui/icons-material/Tune";
-// import MapIcon from "@mui/icons-material/Map";
-// import PrintIcon from "@mui/icons-material/Print";
-// import WorkIcon from "@mui/icons-material/Work";
-// import PushPinIcon from "@mui/icons-material/PushPin";
-// import GroupsIcon from "@mui/icons-material/Groups";
-// import TomTomMap from "../components/map/TomTomClusterMap";
-// import PetsIcon from "@mui/icons-material/Pets"; // Example MUI icon
-// import { Avatar, Button } from "@mui/material";
-// import ChatComponent from "../components/map/ChatComponent";
-
-// const PetsDetailsPage = () => {
-//   return (
-//     <React.Fragment>
-//       <Grid container spacing={3}>
-//         <Grid item xs={12} sm={12} md={12} lg={12}>
-//           <TomTomMap />
-//         </Grid>
-//         <Grid item xs={12} sm={12} md={6} lg={6}>
-//           <div
-//             style={{
-//               width: "500px",
-//               height: "400px",
-//               backgroundColor: "lightgray",
-//             }}
-//           ></div>
-//         </Grid>
-//         <Grid item xs={12} sm={12} md={6} lg={6}>
-//           <ChatComponent />
-//           {/* <Card>
-//             <CardContent>
-//               <Avatar>A</Avatar>
-//             </CardContent>
-//           </Card> */}
-//         </Grid>
-//       </Grid>
-//     </React.Fragment>
-//   );
-// };
-
 // export default PetsDetailsPage;
-// import React, { useState, useEffect } from "react";
-// import { useParams } from "react-router-dom";
-// import axios from "axios";
-// import {
-//   Typography,
-//   Grid,
-//   Card,
-//   CardContent,
-//   CardMedia,
-//   CircularProgress,
-//   Box,
-// } from "@mui/material";
-// import { BASE_URL } from "../middleware/config";
-// import TomTomMap from "../components/map/TomTomMap";
-// import ChatComponent from "../components/map/ChatComponent";
-
-// const PetsDetailsPage = () => {
-//   const { id } = useParams();
-//   console.log("petId", id);
-//   const [pet, setPet] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   useEffect(() => {
-//     const fetchPet = async () => {
-//       try {
-//         const response = await axios.get(`${BASE_URL}/pets/${id}`);
-//         setPet(response.data);
-//       } catch (error) {
-//         console.error("Error fetching pet details:", error.message);
-//         setError("Error fetching pet details");
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchPet();
-//   }, [id]);
-
-//   if (loading) {
-//     return <CircularProgress />;
-//   }
-
-//   if (error) {
-//     return <div>Error: {error}</div>;
-//   }
-
-//   if (!pet) {
-//     return <div>No pet found</div>;
-//   }
-
-//   return (
-//     <React.Fragment>
-//       <Grid container spacing={3}>
-//         <Grid item xs={12} sm={12} md={12} lg={12}>
-//           <TomTomMap />
-//         </Grid>
-//         <Grid item xs={12} sm={12} md={6} lg={6}>
-//           <Card>
-//             <CardMedia
-//               component="img"
-//               alt={pet.petStatus}
-//               height="400"
-//               image={pet.petImage || "/default_pet_image.jpg"}
-//               title={pet.petStatus}
-//             />
-//             <CardContent>
-//               <Typography variant="body2" color="textSecondary">
-//                 Status: {pet.petStatus}
-//               </Typography>
-//               <Typography variant="body2" color="textSecondary">
-//                 Category: {pet.petCategory}
-//               </Typography>
-//               <Typography variant="body2" color="textSecondary">
-//                 Identifier: {pet.petIdentifier}
-//               </Typography>
-
-//               <Typography variant="body2" color="textSecondary">
-//                 Size: {pet.petSize}
-//               </Typography>
-//               <Typography variant="body2" color="textSecondary">
-//                 Gender: {pet.petGender}
-//               </Typography>
-//               <Typography variant="body2" color="textSecondary">
-//                 Behavior: {pet.petBehavior}
-//               </Typography>
-//               <Typography variant="body2" color="textSecondary">
-//                 Age: {pet.petAge}
-//               </Typography>
-//               <Typography variant="body2" color="textSecondary">
-//                 Breed: {pet.petBreed}
-//               </Typography>
-//               <Typography variant="body2" color="textSecondary">
-//                 Main Color: {pet.mainColor}
-//               </Typography>
-//               <Typography variant="body2" color="textSecondary">
-//                 Marking Pattern: {pet.markingPattern}
-//               </Typography>
-//               <Typography variant="body2" color="textSecondary">
-//                 Marking Colors: {pet.markingColors}
-//               </Typography>
-
-//               <Typography variant="body2" color="textSecondary">
-//                 Lost Or Found Date: {pet.petLostOrFoundDate}
-//               </Typography>
-//               <Typography variant="body2" color="textSecondary">
-//                 Lost Or Found Time: {pet.petLostOrFoundTime}
-//               </Typography>
-//               <Typography variant="body2" color="textSecondary">
-//                 Phone: {pet.contactPhone}
-//               </Typography>
-//               <Typography variant="body2" color="textSecondary">
-//                 Email: {pet.contactEmail}
-//               </Typography>
-//               <Typography variant="body2" color="textSecondary">
-//                 Notes {pet.notes}
-//               </Typography>
-//             </CardContent>
-//           </Card>
-//         </Grid>
-//         <Grid item xs={12} sm={12} md={6} lg={6}>
-//           <ChatComponent />
-//         </Grid>
-//       </Grid>
-//     </React.Fragment>
-//   );
-// };
-
-// export default PetsDetailsPage;
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import {
@@ -198,12 +11,18 @@ import {
   CircularProgress,
   Box,
   Icon,
+  Chip,
   CardHeader,
   CardActions,
   Avatar,
   Button,
   IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
 } from "@mui/material";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import {
   Pets as PetsIcon,
   Category as CategoryIcon,
@@ -225,6 +44,7 @@ import {
   FavoriteBorder as FavoriteBorderIcon,
   Print as PrintIcon,
 } from "@mui/icons-material";
+
 import CakeIcon from "@mui/icons-material/Cake";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
@@ -255,29 +75,36 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Tooltip from "@mui/material/Tooltip";
 import DeleteIcon from "@mui/icons-material/Delete";
 import moment from "moment";
-
+import PersonIcon from "@mui/icons-material/Person";
+import InfoIcon from "@mui/icons-material/Info";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import FeedIcon from "@mui/icons-material/Feed";
+import Poster from "./Poster";
+import { AuthContext } from "../middleware/AuthContext";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 // Example data
-const locations = [
-  {
-    lat: 56.752259533288,
-    lng: 24.389414976480396,
-    user: "John Doe",
-    timestamp: "2024-05-24T19:47:59.420Z",
-  },
-  {
-    lat: 56.854657543288,
-    lng: 24.475894976480396,
-    user: "Jane Smith",
-    timestamp: "2024-05-23T17:30:45.320Z",
-  },
-  // Add more locations as needed
-];
+// const locations = [
+//   {
+//     lat: 56.752259533288,
+//     lng: 24.389414976480396,
+//     user: "John Doe",
+//     timestamp: "2024-05-24T19:47:59.420Z",
+//   },
+//   {
+//     lat: 56.854657543288,
+//     lng: 24.475894976480396,
+//     user: "Jane Smith",
+//     timestamp: "2024-05-23T17:30:45.320Z",
+//   },
+//   // Add more locations as needed
+// ];
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
-    <div
+    <Box
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
@@ -285,11 +112,9 @@ function CustomTabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
+        <Box sx={{ p: 3, pr: "0 !important" }}>{children}</Box>
       )}
-    </div>
+    </Box>
   );
 }
 
@@ -314,35 +139,51 @@ function a11yProps(index) {
   };
 }
 
-function IconLabelTabs({ pet }) {
+function IconLabelTabs({
+  onAddLocation,
+  onDeleteMessage,
+  location,
+  pet,
+  comments,
+}) {
+  const { user } = useContext(AuthContext);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const handleDelete = (commentId) => {
+    onDeleteMessage(commentId);
+  };
+  // Define your function at the top of your component
+  // const handleDeleteMessage = async (id, commentId) => {
+  //   const token = localStorage.getItem("token"); // assuming the token is stored in local storage
+  //   try {
+  //     console.log(`Deleting message with id: ${commentId}`);
+  //     // Make a request to your server to delete the message
+  //     await axios.delete(`${BASE_URL}/pets/${id}/comments/${commentId}`, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
+
+  //     // Remove the message from the local state
+  //     // setComments((prevComments) =>
+  //     //   prevComments.filter((comment) => comment._id !== commentId)
+  //     // );
+  //   } catch (error) {
+  //     console.error("Failed to delete message:", error);
+  //   }
+  // };
 
   return (
     <Box sx={{ width: "100%" }}>
+      {/* {user.id === pet.author ? <p>pet author</p> : <p>not pet author</p>} */}
       <Box>
         <Tabs
           value={value}
           centered
           onChange={handleChange}
           aria-label="basic tabs example"
-          style={{ paddingRight: "0 !important" }}
         >
-          <Tab
-            icon={<NotesIcon />}
-            label="NOTES"
-            sx={{ fontSize: "0.7rem" }}
-            {...a11yProps(0)}
-          />
-          <Tab
-            icon={<LocalHospitalIcon />}
-            label="HEALTH"
-            sx={{ fontSize: "0.7rem" }}
-            {...a11yProps(1)}
-          />
           <Tab
             icon={<MessageIcon />}
             label="MESSAGES"
@@ -350,276 +191,266 @@ function IconLabelTabs({ pet }) {
             {...a11yProps(2)}
           />
           <Tab
-            icon={<ContactPageIcon />}
-            label="CONTACTS"
+            icon={<AirlineStopsIcon />}
+            label="HISTORY"
             sx={{ fontSize: "0.7rem" }}
             {...a11yProps(3)}
           />
           <Tab
-            icon={<AirlineStopsIcon />}
-            label="HISTORY"
+            icon={<NotesIcon />}
+            label="NOTES"
+            sx={{ fontSize: "0.7rem" }}
+            {...a11yProps(0)}
+          />
+          {/* <Tab
+            icon={<LocalHospitalIcon />}
+            label="HEALTH"
+            sx={{ fontSize: "0.7rem" }}
+            {...a11yProps(1)}
+          /> */}
+
+          <Tab
+            icon={<ContactPageIcon />}
+            label="CONTACTS"
             sx={{ fontSize: "0.7rem" }}
             {...a11yProps(3)}
           />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <Box>
-          <Grid container spacing={1}>
-            {/* <Grid item xs={12}>
-              <Typography variant="h6" gutterBottom>
-                {pet.petIdentifier}
-              </Typography>
-            </Grid> */}
-            {/* <Grid item xs={12}>
-              <Typography variant="h6" gutterBottom>
-                <PetsIcon /> Status: {pet.petStatus}
-              </Typography>
-            </Grid> */}
-            {/* <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <CategoryIcon /> Category: {pet.petCategory}
-              </Typography>
-            </Grid> */}
-            {/* <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <TagIcon /> Identifier: {pet.petIdentifier}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <HeightIcon /> Size: {pet.petSize}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                Gender: {pet.petGender}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <MoodIcon /> Behavior: {pet.petBehavior}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <CalendarTodayIcon /> Age: {pet.petAge}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <MergeTypeIcon /> Breed: {pet.petBreed}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <ColorLensIcon /> Main Color: {pet.mainColor}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <EventNoteIcon /> Marking Pattern: {pet.markingPattern}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <ColorLensIcon /> Marking Colors: {pet.markingColors.join(", ")}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <CalendarTodayIcon /> Lost Or Found Date:{" "}
-                {pet.petLostOrFoundDate}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <WatchLaterIcon /> Lost Or Found Time: {pet.petLostOrFoundTime}
-              </Typography>
-            </Grid> */}
-            {/* <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                Contact Information
-              </Typography>
-            </Grid> */}
-            {/* <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <PhoneIcon /> Phone: {pet.contactPhone}
-              </Typography>
-            </Grid> */}
-            {/* <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <EmailIcon /> Email: {pet.contactEmail}
-              </Typography>
-            </Grid> */}
-            <Grid container spacing={3}>
-              <Grid item xs={12} style={{ paddingLeft: "0" }}>
-                <Typography variant="body1" gutterBottom>
-                  {pet.notes ? pet.notes : "No additional notes available."}
-                </Typography>
-              </Grid>
-            </Grid>
-            {/* <Grid container spacing={3}>
-              <Grid item xs={12} style={{ paddingLeft: "0" }}>
-                Location history (last seen)
-              </Grid>
-            </Grid> */}
-
-            {/* <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                Created At: {pet.createdAt}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                Updated At: {pet.updatedAt}
-              </Typography>
-            </Grid> */}
-          </Grid>
-        </Box>
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        {/* <TomTomMapDetails pet={pet} /> */}
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
         <Grid container spacing={3}>
-          <ChatComponent />
+          {user && (
+            <ChatComponent
+              user={user}
+              location={location}
+              onAddLocation={onAddLocation}
+              pet={pet}
+            />
+          )}
 
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={12}
-            lg={12}
-            style={{ paddingLeft: "0" }}
-          >
-            <Card style={{ width: "100%", backgroundColor: "#f5f5f5" }}>
-              <CardContent>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  marginBottom="1rem"
-                  padding="0.5rem"
-                  style={{ backgroundColor: "#fff", borderRadius: "8px" }}
-                >
-                  <Avatar>L</Avatar>
-                  <Box ml={2}>
-                    <Typography variant="h6" component="div">
-                      Leo Megven
-                    </Typography>
-                    <Box display="flex" alignItems="center">
-                      <Typography variant="body2" color="textSecondary">
-                        @Leven4232
-                      </Typography>
-                      <VerifiedIcon
-                        fontSize="small"
-                        style={{ marginLeft: "0.5rem", color: "#3f51b5" }}
-                      />
+          {comments && comments.length > 0 ? (
+            comments.map((comment) => (
+              <Grid
+                key={comment._id} // Add this line
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={12}
+                style={{ paddingLeft: "0" }}
+              >
+                <Card style={{ width: "100%" }}>
+                  {/* <p>{comment.author.isVerified}</p>aa */}
+                  <CardContent>
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      marginBottom="1rem"
+                      padding="0.5rem"
+                      style={{ backgroundColor: "#fff", borderRadius: "8px" }}
+                    >
+                      <Avatar
+                        alt={comment.author.username}
+                        src={comment.author.username}
+                      ></Avatar>
+                      <Box ml={2}>
+                        <Typography variant="h6" component="div">
+                          {comment.author.username}
+                        </Typography>
+                        <Box display="flex" alignItems="center">
+                          <Typography variant="body2" color="textSecondary">
+                            {comment.author.username}
+                          </Typography>
+
+                          {comment.author && comment.author.isVerified && (
+                            <Tooltip title="Verified user">
+                              <VerifiedIcon
+                                fontSize="small"
+                                color="primary"
+                                style={{
+                                  marginLeft: "0.5rem",
+                                  color: "#3f51b5",
+                                }}
+                              />
+                            </Tooltip>
+                          )}
+                        </Box>
+                        <Typography variant="body2" color="textSecondary">
+                          {moment(comment.createdAt).fromNow()}
+                        </Typography>
+                      </Box>
                     </Box>
-                    <Typography variant="body2" color="textSecondary">
-                      2 days ago
-                    </Typography>
-                  </Box>
-                </Box>
-                <Box mb={2}>
+                    <Box mb={2}>
+                      <Typography variant="body1" style={{ color: "#333" }}>
+                        {comment.text}
+                      </Typography>
+                    </Box>
+                    <Box display="flex" justifyContent="space-between">
+                      <Tooltip title="Show on map">
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          endIcon={<LocationOnIcon />}
+                          size="small"
+                          style={{ background: "#555" }}
+                        >
+                          Show on map
+                        </Button>
+                      </Tooltip>
+                      {user && user.id === comment.author._id && (
+                        <Tooltip title="Delete message">
+                          <Button
+                            variant="contained"
+                            color="secondary"
+                            endIcon={<DeleteIcon />}
+                            size="small"
+                            style={{ background: "#d32f2f" }}
+                            onClick={() => handleDelete(comment._id)} // Add this line
+                          >
+                            Delete
+                          </Button>
+                        </Tooltip>
+                      )}
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))
+          ) : (
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={12}
+              lg={12}
+              style={{ paddingLeft: "0" }}
+            >
+              <Card style={{ width: "100%" }}>
+                <CardContent>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    padding="0.5rem"
+                    style={{ backgroundColor: "#fff", borderRadius: "8px" }}
+                  ></Box>
+
                   <Typography variant="body1" style={{ color: "#333" }}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    No comments available
                   </Typography>
-                </Box>
-                <Box display="flex" justifyContent="space-between">
-                  <Tooltip title="Show on map">
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      endIcon={<LocationOnIcon />}
-                      size="small"
-                      style={{ background: "#555" }}
-                    >
-                      Show on map
-                    </Button>
-                  </Tooltip>
-                  <Tooltip title="Delete message">
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      endIcon={<DeleteIcon />}
-                      size="small"
-                      style={{ background: "#d32f2f" }}
-                    >
-                      Delete
-                    </Button>
-                  </Tooltip>
-                </Box>
-              </CardContent>
-            </Card>
-            {/* <Card>
-              <CardContent>
-                <Box
-                  display="flex"
-                  gap={1}
-                  justifyContent="start"
-                  alignItems="center"
-                >
-                  <Avatar>L</Avatar>
-                  <Typography variant="body1">Leo Megven</Typography>
-                  <Typography variant="body1" style={{ color: "#777" }}>
-                    @Leven4232
-                  </Typography>
-                  <VerifiedIcon />
-                  <Typography variant="body1" style={{ color: "#777" }}>
-                    2 days ago
-                  </Typography>
-                </Box>
-                <Box style={{ marginBottom: "1rem" }}>
-                  <Typography variant="body1">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </Typography>
-                </Box>
-
-                <Box display="flex" justifyContent="space-between">
-                  <Box>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      endIcon={<LocationOnIcon />}
-                      size="small"
-                      style={{ background: "#555" }}
-                    >
-                      Show on map
-                    </Button>
-                  </Box>
-
-                  <Box>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      endIcon={<DeleteIcon />}
-                      size="small"
-                      style={{ background: "#555" }}
-                    >
-                      Delete
-                    </Button>
-                  </Box>
-                </Box>
-
-               <Tooltip title="Show coordinates">
-                  <IconButton aria-label="Show coordinates">
-                    <LocationOnIcon />
-                  </IconButton>
-                  Show on map
-                </Tooltip>
-              </CardContent>
-            </Card> */}
-          </Grid>
+                </CardContent>
+              </Card>
+            </Grid>
+          )}
         </Grid>
       </CustomTabPanel>
 
+      <CustomTabPanel value={value} index={1}>
+        <Grid container spacing={3}>
+          <LocationHistory pet={pet} />
+        </Grid>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} style={{ paddingLeft: "0" }}>
+            <Box mb={3}>
+              <Box display="flex" alignItems="center" mb={1}>
+                <LocalHospitalIcon />
+                <Typography
+                  variant="h6"
+                  style={{ fontSize: "1rem" }}
+                  ml={1}
+                  fontWeight="bold"
+                >
+                  Health Details
+                </Typography>
+              </Box>
+              <Card elevation={3}>
+                <CardContent style={{ paddingBottom: "1rem" }}>
+                  {(pet.health && pet.health.length > 0) ||
+                  pet.healthDetails ? (
+                    <>
+                      {pet.health && pet.health.length > 0 && (
+                        <Box>
+                          {pet.health.map((item, index) => (
+                            <Chip
+                              key={index}
+                              label={item}
+                              size="small"
+                              variant="contained"
+                              sx={{ m: 0.5 }}
+                            />
+                          ))}
+                        </Box>
+                      )}
+                      {pet.healthDetails && (
+                        <Typography
+                          variant="body2"
+                          style={{ marginTop: "1rem" }}
+                        >
+                          {pet.healthDetails}
+                        </Typography>
+                      )}
+                    </>
+                  ) : (
+                    <Typography variant="body2">
+                      No health information given.
+                    </Typography>
+                  )}
+                </CardContent>
+              </Card>
+              {/* <Card elevation={3}>
+                <CardContent style={{ paddingBottom: "1rem" }}>
+                  {pet.health && pet.health.length > 0 ? (
+                    <Box>
+                      {pet.health.map((item, index) => (
+                        <Chip
+                          key={index}
+                          label={item}
+                          size="small"
+                          variant="contained"
+                          sx={{ m: 0.5 }}
+                        />
+                      ))}
+                    </Box>
+                  ) : (
+                    <Typography variant="body2">
+                      No health information given.
+                    </Typography>
+                  )}
+
+                  <Typography variant="body2" style={{ marginTop: "1rem" }}>
+                    {pet.healthDetails
+                      ? pet.healthDetails
+                      : "No additional health information given."}
+                  </Typography>
+                </CardContent>
+              </Card> */}
+            </Box>
+
+            <Box>
+              <Box display="flex" alignItems="center" mb={1}>
+                {/* <InfoIcon /> */}
+                <FeedIcon />
+                <Typography
+                  variant="h6"
+                  ml={1}
+                  style={{ fontSize: "1rem" }}
+                  fontWeight="bold"
+                >
+                  Additional Information
+                </Typography>
+              </Box>
+              <Card elevation={3}>
+                <CardContent style={{ paddingBottom: "1rem" }}>
+                  <Typography variant="body2">
+                    {pet.notes ? pet.notes : "No additional information given."}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Box>
+          </Grid>
+        </Grid>
+      </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
         <Grid container spacing={3}>
           <Grid
@@ -630,52 +461,87 @@ function IconLabelTabs({ pet }) {
             lg={12}
             style={{ paddingLeft: "0" }}
           >
-            <Card style={{ width: "100%" }}>
-              <CardContent>
-                {/* <Box
-                  display="flex"
-                  alignItems="center"
-                  marginBottom="1rem"
-                  padding="0.5rem"
-                  style={{ backgroundColor: "#fff", borderRadius: "8px" }}
+            <Box mb={3}>
+              <Box display="flex" alignItems="center" mb={1}>
+                {/* <PersonIcon /> */}
+                <AccountBoxIcon />
+                <Typography
+                  variant="h6"
+                  style={{ fontSize: "1rem" }}
+                  ml={1}
+                  fontWeight="bold"
                 >
-                  <Avatar>{pet.contactEmail.charAt(0)}</Avatar>
-                  <Box ml={2}>
-                    <Typography variant="h6" component="div">
-                      {pet.contactEmail}
-                    </Typography>
-                    <Box display="flex" alignItems="center">
-                      <Typography variant="body2" color="textSecondary">
-                        Contact Person
-                      </Typography>
-                      <VerifiedIcon
-                        fontSize="small"
-                        style={{ marginLeft: "0.5rem", color: "#3f51b5" }}
-                      />
-                    </Box>
-                  </Box>
-                </Box> */}
-                <Box display="flex" alignItems="center" gap={2} mb={2}>
-                  <PhoneIcon style={{ color: "#ffc107" }} />
-                  <Typography variant="body1">
-                    <b>Phone:</b> {pet.contactPhone}
-                  </Typography>
-                </Box>
+                  Contact Person
+                </Typography>
+              </Box>
+              <Card style={{ width: "100%" }}>
+                <CardContent>
+                  <Box display="flex" alignItems="center" gap={2} mb={2}>
+                    <Avatar
+                      style={{ background: "#555" }}
+                      alt={pet.author.username}
+                      // src={pet.author.username}
+                    />
 
-                <Box display="flex" alignItems="center" gap={2}>
-                  <EmailIcon style={{ color: "#ffc107" }} />
-                  <Typography variant="body1">
-                    <b>Email:</b> {pet.contactEmail}
-                  </Typography>
-                </Box>
-              </CardContent>
-            </Card>
+                    <Typography variant="body1">
+                      <b>Username:</b> {pet.author.username}
+                    </Typography>
+                    {/* <FiberManualRecordIcon
+                      style={{
+                        weight: "0.5rem",
+                        height: "0.5rem",
+                        marginLeft: "-1rem",
+                        marginRight: "-1rem",
+                      }}
+                    /> */}
+                    {/* <Typography variant="body1">John242</Typography> */}
+                    {pet.author && pet.author.isVerified && (
+                      <Tooltip title="Verified user">
+                        <VerifiedIcon
+                          fontSize="small"
+                          color="primary"
+                          style={{
+                            color: "#3f51b5",
+                          }}
+                        />
+                      </Tooltip>
+                    )}
+                  </Box>
+
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    gap={2}
+                    style={{ marginTop: "1rem" }}
+                  >
+                    {/* <PhoneIcon /> */}
+                    <Avatar style={{ background: "#555" }}>
+                      <PhoneIcon />
+                    </Avatar>
+                    <Typography variant="body1">
+                      <b>Phone:</b> {pet.phoneCode ? pet.phoneCode : ""}{" "}
+                      {pet.phone ? pet.phone : "N/A"}
+                    </Typography>
+                  </Box>
+
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    gap={2}
+                    style={{ marginTop: "1rem" }}
+                  >
+                    {/* <EmailIcon /> */}
+                    <Avatar style={{ background: "#555" }}>
+                      <EmailIcon />
+                    </Avatar>
+                    <Typography variant="body1">
+                      <b>Email:</b> {pet.email ? pet.email : "N/A"}
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Box>
           </Grid>
-        </Grid>
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={4}>
-        <Grid container spacing={3}>
-          <LocationHistory locations={locations} />
         </Grid>
       </CustomTabPanel>
     </Box>
@@ -685,6 +551,62 @@ function IconLabelTabs({ pet }) {
 const PetsDetailsPage = () => {
   const { id } = useParams();
   const [pet, setPet] = useState(null);
+  const [comments, setComments] = useState(null);
+
+  const [location, setLocation] = useState(null);
+  console.log("Location in petdetails:", location);
+  const handleAddLocation = (location) => {
+    setLocation((prevLocation) => location);
+  };
+
+  // const handleDeleteMessage = async (commentId) => {
+  //   try {
+  //     // Make a request to your server to delete the message
+  //     await axios.delete(`${BASE_URL}/pets/${id}/comments/${commentId}`);
+
+  //     // Remove the message from the local state
+  //     setComments((prevComments) =>
+  //       prevComments.filter((comment) => comment._id !== commentId)
+  //     );
+  //   } catch (error) {
+  //     console.error("Failed to delete message:", error);
+  //   }
+  // };
+
+  const handleDeleteMessage = async (commentId) => {
+    const token = localStorage.getItem("token"); // assuming the token is stored in local storage
+    try {
+      console.log(`Deleting message with id: ${commentId}`);
+      // Make a request to your server to delete the message
+      await axios.delete(`${BASE_URL}/pets/${id}/comments/${commentId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      // Remove the message from the local state
+      setComments((prevComments) =>
+        prevComments.filter((comment) => comment._id !== commentId)
+      );
+    } catch (error) {
+      console.error("Failed to delete message:", error);
+    }
+  };
+
+  // const handleAddLocation = () => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       const newLocation = {
+  //         lat: position.coords.latitude,
+  //         lng: position.coords.longitude,
+  //       };
+  //       console.log("Current location in PetsDetailsPage.js:", newLocation);
+  //       setLocation(newLocation); // Set the new location
+  //     });
+  //   } else {
+  //     // Geolocation is not supported by this browser
+  //     console.log("Geolocation is not supported by this browser.");
+  //   }
+  // };
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -696,8 +618,8 @@ const PetsDetailsPage = () => {
       if (navigator.share) {
         // Use Web Share API if available
         await navigator.share({
-          title: pet.petStatus,
-          text: pet.petCategory,
+          title: pet.initialStatus,
+          text: pet.category,
           url: window.location.href,
         });
       } else {
@@ -729,6 +651,59 @@ const PetsDetailsPage = () => {
     fetchPet();
   }, [id]);
 
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/pets/${id}/comments`);
+        setComments(response.data);
+        console.log("Comments:", response.data);
+      } catch (error) {
+        console.error("Error fetching pet comments:", error.message);
+        setError("Error fetching pet comments");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchComments();
+  }, [id]);
+
+  // Function to generate PDF
+  // function generatePDF() {
+  //   const mapElement = document.getElementById("map");
+
+  //   // Check if the map element exists
+  //   if (!mapElement) {
+  //     console.error("Map element not found");
+  //     return;
+  //   }
+
+  //   // Use html2canvas to capture the map element as a canvas
+  //   html2canvas(mapElement, {
+  //     useCORS: true,
+  //     background: "#ffffff",
+  //   })
+  //     .then((canvas) => {
+  //       // Convert the canvas to a data URL
+  //       const imgData = canvas.toDataURL("image/jpeg", 1.0);
+
+  //       // Adjust width and height
+  //       const imgWidth = (canvas.width * 60) / 240;
+  //       const imgHeight = (canvas.height * 70) / 240;
+
+  //       // Create a new PDF document
+  //       const pdf = new jsPDF("p", "mm", "a4");
+
+  //       // Add the image to the PDF document
+  //       pdf.addImage(imgData, "PNG", 15, 2, imgWidth, imgHeight);
+
+  //       // Save the PDF
+  //       pdf.save(`Budgeting.pdf`);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error creating PDF:", error);
+  //     });
+  // }
+
   if (loading) {
     return (
       <Box
@@ -750,17 +725,16 @@ const PetsDetailsPage = () => {
     return <div>No pet found</div>;
   }
 
-  const genderIcon = pet.petGender === "Male" ? <MaleIcon /> : <FemaleIcon />;
+  const genderIcon = pet.gender === "Male" ? <MaleIcon /> : <FemaleIcon />;
 
   return (
     <Grid container spacing={3} padding={2}>
-      {/* <Grid item xs={12}>
-        <TomTomMapDetails pet={pet} />
-      </Grid> */}
       <Grid item xs={12}>
         <Typography variant="h5" gutterBottom textAlign="center">
-          <span style={{ textTransform: "capitalize" }}>{pet.petStatus}</span>{" "}
-          <span style={{ textTransform: "capitalize" }}>{pet.petCategory}</span>
+          <span style={{ textTransform: "capitalize" }}>
+            {pet.initialStatus}
+          </span>{" "}
+          <span style={{ textTransform: "capitalize" }}>{pet.category}</span>
         </Typography>
       </Grid>
       <Grid item xs={12} sm={12} md={6} lg={6}>
@@ -775,10 +749,10 @@ const PetsDetailsPage = () => {
 
           <CardMedia
             component="img"
-            alt={pet.petStatus}
+            alt={pet.initialStatus}
             height="400"
-            image={pet.petImage || "/default_pet_image.jpg"}
-            title={pet.petStatus}
+            image={pet.mainImage || "/default_pet_image.jpg"}
+            title={pet.initialStatus}
           />
           <Box
             style={{ position: "absolute", top: -20, right: 0, zIndex: 999 }}
@@ -827,7 +801,7 @@ const PetsDetailsPage = () => {
             <Box display="flex" alignItems="center" p={2}>
               <VisibilityIcon color="action" />
               <Typography variant="body2" color="textSecondary" ml={1}>
-                123 views
+                {pet.views} views
               </Typography>
             </Box>
             <Box display="flex" alignItems="center" p={2}>
@@ -839,26 +813,9 @@ const PetsDetailsPage = () => {
           </Box>
         </Card>
       </Grid>
-
       <Grid item xs={12} sm={12} md={6} lg={6}>
-        {/* <TomTomMapDetails pet={pet} /> */}
         <Box>
           <Grid container spacing={1}>
-            {/* <Grid item xs={12}>
-              <Typography variant="h6" gutterBottom>
-                {pet.petIdentifier}
-              </Typography>
-            </Grid> */}
-            {/* <Grid item xs={12}>
-              <Typography variant="h6" gutterBottom>
-                <PetsIcon /> Status: {pet.petStatus}
-              </Typography>
-            </Grid> */}
-            {/* <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                <CategoryIcon /> Category: {pet.petCategory}
-              </Typography>
-            </Grid> */}
             <Grid item xs={12} mb={1}>
               <Box
                 gap={1}
@@ -868,7 +825,8 @@ const PetsDetailsPage = () => {
                   alignItems: "center",
                 }}
               >
-                <TagIcon /> <b>Identifier:</b> {pet.petIdentifier}
+                <TagIcon /> <b>Identifier:</b>{" "}
+                {pet.identifier ? pet.identifier : "N/A"}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -881,7 +839,7 @@ const PetsDetailsPage = () => {
                   alignItems: "center",
                 }}
               >
-                <HeightIcon /> <b>Size:</b> {pet.petSize}
+                <HeightIcon /> <b>Size:</b> {pet.size ? pet.size : "N/A"}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -894,7 +852,7 @@ const PetsDetailsPage = () => {
                   alignItems: "center",
                 }}
               >
-                <MaleIcon /> <b>Gender:</b> {pet.petGender}
+                <MaleIcon /> <b>Gender:</b> {pet.gender ? pet.gender : "N/A"}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -907,7 +865,8 @@ const PetsDetailsPage = () => {
                   alignItems: "center",
                 }}
               >
-                <MoodIcon /> <b>Behavior:</b> {pet.petBehavior}
+                <MoodIcon /> <b>Behavior:</b>{" "}
+                {pet.behavior ? pet.behavior : "N/A"}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -920,7 +879,7 @@ const PetsDetailsPage = () => {
                   alignItems: "center",
                 }}
               >
-                <CakeIcon /> <b>Age:</b> {pet.petAge}
+                <CakeIcon /> <b>Age:</b> {pet.age ? pet.age : "N/A"}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -933,7 +892,7 @@ const PetsDetailsPage = () => {
                   alignItems: "center",
                 }}
               >
-                <MergeTypeIcon /> <b>Breed:</b> {pet.petBreed}
+                <MergeTypeIcon /> <b>Breed:</b> {pet.breed ? pet.breed : "N/A"}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -946,7 +905,8 @@ const PetsDetailsPage = () => {
                   alignItems: "center",
                 }}
               >
-                <ColorLensIcon /> <b>Main Color:</b> {pet.mainColor}
+                <ColorLensIcon /> <b>Main Color:</b>{" "}
+                {pet.mainColor ? pet.mainColor : "N/A"}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -959,7 +919,8 @@ const PetsDetailsPage = () => {
                   alignItems: "center",
                 }}
               >
-                <TextureIcon /> <b>Marking Pattern:</b> {pet.markingPattern}
+                <TextureIcon /> <b>Marking Pattern:</b>{" "}
+                {pet.markingPattern ? pet.markingPattern : "N/A"}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -973,7 +934,9 @@ const PetsDetailsPage = () => {
                 }}
               >
                 <ColorLensIcon /> <b>Marking Colors:</b>{" "}
-                {pet.markingColors.join(", ")}
+                {pet.markingColors.join(", ")
+                  ? pet.markingColors.join(", ")
+                  : "N/A"}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -988,9 +951,9 @@ const PetsDetailsPage = () => {
               >
                 <EventIcon />{" "}
                 <span style={{ textTransform: "capitalize" }}>
-                  <b>{pet.petStatus}</b>
+                  <b>{pet.initialStatus}</b>
                 </span>
-                <b>Date:</b> {pet.petLostOrFoundDate}
+                <b>Date:</b> {pet.date}
               </Box>
             </Grid>
             <Grid item xs={12} mb={1}>
@@ -1004,9 +967,9 @@ const PetsDetailsPage = () => {
               >
                 <WatchLaterIcon />
                 <span style={{ textTransform: "capitalize" }}>
-                  <b>{pet.petStatus}</b>
+                  <b>{pet.initialStatus}</b>
                 </span>
-                <b>Time:</b> {pet.petLostOrFoundTime}
+                <b>Time:</b> {pet.time}
               </Box>
             </Grid>
             <Grid item xs={12}>
@@ -1027,68 +990,76 @@ const PetsDetailsPage = () => {
                 </CardContent>
               </Card>
             </Grid>
-
-            {/* <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                Created At: {pet.createdAt}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" gutterBottom>
-                Updated At: {pet.updatedAt}
-              </Typography>
-            </Grid> */}
           </Grid>
         </Box>
       </Grid>
-      {/* <Grid item xs={12}>
-        <Card style={{ border: "none", boxShadow: "none" }}>
-          <CardContent style={{ padding: "0" }}>
-            <Box style={{ display: "flex" }}>
-              <Typography
-                fontSize="small"
-                variant="body1"
-                style={{ color: "gray" }}
-              >
-                Created {moment(pet.createdAt).fromNow()}{" "}
-                <span>&nbsp;&nbsp;&nbsp;</span>|<span>&nbsp;&nbsp;&nbsp;</span>
-                Updated {moment(pet.updatedAt).fromNow()}
-              </Typography>
-            </Box>
-          </CardContent>
-        </Card>
-      </Grid> */}
+      {/* <Button
+        variant="contained"
+        color="primary"
+        onClick={() => generatePDF(pet)} // Call the generatePDF function with pet data
+        sx={{ marginTop: 4 }}
+      >
+        Download PDF
+      </Button> */}
+
+      {/* Render the LostPetPage component with pet data */}
+      {/* <Box
+        id="pdf-content"
+        sx={{ padding: 4, border: "1px solid #ccc", borderRadius: "8px" }}
+      >
+        <Typography variant="h4" component="h1" gutterBottom>
+          Lost Pet Information
+        </Typography>
+        <Typography variant="h6" component="h2" gutterBottom>
+          Name: {pet.name}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          <strong>Breed:</strong> {pet.breed}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          <strong>Age:</strong> {pet.age}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          <strong>Last Seen:</strong> {pet.lastSeen}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          <strong>Description:</strong> {pet.description}
+        </Typography>
+        {pet.image && (
+          <img
+            src={pet.image}
+            alt={pet.name}
+            style={{ maxWidth: "100%", height: "auto", marginTop: "20px" }}
+          />
+        )}
+      </Box> */}
+      {/* <Button
+        variant="contained"
+        color="primary"
+        onClick={generatePDF}
+        sx={{ marginTop: 4 }}
+      >
+        Download PDF
+      </Button> */}
       <Grid item xs={12} sm={12} md={12} lg={12}>
-        <TomTomMapDetails pet={pet} />
+        <TomTomMapDetails
+          pet={pet}
+          location={location}
+          onAddLocation={handleAddLocation}
+        />
       </Grid>
-
-      {/* <Grid item xs={12} sm={12} md={6} lg={6}>
-        aaa
-      </Grid> */}
-      {/* <Grid item xs={12} sm={12} md={6} lg={6}>
-        <ChatComponent />
-      </Grid> */}
-
       <Grid item xs={12} sm={12} md={12} lg={12}>
-        <IconLabelTabs pet={pet} />
+        <IconLabelTabs
+          pet={pet}
+          comments={comments}
+          location={location}
+          onDeleteMessage={handleDeleteMessage}
+          onAddLocation={handleAddLocation}
+        />
       </Grid>
-
-      {/* <Grid item xs={12}>
-        <Card>
-          <CardContent>
-            <Box style={{ display: "flex" }}>
-              <Typography
-                fontSize="small"
-                variant="body1"
-                style={{ color: "gray" }}
-              >
-                Created At: {moment(pet.createdAt).fromNow()} | Updated At:{" "}
-                {moment(pet.updatedAt).fromNow()}
-              </Typography>
-            </Box>
-          </CardContent>
-        </Card>
-      </Grid> */}
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <Poster pet={pet} />
+      </Grid>
     </Grid>
   );
 };
