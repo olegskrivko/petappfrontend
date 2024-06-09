@@ -31,4 +31,5 @@ export {
   CITY,
   FACEBOOK,
   INSTAGRAM,
+  DOMAIN_URL,
 };
