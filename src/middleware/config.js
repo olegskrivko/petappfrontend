@@ -13,7 +13,7 @@ const TOMTOM_API = "xFokTxRRN2XWygHA8748GxHUGVAmcx9A";
 
 if (process.env.NODE_ENV === "production") {
   // Set production API URL
-  BASE_URL = "https://pawclix.cyclic.app/api";
+  BASE_URL = "https://petappbackend.vercel.app/api";
 } else {
   // Set localhost API URL for development and test environments
   BASE_URL = "http://localhost:5000/api";
