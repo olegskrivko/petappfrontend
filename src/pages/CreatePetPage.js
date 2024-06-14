@@ -1,40 +1,37 @@
-import React, { useState, useContext } from "react";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import Typography from "@mui/material/Typography";
-import FormGroup from "@mui/material/FormGroup";
-import Button from "@mui/material/Button";
-import Alert from "@mui/material/Alert";
-import AlertTitle from "@mui/material/AlertTitle";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  IconButton,
-} from "@mui/material";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormLabel from "@mui/material/FormLabel";
-import Radio from "@mui/material/Radio";
-import CloseIcon from "@mui/icons-material/Close";
+import React, { useState, useContext, useEffect } from 'react';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
+import FormGroup from '@mui/material/FormGroup';
+import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import { Dialog, DialogTitle, DialogContent, DialogActions, IconButton } from '@mui/material';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormLabel from '@mui/material/FormLabel';
+import Radio from '@mui/material/Radio';
+import CloseIcon from '@mui/icons-material/Close';
 
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import axios from "axios";
-import { BASE_URL } from "../middleware/config";
-import TomTomMap from "../components/map/TomTomMap";
-import "@tomtom-international/web-sdk-maps/dist/maps.css";
-import ImageUploader from "../components/pets/ImageUploader";
-import PetHealth from "../components/petcard/PetHealth";
-import { AuthContext } from "../middleware/AuthContext";
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import axios from 'axios';
+import { BASE_URL } from '../middleware/config';
+import TomTomMap from '../components/map/TomTomMap';
+import '@tomtom-international/web-sdk-maps/dist/maps.css';
+import ImageUploader from '../components/pets/ImageUploader';
+import PetHealth from '../components/petcard/PetHealth';
+import { AuthContext } from '../middleware/AuthContext';
+import { LanguageContext } from '../middleware/LanguageContext';
 
 function CreatePetPage() {
   const { user } = useContext(AuthContext);
-
+  const { selectedLanguage } = useContext(LanguageContext);
+  console.log('Selected language insdie create page:', selectedLanguage);
+  //const [selectedLanguage, setSelectedLanguage] = useState("lv"); // Default language
   const getCurrentDate = () => {
     const now = new Date();
     return now.toISOString().slice(0, 10); // Returns date in YYYY-MM-DD format
@@ -46,30 +43,30 @@ function CreatePetPage() {
   };
 
   const [formState, setFormState] = useState({
-    initialStatus: "",
-    category: "",
-    identifier: "",
-    size: "",
-    gender: "",
-    behavior: "",
-    age: "",
-    breed: "",
+    initialStatus: '',
+    category: '',
+    identifier: '',
+    size: '',
+    gender: '',
+    behavior: '',
+    age: '',
+    breed: '',
     health: [],
-    healthDetails: "",
+    healthDetails: '',
     location: { lat: null, lng: null },
-    mainColor: "",
-    markingPattern: "solid",
+    mainColor: '',
+    markingPattern: 'solid',
     markingColors: [],
     date: getCurrentDate(),
     time: getCurrentTime(),
     mainImage:
-      "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    phone: "",
-    phoneCode: "",
-    email: "",
-    notes: "",
-    updatedStatus: "",
-    updatedStatusDescription: "",
+      'https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    phone: '',
+    phoneCode: '',
+    email: '',
+    notes: '',
+    updatedStatus: '',
+    updatedStatusDescription: '',
     isPublic: true,
     isClosed: false,
   });
@@ -77,107 +74,222 @@ function CreatePetPage() {
   const [mainColorDialogOpen, setMainColorDialogOpen] = useState(false);
   const [markingColorDialogOpen, setMarkingColorDialogOpen] = useState(false);
 
+  const [sizeLabel, setSizeLabel] = useState([]);
+  const [sizeOptions, setSizeOptions] = useState([]);
+
+  const [genderLabel, setGenderLabel] = useState([]);
+  const [genderOptions, setGenderOptions] = useState([]);
+
+  const [categoryLabel, setCategoryLabel] = useState([]);
+  const [categoryOptions, setCategoryOptions] = useState([]);
+
+  const [behaviorLabel, setBehaviorLabel] = useState([]);
+  const [behaviorOptions, setBehaviorOptions] = useState([]);
+
+  // Fetch size options based on user's language on component mount
+  useEffect(() => {
+    fetchSizeOptions();
+    fetchGenderOptions();
+    fetchCategoryOptions();
+    fetchBehaviorOptions();
+  }, []);
+
+  const fetchSizeOptions = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/options/size`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Accept-Language': selectedLanguage,
+        },
+      });
+
+      console.log('Response from fetch size options:', response.data.options);
+      if (response.data && response.data.options) {
+        const sizeOption = response.data.options.find((opt) => opt.key === 'size');
+        if (sizeOption) {
+          setSizeLabel(sizeOption.name);
+          setSizeOptions(sizeOption.values);
+          console.log('Size options fetched successfully:', sizeOption.values);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching size options:', error);
+    }
+  };
+
+  const fetchBehaviorOptions = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/options/behavior`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Accept-Language': selectedLanguage,
+        },
+      });
+
+      console.log('Response from fetch behavior options:', response.data.options);
+      if (response.data && response.data.options) {
+        const behaviorOption = response.data.options.find((opt) => opt.key === 'behavior');
+        if (behaviorOption) {
+          setBehaviorLabel(behaviorOption.name);
+          setBehaviorOptions(behaviorOption.values);
+          console.log('Behavior options fetched successfully:', behaviorOption.values);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching behavior options:', error);
+    }
+  };
+
+  const fetchGenderOptions = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/options/gender`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Accept-Language': selectedLanguage,
+        },
+      });
+
+      console.log('Response from fetch gender options:', response.data.options);
+      if (response.data && response.data.options) {
+        const genderOption = response.data.options.find((opt) => opt.key === 'gender');
+        if (genderOption) {
+          setGenderLabel(genderOption.name);
+          setGenderOptions(genderOption.values);
+          console.log('Gender options fetched successfully:', genderOption.values);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching gender options:', error);
+    }
+  };
+
+  const fetchCategoryOptions = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/options/category`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Accept-Language': selectedLanguage,
+        },
+      });
+
+      console.log('Response from fetch category options:', response.data.options);
+      if (response.data && response.data.options) {
+        const categoryOption = response.data.options.find((opt) => opt.key === 'category');
+        if (categoryOption) {
+          setCategoryLabel(categoryOption.name);
+          setCategoryOptions(categoryOption.values);
+          console.log('Category options fetched successfully:', categoryOption.values);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching category options:', error);
+    }
+  };
   const initialStatusOptions = [
-    { value: "missing", label: "Missing" },
-    { value: "found", label: "Found" },
-    { value: "seen", label: "Seen" },
+    { value: 'missing', label: 'Missing' },
+    { value: 'found', label: 'Found' },
+    { value: 'seen', label: 'Seen' },
   ];
 
   const categoriesOptions = [
-    { value: "dog", label: "Dog" },
-    { value: "cat", label: "Cat" },
-    { value: "cow", label: "Cow" },
-    { value: "horse", label: "Horse" },
+    { value: 'dog', label: 'Dog' },
+    { value: 'cat', label: 'Cat' },
+    { value: 'cow', label: 'Cow' },
+    { value: 'horse', label: 'Horse' },
   ];
 
-  const sizeOptions = [
-    { value: "", label: "None" },
-    { value: "small", label: "Small" },
-    { value: "medium", label: "Medium" },
-    { value: "large", label: "Large" },
-  ];
+  // const sizeOptions = [
+  //   { value: "", label: "None" },
+  //   { value: "small", label: "Small" },
+  //   { value: "medium", label: "Medium" },
+  //   { value: "large", label: "Large" },
+  // ];
 
-  const genderOptions = [
-    { value: "", label: "None" },
-    { value: "he", label: "He" },
-    { value: "she", label: "She" },
-  ];
+  // const genderOptions = [
+  //   { value: '', label: 'None' },
+  //   { value: 'he', label: 'He' },
+  //   { value: 'she', label: 'She' },
+  // ];
 
-  const behaviorOptions = [
-    { value: "", label: "None" },
-    { value: "friendly", label: "Friendly" },
-    { value: "aggressive", label: "Aggressive" },
-    { value: "protective", label: "Protective" },
-    { value: "playful", label: "Playful" },
-    { value: "calm", label: "Calm" },
-  ];
+  // const behaviorOptions = [
+  //   { value: '', label: 'None' },
+  //   { value: 'friendly', label: 'Friendly' },
+  //   { value: 'aggressive', label: 'Aggressive' },
+  //   { value: 'protective', label: 'Protective' },
+  //   { value: 'playful', label: 'Playful' },
+  //   { value: 'calm', label: 'Calm' },
+  // ];
 
   const getAgeOptions = () => {
     const ageOptionsMap = {
       dog: [
-        { value: "", label: "None" },
-        { value: "puppy", label: "Puppy" },
-        { value: "adolescent", label: "Adolescent" },
-        { value: "adult", label: "Adult" },
-        { value: "senior", label: "Senior" },
+        { value: '', label: 'None' },
+        { value: 'puppy', label: 'Puppy' },
+        { value: 'adolescent', label: 'Adolescent' },
+        { value: 'adult', label: 'Adult' },
+        { value: 'senior', label: 'Senior' },
       ],
       cat: [
-        { value: "", label: "None" },
-        { value: "kitten", label: "Kitten" },
-        { value: "adolescent", label: "Adolescent" },
-        { value: "adult", label: "Adult" },
-        { value: "senior", label: "Senior" },
+        { value: '', label: 'None' },
+        { value: 'kitten', label: 'Kitten' },
+        { value: 'adolescent', label: 'Adolescent' },
+        { value: 'adult', label: 'Adult' },
+        { value: 'senior', label: 'Senior' },
       ],
       cow: [
-        { value: "", label: "None" },
-        { value: "calf", label: "Calf" },
-        { value: "adolescent", label: "Adolescent" },
-        { value: "adult", label: "Adult" },
-        { value: "senior", label: "Senior" },
+        { value: '', label: 'None' },
+        { value: 'calf', label: 'Calf' },
+        { value: 'adolescent', label: 'Adolescent' },
+        { value: 'adult', label: 'Adult' },
+        { value: 'senior', label: 'Senior' },
       ],
       horse: [
-        { value: "", label: "None" },
-        { value: "foal", label: "Foal" },
-        { value: "adolescent", label: "Adolescent" },
-        { value: "adult", label: "Adult" },
-        { value: "senior", label: "Senior" },
+        { value: '', label: 'None' },
+        { value: 'foal', label: 'Foal' },
+        { value: 'adolescent', label: 'Adolescent' },
+        { value: 'adult', label: 'Adult' },
+        { value: 'senior', label: 'Senior' },
       ],
     };
     return ageOptionsMap[formState.category] || [];
   };
 
   const markingPatternOptions = [
-    { value: "solid", label: "No" },
-    { value: "striped", label: "Striped" },
-    { value: "spotted", label: "Spotted" },
-    { value: "patched", label: "Patched" },
-    { value: "marbled", label: "Marbled" },
+    { value: 'solid', label: 'No' },
+    { value: 'striped', label: 'Striped' },
+    { value: 'spotted', label: 'Spotted' },
+    { value: 'patched', label: 'Patched' },
+    { value: 'marbled', label: 'Marbled' },
   ];
 
   const phoneCodeOptions = [
-    { value: "", label: "N/A" },
-    { value: "+371", label: "+371" },
-    { value: "+372", label: "+372" },
-    { value: "+370", label: "+370" },
+    { value: '', label: 'N/A' },
+    { value: '+371', label: '+371' },
+    { value: '+372', label: '+372' },
+    { value: '+370', label: '+370' },
   ];
 
   const colorsListOptions = [
-    { name: "Black", hexCode: "#000000" },
-    { name: "Gray", hexCode: "#BEBEBE" },
-    { name: "White", hexCode: "#f7f7f7" },
-    { name: "Cream", hexCode: "#FFF1B9" },
-    { name: "Yellow", hexCode: "#FCDC5C" },
-    { name: "Golden", hexCode: "#FFA500" },
-    { name: "Brown", hexCode: "#C37C4D" },
-    { name: "Red", hexCode: "#A71A20" },
-    { name: "Lilac", hexCode: "#BA97AA" },
-    { name: "Blue", hexCode: "#1A355E" },
-    { name: "Green", hexCode: "#5F6F52" },
-    { name: "Khaki", hexCode: "#BDB76B" },
-    { name: "Beige", hexCode: "#E5DECA" },
-    { name: "Tan", hexCode: "#D2B48C" },
-    { name: "Fawn", hexCode: "#E5AA70" },
-    { name: "Chestnut", hexCode: "#954535" },
+    { name: 'Black', hexCode: '#000000' },
+    { name: 'Gray', hexCode: '#BEBEBE' },
+    { name: 'White', hexCode: '#f7f7f7' },
+    { name: 'Cream', hexCode: '#FFF1B9' },
+    { name: 'Yellow', hexCode: '#FCDC5C' },
+    { name: 'Golden', hexCode: '#FFA500' },
+    { name: 'Brown', hexCode: '#C37C4D' },
+    { name: 'Red', hexCode: '#A71A20' },
+    { name: 'Lilac', hexCode: '#BA97AA' },
+    { name: 'Blue', hexCode: '#1A355E' },
+    { name: 'Green', hexCode: '#5F6F52' },
+    { name: 'Khaki', hexCode: '#BDB76B' },
+    { name: 'Beige', hexCode: '#E5DECA' },
+    { name: 'Tan', hexCode: '#D2B48C' },
+    { name: 'Fawn', hexCode: '#E5AA70' },
+    { name: 'Chestnut', hexCode: '#954535' },
   ];
 
   const handleChange = (field, value) => {
@@ -189,12 +301,12 @@ function CreatePetPage() {
     // Clear the error message for the field
     setFormErrors((prevErrors) => ({
       ...prevErrors,
-      [field]: "", // Clear the error message for the field
+      [field]: '', // Clear the error message for the field
     }));
   };
 
   const handleMainColorChange = (colorName) => {
-    handleChange("mainColor", colorName);
+    handleChange('mainColor', colorName);
     setMainColorDialogOpen(false);
   };
 
@@ -207,18 +319,18 @@ function CreatePetPage() {
 
   const handleMarkingPatternChange = (event) => {
     const value = event.target.value;
-    handleChange("markingPattern", value);
+    handleChange('markingPattern', value);
   };
 
   const handleMarkingColorChange = (colorName) => {
     const currentMarkingColors = [...formState.markingColors];
     if (currentMarkingColors.includes(colorName)) {
       handleChange(
-        "markingColors",
-        currentMarkingColors.filter((color) => color !== colorName)
+        'markingColors',
+        currentMarkingColors.filter((color) => color !== colorName),
       );
     } else {
-      handleChange("markingColors", [...currentMarkingColors, colorName]);
+      handleChange('markingColors', [...currentMarkingColors, colorName]);
     }
   };
 
@@ -226,15 +338,15 @@ function CreatePetPage() {
     event.preventDefault();
     try {
       // await axios.post(`${BASE_URL}/pets`, { ...formState, author: user.id });
-      const token = localStorage.getItem("token"); // assuming the token is stored in local storage
+      const token = localStorage.getItem('token'); // assuming the token is stored in local storage
       await axios.post(
         `${BASE_URL}/pets`,
         { ...formState, author: user.id },
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
-      console.log("Pet details sent successfully to the backend.");
+      console.log('Pet details sent successfully to the backend.');
     } catch (error) {
       //   console.log("Error response from the backend:", error.response); // Add this log statement
       //   if (error.response && error.response.data && error.response.data.errors) {
@@ -244,7 +356,7 @@ function CreatePetPage() {
       //     console.error("Failed to send pet details to the backend:", error);
       //   }
       // }
-      console.log("Error response from the backend:", error.response);
+      console.log('Error response from the backend:', error.response);
       if (
         error.response &&
         error.response.data &&
@@ -258,46 +370,46 @@ function CreatePetPage() {
           newFormErrors[error.path] = error.msg;
         });
         setFormErrors(newFormErrors);
-        console.log("Form errors:", formErrors); // Add this log statement
+        console.log('Form errors:', formErrors); // Add this log statement
       } else {
-        console.error("Failed to send pet details to the backend:", error);
+        console.error('Failed to send pet details to the backend:', error);
       }
     }
   };
 
   // Function to get error message for a specific field
   const getErrorMessage = (field) => {
-    return formErrors[field] ? formErrors[field].msg : "";
+    return formErrors[field] ? formErrors[field].msg : '';
   };
 
   const getUpdatedStatusOptions = () => {
     const updatedStatusOptionsMap = {
       missing: [
-        { value: "", label: "None" },
-        { value: "activelySearching", label: "Actively Searching" },
-        { value: "stillMissing", label: "Still Missing" },
-        { value: "reunited", label: "Reunited" },
-        { value: "deceased", label: "Deceased" },
-        { value: "other", label: "Other" },
+        { value: '', label: 'None' },
+        { value: 'activelySearching', label: 'Actively Searching' },
+        { value: 'stillMissing', label: 'Still Missing' },
+        { value: 'reunited', label: 'Reunited' },
+        { value: 'deceased', label: 'Deceased' },
+        { value: 'other', label: 'Other' },
       ],
       found: [
-        { value: "", label: "None" },
-        { value: "awaitingOwner", label: "Awaiting Owner" },
-        { value: "adopted", label: "Adopted" },
-        { value: "takenToShelter", label: "Taken to Shelter" },
+        { value: '', label: 'None' },
+        { value: 'awaitingOwner', label: 'Awaiting Owner' },
+        { value: 'adopted', label: 'Adopted' },
+        { value: 'takenToShelter', label: 'Taken to Shelter' },
         {
-          value: "takenToVeterinaryClinic",
-          label: "Taken to Veterinary Clinic",
+          value: 'takenToVeterinaryClinic',
+          label: 'Taken to Veterinary Clinic',
         },
-        { value: "deceased", label: "Deceased" },
-        { value: "other", label: "Other" },
+        { value: 'deceased', label: 'Deceased' },
+        { value: 'other', label: 'Other' },
       ],
       seen: [
-        { value: "", label: "None" },
-        { value: "reportedToAuthorities", label: "Reported to Authorities" },
-        { value: "freeRoaming", label: "Free Roaming" },
-        { value: "deceased", label: "Deceased" },
-        { value: "other", label: "Other" },
+        { value: '', label: 'None' },
+        { value: 'reportedToAuthorities', label: 'Reported to Authorities' },
+        { value: 'freeRoaming', label: 'Free Roaming' },
+        { value: 'deceased', label: 'Deceased' },
+        { value: 'other', label: 'Other' },
       ],
     };
     return updatedStatusOptionsMap[formState.initialStatus] || [];
@@ -306,55 +418,55 @@ function CreatePetPage() {
   const getBreedOptions = () => {
     const breedOptionsMap = {
       dog: [
-        { value: "", label: "None" },
-        { value: "labradorRetriever", label: "Labrador Retriever" },
-        { value: "germanShepherd", label: "German Shepherd" },
-        { value: "goldenRetriever", label: "Golden Retriever" },
-        { value: "bulldog", label: "Bulldog" },
-        { value: "beagle", label: "Beagle" },
-        { value: "poodle", label: "Poodle" },
-        { value: "rottweiler", label: "Rottweiler" },
-        { value: "yorkshireTerrier", label: "Yorkshire Terrier" },
-        { value: "boxer", label: "Boxer" },
-        { value: "dachshund", label: "Dachshund" },
+        { value: '', label: 'None' },
+        { value: 'labradorRetriever', label: 'Labrador Retriever' },
+        { value: 'germanShepherd', label: 'German Shepherd' },
+        { value: 'goldenRetriever', label: 'Golden Retriever' },
+        { value: 'bulldog', label: 'Bulldog' },
+        { value: 'beagle', label: 'Beagle' },
+        { value: 'poodle', label: 'Poodle' },
+        { value: 'rottweiler', label: 'Rottweiler' },
+        { value: 'yorkshireTerrier', label: 'Yorkshire Terrier' },
+        { value: 'boxer', label: 'Boxer' },
+        { value: 'dachshund', label: 'Dachshund' },
       ],
       cat: [
-        { value: "", label: "None" },
-        { value: "Persian", label: "Persian" },
-        { value: "maineCoon", label: "Maine Coon" },
-        { value: "ragdoll", label: "Ragdoll" },
-        { value: "siamese", label: "Siamese" },
-        { value: "scottishFold", label: "Scottish Fold" },
-        { value: "sphynx", label: "Sphynx" },
-        { value: "bengal", label: "Bengal" },
-        { value: "birman", label: "Birman" },
-        { value: "americanShorthair", label: "American Shorthair" },
+        { value: '', label: 'None' },
+        { value: 'Persian', label: 'Persian' },
+        { value: 'maineCoon', label: 'Maine Coon' },
+        { value: 'ragdoll', label: 'Ragdoll' },
+        { value: 'siamese', label: 'Siamese' },
+        { value: 'scottishFold', label: 'Scottish Fold' },
+        { value: 'sphynx', label: 'Sphynx' },
+        { value: 'bengal', label: 'Bengal' },
+        { value: 'birman', label: 'Birman' },
+        { value: 'americanShorthair', label: 'American Shorthair' },
       ],
       cow: [
-        { value: "", label: "None" },
-        { value: "holstein", label: "Holstein" },
-        { value: "jersey", label: "Jersey" },
-        { value: "guernsey", label: "Guernsey" },
-        { value: "brownSwiss", label: "Brown Swiss" },
-        { value: "ayrshire", label: "Ayrshire" },
-        { value: "hereford", label: "Hereford" },
-        { value: "angus", label: "Angus" },
-        { value: "brahman", label: "Brahman" },
-        { value: "simmental", label: "Simmental" },
-        { value: "charolais", label: "Charolais" },
+        { value: '', label: 'None' },
+        { value: 'holstein', label: 'Holstein' },
+        { value: 'jersey', label: 'Jersey' },
+        { value: 'guernsey', label: 'Guernsey' },
+        { value: 'brownSwiss', label: 'Brown Swiss' },
+        { value: 'ayrshire', label: 'Ayrshire' },
+        { value: 'hereford', label: 'Hereford' },
+        { value: 'angus', label: 'Angus' },
+        { value: 'brahman', label: 'Brahman' },
+        { value: 'simmental', label: 'Simmental' },
+        { value: 'charolais', label: 'Charolais' },
       ],
       horse: [
-        { value: "", label: "None" },
-        { value: "arabian", label: "Arabian" },
-        { value: "thoroughbred", label: "Thoroughbred" },
-        { value: "quarterHorse", label: "Quarter Horse" },
-        { value: "clydesdale", label: "Clydesdale" },
-        { value: "friesian", label: "Friesian" },
-        { value: "appaloosa", label: "Appaloosa" },
-        { value: "shetlandPony", label: "Shetland Pony" },
-        { value: "americanPaintHorse", label: "American Paint Horse" },
-        { value: "morgan", label: "Morgan" },
-        { value: "tennesseeWalkingHorse", label: "Tennessee Walking Horse" },
+        { value: '', label: 'None' },
+        { value: 'arabian', label: 'Arabian' },
+        { value: 'thoroughbred', label: 'Thoroughbred' },
+        { value: 'quarterHorse', label: 'Quarter Horse' },
+        { value: 'clydesdale', label: 'Clydesdale' },
+        { value: 'friesian', label: 'Friesian' },
+        { value: 'appaloosa', label: 'Appaloosa' },
+        { value: 'shetlandPony', label: 'Shetland Pony' },
+        { value: 'americanPaintHorse', label: 'American Paint Horse' },
+        { value: 'morgan', label: 'Morgan' },
+        { value: 'tennesseeWalkingHorse', label: 'Tennessee Walking Horse' },
       ],
     };
     return breedOptionsMap[formState.category] || [];
@@ -372,7 +484,7 @@ function CreatePetPage() {
               <Grid item xs={12}>
                 <Typography
                   variant="body1"
-                  style={{ fontWeight: "500" }}
+                  style={{ fontWeight: '500' }}
                   gutterBottom
                   textAlign="left"
                 >
@@ -388,9 +500,7 @@ function CreatePetPage() {
                     labelId="initialStatus-label"
                     id="initialStatus"
                     value={formState.initialStatus}
-                    onChange={(e) =>
-                      handleChange("initialStatus", e.target.value)
-                    }
+                    onChange={(e) => handleChange('initialStatus', e.target.value)}
                     error={Boolean(formErrors.initialStatus)}
                     label="Status*"
                     notched
@@ -418,9 +528,9 @@ function CreatePetPage() {
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="category-label" shrink>
-                    Category*
+                    {/* Category* */} {categoryLabel[selectedLanguage]}*
                   </InputLabel>
-                  <Select
+                  {/* <Select
                     labelId="category-label"
                     id="category"
                     value={formState.category}
@@ -428,8 +538,8 @@ function CreatePetPage() {
                     error={Boolean(formErrors.category)}
                     notched
                     onChange={(e) => {
-                      handleChange("category", e.target.value);
-                      handleChange("age", "");
+                      handleChange('category', e.target.value);
+                      handleChange('age', '');
                     }}
                   >
                     {categoriesOptions.map((category) => (
@@ -437,7 +547,32 @@ function CreatePetPage() {
                         {category.label}
                       </MenuItem>
                     ))}
+                  </Select> */}
+                  <Select
+                    labelId="category-label"
+                    id="category"
+                    value={formState.category}
+                    label={categoryLabel[selectedLanguage] + '*'}
+                    error={Boolean(formErrors.category)}
+                    notched
+                    onChange={(e) => {
+                      handleChange('category', e.target.value);
+                      handleChange('age', '');
+                    }}
+                  >
+                    {/* {categoriesOptions.map((category) => (
+                      <MenuItem key={category.value} value={category.value}>
+                        {category.label}
+                      </MenuItem>
+                    ))} */}
+                    <MenuItem value="">None</MenuItem>
+                    {categoryOptions.map((category) => (
+                      <MenuItem key={category._id} value={category.value}>
+                        {category.translations[selectedLanguage]}
+                      </MenuItem>
+                    ))}
                   </Select>
+
                   {formErrors.category && (
                     <Typography variant="body2" color="error">
                       {formErrors.category}
@@ -457,16 +592,16 @@ function CreatePetPage() {
                   variant="outlined"
                   value={formState.identifier}
                   placeholder="Pet's name or identifier (e.g. name on necklace, tag on ear)"
-                  onChange={(e) => handleChange("identifier", e.target.value)}
+                  onChange={(e) => handleChange('identifier', e.target.value)}
                 />
               </Grid>
 
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="size-label" shrink>
-                    Size
+                    {sizeLabel[selectedLanguage]}
                   </InputLabel>
-                  <Select
+                  {/* <Select
                     labelId="size-label"
                     id="size"
                     value={formState.size}
@@ -479,25 +614,49 @@ function CreatePetPage() {
                         {size.label}
                       </MenuItem>
                     ))}
+                  </Select> */}
+
+                  <Select
+                    labelId="size-label"
+                    id="size"
+                    value={formState.size}
+                    label={sizeLabel[selectedLanguage]}
+                    notched
+                    onChange={(e) => handleChange('size', e.target.value)}
+                    error={Boolean(formErrors.size)}
+                    fullWidth
+                  >
+                    <MenuItem value="">None</MenuItem>
+                    {sizeOptions.map((size) => (
+                      <MenuItem key={size._id} value={size.value}>
+                        {size.translations[selectedLanguage]}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="gender-label" shrink>
-                    Gender
+                    {/* Gender */} {genderLabel[selectedLanguage]}
                   </InputLabel>
                   <Select
                     labelId="gender-label"
                     id="gender"
                     value={formState.gender}
-                    label="Gender"
+                    label={genderLabel[selectedLanguage]}
                     notched
-                    onChange={(e) => handleChange("gender", e.target.value)}
+                    onChange={(e) => handleChange('gender', e.target.value)}
                   >
-                    {genderOptions.map((gender) => (
+                    {/* {genderOptions.map((gender) => (
                       <MenuItem key={gender.value} value={gender.value}>
                         {gender.label}
+                      </MenuItem>
+                    ))} */}
+                    <MenuItem value="">None</MenuItem>
+                    {genderOptions.map((gender) => (
+                      <MenuItem key={gender._id} value={gender.value}>
+                        {gender.translations[selectedLanguage]}
                       </MenuItem>
                     ))}
                   </Select>
@@ -506,19 +665,25 @@ function CreatePetPage() {
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="behavior-label" shrink>
-                    Behavior
+                    {/* Behavior */} {behaviorLabel[selectedLanguage]}
                   </InputLabel>
                   <Select
                     labelId="behavior-label"
                     id="behavior"
                     value={formState.behavior}
-                    onChange={(e) => handleChange("behavior", e.target.value)}
-                    label="Behavior"
+                    onChange={(e) => handleChange('behavior', e.target.value)}
+                    label={behaviorLabel[selectedLanguage]}
                     notched
                   >
-                    {behaviorOptions.map((behavior) => (
+                    {/* {behaviorOptions.map((behavior) => (
                       <MenuItem key={behavior.value} value={behavior.value}>
                         {behavior.label}
+                      </MenuItem>
+                    ))} */}
+                    <MenuItem value="">None</MenuItem>
+                    {behaviorOptions.map((behavior) => (
+                      <MenuItem key={behavior._id} value={behavior.value}>
+                        {behavior.translations[selectedLanguage]}
                       </MenuItem>
                     ))}
                   </Select>
@@ -537,7 +702,7 @@ function CreatePetPage() {
                     disabled={!formState.category}
                     label="Age"
                     notched
-                    onChange={(e) => handleChange("age", e.target.value)}
+                    onChange={(e) => handleChange('age', e.target.value)}
                   >
                     {getAgeOptions().map((age) => (
                       <MenuItem key={age.value} value={age.value}>
@@ -557,7 +722,7 @@ function CreatePetPage() {
                     id="breed"
                     value={formState.breed}
                     disabled={!formState.category}
-                    onChange={(e) => handleChange("breed", e.target.value)}
+                    onChange={(e) => handleChange('breed', e.target.value)}
                     label="Breed"
                     notched
                   >
@@ -576,7 +741,7 @@ function CreatePetPage() {
               <Grid item xs={12}>
                 <Typography
                   variant="body1"
-                  style={{ fontWeight: "500" }}
+                  style={{ fontWeight: '500' }}
                   gutterBottom
                   textAlign="left"
                 >
@@ -594,14 +759,14 @@ function CreatePetPage() {
                   </FormLabel> */}
                   <Typography
                     variant="body1"
-                    style={{ fontWeight: "500" }}
+                    style={{ fontWeight: '500' }}
                     gutterBottom
                     textAlign="left"
                   >
                     Does the pet have markings?
                   </Typography>
                   <RadioGroup
-                    style={{ display: "flex !important", flexDirection: "row" }}
+                    style={{ display: 'flex !important', flexDirection: 'row' }}
                     value={formState.markingPattern}
                     onChange={handleMarkingPatternChange}
                   >
@@ -625,7 +790,7 @@ function CreatePetPage() {
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <Typography
                   variant="body1"
-                  style={{ fontWeight: "500" }}
+                  style={{ fontWeight: '500' }}
                   gutterBottom
                   textAlign="left"
                 >
@@ -633,40 +798,38 @@ function CreatePetPage() {
                 </Typography>
                 <div
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    cursor: "pointer",
-                    border: "1px solid #dadada",
-                    borderRadius: "5px",
-                    padding: "10px",
-                    justifyContent: "center",
+                    display: 'flex',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    border: '1px solid #dadada',
+                    borderRadius: '5px',
+                    padding: '10px',
+                    justifyContent: 'center',
                   }}
                   onClick={() => setMainColorDialogOpen(true)}
                 >
                   {formState.mainColor ? (
                     <div
                       style={{
-                        width: "30px",
-                        height: "30px",
-                        borderRadius: "50%",
+                        width: '30px',
+                        height: '30px',
+                        borderRadius: '50%',
                         backgroundColor: colorsListOptions.find(
-                          (color) => color.name === formState.mainColor
+                          (color) => color.name === formState.mainColor,
                         ).hexCode,
-                        marginRight: "10px",
+                        marginRight: '10px',
                       }}
                     />
                   ) : null}
                   <Typography variant="body1">
-                    {formState.mainColor
-                      ? formState.mainColor
-                      : "Click to choose one color"}
+                    {formState.mainColor ? formState.mainColor : 'Click to choose one color'}
                   </Typography>
                 </div>
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <Typography
                   variant="body1"
-                  style={{ fontWeight: "500" }}
+                  style={{ fontWeight: '500' }}
                   gutterBottom
                   textAlign="left"
                 >
@@ -674,42 +837,38 @@ function CreatePetPage() {
                 </Typography>
                 <div
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    cursor:
-                      formState.markingPattern === "solid"
-                        ? "not-allowed"
-                        : "pointer",
-                    border: "1px solid #dadada",
-                    borderRadius: "5px",
-                    padding: "10px",
-                    justifyContent: "center",
-                    opacity: formState.markingPattern === "solid" ? 0.5 : 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    cursor: formState.markingPattern === 'solid' ? 'not-allowed' : 'pointer',
+                    border: '1px solid #dadada',
+                    borderRadius: '5px',
+                    padding: '10px',
+                    justifyContent: 'center',
+                    opacity: formState.markingPattern === 'solid' ? 0.5 : 1,
                   }}
                   onClick={() =>
-                    formState.markingPattern !== "solid" &&
-                    setMarkingColorDialogOpen(true)
+                    formState.markingPattern !== 'solid' && setMarkingColorDialogOpen(true)
                   }
                 >
                   {formState.markingColors.length > 0 ? (
                     <div
                       style={{
-                        display: "flex",
-                        justifyContent: "center !important",
-                        alignItems: "center !important",
+                        display: 'flex',
+                        justifyContent: 'center !important',
+                        alignItems: 'center !important',
                       }}
                     >
                       {formState.markingColors.map((colorName) => (
                         <div
                           key={colorName}
                           style={{
-                            width: "30px",
-                            height: "30px",
-                            borderRadius: "50%",
+                            width: '30px',
+                            height: '30px',
+                            borderRadius: '50%',
                             backgroundColor: colorsListOptions.find(
-                              (color) => color.name === colorName
+                              (color) => color.name === colorName,
                             ).hexCode,
-                            marginRight: "10px",
+                            marginRight: '10px',
                           }}
                         >
                           {/* <p>{colorName}</p> */}
@@ -721,25 +880,22 @@ function CreatePetPage() {
                   <Typography variant="body1">
                     {formState.markingColors.length > 0
                       ? // ? "Click to change colors"
-                        ""
-                      : "Click to choose up to two colors"}
+                        ''
+                      : 'Click to choose up to two colors'}
                   </Typography>
                 </div>
               </Grid>
             </Grid>
 
             {/* Main Color Dialog */}
-            <Dialog
-              open={mainColorDialogOpen}
-              onClose={() => setMainColorDialogOpen(false)}
-            >
+            <Dialog open={mainColorDialogOpen} onClose={() => setMainColorDialogOpen(false)}>
               <DialogTitle>
                 Select Main Color
                 <IconButton
                   aria-label="close"
                   onClick={() => setMainColorDialogOpen(false)}
                   style={{
-                    position: "absolute",
+                    position: 'absolute',
                     right: 8,
                     top: 8,
                   }}
@@ -753,26 +909,26 @@ function CreatePetPage() {
                     <div
                       key={color.name}
                       style={{
-                        display: "flex",
-                        alignItems: "center",
-                        marginRight: "1rem",
-                        marginBottom: "1rem",
-                        cursor: "pointer",
-                        minWidth: "100px",
+                        display: 'flex',
+                        alignItems: 'center',
+                        marginRight: '1rem',
+                        marginBottom: '1rem',
+                        cursor: 'pointer',
+                        minWidth: '100px',
                       }}
                       onClick={() => handleMainColorChange(color.name)}
                     >
                       <div
                         style={{
-                          width: "30px",
-                          height: "30px",
-                          borderRadius: "50%",
+                          width: '30px',
+                          height: '30px',
+                          borderRadius: '50%',
                           backgroundColor: color.hexCode,
-                          marginRight: "8px",
+                          marginRight: '8px',
                           border:
                             formState.mainColor === color.name
-                              ? "2px solid #2a9df4"
-                              : "0px solid #dadada",
+                              ? '2px solid #2a9df4'
+                              : '0px solid #dadada',
                         }}
                       />
                       <Typography variant="body1">{color.name}</Typography>
@@ -781,25 +937,19 @@ function CreatePetPage() {
                 </FormGroup>
               </DialogContent>
               <DialogActions>
-                <Button
-                  onClick={() => setMainColorDialogOpen(false)}
-                  color="primary"
-                >
+                <Button onClick={() => setMainColorDialogOpen(false)} color="primary">
                   Close
                 </Button>
               </DialogActions>
             </Dialog>
 
-            <Dialog
-              open={markingColorDialogOpen}
-              onClose={() => setMarkingColorDialogOpen(false)}
-            >
+            <Dialog open={markingColorDialogOpen} onClose={() => setMarkingColorDialogOpen(false)}>
               <DialogTitle>
                 Select Marking Colors
                 <IconButton
                   aria-label="close"
                   onClick={() => setMarkingColorDialogOpen(false)}
-                  style={{ position: "absolute", right: 8, top: 8 }}
+                  style={{ position: 'absolute', right: 8, top: 8 }}
                 >
                   <CloseIcon />
                 </IconButton>
@@ -810,25 +960,25 @@ function CreatePetPage() {
                     <div
                       key={color.name}
                       style={{
-                        display: "flex",
-                        alignItems: "center",
-                        marginRight: "1rem",
-                        marginBottom: "1rem",
-                        cursor: "pointer",
-                        minWidth: "100px",
+                        display: 'flex',
+                        alignItems: 'center',
+                        marginRight: '1rem',
+                        marginBottom: '1rem',
+                        cursor: 'pointer',
+                        minWidth: '100px',
                       }}
                       onClick={() => handleMarkingColorChange(color.name)}
                     >
                       <div
                         style={{
-                          width: "30px",
-                          height: "30px",
-                          borderRadius: "50%",
+                          width: '30px',
+                          height: '30px',
+                          borderRadius: '50%',
                           backgroundColor: color.hexCode,
-                          marginRight: "8px",
+                          marginRight: '8px',
                           border: formState.markingColors.includes(color.name)
-                            ? "2px solid #2a9df4"
-                            : "0px solid #dadada",
+                            ? '2px solid #2a9df4'
+                            : '0px solid #dadada',
                         }}
                       />
                       <Typography variant="body1">{color.name}</Typography>
@@ -837,10 +987,7 @@ function CreatePetPage() {
                 </FormGroup>
               </DialogContent>
               <DialogActions>
-                <Button
-                  onClick={() => setMarkingColorDialogOpen(false)}
-                  color="primary"
-                >
+                <Button onClick={() => setMarkingColorDialogOpen(false)} color="primary">
                   Close
                 </Button>
               </DialogActions>
@@ -849,7 +996,7 @@ function CreatePetPage() {
             <Grid item xs={12}>
               <Typography
                 variant="body1"
-                style={{ fontWeight: "500" }}
+                style={{ fontWeight: '500' }}
                 gutterBottom
                 textAlign="left"
               >
@@ -871,7 +1018,7 @@ function CreatePetPage() {
                   }}
                   variant="outlined"
                   value={formState.date}
-                  onChange={(e) => handleChange("date", e.target.value)}
+                  onChange={(e) => handleChange('date', e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
@@ -887,7 +1034,7 @@ function CreatePetPage() {
                   }}
                   variant="outlined"
                   value={formState.time}
-                  onChange={(e) => handleChange("time", e.target.value)}
+                  onChange={(e) => handleChange('time', e.target.value)}
                 />
               </Grid>
             </Grid>
@@ -895,7 +1042,7 @@ function CreatePetPage() {
               <Grid item xs={12}>
                 <Typography
                   variant="body1"
-                  style={{ fontWeight: "500" }}
+                  style={{ fontWeight: '500' }}
                   gutterBottom
                   textAlign="left"
                 >
@@ -910,7 +1057,7 @@ function CreatePetPage() {
               <Grid item xs={12}>
                 <Typography
                   variant="body1"
-                  style={{ fontWeight: "500" }}
+                  style={{ fontWeight: '500' }}
                   gutterBottom
                   textAlign="left"
                 >
@@ -927,7 +1074,7 @@ function CreatePetPage() {
                     labelId="phoneCode-label"
                     id="phoneCode"
                     value={formState.phoneCode}
-                    onChange={(e) => handleChange("phoneCode", e.target.value)}
+                    onChange={(e) => handleChange('phoneCode', e.target.value)}
                     label="Code"
                     notched
                   >
@@ -952,7 +1099,7 @@ function CreatePetPage() {
                   }}
                   variant="outlined"
                   value={formState.phone}
-                  onChange={(e) => handleChange("phone", e.target.value)}
+                  onChange={(e) => handleChange('phone', e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
@@ -968,7 +1115,7 @@ function CreatePetPage() {
                   }}
                   variant="outlined"
                   value={formState.email}
-                  onChange={(e) => handleChange("email", e.target.value)}
+                  onChange={(e) => handleChange('email', e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -981,7 +1128,7 @@ function CreatePetPage() {
                   rows={4}
                   variant="outlined"
                   value={formState.notes}
-                  onChange={(e) => handleChange("notes", e.target.value)}
+                  onChange={(e) => handleChange('notes', e.target.value)}
                   placeholder="Appearance, behavior, special medical care, circumstances of loss, or any other relevant notes."
                   InputLabelProps={{
                     shrink: true, // Always shrink the label
@@ -993,7 +1140,7 @@ function CreatePetPage() {
               <Grid item xs={12}>
                 <Typography
                   variant="body1"
-                  style={{ fontWeight: "500" }}
+                  style={{ fontWeight: '500' }}
                   gutterBottom
                   textAlign="left"
                 >
@@ -1013,9 +1160,7 @@ function CreatePetPage() {
                     disabled={!formState.initialStatus}
                     label="Follow Up Updates"
                     notched
-                    onChange={(e) =>
-                      handleChange("updatedStatus", e.target.value)
-                    }
+                    onChange={(e) => handleChange('updatedStatus', e.target.value)}
                   >
                     {getUpdatedStatusOptions().map((status) => (
                       <MenuItem key={status.value} value={status.value}>
@@ -1037,9 +1182,7 @@ function CreatePetPage() {
                   // rows={4}
                   variant="outlined"
                   value={formState.updatedStatusDescription}
-                  onChange={(e) =>
-                    handleChange("updatedStatusDescription", e.target.value)
-                  }
+                  onChange={(e) => handleChange('updatedStatusDescription', e.target.value)}
                   placeholder="Enter details such as where the pet was found, shelter name, vet clinic name, and any additional information."
                   InputLabelProps={{
                     shrink: true, // Always shrink the label
@@ -1058,9 +1201,9 @@ function CreatePetPage() {
               </Grid> */}
               <Grid item xs={12}>
                 <Alert severity="info">
-                  <AlertTitle>{"INFORMATION"}</AlertTitle>
+                  <AlertTitle>{'INFORMATION'}</AlertTitle>
                   {
-                    "This will be made public, please do not provide sensitive information that you would like kept private!"
+                    'This will be made public, please do not provide sensitive information that you would like kept private!'
                   }
                 </Alert>
               </Grid>
@@ -1072,11 +1215,11 @@ function CreatePetPage() {
                   // size="large"
                   style={{
                     // marginTop: "2rem",
-                    marginLeft: "auto",
-                    marginRight: "0",
-                    display: "flex",
-                    backgroundColor: "#ffc107",
-                    color: "rgba(0, 0, 0, 0.87)",
+                    marginLeft: 'auto',
+                    marginRight: '0',
+                    display: 'flex',
+                    backgroundColor: '#ffc107',
+                    color: 'rgba(0, 0, 0, 0.87)',
                   }}
                 >
                   Submit

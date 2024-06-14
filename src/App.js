@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./middleware/AuthContext";
+import { LanguageProvider } from "./middleware/LanguageContext";
 
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
@@ -32,68 +33,65 @@ import "./i18n"; // Import the i18n configuration
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<HomePage />} />
-            <Route path="about" element={<AboutPage />} />
-            <Route path="pets" element={<PetsListPage />} />
+      <LanguageProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<HomePage />} />
+              <Route path="about" element={<AboutPage />} />
+              <Route path="pets" element={<PetsListPage />} />
+              <Route path="pets/:id" element={<PetsDetailsPage />} />
+              <Route
+                path="contact"
+                element={
+                  <PrivateRoute>
+                    <ContactPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="feedback" element={<FeedbackPage />} />
+              <Route path="support" element={<SupportPage />} />
+              <Route path="admin/dashboard" element={<DashboardPage />} />
+              <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="terms-of-service" element={<TermsOfServicePage />} />
+              <Route path="cookie-policy" element={<CookiePolicyPage />} />
+              <Route
+                path="data-protection-policy"
+                element={<DataProtectionPolicyPage />}
+              />
+              <Route path="disclaimer" element={<DisclaimerPage />} />
+              <Route
+                path="community-guidelines"
+                element={<CommunityGuidelinesPage />}
+              />
+              <Route
+                path="sponsors-and-partners"
+                element={<SponsorshipsAndPartnershipsPage />}
+              />
+              {/* <Route path="sponsorships" element={<SponsorshipsPage />} /> */}
 
-            <Route path="pets/:id" element={<PetsDetailsPage />} />
-            <Route
-              path="contact"
-              element={
-                <PrivateRoute>
-                  <ContactPage />
-                </PrivateRoute>
-              }
-            />
-
-            <Route path="feedback" element={<FeedbackPage />} />
-            <Route path="support" element={<SupportPage />} />
-            <Route path="admin/dashboard" element={<DashboardPage />} />
-
-            <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="terms-of-service" element={<TermsOfServicePage />} />
-            <Route path="cookie-policy" element={<CookiePolicyPage />} />
-            <Route
-              path="data-protection-policy"
-              element={<DataProtectionPolicyPage />}
-            />
-            <Route path="disclaimer" element={<DisclaimerPage />} />
-
-            <Route
-              path="community-guidelines"
-              element={<CommunityGuidelinesPage />}
-            />
-            <Route
-              path="sponsors-and-partners"
-              element={<SponsorshipsAndPartnershipsPage />}
-            />
-            {/* <Route path="sponsorships" element={<SponsorshipsPage />} /> */}
-
-            <Route path="article" element={<ArticleDetailsPage />} />
-            {/* <Route path="add-pet" element={<CreatePetPage />} /> */}
-            <Route
-              path="add-pet"
-              element={
-                <PrivateRoute>
-                  <CreatePetPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="add-pet"
-              element={<PrivateRoute element={<CreatePetPage />} />}
-            />
-
-            <Route path="user/profile" element={<ProfilePage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+              <Route path="article" element={<ArticleDetailsPage />} />
+              {/* <Route path="add-pet" element={<CreatePetPage />} /> */}
+              <Route
+                path="add-pet"
+                element={
+                  <PrivateRoute>
+                    <CreatePetPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="add-pet"
+                element={<PrivateRoute element={<CreatePetPage />} />}
+              />
+              <Route path="user/profile" element={<ProfilePage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </LanguageProvider>
     </AuthProvider>
   );
 }

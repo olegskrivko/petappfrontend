@@ -1,5 +1,5 @@
 // DrawerAppBar.js
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 // React MUI
@@ -21,9 +21,11 @@ import Container from "@mui/material/Container";
 import SearchIcon from "@mui/icons-material/Search";
 import { BASE_URL } from "../../middleware/config";
 import PetsIcon from "@mui/icons-material/Pets";
+import LanguageSelector from "../LanguageSelector";
 // Custom Components
 // import { useAuth } from "../../middleware/AuthContext";
 import { useAuth } from "../../middleware/AuthContext";
+import { LanguageContext } from "../../middleware/LanguageContext";
 
 const drawerWidth = 240;
 
@@ -42,6 +44,8 @@ function DrawerAppBar(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   // const { isAuthenticated, logout } = useAuth();
   const { user, logout } = useAuth();
+  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
+
   const navigate = useNavigate();
   console.log("user", user);
   const handleDrawerToggle = () => {
@@ -112,6 +116,7 @@ function DrawerAppBar(props) {
   return (
     <Box sx={{ display: "flex", p: 3 }}>
       <CssBaseline />
+
       <AppBar
         component="nav"
         sx={{
@@ -176,6 +181,7 @@ function DrawerAppBar(props) {
                 </Link>
               )}
             </Box>
+            <LanguageSelector />
           </Toolbar>
         </Container>
       </AppBar>

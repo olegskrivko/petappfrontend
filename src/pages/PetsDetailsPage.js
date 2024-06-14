@@ -83,6 +83,8 @@ import Poster from "./Poster";
 import { AuthContext } from "../middleware/AuthContext";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { LanguageContext } from "../middleware/LanguageContext";
+
 // Example data
 // const locations = [
 //   {
@@ -549,14 +551,34 @@ function IconLabelTabs({
 }
 // const formattedText = `${mainColor} ${petCategory} is ${petStatus} since ${petLostOrFoundDate} at ${petLostOrFoundTime}. It is a ${petAge} ${petBreed} with a ${markingPattern} pattern and ${markingColors.join(', ')} markings. The pet's identifier is ${petIdentifier}, and it is described as ${petSize} in size, ${petGender} in gender, and ${petBehavior} in behavior. Notes: ${notes}. If found, please contact the owner at phone number ${contactPhone} or email at ${contactEmail}.`;
 const PetsDetailsPage = () => {
+  //const [selectedLanguage, setSelectedLanguage] = useState("lv"); // Default language
+  // Assuming your language preferences are stored as "preferredLanguage" in localStorage
+  // useEffect(() => {
+  //   const storedLanguage = localStorage.getItem("preferredLanguage");
+  //   if (storedLanguage) {
+  //     setSelectedLanguage(storedLanguage);
+  //   }
+  // }, []); // Empty dependency array ensures this effect runs only once on component mount
   const { id } = useParams();
   const [pet, setPet] = useState(null);
   const [comments, setComments] = useState(null);
-
+  const [options, setOptions] = useState([]);
   const [location, setLocation] = useState(null);
   console.log("Location in petdetails:", location);
   const handleAddLocation = (location) => {
     setLocation((prevLocation) => location);
+  };
+  const { selectedLanguage } = useContext(LanguageContext); // Use LanguageContext to get selectedLanguage
+  const getSizeName = (sizeOptions, sizeValue) => {
+    // Find the size option and return the corresponding name for the size value
+    // console.log("Size options:", sizeOptions[0].values);
+    // console.log("Size options Inside:", sizeOptions[0].values[0].value);
+    const sizeValueInfo = sizeOptions[0].values.find(
+      (option) => option.value == sizeValue
+    );
+    if (!sizeValueInfo) return "N/A";
+
+    return sizeValueInfo.translations[selectedLanguage]; // Assuming "en" translation is always available
   };
 
   // const handleDeleteMessage = async (commentId) => {
@@ -648,8 +670,26 @@ const PetsDetailsPage = () => {
       }
     };
 
+    const fetchOptions = async () => {
+      try {
+        // Fetch options data from your backend API
+        const response = await fetch(`${BASE_URL}/options/size`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch options data");
+        }
+        const optionsData = await response.json();
+        setOptions(optionsData.options);
+        console.log("Options data:", optionsData.options);
+      } catch (error) {
+        console.error("Error fetching options data:", error);
+        // Optionally handle error (e.g., show an error message)
+      }
+    };
+
+    fetchOptions();
+
     fetchPet();
-  }, [id]);
+  }, [id, selectedLanguage]);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -839,6 +879,7 @@ const PetsDetailsPage = () => {
                   alignItems: "center",
                 }}
               >
+                {/* {pet.size ? getSizeName(options, pet.size) : "N/A"} */}
                 <HeightIcon /> <b>Size:</b> {pet.size ? pet.size : "N/A"}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
