@@ -1,4 +1,354 @@
 {
-  "welcome": "Bienvenue",
-  "description": "Ceci est un exemple simple"
+  "selectOptions": {
+    "initialStatusOptions": [
+      { "value": "1", "label": "Pazudis" },
+      { "value": "2", "label": "Atrasts" },
+      { "value": "3", "label": "Redzēts" }
+    ],
+    "categoryOptions": [
+      { "value": "1", "label": "Suņi" },
+      { "value": "2", "label": "Kaķi" },
+      { "value": "3", "label": "Govs" },
+      { "value": "4", "label": "Zirgs" }
+    ],
+    "sizeOptions": [
+      { "value": "0", "label": "N/D" },
+      { "value": "1", "label": "Mazs" },
+      { "value": "2", "label": "Vidējs" },
+      { "value": "3", "label": "Liels" }
+    ],
+    "genderOptions": [
+      { "value": 0, "label": "N/D" },
+      { "value": 1, "label": "Vīriešu" },
+      { "value": 2, "label": "Sieviešu" }
+    ],
+    "behaviorOptions": [
+      { "value": "0", "label": "N/D" },
+      { "value": "1", "label": "Draudzīgs" },
+      { "value": "2", "label": "Agresīvs" },
+      { "value": "3", "label": "Aizsargājošs" },
+      { "value": "4", "label": "Spēlētājs" },
+      { "value": "5", "label": "Mierīgs" },
+      { "value": "6", "label": "Savaldīgs" }
+    ],
+    "ageOptions": {
+      "1": [
+        { "value": "0", "label": "Nav datu" },
+        { "value": "1", "label": "Kucēns" },
+        { "value": "2", "label": "Jaunietis" },
+        { "value": "3", "label": "Pieaugušais" },
+        { "value": "4", "label": "Vecs" }
+      ],
+      "2": [
+        { "value": "0", "label": "Nav datu" },
+        { "value": "1", "label": "Kaķēns" },
+        { "value": "2", "label": "Jaunietis" },
+        { "value": "3", "label": "Pieaugušais" },
+        { "value": "4", "label": "Vecs" }
+      ],
+      "3": [
+        { "value": "0", "label": "Nav datu" },
+        { "value": "1", "label": "Liels" },
+        { "value": "2", "label": "Jaunietis" },
+        { "value": "3", "label": "Pieaugušais" },
+        { "value": "4", "label": "Vecs" }
+      ],
+      "4": [
+        { "value": "0", "label": "Nav datu" },
+        { "value": "1", "label": "Gumija" },
+        { "value": "2", "label": "Jaunietis" },
+        { "value": "3", "label": "Pieaugušais" },
+        { "value": "4", "label": "Vecs" }
+      ]
+    },
+    "breedOptions": {
+      "1": [
+        { "value": "0", "label": "Labradora" },
+        { "value": "1", "label": "Labradora" },
+        { "value": "2", "label": "Buldogu" },
+        { "value": "3", "label": "Putna" },
+        { "value": "4", "label": "Bigla" },
+        { "value": "5", "label": "Rottvailera" },
+        { "value": "6", "label": "Vācu aitu suns" },
+        { "value": "7", "label": "Zelta retrīvera" },
+        { "value": "8", "label": "Taksis" },
+        { "value": "9", "label": "Čihuahuas" },
+        { "value": "10", "label": "Boksera" },
+        { "value": "11", "label": "Šnauzeris" },
+        { "value": "12", "label": "Pomerānija" },
+        { "value": "13", "label": "Haskija" },
+        { "value": "14", "label": "Maltiešu" },
+        { "value": "15", "label": "Jorkšīras terjera" },
+        { "value": "16", "label": "Mopsa" },
+        { "value": "17", "label": "Šiccau" },
+        { "value": "18", "label": "Dobermana" },
+        { "value": "19", "label": "Mastifa" },
+        { "value": "20", "label": "Lielais dāns" },
+        { "value": "21", "label": "Kokera spaniela" },
+        { "value": "22", "label": "Robežu kolī" },
+        { "value": "23", "label": "Austrāliešu aitu suns" },
+        { "value": "24", "label": "Sibīrijas haskija" },
+        { "value": "25", "label": "Dalmāciešu" },
+        { "value": "26", "label": "Veimaranera" },
+        { "value": "27", "label": "Pērtinieka" },
+        { "value": "28", "label": "Vizslas" },
+        { "value": "29", "label": "Setter" },
+        { "value": "30", "label": "Spaniela" },
+        { "value": "31", "label": "Terjera" },
+        { "value": "32", "label": "Havanas" }
+      ],
+      "2": [
+        { "value": "0", "label": "Nav datu" },
+        { "value": "1", "label": "Siamiešu" },
+        { "value": "2", "label": "Persiešu" },
+        { "value": "3", "label": "Maine kūns" },
+        { "value": "4", "label": "Ragdolla" },
+        { "value": "5", "label": "Bengāļu" },
+        { "value": "6", "label": "Britu īsā spalva" },
+        { "value": "7", "label": "Sfinkss" },
+        { "value": "8", "label": "Skotijas sazvērē" },
+        { "value": "9", "label": "Abisīnijas" },
+        { "value": "10", "label": "Birmas" },
+        { "value": "11", "label": "Amerikāņu īsā spalva" },
+        { "value": "12", "label": "Orients" },
+        { "value": "13", "label": "Devena reksa" },
+        { "value": "14", "label": "Krievijas zila" },
+        { "value": "15", "label": "Norvēģu mežu kaķis" },
+        { "value": "16", "label": "Sibīrijas kaķis" },
+        { "value": "17", "label": "Birma" },
+        { "value": "18", "label": "Tonkineze" },
+        { "value": "19", "label": "Ēģiptiešu mau" },
+        { "value": "20", "label": "Šārtrū" }
+      ],
+      "3": [
+        { "value": "0", "label": "Nav datu" },
+        { "value": "1", "label": "Holšteins" },
+        { "value": "2", "label": "Anguss" },
+        { "value": "3", "label": "Hērfords" },
+        { "value": "4", "label": "Džersijs" },
+        { "value": "5", "label": "Šarolē" },
+        { "value": "6", "label": "Simmentāls" },
+        { "value": "7", "label": "Limuzīns" },
+        { "value": "8", "label": "Brahmans" },
+        { "value": "9", "label": "Teikas gara rags" },
+        { "value": "10", "label": "Gērnsi" }
+      ],
+      "4": [
+        { "value": "0", "label": "Nav datu" },
+        { "value": "1", "label": "Arābiets" },
+        { "value": "2", "label": "Pilnšķirnes" },
+        { "value": "3", "label": "Ceturtdaļas zirgs" },
+        { "value": "4", "label": "Klaidsals" },
+        { "value": "5", "label": "Frīzija" },
+        { "value": "6", "label": "Appaloosa" },
+        { "value": "7", "label": "Paint" },
+        { "value": "8", "label": "Shire" },
+        { "value": "9", "label": "Mustanga" },
+        { "value": "10", "label": "Andalūzieši" }
+      ]
+    },
+    "healthInformationOptions": [
+      { "value": "1", "label": "Vesels" },
+      { "value": "2", "label": "Ievainots" },
+      { "value": "3", "label": "Slims" },
+      { "value": "2", "label": "Nepabarots" },
+      { "value": "3", "label": "Akls" },
+      { "value": "2", "label": "Sleps" },
+      { "value": "3", "label": "Mobilitātes problēmas" },
+      { "value": "2", "label": "Miris" }
+    ],
+    "markingOptions": [
+      { "value": "1", "label": "Vienkrāsains" },
+      { "value": "2", "label": "Svītrais" },
+      { "value": "3", "label": "Raibs" },
+      { "value": "4", "label": "Pārklājums" },
+      { "value": "5", "label": "Marmora" }
+    ],
+    "colorOptions": [
+      { "value": "#000000", "label": "Melns" },
+      { "value": "#BEBEBE", "label": "Pelēks" },
+      { "value": "#f7f7f7", "label": "Balts" },
+      { "value": "#FFF1B9", "label": "Krēmkrāsains" },
+      { "value": "#FCDC5C", "label": "Dzeltenīgs" },
+      { "value": "#FFA500", "label": "Zelts" },
+      { "value": "#C37C4D", "label": "Brūns" },
+      { "value": "#A71A20", "label": "Sarkans" },
+      { "value": "#BA97AA", "label": "Lilaks" },
+      { "value": "#1A355E", "label": "Zils" },
+      { "value": "#5F6F52", "label": "Zaļš" },
+      { "value": "#BDB76B", "label": "Khaki" },
+      { "value": "#E5DECA", "label": "Bežs" },
+      { "value": "#D2B48C", "label": "Brūns" },
+      { "value": "#E5AA70", "label": "Dzeltenbrūns" },
+      { "value": "#954535", "label": "Kaštanbrūns" }
+    ],
+    "phoneCodeOptions": [
+      { "value": "0", "label": "N/A" },
+      { "value": "+371", "label": "+371" },
+      { "value": "+372", "label": "+372" },
+      { "value": "+370", "label": "+370" }
+    ]
+  },
+  "formLabels": {
+    "initialStatus": "Statuss",
+    "category": "Kategorija",
+    "identifier": "Identifikators",
+    "size": "Izmērs",
+    "gender": "Dzimums",
+    "behavior": "Uzvedība",
+    "age": "Vecums",
+    "breed": "Šķirne",
+    "healthInformation": "Veselības informācija",
+    "additionalHealthDetails": "Papildu veselības informācija",
+    "petLocation": "Mājdzīvnieka atrašanās vieta",
+    "markings": "Markējumi",
+    "mainColor": "Galvenā krāsa",
+    "markingColors": "Markējumu krāsas",
+    "datetime": "Datums un laiks",
+    "uploadFile": "Augšupielādēt failu",
+    "phoneCode": "Tālruņa kods",
+    "phoneNumber": "Tālruņa numurs",
+    "email": "E-pasts",
+    "notes": "Piezīmes",
+    "updatedStatus": "Atjauninātais statuss",
+    "updatedStatusDescription": "Atjauninātā statusa apraksts"
+  },
+  "formTitles": {
+    "petDetails": "Dzīvnieka informācija",
+    "healthInformation": "Health Information",
+    "petLocation": "Pet Location",
+    "markings": "Does the pet have markings?",
+    "mainColor": "Main Color",
+    "contactInformation": "Contact Information",
+    "additionalHealthDetails": "Additional Health Details",
+    "markingColors": "Marking Colors",
+    "datetime": "Date and Time",
+    "uploadFile": "Upload File"
+  },
+  "sectionTitles": {
+    "ownerDetails": "Owner Details",
+    "emergencyContacts": "Emergency Contacts",
+    "vaccinationRecords": "Vaccination Records",
+    "medicalHistory": "Medical History"
+  },
+  "dialogTitles": {
+    "confirmation": "Confirmation",
+    "warning": "Warning",
+    "success": "Success",
+    "failure": "Failure"
+  },
+  "notificationTitles": {
+    "newMessage": "New Message",
+    "systemAlert": "System Alert",
+    "updateAvailable": "Update Available",
+    "reminder": "Reminder"
+  },
+  "widgetTitles": {
+    "recentActivities": "Recent Activities",
+    "statistics": "Statistics",
+    "quickLinks": "Quick Links",
+    "calendar": "Calendar"
+  },
+  "paragraphTitles": {
+    "monthlyReport": "Monthly Report",
+    "annualSummary": "Annual Summary",
+    "userActivity": "User Activity",
+    "financialOverview": "Financial Overview"
+  },
+  "pageTitles": {
+    "pawclix": "PawClix",
+    "lostPetReunionsOneClickAway": "Lost Pet Reunions, One Click Away",
+    "ourGoal": "Our Goal",
+    "reportAPet": "Report a Pet",
+    "contactUs": "Contact Us",
+    "leaveYourFeedback": "Leave Your Feedback",
+    "supportOurProject": "Support Our Project",
+    "joinOurMission": "Join Our Mission",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiePolicy": "Cookie Policy",
+    "dataProtectionPolicy": "Data Protection Policy",
+    "disclaimer": "Disclaimer",
+    "communityGuidelines": "Community Guidelines"
+  },
+  "modalTitles": {
+    "deleteConfirmation": "Delete Confirmation",
+    "updateSuccess": "Update Successful",
+    "error": "Error",
+    "info": "Information"
+  },
+
+  "buttons": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete"
+  },
+  "links": {
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "contactUs": "Contact Us"
+  },
+  "footerLinks": {
+    "about": "Par Mums",
+    "pets": "Mājdzīvnieki",
+    "petServices": "Pakalpojumi",
+    "virtualPetTrainingClasses": "Virtuālās Apmācības Klases",
+    "communityForums": "Kopienas Forumi",
+    "emergencyPetAlerts": "Ārkārtas Mājdzīvnieku Brīdinājumi",
+    "petCareGuide": "Mājdzīvnieku Aprūpes Ceļvedis",
+    "petCompatibilityQuiz": "Mājdzīvnieku Saderības Tests",
+    "lostPetPreventionTips": "Pazudušu Mājdzīvnieku Novēršanas Padomi",
+    "guideToRetrievingLostPets": "Ceļvedis Pazudušo Mājdzīvnieku Atgūšanai",
+    "adoptDoNotShop": "Adoptējiet, Nepērciet",
+    "howTo": "Kā",
+    "privacyPolicy": "Privātuma Politika",
+    "termsOfService": "Pakalpojumu Noteikumi",
+    "cookiePolicy": "Sīkdatņu Politika",
+    "dataProtectionPolicy": "Datu Aizsardzības Politika",
+    "disclaimer": "Atruna",
+    "communityGuidelines": "Kopienas Vadlīnijas",
+    "contact": "Kontakti",
+    "feedback": "Atsauksmes",
+    "support": "Atbalsts",
+    "partners": "Partneri",
+    "socialMedia": "Sociālie Tīkli",
+    "sponsors": "Sponsori"
+  },
+
+  "altText": {
+    "logo": "Company Logo",
+    "petImage": "Pet Image"
+  },
+  "navigation": {
+    "home": "Home",
+    "aboutUs": "About Us",
+    "services": "Services",
+    "petSearch": "Pet Search",
+    "myProfile": "My Profile"
+  },
+  "validationMessages": {
+    "required": "This field is required.",
+    "invalidEmail": "Please enter a valid email address.",
+    "passwordMismatch": "Passwords do not match."
+  },
+  "notifications": {
+    "petAddedSuccess": "Pet added successfully.",
+    "errorOccurred": "An error occurred. Please try again."
+  },
+  "placeholders": {
+    "searchPets": "Search for pets...",
+    "enterEmail": "Enter your email address",
+    "identifier": "Mājdzīvnieka vārds vai identifikators"
+  },
+  "tooltips": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "moreInfo": "More information"
+  },
+  "miscellaneous": {
+    "loading": "Loading...",
+    "noResultsFound": "No results found.",
+    "pleaseWait": "Please wait..."
+  }
 }

@@ -1,42 +1,42 @@
 // DrawerAppBar.js
-import React, { useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
+import React, { useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 // React MUI
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import SearchIcon from "@mui/icons-material/Search";
-import { BASE_URL } from "../../middleware/config";
-import PetsIcon from "@mui/icons-material/Pets";
-import LanguageSelector from "../LanguageSelector";
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import MenuIcon from '@mui/icons-material/Menu';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import SearchIcon from '@mui/icons-material/Search';
+import { BASE_URL } from '../../middleware/config';
+import PetsIcon from '@mui/icons-material/Pets';
+import LanguageSelector from '../LanguageSelector';
 // Custom Components
 // import { useAuth } from "../../middleware/AuthContext";
-import { useAuth } from "../../middleware/AuthContext";
-import { LanguageContext } from "../../middleware/LanguageContext";
+import { useAuth } from '../../middleware/AuthContext';
+import { LanguageContext } from '../../middleware/LanguageContext';
 
 const drawerWidth = 240;
 
 const navItems = {
   // "/": "Home",
-  "/pets": "Pets",
+  '/pets': 'Pets',
   // "/about": "About",
-  "/services": "Services",
+  '/services': 'Services',
   // "/contact": "Contact",
-  "/user/profile": "Profile",
-  "/admin/dashboard": "Dashboard",
+  '/user/profile': 'Profile',
+  '/admin/dashboard': 'Dashboard',
   // "/login": "Login",
 };
 
@@ -45,43 +45,43 @@ function DrawerAppBar(props) {
   // const { isAuthenticated, logout } = useAuth();
   const { user, logout } = useAuth();
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
-
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  console.log("user", user);
+  console.log('user', user);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
   const handleLogout = () => {
-    console.log("Logging out...");
+    console.log('Logging out...');
     logout();
-    console.log("Logout successful");
-    navigate("/"); // Redirect to the homepage after logout
+    console.log('Logout successful');
+    navigate('/'); // Redirect to the homepage after logout
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Box
         style={{
-          width: "100%",
-          height: "3.5rem",
-          backgroundColor: "orange",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          width: '100%',
+          height: '3.5rem',
+          backgroundColor: 'orange',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <Typography variant="body1">
           <Link
             to="/"
             style={{
-              color: "white",
-              textDecoration: "none",
-              display: "flex",
-              alignItems: "center",
+              color: 'white',
+              textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
-            <PetsIcon sx={{ marginRight: "0.4rem" }} /> PawClix
+            <PetsIcon sx={{ marginRight: '0.4rem' }} /> PawClix
           </Link>
         </Typography>
       </Box>
@@ -90,8 +90,8 @@ function DrawerAppBar(props) {
       <List>
         {Object.entries(navItems).map(([path, itemName]) => (
           <ListItem key={path} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <Link to={path} style={{ textDecoration: "none", width: "100%" }}>
+            <ListItemButton sx={{ textAlign: 'center' }}>
+              <Link to={path} style={{ textDecoration: 'none', width: '100%' }}>
                 <ListItemText primary={itemName} />
               </Link>
             </ListItemButton>
@@ -114,21 +114,21 @@ function DrawerAppBar(props) {
   );
 
   return (
-    <Box sx={{ display: "flex", p: 3 }}>
+    <Box sx={{ display: 'flex', p: 3 }}>
       <CssBaseline />
 
       <AppBar
         component="nav"
         sx={{
-          background: "#1D1D1D",
+          background: '#1D1D1D',
         }}
       >
         <Container disableGutters>
           <Toolbar
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
             }}
           >
             <IconButton
@@ -136,7 +136,7 @@ function DrawerAppBar(props) {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" } }}
+              sx={{ mr: 2, display: { sm: 'none' } }}
             >
               <MenuIcon />
             </IconButton>
@@ -145,39 +145,32 @@ function DrawerAppBar(props) {
               <Link
                 to="/"
                 style={{
-                  color: "white",
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
+                  color: 'white',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
-                <PetsIcon sx={{ marginRight: "0.4rem", color: "#ffc107" }} />
+                <PetsIcon sx={{ marginRight: '0.4rem', color: '#ffc107' }} />
                 PawClix
               </Link>
             </Typography>
 
-            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
               {Object.entries(navItems).map(([path, itemName]) => (
                 <Link key={path} to={path}>
-                  <Button sx={{ color: "#fff", fontWeight: "400" }}>
-                    {itemName}
-                  </Button>
+                  <Button sx={{ color: '#fff', fontWeight: '400' }}>{itemName}</Button>
                 </Link>
               ))}
               {user ? (
                 <Link to="/">
-                  <Button
-                    onClick={handleLogout}
-                    sx={{ color: "#fff", fontWeight: "400" }}
-                  >
+                  <Button onClick={handleLogout} sx={{ color: '#fff', fontWeight: '400' }}>
                     Logout
                   </Button>
                 </Link>
               ) : (
                 <Link to="/login">
-                  <Button sx={{ color: "#fff", fontWeight: "400" }}>
-                    Login
-                  </Button>
+                  <Button sx={{ color: '#fff', fontWeight: '400' }}>Login</Button>
                 </Link>
               )}
             </Box>
@@ -195,9 +188,9 @@ function DrawerAppBar(props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
               width: drawerWidth,
             },
           }}

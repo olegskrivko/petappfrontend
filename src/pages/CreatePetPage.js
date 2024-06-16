@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import axios from 'axios';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
@@ -10,28 +11,32 @@ import FormGroup from '@mui/material/FormGroup';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import { Dialog, DialogTitle, DialogContent, DialogActions, IconButton } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import IconButton from '@mui/material/IconButton';
 import RadioGroup from '@mui/material/RadioGroup';
-import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
 import CloseIcon from '@mui/icons-material/Close';
-
 import FormControlLabel from '@mui/material/FormControlLabel';
+import ImageUploader from '../components/pets/ImageUploader';
+import PetHealth from '../components/petcard/PetHealth';
+import FormLabel from '@mui/material/FormLabel';
 import Checkbox from '@mui/material/Checkbox';
-import axios from 'axios';
+
 import { BASE_URL } from '../middleware/config';
 import TomTomMap from '../components/map/TomTomMap';
 import '@tomtom-international/web-sdk-maps/dist/maps.css';
-import ImageUploader from '../components/pets/ImageUploader';
-import PetHealth from '../components/petcard/PetHealth';
 import { AuthContext } from '../middleware/AuthContext';
 import { LanguageContext } from '../middleware/LanguageContext';
+import { useTranslation } from 'react-i18next';
 
 function CreatePetPage() {
+  const { t } = useTranslation();
   const { user } = useContext(AuthContext);
   const { selectedLanguage } = useContext(LanguageContext);
-  console.log('Selected language insdie create page:', selectedLanguage);
-  //const [selectedLanguage, setSelectedLanguage] = useState("lv"); // Default language
+
   const getCurrentDate = () => {
     const now = new Date();
     return now.toISOString().slice(0, 10); // Returns date in YYYY-MM-DD format
@@ -74,6 +79,9 @@ function CreatePetPage() {
   const [mainColorDialogOpen, setMainColorDialogOpen] = useState(false);
   const [markingColorDialogOpen, setMarkingColorDialogOpen] = useState(false);
 
+  const [initialStatusLabel, setInitialStatusLabel] = useState([]);
+  const [initialStatusOptions, setInitialStatusOptions] = useState([]);
+
   const [sizeLabel, setSizeLabel] = useState([]);
   const [sizeOptions, setSizeOptions] = useState([]);
 
@@ -86,13 +94,99 @@ function CreatePetPage() {
   const [behaviorLabel, setBehaviorLabel] = useState([]);
   const [behaviorOptions, setBehaviorOptions] = useState([]);
 
+  const [translations, setTranslations] = useState({});
+
+  const [ageOptions, setAgeOptions] = useState([]);
+
+  useEffect(() => {
+    const fetchAgeOptions = () => {
+      const category = formState.category || 1;
+      const options = t(`selectOptions.ageOptions.${category}`, { returnObjects: true }) || [];
+
+      //Ensure options is an array before setting state
+      if (Array.isArray(options)) {
+        console.log('Fetched xxx age options:', options);
+        setAgeOptions(options);
+      } else {
+        console.error('Invalid age YYY options structure:', options);
+        setAgeOptions([]);
+      }
+    };
+
+    fetchAgeOptions();
+  }, [formState.category, t]);
+
+  // const fetchTranslations = async () => {
+  //   try {
+  //     const response = await axios.get(`${BASE_URL}/translations`, {
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //         'Accept-Language': selectedLanguage,
+  //       },
+  //     });
+  //     setTranslations(response.data);
+  //     console.log('Response from fetch translations:', response.data);
+  //   } catch (error) {
+  //     console.error('Error fetching category options:', error);
+  //   }
+  // };
   // Fetch size options based on user's language on component mount
   useEffect(() => {
+    fetchInitialStatusOptions();
     fetchSizeOptions();
     fetchGenderOptions();
     fetchCategoryOptions();
     fetchBehaviorOptions();
   }, []);
+
+  const fetchTranslations = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/translations`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Accept-Language': selectedLanguage,
+        },
+      });
+      setTranslations(response.data);
+      console.log('Response from fetch translations:', response.data);
+    } catch (error) {
+      console.error('Error fetching translations:', error);
+      // Handle error state or notify user accordingly
+    }
+  };
+
+  // Effect to fetch translations when selectedLanguage changes
+  useEffect(() => {
+    fetchTranslations();
+  }, [selectedLanguage]);
+
+  const fetchInitialStatusOptions = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/options/initialStatus`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Accept-Language': selectedLanguage,
+        },
+      });
+
+      console.log('Response from fetch initial status options:', response.data.options);
+      if (response.data && response.data.options) {
+        const initialStatusOption = response.data.options.find(
+          (opt) => opt.key === 'initialStatus',
+        );
+        if (initialStatusOption) {
+          setInitialStatusLabel(initialStatusOption.name);
+          setInitialStatusOptions(initialStatusOption.values);
+          console.log('Initial status options fetched successfully:', initialStatusOption.values);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching initial status options:', error);
+    }
+  };
 
   const fetchSizeOptions = async () => {
     try {
@@ -183,24 +277,25 @@ function CreatePetPage() {
           setCategoryLabel(categoryOption.name);
           setCategoryOptions(categoryOption.values);
           console.log('Category options fetched successfully:', categoryOption.values);
+          // console.log('Category options fetched successfully:', categoryOptions);
         }
       }
     } catch (error) {
       console.error('Error fetching category options:', error);
     }
   };
-  const initialStatusOptions = [
-    { value: 'missing', label: 'Missing' },
-    { value: 'found', label: 'Found' },
-    { value: 'seen', label: 'Seen' },
-  ];
+  // const initialStatusOptions = [
+  //   { value: 'missing', label: 'Missing' },
+  //   { value: 'found', label: 'Found' },
+  //   { value: 'seen', label: 'Seen' },
+  // ];
 
-  const categoriesOptions = [
-    { value: 'dog', label: 'Dog' },
-    { value: 'cat', label: 'Cat' },
-    { value: 'cow', label: 'Cow' },
-    { value: 'horse', label: 'Horse' },
-  ];
+  // const categoriesOptions = [
+  //   { value: 'dog', label: 'Dog' },
+  //   { value: 'cat', label: 'Cat' },
+  //   { value: 'cow', label: 'Cow' },
+  //   { value: 'horse', label: 'Horse' },
+  // ];
 
   // const sizeOptions = [
   //   { value: "", label: "None" },
@@ -224,39 +319,41 @@ function CreatePetPage() {
   //   { value: 'calm', label: 'Calm' },
   // ];
 
-  const getAgeOptions = () => {
-    const ageOptionsMap = {
-      dog: [
-        { value: '', label: 'None' },
-        { value: 'puppy', label: 'Puppy' },
-        { value: 'adolescent', label: 'Adolescent' },
-        { value: 'adult', label: 'Adult' },
-        { value: 'senior', label: 'Senior' },
-      ],
-      cat: [
-        { value: '', label: 'None' },
-        { value: 'kitten', label: 'Kitten' },
-        { value: 'adolescent', label: 'Adolescent' },
-        { value: 'adult', label: 'Adult' },
-        { value: 'senior', label: 'Senior' },
-      ],
-      cow: [
-        { value: '', label: 'None' },
-        { value: 'calf', label: 'Calf' },
-        { value: 'adolescent', label: 'Adolescent' },
-        { value: 'adult', label: 'Adult' },
-        { value: 'senior', label: 'Senior' },
-      ],
-      horse: [
-        { value: '', label: 'None' },
-        { value: 'foal', label: 'Foal' },
-        { value: 'adolescent', label: 'Adolescent' },
-        { value: 'adult', label: 'Adult' },
-        { value: 'senior', label: 'Senior' },
-      ],
-    };
-    return ageOptionsMap[formState.category] || [];
-  };
+  // Function to fetch ageOptions based on category
+
+  // const getAgeOptions = () => {
+  //   const ageOptionsMap = {
+  //     0: [
+  //       { value: '', label: 'None' },
+  //       { value: '0', label: 'Puppy' },
+  //       { value: '1', label: 'Adolescent' },
+  //       { value: '2', label: 'Adult' },
+  //       { value: '3', label: 'Senior' },
+  //     ],
+  //     1: [
+  //       { value: '', label: 'None' },
+  //       { value: '0', label: 'Kitten' },
+  //       { value: '1', label: 'Adolescent' },
+  //       { value: '2', label: 'Adult' },
+  //       { value: '3', label: 'Senior' },
+  //     ],
+  //     2: [
+  //       { value: '', label: 'None' },
+  //       { value: '0', label: 'Calf' },
+  //       { value: '1', label: 'Adolescent' },
+  //       { value: '2', label: 'Adult' },
+  //       { value: '3', label: 'Senior' },
+  //     ],
+  //     3: [
+  //       { value: '', label: 'None' },
+  //       { value: '0', label: 'Foal' },
+  //       { value: '1', label: 'Adolescent' },
+  //       { value: '2', label: 'Adult' },
+  //       { value: '3', label: 'Senior' },
+  //     ],
+  //   };
+  //   return ageOptionsMap[formState.category] || [];
+  // };
 
   const markingPatternOptions = [
     { value: 'solid', label: 'No' },
@@ -494,7 +591,7 @@ function CreatePetPage() {
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="initialStatus-label" shrink>
-                    Status*
+                    {t('formLabels.initialStatus')}*
                   </InputLabel>
                   <Select
                     labelId="initialStatus-label"
@@ -502,57 +599,41 @@ function CreatePetPage() {
                     value={formState.initialStatus}
                     onChange={(e) => handleChange('initialStatus', e.target.value)}
                     error={Boolean(formErrors.initialStatus)}
-                    label="Status*"
+                    label={t('formLabels.initialStatus') + '*'}
                     notched
                   >
-                    {initialStatusOptions.map((status) => (
-                      <MenuItem key={status.value} value={status.value}>
-                        {status.label}
-                      </MenuItem>
-                    ))}
+                    {t('selectOptions.initialStatusOptions', { returnObjects: true }).map(
+                      (option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ),
+                    )}
                   </Select>
                   {/* Display error message if there's an error for the initial status field */}
 
-                  {/* {getErrorMessage("initialStatus") && (
+                  {/* {getErrorMessage('initialStatus') && (
                     <Typography variant="body2" color="error">
-                      {getErrorMessage("initialStatus")}
+                      {getErrorMessage('initialStatus')}
                     </Typography>
                   )} */}
-                  {formErrors.initialStatus && (
+                  {/* {formErrors.initialStatus && (
                     <Typography variant="body2" color="error">
                       {formErrors.initialStatus}
                     </Typography>
-                  )}
+                  )} */}
                 </FormControl>
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="category-label" shrink>
-                    {/* Category* */} {categoryLabel[selectedLanguage]}*
+                    {t('formLabels.category')}*
                   </InputLabel>
-                  {/* <Select
-                    labelId="category-label"
-                    id="category"
-                    value={formState.category}
-                    label="Category*"
-                    error={Boolean(formErrors.category)}
-                    notched
-                    onChange={(e) => {
-                      handleChange('category', e.target.value);
-                      handleChange('age', '');
-                    }}
-                  >
-                    {categoriesOptions.map((category) => (
-                      <MenuItem key={category.value} value={category.value}>
-                        {category.label}
-                      </MenuItem>
-                    ))}
-                  </Select> */}
                   <Select
                     labelId="category-label"
                     id="category"
                     value={formState.category}
-                    label={categoryLabel[selectedLanguage] + '*'}
+                    label={t('formLabels.category') + '*'}
                     error={Boolean(formErrors.category)}
                     notched
                     onChange={(e) => {
@@ -565,10 +646,15 @@ function CreatePetPage() {
                         {category.label}
                       </MenuItem>
                     ))} */}
-                    <MenuItem value="">None</MenuItem>
+                    {/* <MenuItem value="">None</MenuItem>
                     {categoryOptions.map((category) => (
                       <MenuItem key={category._id} value={category.value}>
                         {category.translations[selectedLanguage]}
+                      </MenuItem>
+                    ))} */}
+                    {t('selectOptions.categoryOptions', { returnObjects: true }).map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
                       </MenuItem>
                     ))}
                   </Select>
@@ -584,14 +670,14 @@ function CreatePetPage() {
                 <TextField
                   id="identifier"
                   name="identifier"
-                  label="Identifier"
+                  label={t('formLabels.identifier')}
                   fullWidth
                   InputLabelProps={{
                     shrink: true,
                   }}
                   variant="outlined"
                   value={formState.identifier}
-                  placeholder="Pet's name or identifier (e.g. name on necklace, tag on ear)"
+                  placeholder={t('placeholders.identifier')}
                   onChange={(e) => handleChange('identifier', e.target.value)}
                 />
               </Grid>
@@ -599,37 +685,22 @@ function CreatePetPage() {
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="size-label" shrink>
-                    {sizeLabel[selectedLanguage]}
+                    {t('formLabels.size')}
                   </InputLabel>
-                  {/* <Select
-                    labelId="size-label"
-                    id="size"
-                    value={formState.size}
-                    label="Size"
-                    notched
-                    onChange={(e) => handleChange("size", e.target.value)}
-                  >
-                    {sizeOptions.map((size) => (
-                      <MenuItem key={size.value} value={size.value}>
-                        {size.label}
-                      </MenuItem>
-                    ))}
-                  </Select> */}
 
                   <Select
                     labelId="size-label"
                     id="size"
                     value={formState.size}
-                    label={sizeLabel[selectedLanguage]}
+                    label={t('formLabels.size')}
                     notched
                     onChange={(e) => handleChange('size', e.target.value)}
                     error={Boolean(formErrors.size)}
                     fullWidth
                   >
-                    <MenuItem value="">None</MenuItem>
-                    {sizeOptions.map((size) => (
-                      <MenuItem key={size._id} value={size.value}>
-                        {size.translations[selectedLanguage]}
+                    {t('selectOptions.sizeOptions', { returnObjects: true }).map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
                       </MenuItem>
                     ))}
                   </Select>
@@ -699,19 +770,41 @@ function CreatePetPage() {
                     labelId="age-label"
                     id="age"
                     value={formState.age}
-                    disabled={!formState.category}
+                    // disabled={!formState.category}
+                    disabled={
+                      formState.category === null ||
+                      formState.category === '' ||
+                      formState.category === undefined
+                    }
                     label="Age"
                     notched
                     onChange={(e) => handleChange('age', e.target.value)}
                   >
-                    {getAgeOptions().map((age) => (
+                    {/* {getAgeOptions().map((age) => (
                       <MenuItem key={age.value} value={age.value}>
                         {age.label}
+                      </MenuItem>
+                    ))} */}
+                    {/* {ageOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))} */}
+                    {/* {ageOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))} */}
+                    {ageOptions.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
                       </MenuItem>
                     ))}
                   </Select>
                 </FormControl>
               </Grid>
+              {/* {ageOptions} */}
+              {/* <p> {t(`selectOptions.ageOptions.${formState.category}`)}</p> */}
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="breed-label" shrink>
@@ -734,7 +827,7 @@ function CreatePetPage() {
                   </Select>
                 </FormControl>
               </Grid>
-
+              {/* {translations.formTitles && translations.formTitles.petDetails} */}
               <Grid item xs={12} sm={12} md={12} lg={12}>
                 <PetHealth formState={formState} setFormState={setFormState} />
               </Grid>

@@ -25,383 +25,221 @@
 
 // export default Footer;
 
-import React from "react";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-import { Link as MuiLink } from "@mui/material";
+import React from 'react';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
+import { Link as MuiLink } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <Box
       component="footer"
       sx={{
         // backgroundColor: "#1976d2",
-        padding: "20px",
-        textAlign: "center",
-        marginTop: "auto",
-        width: "100%", // Ensure the footer takes full width
+        padding: '20px',
+        textAlign: 'center',
+        marginTop: 'auto',
+        width: '100%', // Ensure the footer takes full width
         margin: 0, // Reset margin to remove any default spacing
-        background: "#1D1D1D !important",
+        background: '#1D1D1D !important',
       }}
     >
       <Container
         component="main"
         sx={{
           flexGrow: 1,
-          paddingTop: "2rem",
-          paddingBottom: "2rem",
-          width: "100%",
-          overflowX: "hidden",
+          paddingTop: '2rem',
+          paddingBottom: '2rem',
+          width: '100%',
+          overflowX: 'hidden',
         }}
       >
         <Grid container spacing={2}>
           <Grid item xs={12} sm={3} textAlign="left">
-            <Typography
-              variant="h6"
-              color="#ffc107"
-              style={{ fontWeight: "500" }}
-            >
+            <Typography variant="h6" color="#ffc107" style={{ fontWeight: '500' }}>
               App
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/about"
-                style={{ color: "#fff", textDecoration: "none" }}
-              >
-                About
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/about" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* About */}
+                {t('footerLinks.about')}
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/pets"
-                style={{ color: "#fff", textDecoration: "none" }}
-              >
-                Pets
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/pets" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* Pets */} {t('footerLinks.pets')}
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/pet-services"
                 disabled
-                style={{ color: "darkgray", textDecoration: "none" }}
+                style={{ color: 'darkgray', textDecoration: 'none' }}
               >
-                Pet Services
+                {/* Pet Services */} {t('footerLinks.petServices')}
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/virtual-pet-training-classes"
-                style={{ color: "darkgray", textDecoration: "none" }}
+                style={{ color: 'darkgray', textDecoration: 'none' }}
               >
-                Virtual Pet Training Classes
+                {/* Virtual Pet Training Classes */} {t('footerLinks.virtualPetTrainingClasses')}
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/community-forums"
-                style={{ color: "darkgray", textDecoration: "none" }}
-              >
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/community-forums" style={{ color: 'darkgray', textDecoration: 'none' }}>
                 Community Forums
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/emergency-pet-alerts"
-                style={{ color: "darkgray", textDecoration: "none" }}
+                style={{ color: 'darkgray', textDecoration: 'none' }}
               >
                 Emergency Pet Alerts
               </Link>
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3} textAlign="left">
-            <Typography
-              variant="h6"
-              color="#ffc107"
-              style={{ fontWeight: "500" }}
-            >
+            <Typography variant="h6" color="#ffc107" style={{ fontWeight: '500' }}>
               Explore
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/pet-care-guide"
-                style={{ color: "darkgray", textDecoration: "none" }}
-              >
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/pet-care-guide" style={{ color: 'darkgray', textDecoration: 'none' }}>
                 Pet Care Guide
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/pet-compatibility-quiz"
-                style={{ color: "darkgray", textDecoration: "none" }}
+                style={{ color: 'darkgray', textDecoration: 'none' }}
               >
                 Pet Compatibility Quiz
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/lost-pet-prevention-tips"
-                style={{ color: "darkgray", textDecoration: "none" }}
+                style={{ color: 'darkgray', textDecoration: 'none' }}
               >
                 Lost Pet Prevention Tips
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/guide-to-retrieving-lost-pets"
-                style={{ color: "darkgray", textDecoration: "none" }}
+                style={{ color: 'darkgray', textDecoration: 'none' }}
               >
                 Guide to Retrieving Lost Pets
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/adopt-do-not-shop"
-                style={{ color: "darkgray", textDecoration: "none" }}
-              >
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/adopt-do-not-shop" style={{ color: 'darkgray', textDecoration: 'none' }}>
                 Adopt, Don't Shop
               </Link>
             </Typography>
 
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/how-to"
-                style={{ color: "darkgray", textDecoration: "none" }}
-              >
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/how-to" style={{ color: 'darkgray', textDecoration: 'none' }}>
                 How To
               </Link>
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3} textAlign="left">
-            <Typography
-              variant="h6"
-              color="#ffc107"
-              style={{ fontWeight: "500" }}
-            >
+            <Typography variant="h6" color="#ffc107" style={{ fontWeight: '500' }}>
               Policies and Guidelines
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/privacy-policy"
-                style={{ color: "#fff", textDecoration: "none" }}
-              >
-                Privacy Policy
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/privacy-policy" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* Privacy Policy */} {t('footerLinks.privacyPolicy')}
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/terms-of-service"
-                style={{ color: "#fff", textDecoration: "none" }}
-              >
-                Terms of Service
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/terms-of-service" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* Terms of Service */} {t('footerLinks.termsOfService')}
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/cookie-policy"
-                style={{ color: "#fff", textDecoration: "none" }}
-              >
-                Cookie Policy
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/cookie-policy" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* Cookie Policy */} {t('footerLinks.cookiePolicy')}
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/data-protection-policy"
-                style={{ color: "#fff", textDecoration: "none" }}
-              >
-                Data Protection Policy
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/data-protection-policy" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* Data Protection Policy */} {t('footerLinks.dataProtectionPolicy')}
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/disclaimer"
-                style={{ color: "#fff", textDecoration: "none" }}
-              >
-                Disclaimer
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/disclaimer" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* Disclaimer */} {t('footerLinks.disclaimer')}
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/community-guidelines"
-                style={{ color: "#fff", textDecoration: "none" }}
-              >
-                Community Guidelines
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/community-guidelines" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* Community Guidelines */} {t('footerLinks.communityGuidelines')}
               </Link>
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3} textAlign="left">
-            <Typography
-              variant="h6"
-              color="#ffc107"
-              style={{ fontWeight: "500" }}
-            >
+            <Typography variant="h6" color="#ffc107" style={{ fontWeight: '500' }}>
               Information
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/contact"
-                style={{ color: "#fff", textDecoration: "none" }}
-              >
-                Contact
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/contact" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* Contact  */} {t('footerLinks.contact')}
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/feedback"
-                style={{ color: "#fff", textDecoration: "none" }}
-              >
-                Feedback
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/feedback" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* Feedback */} {t('footerLinks.feedback')}
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/support"
-                style={{ color: "#fff", textDecoration: "none" }}
-              >
-                Support
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/support" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* Support */} {t('footerLinks.support')}
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/sponsors-and-partners#partners"
-                style={{ color: "#fff", textDecoration: "none" }}
+                style={{ color: '#fff', textDecoration: 'none' }}
               >
-                Partners
+                {/* Partners */} {t('footerLinks.partners')}
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
-              <Link
-                to="/contact"
-                style={{ color: "#fff", textDecoration: "none" }}
-              >
-                Social Media
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/contact" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* Social Media */} {t('footerLinks.socialMedia')}
               </Link>
             </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              style={{ fontWeight: "300" }}
-            >
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/sponsors-and-partners#sponsors"
-                style={{ color: "#fff", textDecoration: "none" }}
+                style={{ color: '#fff', textDecoration: 'none' }}
               >
-                Sponsors
+                {/* Sponsors */} {t('footerLinks.sponsors')}
               </Link>
             </Typography>
           </Grid>
         </Grid>
       </Container>
-      <Typography
-        gutterBottom
-        variant="body2"
-        color="#adb5bd"
-        style={{ fontSize: "0.8rem" }}
-      >
-        We are grateful for any support or sponsorship that can help us unlock
-        the full potential of our web application -{" "}
+      <Typography gutterBottom variant="body2" color="#adb5bd" style={{ fontSize: '0.8rem' }}>
+        We are grateful for any support or sponsorship that can help us unlock the full potential of
+        our web application -{' '}
         <Link
           to="/support"
           style={{
-            color: "#ffc107",
-            fontWeight: "500",
-            textDecoration: "none",
+            color: '#ffc107',
+            fontWeight: '500',
+            textDecoration: 'none',
           }}
         >
           SUPPORT

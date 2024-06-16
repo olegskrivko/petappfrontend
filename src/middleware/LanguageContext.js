@@ -1,5 +1,6 @@
 // src/middleware/LanguageContext.js
 import React, { createContext, useState, useEffect } from 'react';
+import i18n from 'i18next';
 
 export const LanguageContext = createContext();
 
@@ -21,6 +22,8 @@ export const LanguageProvider = ({ children }) => {
   useEffect(() => {
     try {
       localStorage.setItem('preferredLanguage', selectedLanguage);
+      document.documentElement.lang = selectedLanguage;
+      i18n.changeLanguage(selectedLanguage); // Change the language in i18next
     } catch (error) {
       console.error('Error setting language preference in localStorage:', error);
       // Handle error appropriately, e.g., notify user or log it
