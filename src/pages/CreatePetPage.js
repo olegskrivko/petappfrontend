@@ -480,15 +480,34 @@ function CreatePetPage() {
     handleChange('markingPattern', value);
   };
 
-  const handleMarkingColorChange = (colorName) => {
+  // const handleMarkingColorChange = (colorName) => {
+  //   const currentMarkingColors = [...formState.markingColors];
+  //   if (currentMarkingColors.includes(colorName)) {
+  //     handleChange(
+  //       'markingColors',
+  //       currentMarkingColors.filter((color) => color !== colorName),
+  //     );
+  //   } else {
+  //     handleChange('markingColors', [...currentMarkingColors, colorName]);
+  //   }
+  // };
+
+  // Handler for changing marking colors
+  const handleMarkingColorChange = (color) => {
     const currentMarkingColors = [...formState.markingColors];
-    if (currentMarkingColors.includes(colorName)) {
+    const colorExists = currentMarkingColors.some((c) => c.hex === color.hex);
+
+    if (colorExists) {
+      // Remove color if it already exists
       handleChange(
         'markingColors',
-        currentMarkingColors.filter((color) => color !== colorName),
+        currentMarkingColors.filter((c) => c.hex !== color.hex),
       );
     } else {
-      handleChange('markingColors', [...currentMarkingColors, colorName]);
+      // Add color if it doesn't exist, but limit to 3 colors
+      if (currentMarkingColors.length < 2) {
+        handleChange('markingColors', [...currentMarkingColors, color]);
+      }
     }
   };
 
@@ -646,7 +665,7 @@ function CreatePetPage() {
                   gutterBottom
                   textAlign="left"
                 >
-                  Pet Details
+                  {t('formTitles.petDetails')}
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
@@ -880,7 +899,7 @@ function CreatePetPage() {
                   gutterBottom
                   textAlign="left"
                 >
-                  Pet Location
+                  {t('formTitles.petLocation')}
                 </Typography>
               </Grid>
               <Grid item xs={12}>
@@ -898,7 +917,8 @@ function CreatePetPage() {
                     gutterBottom
                     textAlign="left"
                   >
-                    Does the pet have markings?
+                    {/* Does the pet have markings? */}
+                    {t('formTitles.markings')}
                   </Typography>
                   {/* <RadioGroup
                     style={{ display: 'flex !important', flexDirection: 'row' }}
@@ -939,7 +959,7 @@ function CreatePetPage() {
                   gutterBottom
                   textAlign="left"
                 >
-                  Main Color
+                  {t('formTitles.mainColor')}
                 </Typography>
                 {/* {t('selectOptions.categoryOptions', { returnObjects: true }).map((option) => (
                       <MenuItem key={option.value} value={option.value}>
@@ -954,7 +974,7 @@ function CreatePetPage() {
                     border: '1px solid #dadada',
                     borderRadius: '5px',
                     padding: '10px',
-                    justifyContent: 'center',
+                    justifyContent: 'flex-start',
                   }}
                   onClick={() => setMainColorDialogOpen(true)}
                 >
@@ -987,9 +1007,9 @@ function CreatePetPage() {
                   gutterBottom
                   textAlign="left"
                 >
-                  Marking Colors
+                  {t('formTitles.markingColors')}
                 </Typography>
-                <div
+                {/* <div
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -997,7 +1017,31 @@ function CreatePetPage() {
                     border: '1px solid #dadada',
                     borderRadius: '5px',
                     padding: '10px',
-                    justifyContent: 'center',
+                    justifyContent: 'flex-start',
+                    opacity: formState.markingPattern === '1' ? 0.5 : 1,
+                  }}
+                  onClick={() =>
+                    formState.markingPattern !== '1' && setMarkingColorDialogOpen(true)
+                  }
+                > */}
+                {/* <Typography
+                    variant="body1"
+                    style={{ fontWeight: '500' }}
+                    gutterBottom
+                    textAlign="left"
+                  >
+                    Marking Colors
+                  </Typography> */}
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'flex-start',
+                    cursor: formState.markingPattern === '1' ? 'not-allowed' : 'pointer',
+                    border: '1px solid #dadada',
+                    borderRadius: '5px',
+                    padding: '10px',
+                    justifyContent: 'flex-start',
                     opacity: formState.markingPattern === '1' ? 0.5 : 1,
                   }}
                   onClick={() =>
@@ -1005,39 +1049,54 @@ function CreatePetPage() {
                   }
                 >
                   {formState.markingColors.length > 0 ? (
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center !important',
-                        alignItems: 'center !important',
-                      }}
-                    >
-                      {formState.markingColors.map((colorName) => (
+                    formState.markingColors.map((color, index) => (
+                      <div
+                        key={index}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+
+                          marginRight: index === 0 ? '1rem' : '0',
+                        }}
+                      >
                         <div
-                          key={colorName}
                           style={{
                             width: '30px',
                             height: '30px',
                             borderRadius: '50%',
-                            backgroundColor: t('selectOptions.colorOptions', {
-                              returnObjects: true,
-                            }).find((color) => color.value === colorName).value,
+                            backgroundColor: color.hex,
                             marginRight: '10px',
                           }}
-                        >
-                          {/* <p>{colorName}</p> */}
-                        </div>
-                      ))}
-                    </div>
-                  ) : null}
-
-                  <Typography variant="body1">
-                    {formState.markingColors.length > 0
-                      ? // ? "Click to change colors"
-                        ''
-                      : 'Click to choose up to two colors'}
-                  </Typography>
+                        />
+                        {/* <Typography variant="body1">{color.label}</Typography> */}
+                        {/* <Typography variant="body1">
+                          {
+                            t('selectOptions.colorOptions', {
+                              returnObjects: true,
+                            }).find((color) => color.value === formState.markingColors.hex).label
+                          }
+                        </Typography> */}
+                        <Typography variant="body1">
+                          {
+                            t('selectOptions.colorOptions', { returnObjects: true }).find(
+                              (option) => option.value === color.hex,
+                            )?.label
+                          }
+                        </Typography>
+                      </div>
+                    ))
+                  ) : (
+                    <Typography variant="body1">Click to choose up to three colors</Typography>
+                  )}
                 </div>
+
+                {/* <Typography variant="body1">
+                  {formState.markingColors.length > 0
+                    ? // ? "Click to change colors"
+                      ''
+                    : 'Click to choose up to two colors'}
+                </Typography> */}
+                {/* </div> */}
               </Grid>
             </Grid>
 
@@ -1100,7 +1159,7 @@ function CreatePetPage() {
                 </Button>
               </DialogActions>
             </Dialog>
-
+            {/* Marking Color Dialog */}
             <Dialog open={markingColorDialogOpen} onClose={() => setMarkingColorDialogOpen(false)}>
               <DialogTitle>
                 Select Marking Colors
@@ -1127,7 +1186,9 @@ function CreatePetPage() {
                         cursor: 'pointer',
                         minWidth: '100px',
                       }}
-                      onClick={() => handleMarkingColorChange(color.value)}
+                      onClick={() =>
+                        handleMarkingColorChange({ hex: color.value, label: color.label })
+                      }
                     >
                       <div
                         style={{
@@ -1136,7 +1197,7 @@ function CreatePetPage() {
                           borderRadius: '50%',
                           backgroundColor: color.value,
                           marginRight: '8px',
-                          border: formState.markingColors.includes(color.value)
+                          border: formState.markingColors.some((c) => c.hex === color.value)
                             ? '2px solid #2a9df4'
                             : '0px solid #dadada',
                         }}
@@ -1160,7 +1221,7 @@ function CreatePetPage() {
                 gutterBottom
                 textAlign="left"
               >
-                Date / Time
+                {t('formTitles.datetime')}
               </Typography>
             </Grid>
 
@@ -1170,7 +1231,7 @@ function CreatePetPage() {
                   // required
                   id="date"
                   name="date"
-                  label="Date"
+                  label={t('formLabels.date')}
                   type="date"
                   fullWidth
                   InputLabelProps={{
@@ -1186,7 +1247,7 @@ function CreatePetPage() {
                   // required
                   id="time"
                   name="time"
-                  label="Time"
+                  label={t('formLabels.time')}
                   type="time"
                   fullWidth
                   InputLabelProps={{
@@ -1206,7 +1267,7 @@ function CreatePetPage() {
                   gutterBottom
                   textAlign="left"
                 >
-                  Upload File
+                  {t('formTitles.uploadFile')}
                 </Typography>
               </Grid>
             </Grid>
@@ -1221,7 +1282,7 @@ function CreatePetPage() {
                   gutterBottom
                   textAlign="left"
                 >
-                  Contact Information
+                  {t('formTitles.contactInformation')}
                 </Typography>
               </Grid>
 
@@ -1309,7 +1370,7 @@ function CreatePetPage() {
                   gutterBottom
                   textAlign="left"
                 >
-                  Current Status
+                  {t('formTitles.currentStatus')}
                 </Typography>
               </Grid>
 

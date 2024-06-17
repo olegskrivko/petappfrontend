@@ -18,9 +18,9 @@
       { "value": "3", "label": "Liels" }
     ],
     "genderOptions": [
-      { "value": 0, "label": "N/D" },
-      { "value": 1, "label": "Vīriešu" },
-      { "value": 2, "label": "Sieviešu" }
+      { "value": "0", "label": "N/D" },
+      { "value": "1", "label": "Vīriešu" },
+      { "value": "2", "label": "Sieviešu" }
     ],
     "behaviorOptions": [
       { "value": "0", "label": "N/D" },
@@ -226,6 +226,8 @@
     "mainColor": "Galvenā krāsa",
     "markingColors": "Markējumu krāsas",
     "datetime": "Datums un laiks",
+    "date": "Datums",
+    "time": "Laiks",
     "uploadFile": "Augšupielādēt failu",
     "phoneCode": "Kods",
     "phoneNumber": "Telefona numurs",
@@ -236,15 +238,16 @@
   },
   "formTitles": {
     "petDetails": "Dzīvnieka informācija",
-    "healthInformation": "Health Information",
-    "petLocation": "Pet Location",
-    "markings": "Does the pet have markings?",
-    "mainColor": "Main Color",
-    "contactInformation": "Contact Information",
-    "additionalHealthDetails": "Additional Health Details",
-    "markingColors": "Marking Colors",
-    "datetime": "Date and Time",
-    "uploadFile": "Upload File"
+    "healthInformation": "Veselības stāvoklis",
+    "petLocation": "Mājdzīvnieka atrašanās vieta",
+    "markings": "Vai dzīvniekam ir zīmes?",
+    "mainColor": "Galvenā krāsa",
+    "contactInformation": "Kontaktinformācija",
+    "additionalHealthDetails": "Papildu veselības informācija",
+    "markingColors": "Krāsu marķējums",
+    "datetime": "Datums un laiks",
+    "uploadFile": "Augšupielādēt failu",
+    "currentStatus": "Pašreizējais statuss"
   },
   "sectionTitles": {
     "ownerDetails": "Owner Details",

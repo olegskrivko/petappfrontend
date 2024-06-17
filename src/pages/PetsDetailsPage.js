@@ -1,7 +1,7 @@
 // export default PetsDetailsPage;
-import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import {
   Typography,
   Grid,
@@ -21,8 +21,8 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-} from "@mui/material";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+} from '@mui/material';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import {
   Pets as PetsIcon,
   Category as CategoryIcon,
@@ -43,47 +43,48 @@ import {
   Visibility as VisibilityIcon,
   FavoriteBorder as FavoriteBorderIcon,
   Print as PrintIcon,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 
-import CakeIcon from "@mui/icons-material/Cake";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import DownloadIcon from "@mui/icons-material/Download";
-import PropTypes from "prop-types";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import EventIcon from "@mui/icons-material/Event";
-import TextureIcon from "@mui/icons-material/Texture";
-import FingerprintIcon from "@mui/icons-material/Fingerprint";
-import { BASE_URL } from "../middleware/config";
-import TomTomMapDetails from "../components/map/TomTomMapDetails";
-import ChatComponent from "../components/map/ChatComponent";
-import AirlineStopsIcon from "@mui/icons-material/AirlineStops";
-import MarkunreadIcon from "@mui/icons-material/Markunread";
-import MessageIcon from "@mui/icons-material/Message";
-import ContactPageIcon from "@mui/icons-material/ContactPage";
-import FlagIcon from "@mui/icons-material/Flag";
-import MapIcon from "@mui/icons-material/Map";
-import ChecklistIcon from "@mui/icons-material/Checklist";
-import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
-import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
-import LocationHistory from "../components/petcard/LocationHistory";
-import VerifiedIcon from "@mui/icons-material/Verified";
-import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
-import LocationOffIcon from "@mui/icons-material/LocationOff";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Tooltip from "@mui/material/Tooltip";
-import DeleteIcon from "@mui/icons-material/Delete";
-import moment from "moment";
-import PersonIcon from "@mui/icons-material/Person";
-import InfoIcon from "@mui/icons-material/Info";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import FeedIcon from "@mui/icons-material/Feed";
-import Poster from "./Poster";
-import { AuthContext } from "../middleware/AuthContext";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import { LanguageContext } from "../middleware/LanguageContext";
+import CakeIcon from '@mui/icons-material/Cake';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShareIcon from '@mui/icons-material/Share';
+import DownloadIcon from '@mui/icons-material/Download';
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import EventIcon from '@mui/icons-material/Event';
+import TextureIcon from '@mui/icons-material/Texture';
+import FingerprintIcon from '@mui/icons-material/Fingerprint';
+import { BASE_URL } from '../middleware/config';
+import TomTomMapDetails from '../components/map/TomTomMapDetails';
+import ChatComponent from '../components/map/ChatComponent';
+import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
+import MarkunreadIcon from '@mui/icons-material/Markunread';
+import MessageIcon from '@mui/icons-material/Message';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import FlagIcon from '@mui/icons-material/Flag';
+import MapIcon from '@mui/icons-material/Map';
+import ChecklistIcon from '@mui/icons-material/Checklist';
+import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import LocationHistory from '../components/petcard/LocationHistory';
+import VerifiedIcon from '@mui/icons-material/Verified';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import LocationOffIcon from '@mui/icons-material/LocationOff';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import Tooltip from '@mui/material/Tooltip';
+import DeleteIcon from '@mui/icons-material/Delete';
+import moment from 'moment';
+import PersonIcon from '@mui/icons-material/Person';
+import InfoIcon from '@mui/icons-material/Info';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import FeedIcon from '@mui/icons-material/Feed';
+import Poster from './Poster';
+import { AuthContext } from '../middleware/AuthContext';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import { LanguageContext } from '../middleware/LanguageContext';
+import { useTranslation } from 'react-i18next';
 
 // Example data
 // const locations = [
@@ -113,9 +114,7 @@ function CustomTabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3, pr: "0 !important" }}>{children}</Box>
-      )}
+      {value === index && <Box sx={{ p: 3, pr: '0 !important' }}>{children}</Box>}
     </Box>
   );
 }
@@ -137,17 +136,11 @@ CustomTabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
-function IconLabelTabs({
-  onAddLocation,
-  onDeleteMessage,
-  location,
-  pet,
-  comments,
-}) {
+function IconLabelTabs({ onAddLocation, onDeleteMessage, location, pet, comments }) {
   const { user } = useContext(AuthContext);
   const [value, setValue] = React.useState(0);
 
@@ -177,33 +170,23 @@ function IconLabelTabs({
   // };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: '100%' }}>
       {/* {user.id === pet.author ? <p>pet author</p> : <p>not pet author</p>} */}
       <Box>
-        <Tabs
-          value={value}
-          centered
-          onChange={handleChange}
-          aria-label="basic tabs example"
-        >
+        <Tabs value={value} centered onChange={handleChange} aria-label="basic tabs example">
           <Tab
             icon={<MessageIcon />}
             label="MESSAGES"
-            sx={{ fontSize: "0.7rem" }}
+            sx={{ fontSize: '0.7rem' }}
             {...a11yProps(2)}
           />
           <Tab
             icon={<AirlineStopsIcon />}
             label="HISTORY"
-            sx={{ fontSize: "0.7rem" }}
+            sx={{ fontSize: '0.7rem' }}
             {...a11yProps(3)}
           />
-          <Tab
-            icon={<NotesIcon />}
-            label="NOTES"
-            sx={{ fontSize: "0.7rem" }}
-            {...a11yProps(0)}
-          />
+          <Tab icon={<NotesIcon />} label="NOTES" sx={{ fontSize: '0.7rem' }} {...a11yProps(0)} />
           {/* <Tab
             icon={<LocalHospitalIcon />}
             label="HEALTH"
@@ -214,7 +197,7 @@ function IconLabelTabs({
           <Tab
             icon={<ContactPageIcon />}
             label="CONTACTS"
-            sx={{ fontSize: "0.7rem" }}
+            sx={{ fontSize: '0.7rem' }}
             {...a11yProps(3)}
           />
         </Tabs>
@@ -239,9 +222,9 @@ function IconLabelTabs({
                 sm={12}
                 md={12}
                 lg={12}
-                style={{ paddingLeft: "0" }}
+                style={{ paddingLeft: '0' }}
               >
-                <Card style={{ width: "100%" }}>
+                <Card style={{ width: '100%' }}>
                   {/* <p>{comment.author.isVerified}</p>aa */}
                   <CardContent>
                     <Box
@@ -249,12 +232,9 @@ function IconLabelTabs({
                       alignItems="center"
                       marginBottom="1rem"
                       padding="0.5rem"
-                      style={{ backgroundColor: "#fff", borderRadius: "8px" }}
+                      style={{ backgroundColor: '#fff', borderRadius: '8px' }}
                     >
-                      <Avatar
-                        alt={comment.author.username}
-                        src={comment.author.username}
-                      ></Avatar>
+                      <Avatar alt={comment.author.username} src={comment.author.username}></Avatar>
                       <Box ml={2}>
                         <Typography variant="h6" component="div">
                           {comment.author.username}
@@ -270,8 +250,8 @@ function IconLabelTabs({
                                 fontSize="small"
                                 color="primary"
                                 style={{
-                                  marginLeft: "0.5rem",
-                                  color: "#3f51b5",
+                                  marginLeft: '0.5rem',
+                                  color: '#3f51b5',
                                 }}
                               />
                             </Tooltip>
@@ -283,7 +263,7 @@ function IconLabelTabs({
                       </Box>
                     </Box>
                     <Box mb={2}>
-                      <Typography variant="body1" style={{ color: "#333" }}>
+                      <Typography variant="body1" style={{ color: '#333' }}>
                         {comment.text}
                       </Typography>
                     </Box>
@@ -294,7 +274,7 @@ function IconLabelTabs({
                           color="primary"
                           endIcon={<LocationOnIcon />}
                           size="small"
-                          style={{ background: "#555" }}
+                          style={{ background: '#555' }}
                         >
                           Show on map
                         </Button>
@@ -306,7 +286,7 @@ function IconLabelTabs({
                             color="secondary"
                             endIcon={<DeleteIcon />}
                             size="small"
-                            style={{ background: "#d32f2f" }}
+                            style={{ background: '#d32f2f' }}
                             onClick={() => handleDelete(comment._id)} // Add this line
                           >
                             Delete
@@ -319,24 +299,17 @@ function IconLabelTabs({
               </Grid>
             ))
           ) : (
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              md={12}
-              lg={12}
-              style={{ paddingLeft: "0" }}
-            >
-              <Card style={{ width: "100%" }}>
+            <Grid item xs={12} sm={12} md={12} lg={12} style={{ paddingLeft: '0' }}>
+              <Card style={{ width: '100%' }}>
                 <CardContent>
                   <Box
                     display="flex"
                     alignItems="center"
                     padding="0.5rem"
-                    style={{ backgroundColor: "#fff", borderRadius: "8px" }}
+                    style={{ backgroundColor: '#fff', borderRadius: '8px' }}
                   ></Box>
 
-                  <Typography variant="body1" style={{ color: "#333" }}>
+                  <Typography variant="body1" style={{ color: '#333' }}>
                     No comments available
                   </Typography>
                 </CardContent>
@@ -353,23 +326,17 @@ function IconLabelTabs({
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <Grid container spacing={3}>
-          <Grid item xs={12} style={{ paddingLeft: "0" }}>
+          <Grid item xs={12} style={{ paddingLeft: '0' }}>
             <Box mb={3}>
               <Box display="flex" alignItems="center" mb={1}>
                 <LocalHospitalIcon />
-                <Typography
-                  variant="h6"
-                  style={{ fontSize: "1rem" }}
-                  ml={1}
-                  fontWeight="bold"
-                >
+                <Typography variant="h6" style={{ fontSize: '1rem' }} ml={1} fontWeight="bold">
                   Health Details
                 </Typography>
               </Box>
               <Card elevation={3}>
-                <CardContent style={{ paddingBottom: "1rem" }}>
-                  {(pet.health && pet.health.length > 0) ||
-                  pet.healthDetails ? (
+                <CardContent style={{ paddingBottom: '1rem' }}>
+                  {(pet.health && pet.health.length > 0) || pet.healthDetails ? (
                     <>
                       {pet.health && pet.health.length > 0 && (
                         <Box>
@@ -385,18 +352,13 @@ function IconLabelTabs({
                         </Box>
                       )}
                       {pet.healthDetails && (
-                        <Typography
-                          variant="body2"
-                          style={{ marginTop: "1rem" }}
-                        >
+                        <Typography variant="body2" style={{ marginTop: '1rem' }}>
                           {pet.healthDetails}
                         </Typography>
                       )}
                     </>
                   ) : (
-                    <Typography variant="body2">
-                      No health information given.
-                    </Typography>
+                    <Typography variant="body2">No health information given.</Typography>
                   )}
                 </CardContent>
               </Card>
@@ -433,19 +395,14 @@ function IconLabelTabs({
               <Box display="flex" alignItems="center" mb={1}>
                 {/* <InfoIcon /> */}
                 <FeedIcon />
-                <Typography
-                  variant="h6"
-                  ml={1}
-                  style={{ fontSize: "1rem" }}
-                  fontWeight="bold"
-                >
+                <Typography variant="h6" ml={1} style={{ fontSize: '1rem' }} fontWeight="bold">
                   Additional Information
                 </Typography>
               </Box>
               <Card elevation={3}>
-                <CardContent style={{ paddingBottom: "1rem" }}>
+                <CardContent style={{ paddingBottom: '1rem' }}>
                   <Typography variant="body2">
-                    {pet.notes ? pet.notes : "No additional information given."}
+                    {pet.notes ? pet.notes : 'No additional information given.'}
                   </Typography>
                 </CardContent>
               </Card>
@@ -455,32 +412,20 @@ function IconLabelTabs({
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
         <Grid container spacing={3}>
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={12}
-            lg={12}
-            style={{ paddingLeft: "0" }}
-          >
+          <Grid item xs={12} sm={12} md={12} lg={12} style={{ paddingLeft: '0' }}>
             <Box mb={3}>
               <Box display="flex" alignItems="center" mb={1}>
                 {/* <PersonIcon /> */}
                 <AccountBoxIcon />
-                <Typography
-                  variant="h6"
-                  style={{ fontSize: "1rem" }}
-                  ml={1}
-                  fontWeight="bold"
-                >
+                <Typography variant="h6" style={{ fontSize: '1rem' }} ml={1} fontWeight="bold">
                   Contact Person
                 </Typography>
               </Box>
-              <Card style={{ width: "100%" }}>
+              <Card style={{ width: '100%' }}>
                 <CardContent>
                   <Box display="flex" alignItems="center" gap={2} mb={2}>
                     <Avatar
-                      style={{ background: "#555" }}
+                      style={{ background: '#555' }}
                       alt={pet.author.username}
                       // src={pet.author.username}
                     />
@@ -503,41 +448,31 @@ function IconLabelTabs({
                           fontSize="small"
                           color="primary"
                           style={{
-                            color: "#3f51b5",
+                            color: '#3f51b5',
                           }}
                         />
                       </Tooltip>
                     )}
                   </Box>
 
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    gap={2}
-                    style={{ marginTop: "1rem" }}
-                  >
+                  <Box display="flex" alignItems="center" gap={2} style={{ marginTop: '1rem' }}>
                     {/* <PhoneIcon /> */}
-                    <Avatar style={{ background: "#555" }}>
+                    <Avatar style={{ background: '#555' }}>
                       <PhoneIcon />
                     </Avatar>
                     <Typography variant="body1">
-                      <b>Phone:</b> {pet.phoneCode ? pet.phoneCode : ""}{" "}
-                      {pet.phone ? pet.phone : "N/A"}
+                      <b>Phone:</b> {pet.phoneCode ? pet.phoneCode : ''}{' '}
+                      {pet.phone ? pet.phone : 'N/A'}
                     </Typography>
                   </Box>
 
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    gap={2}
-                    style={{ marginTop: "1rem" }}
-                  >
+                  <Box display="flex" alignItems="center" gap={2} style={{ marginTop: '1rem' }}>
                     {/* <EmailIcon /> */}
-                    <Avatar style={{ background: "#555" }}>
+                    <Avatar style={{ background: '#555' }}>
                       <EmailIcon />
                     </Avatar>
                     <Typography variant="body1">
-                      <b>Email:</b> {pet.email ? pet.email : "N/A"}
+                      <b>Email:</b> {pet.email ? pet.email : 'N/A'}
                     </Typography>
                   </Box>
                 </CardContent>
@@ -559,24 +494,24 @@ const PetsDetailsPage = () => {
   //     setSelectedLanguage(storedLanguage);
   //   }
   // }, []); // Empty dependency array ensures this effect runs only once on component mount
+
   const { id } = useParams();
   const [pet, setPet] = useState(null);
   const [comments, setComments] = useState(null);
   const [options, setOptions] = useState([]);
   const [location, setLocation] = useState(null);
-  console.log("Location in petdetails:", location);
+  console.log('Location in petdetails:', location);
   const handleAddLocation = (location) => {
     setLocation((prevLocation) => location);
   };
   const { selectedLanguage } = useContext(LanguageContext); // Use LanguageContext to get selectedLanguage
+  const { t } = useTranslation();
   const getSizeName = (sizeOptions, sizeValue) => {
     // Find the size option and return the corresponding name for the size value
     // console.log("Size options:", sizeOptions[0].values);
     // console.log("Size options Inside:", sizeOptions[0].values[0].value);
-    const sizeValueInfo = sizeOptions[0].values.find(
-      (option) => option.value == sizeValue
-    );
-    if (!sizeValueInfo) return "N/A";
+    const sizeValueInfo = sizeOptions[0].values.find((option) => option.value == sizeValue);
+    if (!sizeValueInfo) return 'N/A';
 
     return sizeValueInfo.translations[selectedLanguage]; // Assuming "en" translation is always available
   };
@@ -596,7 +531,7 @@ const PetsDetailsPage = () => {
   // };
 
   const handleDeleteMessage = async (commentId) => {
-    const token = localStorage.getItem("token"); // assuming the token is stored in local storage
+    const token = localStorage.getItem('token'); // assuming the token is stored in local storage
     try {
       console.log(`Deleting message with id: ${commentId}`);
       // Make a request to your server to delete the message
@@ -605,11 +540,9 @@ const PetsDetailsPage = () => {
       });
 
       // Remove the message from the local state
-      setComments((prevComments) =>
-        prevComments.filter((comment) => comment._id !== commentId)
-      );
+      setComments((prevComments) => prevComments.filter((comment) => comment._id !== commentId));
     } catch (error) {
-      console.error("Failed to delete message:", error);
+      console.error('Failed to delete message:', error);
     }
   };
 
@@ -646,13 +579,13 @@ const PetsDetailsPage = () => {
         });
       } else {
         // Fallback for browsers that don't support Web Share API
-        throw new Error("Web Share API not supported");
+        throw new Error('Web Share API not supported');
       }
     } catch (error) {
-      console.error("Error sharing pet:", error);
+      console.error('Error sharing pet:', error);
       // You can use the notistack to display an error message
-      enqueueSnackbar("Error sharing pet. Please try again later.", {
-        variant: "error",
+      enqueueSnackbar('Error sharing pet. Please try again later.', {
+        variant: 'error',
       });
     }
   };
@@ -663,8 +596,8 @@ const PetsDetailsPage = () => {
         const response = await axios.get(`${BASE_URL}/pets/${id}`);
         setPet(response.data);
       } catch (error) {
-        console.error("Error fetching pet details:", error.message);
-        setError("Error fetching pet details");
+        console.error('Error fetching pet details:', error.message);
+        setError('Error fetching pet details');
       } finally {
         setLoading(false);
       }
@@ -675,13 +608,13 @@ const PetsDetailsPage = () => {
         // Fetch options data from your backend API
         const response = await fetch(`${BASE_URL}/options/size`);
         if (!response.ok) {
-          throw new Error("Failed to fetch options data");
+          throw new Error('Failed to fetch options data');
         }
         const optionsData = await response.json();
         setOptions(optionsData.options);
-        console.log("Options data:", optionsData.options);
+        console.log('Options data:', optionsData.options);
       } catch (error) {
-        console.error("Error fetching options data:", error);
+        console.error('Error fetching options data:', error);
         // Optionally handle error (e.g., show an error message)
       }
     };
@@ -696,16 +629,70 @@ const PetsDetailsPage = () => {
       try {
         const response = await axios.get(`${BASE_URL}/pets/${id}/comments`);
         setComments(response.data);
-        console.log("Comments:", response.data);
+        console.log('Comments:', response.data);
       } catch (error) {
-        console.error("Error fetching pet comments:", error.message);
-        setError("Error fetching pet comments");
+        console.error('Error fetching pet comments:', error.message);
+        setError('Error fetching pet comments');
       } finally {
         setLoading(false);
       }
     };
     fetchComments();
   }, [id]);
+
+  const getInitialStatusLabel = (value) => {
+    const options = t('selectOptions.initialStatusOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getCategoryLabel = (value) => {
+    const options = t('selectOptions.categoryOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getSizeLabel = (value) => {
+    const options = t('selectOptions.sizeOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getGenderLabel = (value) => {
+    const options = t('selectOptions.genderOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getBehaviorLabel = (value) => {
+    const options = t('selectOptions.behaviorOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getAgeLabel = (value) => {
+    const options = t(`selectOptions.ageOptions.${pet.category}`, { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getBreedLabel = (value) => {
+    const options = t(`selectOptions.breedOptions.${pet.category}`, { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getMainColorLabel = (value) => {
+    const options = t('selectOptions.colorOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getMarkingLabel = (value) => {
+    const options = t('selectOptions.markingOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
 
   // Function to generate PDF
   // function generatePDF() {
@@ -746,12 +733,7 @@ const PetsDetailsPage = () => {
 
   if (loading) {
     return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100vh"
-      >
+      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
         <CircularProgress />
       </Box>
     );
@@ -765,20 +747,20 @@ const PetsDetailsPage = () => {
     return <div>No pet found</div>;
   }
 
-  const genderIcon = pet.gender === "Male" ? <MaleIcon /> : <FemaleIcon />;
+  const genderIcon = pet.gender === 'Male' ? <MaleIcon /> : <FemaleIcon />;
 
   return (
     <Grid container spacing={3} padding={2}>
       <Grid item xs={12}>
         <Typography variant="h5" gutterBottom textAlign="center">
-          <span style={{ textTransform: "capitalize" }}>
-            {pet.initialStatus}
-          </span>{" "}
-          <span style={{ textTransform: "capitalize" }}>{pet.category}</span>
+          <span style={{ textTransform: 'capitalize' }}>
+            {getInitialStatusLabel(pet.initialStatus)}
+          </span>{' '}
+          <span style={{ textTransform: 'capitalize' }}>{getCategoryLabel(pet.category)}</span>
         </Typography>
       </Grid>
       <Grid item xs={12} sm={12} md={6} lg={6}>
-        <Card style={{ position: "relative" }}>
+        <Card style={{ position: 'relative' }}>
           {/* <CardActions>
             <Avatar>A</Avatar>
             <Typography variant="body1">antohysmith32</Typography>
@@ -791,19 +773,17 @@ const PetsDetailsPage = () => {
             component="img"
             alt={pet.initialStatus}
             height="400"
-            image={pet.mainImage || "/default_pet_image.jpg"}
+            image={pet.mainImage || '/default_pet_image.jpg'}
             title={pet.initialStatus}
           />
-          <Box
-            style={{ position: "absolute", top: -20, right: 0, zIndex: 999 }}
-          >
+          <Box style={{ position: 'absolute', top: -20, right: 0, zIndex: 999 }}>
             <IconButton
               aria-label="add to favorites"
               sx={{
-                position: "absolute",
-                top: "40px",
-                right: "20px",
-                background: "#FFFFFF", // Customize as needed
+                position: 'absolute',
+                top: '40px',
+                right: '20px',
+                background: '#FFFFFF', // Customize as needed
               }}
             >
               <FavoriteIcon />
@@ -812,10 +792,10 @@ const PetsDetailsPage = () => {
             <IconButton
               aria-label="Download"
               sx={{
-                position: "absolute",
-                top: "95px",
-                right: "20px",
-                background: "#FFFFFF", // Customize as needed
+                position: 'absolute',
+                top: '95px',
+                right: '20px',
+                background: '#FFFFFF', // Customize as needed
               }}
             >
               <DownloadIcon />
@@ -824,20 +804,17 @@ const PetsDetailsPage = () => {
             <IconButton
               aria-label="Share"
               sx={{
-                position: "absolute",
-                top: "150px",
-                right: "20px",
-                background: "#FFFFFF", // Customize as needed
+                position: 'absolute',
+                top: '150px',
+                right: '20px',
+                background: '#FFFFFF', // Customize as needed
               }}
               onClick={handleShare}
             >
               <ShareIcon />
             </IconButton>
           </Box>
-          <Box
-            display="flex"
-            style={{ justifyContent: "space-between", alignItems: "center" }}
-          >
+          <Box display="flex" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
             <Box display="flex" alignItems="center" p={2}>
               <VisibilityIcon color="action" />
               <Typography variant="body2" color="textSecondary" ml={1}>
@@ -860,13 +837,12 @@ const PetsDetailsPage = () => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <TagIcon /> <b>Identifier:</b>{" "}
-                {pet.identifier ? pet.identifier : "N/A"}
+                <TagIcon /> <b>Identifier:</b> {pet.identifier ? pet.identifier : 'N/A'}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -874,13 +850,13 @@ const PetsDetailsPage = () => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
                 {/* {pet.size ? getSizeName(options, pet.size) : "N/A"} */}
-                <HeightIcon /> <b>Size:</b> {pet.size ? pet.size : "N/A"}
+                <HeightIcon /> <b>Size:</b> {getSizeLabel(pet.size)}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -888,12 +864,12 @@ const PetsDetailsPage = () => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <MaleIcon /> <b>Gender:</b> {pet.gender ? pet.gender : "N/A"}
+                <MaleIcon /> <b>Gender:</b> {getGenderLabel(pet.gender)}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -901,13 +877,12 @@ const PetsDetailsPage = () => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <MoodIcon /> <b>Behavior:</b>{" "}
-                {pet.behavior ? pet.behavior : "N/A"}
+                <MoodIcon /> <b>Behavior:</b> {getBehaviorLabel(pet.behavior)}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -915,12 +890,12 @@ const PetsDetailsPage = () => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <CakeIcon /> <b>Age:</b> {pet.age ? pet.age : "N/A"}
+                <CakeIcon /> <b>Age:</b> {getAgeLabel(pet.age)}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -928,12 +903,12 @@ const PetsDetailsPage = () => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <MergeTypeIcon /> <b>Breed:</b> {pet.breed ? pet.breed : "N/A"}
+                <MergeTypeIcon /> <b>Breed:</b> {getBreedLabel(pet.breed)}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -941,13 +916,12 @@ const PetsDetailsPage = () => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <ColorLensIcon /> <b>Main Color:</b>{" "}
-                {pet.mainColor ? pet.mainColor : "N/A"}
+                <ColorLensIcon /> <b>Main Color:</b> {getMainColorLabel(pet.mainColor)}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -955,13 +929,12 @@ const PetsDetailsPage = () => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <TextureIcon /> <b>Marking Pattern:</b>{" "}
-                {pet.markingPattern ? pet.markingPattern : "N/A"}
+                <TextureIcon /> <b>Marking Pattern:</b> {getMarkingLabel(pet.markingPattern)}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -969,15 +942,13 @@ const PetsDetailsPage = () => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <ColorLensIcon /> <b>Marking Colors:</b>{" "}
-                {pet.markingColors.join(", ")
-                  ? pet.markingColors.join(", ")
-                  : "N/A"}
+                <ColorLensIcon /> <b>Marking Colors:</b>{' '}
+                {pet.markingColors.join(', ') ? pet.markingColors.join(', ') : 'N/A'}
                 <Typography variant="body1" gutterBottom></Typography>
               </Box>
             </Grid>
@@ -985,14 +956,14 @@ const PetsDetailsPage = () => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <EventIcon />{" "}
-                <span style={{ textTransform: "capitalize" }}>
-                  <b>{pet.initialStatus}</b>
+                <EventIcon />{' '}
+                <span style={{ textTransform: 'capitalize' }}>
+                  <b>{getInitialStatusLabel(pet.initialStatus)}</b>
                 </span>
                 <b>Date:</b> {pet.date}
               </Box>
@@ -1001,29 +972,24 @@ const PetsDetailsPage = () => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
                 <WatchLaterIcon />
-                <span style={{ textTransform: "capitalize" }}>
-                  <b>{pet.initialStatus}</b>
+                <span style={{ textTransform: 'capitalize' }}>
+                  <b>{getInitialStatusLabel(pet.initialStatus)}</b>
                 </span>
                 <b>Time:</b> {pet.time}
               </Box>
             </Grid>
             <Grid item xs={12}>
-              <Card style={{ border: "none", boxShadow: "none" }}>
-                <CardContent style={{ padding: "0" }}>
-                  <Box style={{ display: "flex" }}>
-                    <Typography
-                      fontSize="small"
-                      variant="body1"
-                      style={{ color: "gray" }}
-                    >
-                      Created {moment(pet.createdAt).fromNow()}{" "}
-                      <span>&nbsp;&nbsp;&nbsp;</span>|
+              <Card style={{ border: 'none', boxShadow: 'none' }}>
+                <CardContent style={{ padding: '0' }}>
+                  <Box style={{ display: 'flex' }}>
+                    <Typography fontSize="small" variant="body1" style={{ color: 'gray' }}>
+                      Created {moment(pet.createdAt).fromNow()} <span>&nbsp;&nbsp;&nbsp;</span>|
                       <span>&nbsp;&nbsp;&nbsp;</span>
                       Updated {moment(pet.updatedAt).fromNow()}
                     </Typography>
@@ -1083,11 +1049,7 @@ const PetsDetailsPage = () => {
         Download PDF
       </Button> */}
       <Grid item xs={12} sm={12} md={12} lg={12}>
-        <TomTomMapDetails
-          pet={pet}
-          location={location}
-          onAddLocation={handleAddLocation}
-        />
+        <TomTomMapDetails pet={pet} location={location} onAddLocation={handleAddLocation} />
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={12}>
         <IconLabelTabs

@@ -18,9 +18,9 @@
       { "value": "3", "label": "Большой" }
     ],
     "genderOptions": [
-      { "value": 0, "label": "Н/Д" },
-      { "value": 1, "label": "Мужской" },
-      { "value": 2, "label": "Женский" }
+      { "value": "0", "label": "Н/Д" },
+      { "value": "1", "label": "Мужской" },
+      { "value": "2", "label": "Женский" }
     ],
     "behaviorOptions": [
       { "value": "0", "label": "Н/Д" },
@@ -226,6 +226,8 @@
     "mainColor": "Основной цвет",
     "markingColors": "Цвета отметок",
     "datetime": "Дата и время",
+    "date": "Дата",
+    "time": "Время",
     "uploadFile": "Загрузить файл",
     "phoneCode": "Код",
     "phoneNumber": "Номер телефона",
@@ -235,16 +237,17 @@
     "updatedStatusDescription": "Описание текущего статуса"
   },
   "formTitles": {
-    "petDetails": "Инофрмация о питомце",
-    "healthInformation": "Health Information",
-    "petLocation": "Pet Location",
-    "markings": "Does the pet have markings?",
-    "mainColor": "Main Color",
-    "contactInformation": "Contact Information",
-    "additionalHealthDetails": "Additional Health Details",
-    "markingColors": "Marking Colors",
-    "datetime": "Date and Time",
-    "uploadFile": "Upload File"
+    "petDetails": "Информация о животном",
+    "healthInformation": "Информация о здоровье",
+    "petLocation": "Местоположение животного",
+    "markings": "Есть ли у животного отметины?",
+    "mainColor": "Основной цвет",
+    "contactInformation": "Контактная информация",
+    "additionalHealthDetails": "Дополнительная информация о здоровье",
+    "markingColors": "Цвета отметин",
+    "datetime": "Дата и время",
+    "uploadFile": "Загрузить файл",
+    "currentStatus": "Текущий статус"
   },
   "sectionTitles": {
     "ownerDetails": "Owner Details",

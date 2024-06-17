@@ -152,7 +152,7 @@ const PetHealth = ({ formState, setFormState }) => {
     <>
       <Grid item xs={12}>
         <Typography variant="body1" style={{ fontWeight: '500' }} gutterBottom textAlign="left">
-          Health Information
+          {t('formTitles.healthInformation')}
         </Typography>
       </Grid>
       <Grid item xs={12} style={{ marginBottom: '1rem' }}>

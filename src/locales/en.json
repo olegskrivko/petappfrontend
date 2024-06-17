@@ -18,9 +18,9 @@
       { "value": "3", "label": "Large" }
     ],
     "genderOptions": [
-      { "value": 0, "label": "N/A" },
-      { "value": 1, "label": "Male" },
-      { "value": 2, "label": "Female" }
+      { "value": "0", "label": "N/A" },
+      { "value": "1", "label": "Male" },
+      { "value": "2", "label": "Female" }
     ],
     "behaviorOptions": [
       { "value": "0", "label": "N/A" },
@@ -226,6 +226,8 @@
     "mainColor": "Main Color",
     "markingColors": "Marking Colors",
     "datetime": "Date and Time",
+    "date": "Date",
+    "time": "Time",
     "uploadFile": "Upload file",
     "phoneCode": "Code",
     "phoneNumber": "Phone number",
@@ -244,7 +246,7 @@
     "additionalHealthDetails": "Additional Health Details",
     "markingColors": "Marking Colors",
     "datetime": "Date and Time",
-    "uploadFile": "Upload File"
+    "currentStatus": "Current Status"
   },
   "sectionTitles": {
     "ownerDetails": "Owner Details",

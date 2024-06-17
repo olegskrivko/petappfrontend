@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { Container, Typography, Box, Button, Grid } from "@mui/material";
-import jsPDF from "jspdf";
-import html2PDF from "html2pdf.js";
+import React, { useState } from 'react';
+import { Container, Typography, Box, Button, Grid } from '@mui/material';
+import jsPDF from 'jspdf';
+import html2PDF from 'html2pdf.js';
 
-import MessageIcon from "@mui/icons-material/Message";
-import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
-import { BASE_URL, DOMAIN_URL } from "../middleware/config";
+import MessageIcon from '@mui/icons-material/Message';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import { BASE_URL, DOMAIN_URL } from '../middleware/config';
 // import { QRCode } from "react-qr-svg"; // Import QRCode component
-import QRCode from "react-qr-code"; // Updated import statement
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import SupportImg from "../images/dog_paw_bro.svg";
+import QRCode from 'react-qr-code'; // Updated import statement
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import SupportImg from '../images/dog_paw_bro.svg';
 import {
   Pets as PetsIcon,
   Category as CategoryIcon,
@@ -30,7 +30,7 @@ import {
   Visibility as VisibilityIcon,
   FavoriteBorder as FavoriteBorderIcon,
   Print as PrintIcon,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 import {
   Card,
   CardContent,
@@ -46,15 +46,32 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-} from "@mui/material";
-import EventIcon from "@mui/icons-material/Event";
-import TextureIcon from "@mui/icons-material/Texture";
-import CakeIcon from "@mui/icons-material/Cake";
-import FeedIcon from "@mui/icons-material/Feed";
+} from '@mui/material';
+import EventIcon from '@mui/icons-material/Event';
+import TextureIcon from '@mui/icons-material/Texture';
+import CakeIcon from '@mui/icons-material/Cake';
+import FeedIcon from '@mui/icons-material/Feed';
+
+import { LanguageContext } from '../middleware/LanguageContext';
+import { useTranslation } from 'react-i18next';
 
 const Poster = ({ pet }) => {
+  const { t } = useTranslation();
   const [isGenerating, setIsGenerating] = useState(false);
   const [isReady, setIsReady] = useState(false);
+
+  const getInitialStatusLabel = (value) => {
+    const options = t('selectOptions.initialStatusOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getCategoryLabel = (value) => {
+    const options = t('selectOptions.categoryOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
   // const [mapLoaded, setMapLoaded] = useState(false);
   // const handleMapLoad = () => {
   //   setMapLoaded(true);
@@ -113,13 +130,13 @@ const Poster = ({ pet }) => {
       // Wait for the DOM to fully load
       await new Promise((resolve) => setTimeout(resolve, 100));
 
-      const page = document.getElementById("page");
+      const page = document.getElementById('page');
       const options = {
         jsPDF: {
-          format: "a4",
+          format: 'a4',
         },
-        imageType: "image/jpeg",
-        output: "./pdf/generate.pdf",
+        imageType: 'image/jpeg',
+        output: './pdf/generate.pdf',
         html2canvas: {
           useCORS: true,
           scale: 2, // Increase the scale for better quality
@@ -131,7 +148,7 @@ const Poster = ({ pet }) => {
       setIsGenerating(false);
       setIsReady(true);
     } catch (error) {
-      console.error("Error generating PDF:", error);
+      console.error('Error generating PDF:', error);
       setIsGenerating(false);
     }
   };
@@ -142,42 +159,42 @@ const Poster = ({ pet }) => {
         id="page"
         sx={{
           padding: 4,
-          border: "1px solid #ccc",
-          borderRadius: "8px",
-          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-          backgroundColor: "#fff",
+          border: '1px solid #ccc',
+          borderRadius: '8px',
+          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+          backgroundColor: '#fff',
         }}
       >
         <Box
           style={{
-            background: "darkred",
-            padding: "1rem 0",
-            marginBottom: "1rem",
+            background: 'darkred',
+            padding: '1rem 0',
+            marginBottom: '1rem',
           }}
         >
           <Typography
             variant="h1"
             textAlign="center"
             style={{
-              textTransform: "uppercase",
-              fontWeight: "700",
-              color: "#fff",
-              fontSize: "3rem",
+              textTransform: 'uppercase',
+              fontWeight: '700',
+              color: '#fff',
+              fontSize: '3rem',
             }}
           >
-            {pet.initialStatus} {pet.category}
+            {getInitialStatusLabel(pet.initialStatus)} {getCategoryLabel(pet.category)}
           </Typography>
           <Typography
             variant="h6"
             textAlign="center"
             style={{
-              color: "#fff",
-              textTransform: "uppercase",
-              letterSpacing: "1px",
-              fontSize: "1rem",
+              color: '#fff',
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
+              fontSize: '1rem',
             }}
           >
-            Have you seen this {pet.category}?
+            Have you seen this {getCategoryLabel(pet.category)}?
           </Typography>
         </Box>
         <Grid container spacing={3}>
@@ -186,14 +203,14 @@ const Poster = ({ pet }) => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <TagIcon /> <b>Name or ID:</b>{" "}
-                <span style={{ textTransform: "capitalize" }}>
-                  {pet.identifier ? pet.identifier : "N/A"}
+                <TagIcon /> <b>Name or ID:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>
+                  {pet.identifier ? pet.identifier : 'N/A'}
                 </span>
               </Box>
             </Grid>
@@ -201,14 +218,14 @@ const Poster = ({ pet }) => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <MaleIcon /> <b>Gender:</b>{" "}
-                <span style={{ textTransform: "capitalize" }}>
-                  {pet.gender ? pet.gender : "N/A"}
+                <MaleIcon /> <b>Gender:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>
+                  {pet.gender ? pet.gender : 'N/A'}
                 </span>
               </Box>
             </Grid>
@@ -216,14 +233,27 @@ const Poster = ({ pet }) => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <HeightIcon /> <b>Size:</b>{" "}
-                <span style={{ textTransform: "capitalize" }}>
-                  {pet.size ? pet.size : "N/A"}
+                <HeightIcon /> <b>Size:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>{pet.size ? pet.size : 'N/A'}</span>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={12} mb={2}>
+              <Box
+                gap={1}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                }}
+              >
+                <MoodIcon /> <b>Behavior:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>
+                  {pet.behavior ? pet.behavior : 'N/A'}
                 </span>
               </Box>
             </Grid>
@@ -231,14 +261,40 @@ const Poster = ({ pet }) => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <MoodIcon /> <b>Behavior:</b>{" "}
-                <span style={{ textTransform: "capitalize" }}>
-                  {pet.behavior ? pet.behavior : "N/A"}
+                <CakeIcon /> <b>Age:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>{pet.age ? pet.age : 'N/A'}</span>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={12} mb={2}>
+              <Box
+                gap={1}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                }}
+              >
+                <MergeTypeIcon /> <b>Breed:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>{pet.breed ? pet.breed : 'N/A'}</span>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={12} mb={2}>
+              <Box
+                gap={1}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                }}
+              >
+                <ColorLensIcon /> <b>Main Color:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>
+                  {pet.mainColor ? pet.mainColor : 'N/A'}
                 </span>
               </Box>
             </Grid>
@@ -246,14 +302,14 @@ const Poster = ({ pet }) => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <CakeIcon /> <b>Age:</b>{" "}
-                <span style={{ textTransform: "capitalize" }}>
-                  {pet.age ? pet.age : "N/A"}
+                <TextureIcon /> <b>Marking Pattern:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>
+                  {pet.markingPattern ? pet.markingPattern : 'N/A'}
                 </span>
               </Box>
             </Grid>
@@ -261,14 +317,14 @@ const Poster = ({ pet }) => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <MergeTypeIcon /> <b>Breed:</b>{" "}
-                <span style={{ textTransform: "capitalize" }}>
-                  {pet.breed ? pet.breed : "N/A"}
+                <ColorLensIcon /> <b>Marking Colors:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>
+                  {pet.markingColors.join(', ') ? pet.markingColors.join(', ') : 'N/A'}
                 </span>
               </Box>
             </Grid>
@@ -276,60 +332,13 @@ const Poster = ({ pet }) => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <ColorLensIcon /> <b>Main Color:</b>{" "}
-                <span style={{ textTransform: "capitalize" }}>
-                  {pet.mainColor ? pet.mainColor : "N/A"}
-                </span>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} mb={2}>
-              <Box
-                gap={1}
-                style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
-                }}
-              >
-                <TextureIcon /> <b>Marking Pattern:</b>{" "}
-                <span style={{ textTransform: "capitalize" }}>
-                  {pet.markingPattern ? pet.markingPattern : "N/A"}
-                </span>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} mb={2}>
-              <Box
-                gap={1}
-                style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
-                }}
-              >
-                <ColorLensIcon /> <b>Marking Colors:</b>{" "}
-                <span style={{ textTransform: "capitalize" }}>
-                  {pet.markingColors.join(", ")
-                    ? pet.markingColors.join(", ")
-                    : "N/A"}
-                </span>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} mb={2}>
-              <Box
-                gap={1}
-                style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
-                }}
-              >
-                <EventIcon />{" "}
-                <span style={{ textTransform: "capitalize" }}>
+                <EventIcon />{' '}
+                <span style={{ textTransform: 'capitalize' }}>
                   <b>{pet.initialStatus}</b>
                 </span>
                 <b>Date:</b> {pet.date}
@@ -339,13 +348,13 @@ const Poster = ({ pet }) => {
               <Box
                 gap={1}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
                 <WatchLaterIcon />
-                <span style={{ textTransform: "capitalize" }}>
+                <span style={{ textTransform: 'capitalize' }}>
                   <b>{pet.initialStatus}</b>
                 </span>
                 <b>Time:</b> {pet.time}
@@ -360,8 +369,8 @@ const Poster = ({ pet }) => {
                   item
                   xs={12}
                   style={{
-                    display: "flex",
-                    justifyContent: "center",
+                    display: 'flex',
+                    justifyContent: 'center',
                     // marginBottom: "1rem",
                   }}
                 >
@@ -374,8 +383,8 @@ const Poster = ({ pet }) => {
                     src={pet.mainImage}
                     alt={pet.name}
                     style={{
-                      maxWidth: "100%",
-                      height: "auto",
+                      maxWidth: '100%',
+                      height: 'auto',
                       // marginTop: "20px",
                     }}
                   />
@@ -389,31 +398,26 @@ const Poster = ({ pet }) => {
             <Box>
               <Box display="flex" alignItems="center" mb={1}>
                 <FeedIcon />
-                <Typography
-                  variant="h6"
-                  ml={1}
-                  style={{ fontSize: "1rem" }}
-                  fontWeight="bold"
-                >
+                <Typography variant="h6" ml={1} style={{ fontSize: '1rem' }} fontWeight="bold">
                   Additional Information:
                 </Typography>
               </Box>
 
               <Typography variant="body2">
-                {pet.notes ? pet.notes : "No additional information given."}
+                {pet.notes ? pet.notes : 'No additional information given.'}
               </Typography>
             </Box>
           </Grid>
         </Grid>
 
-        <Box style={{ background: "darkred", padding: "1rem 0" }}>
+        <Box style={{ background: 'darkred', padding: '1rem 0' }}>
           <Typography
             variant="h6"
             textAlign="center"
             style={{
-              textTransform: "uppercase",
-              fontWeight: "700",
-              color: "#fff",
+              textTransform: 'uppercase',
+              fontWeight: '700',
+              color: '#fff',
             }}
           >
             If you have any information please contact
@@ -422,9 +426,9 @@ const Poster = ({ pet }) => {
             variant="h6"
             textAlign="center"
             style={{
-              color: "#fff",
-              textTransform: "uppercase",
-              letterSpacing: "1px",
+              color: '#fff',
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
             }}
           >
             {pet.phoneCode} {pet.phone}
@@ -444,11 +448,11 @@ const Poster = ({ pet }) => {
           {/* QR code section */}
           <Box
             style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              marginBottom: "1rem",
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: '1rem',
             }}
           >
             <Box
@@ -457,7 +461,7 @@ const Poster = ({ pet }) => {
               alignItems="center"
               flexDirection="column"
               style={{
-                marginRight: "1rem",
+                marginRight: '1rem',
               }}
               mt={2}
             >
@@ -472,63 +476,39 @@ const Poster = ({ pet }) => {
             </Box>
             <Box
               style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "start",
-                marginLeft: "1rem",
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'start',
+                marginLeft: '1rem',
               }}
             >
-              <Typography
-                variant="body1"
-                textAlign="start"
-                sx={{ mt: 1, fontWeight: "bold" }}
-              >
+              <Typography variant="body1" textAlign="start" sx={{ mt: 1, fontWeight: 'bold' }}>
                 1. Open camera on your smartphone
               </Typography>
-              <Typography
-                variant="body1"
-                textAlign="start"
-                sx={{ mt: 1, fontWeight: "bold" }}
-              >
+              <Typography variant="body1" textAlign="start" sx={{ mt: 1, fontWeight: 'bold' }}>
                 2. Point the camera at the QR code
               </Typography>
-              <Typography
-                variant="body1"
-                textAlign="start"
-                sx={{ mt: 1, fontWeight: "bold" }}
-              >
+              <Typography variant="body1" textAlign="start" sx={{ mt: 1, fontWeight: 'bold' }}>
                 3. Click on the link that appears
               </Typography>
-              <Typography
-                variant="body1"
-                textAlign="start"
-                sx={{ mt: 1, fontWeight: "bold" }}
-              >
+              <Typography variant="body1" textAlign="start" sx={{ mt: 1, fontWeight: 'bold' }}>
                 4. Follow up on the pet
               </Typography>
-              <Typography
-                variant="body1"
-                textAlign="start"
-                sx={{ mt: 1, fontWeight: "bold" }}
-              >
+              <Typography variant="body1" textAlign="start" sx={{ mt: 1, fontWeight: 'bold' }}>
                 5. Share the link with others
               </Typography>
-              <Typography
-                variant="body1"
-                textAlign="start"
-                sx={{ mt: 1, fontWeight: "bold" }}
-              >
+              <Typography variant="body1" textAlign="start" sx={{ mt: 1, fontWeight: 'bold' }}>
                 6. Help reunite the pet with its owner and save a life
               </Typography>
             </Box>
           </Box>
         </Box>
-        <Box style={{ background: "darkred", padding: "1rem 0" }}>
+        <Box style={{ background: 'darkred', padding: '1rem 0' }}>
           <Typography
             variant="body1"
             textAlign="center"
-            style={{ color: "#fff", fontWeight: "bold" }}
+            style={{ color: '#fff', fontWeight: 'bold' }}
             gutterBottom
           >
             Scan to view map, details and track updates on the pet's status.
@@ -575,12 +555,7 @@ const Poster = ({ pet }) => {
           </Button>
         </Box>
       )} */}
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={generatePDF}
-        sx={{ marginTop: 4 }}
-      >
+      <Button variant="contained" color="primary" onClick={generatePDF} sx={{ marginTop: 4 }}>
         Download PDF
       </Button>
     </Box>
