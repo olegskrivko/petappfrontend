@@ -6,8 +6,8 @@
       { "value": "3", "label": "Redzēts" }
     ],
     "categoryOptions": [
-      { "value": "1", "label": "Suņi" },
-      { "value": "2", "label": "Kaķi" },
+      { "value": "1", "label": "Suns" },
+      { "value": "2", "label": "Kaķis" },
       { "value": "3", "label": "Govs" },
       { "value": "4", "label": "Zirgs" }
     ],
@@ -26,79 +26,77 @@
       { "value": "0", "label": "N/D" },
       { "value": "1", "label": "Draudzīgs" },
       { "value": "2", "label": "Agresīvs" },
-      { "value": "3", "label": "Aizsargājošs" },
-      { "value": "4", "label": "Spēlētājs" },
-      { "value": "5", "label": "Mierīgs" },
-      { "value": "6", "label": "Savaldīgs" }
+      { "value": "3", "label": "Mierīgs" },
+      { "value": "4", "label": "Bailīgs" }
     ],
     "ageOptions": {
       "1": [
-        { "value": "0", "label": "Nav datu" },
+        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Kucēns" },
-        { "value": "2", "label": "Jaunietis" },
+        { "value": "2", "label": "Pusaudzis" },
         { "value": "3", "label": "Pieaugušais" },
-        { "value": "4", "label": "Vecs" }
+        { "value": "4", "label": "Seniors" }
       ],
       "2": [
-        { "value": "0", "label": "Nav datu" },
+        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Kaķēns" },
-        { "value": "2", "label": "Jaunietis" },
+        { "value": "2", "label": "Pusaudzis" },
         { "value": "3", "label": "Pieaugušais" },
-        { "value": "4", "label": "Vecs" }
+        { "value": "4", "label": "Seniors" }
       ],
       "3": [
-        { "value": "0", "label": "Nav datu" },
-        { "value": "1", "label": "Liels" },
-        { "value": "2", "label": "Jaunietis" },
+        { "value": "0", "label": "N/D" },
+        { "value": "1", "label": "Teļš" },
+        { "value": "2", "label": "Pusaudzis" },
         { "value": "3", "label": "Pieaugušais" },
-        { "value": "4", "label": "Vecs" }
+        { "value": "4", "label": "Seniors" }
       ],
       "4": [
-        { "value": "0", "label": "Nav datu" },
-        { "value": "1", "label": "Gumija" },
-        { "value": "2", "label": "Jaunietis" },
+        { "value": "0", "label": "N/D" },
+        { "value": "1", "label": "Kumeļš" },
+        { "value": "2", "label": "Pusaudzis" },
         { "value": "3", "label": "Pieaugušais" },
-        { "value": "4", "label": "Vecs" }
+        { "value": "4", "label": "Seniors" }
       ]
     },
     "breedOptions": {
       "1": [
-        { "value": "0", "label": "Labradora" },
-        { "value": "1", "label": "Labradora" },
-        { "value": "2", "label": "Buldogu" },
+        { "value": "0", "label": "N/D" },
+        { "value": "1", "label": "Labradors" },
+        { "value": "2", "label": "Buldogs" },
         { "value": "3", "label": "Putna" },
-        { "value": "4", "label": "Bigla" },
-        { "value": "5", "label": "Rottvailera" },
+        { "value": "4", "label": "Bigls" },
+        { "value": "5", "label": "Rottvailers" },
         { "value": "6", "label": "Vācu aitu suns" },
-        { "value": "7", "label": "Zelta retrīvera" },
+        { "value": "7", "label": "Zelta retrīvers" },
         { "value": "8", "label": "Taksis" },
-        { "value": "9", "label": "Čihuahuas" },
-        { "value": "10", "label": "Boksera" },
+        { "value": "9", "label": "Čihuahua" },
+        { "value": "10", "label": "Boksers" },
         { "value": "11", "label": "Šnauzeris" },
         { "value": "12", "label": "Pomerānija" },
-        { "value": "13", "label": "Haskija" },
+        { "value": "13", "label": "Haskijs" },
         { "value": "14", "label": "Maltiešu" },
-        { "value": "15", "label": "Jorkšīras terjera" },
-        { "value": "16", "label": "Mopsa" },
+        { "value": "15", "label": "Jorkšīras terjers" },
+        { "value": "16", "label": "Mops" },
         { "value": "17", "label": "Šiccau" },
-        { "value": "18", "label": "Dobermana" },
+        { "value": "18", "label": "Dobermans" },
         { "value": "19", "label": "Mastifa" },
         { "value": "20", "label": "Lielais dāns" },
         { "value": "21", "label": "Kokera spaniela" },
         { "value": "22", "label": "Robežu kolī" },
         { "value": "23", "label": "Austrāliešu aitu suns" },
         { "value": "24", "label": "Sibīrijas haskija" },
-        { "value": "25", "label": "Dalmāciešu" },
+        { "value": "25", "label": "Dalmācietis" },
         { "value": "26", "label": "Veimaranera" },
         { "value": "27", "label": "Pērtinieka" },
         { "value": "28", "label": "Vizslas" },
         { "value": "29", "label": "Setter" },
         { "value": "30", "label": "Spaniela" },
-        { "value": "31", "label": "Terjera" },
+        { "value": "31", "label": "Terjers" },
         { "value": "32", "label": "Havanas" }
       ],
       "2": [
-        { "value": "0", "label": "Nav datu" },
+        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Siamiešu" },
         { "value": "2", "label": "Persiešu" },
         { "value": "3", "label": "Maine kūns" },
@@ -121,7 +119,7 @@
         { "value": "20", "label": "Šārtrū" }
       ],
       "3": [
-        { "value": "0", "label": "Nav datu" },
+        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Holšteins" },
         { "value": "2", "label": "Anguss" },
         { "value": "3", "label": "Hērfords" },
@@ -134,7 +132,7 @@
         { "value": "10", "label": "Gērnsi" }
       ],
       "4": [
-        { "value": "0", "label": "Nav datu" },
+        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Arābiets" },
         { "value": "2", "label": "Pilnšķirnes" },
         { "value": "3", "label": "Ceturtdaļas zirgs" },
@@ -151,18 +149,18 @@
       { "value": "1", "label": "Vesels" },
       { "value": "2", "label": "Ievainots" },
       { "value": "3", "label": "Slims" },
-      { "value": "2", "label": "Nepabarots" },
-      { "value": "3", "label": "Akls" },
-      { "value": "2", "label": "Sleps" },
-      { "value": "3", "label": "Mobilitātes problēmas" },
-      { "value": "2", "label": "Miris" }
+      { "value": "4", "label": "Izbadējies" },
+      { "value": "5", "label": "Akls" },
+      { "value": "6", "label": "Kurls" },
+      { "value": "7", "label": "Mobilitātes problēmas" },
+      { "value": "8", "label": "Miris" }
     ],
     "markingOptions": [
       { "value": "1", "label": "Vienkrāsains" },
-      { "value": "2", "label": "Svītrais" },
-      { "value": "3", "label": "Raibs" },
-      { "value": "4", "label": "Pārklājums" },
-      { "value": "5", "label": "Marmora" }
+      { "value": "2", "label": "Svītrains" },
+      { "value": "3", "label": "Punktveida" },
+      { "value": "4", "label": "Plankumains" },
+      { "value": "5", "label": "Raibs" }
     ],
     "colorOptions": [
       { "value": "#000000", "label": "Melns" },
@@ -187,7 +185,30 @@
       { "value": "+371", "label": "+371" },
       { "value": "+372", "label": "+372" },
       { "value": "+370", "label": "+370" }
-    ]
+    ],
+    "updatedStatusOptions": {
+      "1": [
+        { "value": "1", "label": "Tiek aktīvi meklēts" },
+        { "value": "2", "label": "Joprojām pazudis" },
+        { "value": "3", "label": "Atradies" },
+        { "value": "4", "label": "Miris" },
+        { "value": "5", "label": "Cits" }
+      ],
+      "2": [
+        { "value": "1", "label": "Gaida īpašnieku" },
+        { "value": "2", "label": "Adoptēts" },
+        { "value": "3", "label": "Nodots patversmei" },
+        { "value": "4", "label": "Nodots veterinārajā klīnikā" },
+        { "value": "5", "label": "Miris" },
+        { "value": "6", "label": "Cits" }
+      ],
+      "3": [
+        { "value": "1", "label": "Ziņots varas iestādēm" },
+        { "value": "2", "label": "Brīvi klejojošs" },
+        { "value": "3", "label": "Miris" },
+        { "value": "4", "label": "Cits" }
+      ]
+    }
   },
   "formLabels": {
     "initialStatus": "Statuss",
@@ -199,19 +220,19 @@
     "age": "Vecums",
     "breed": "Šķirne",
     "healthInformation": "Veselības informācija",
-    "additionalHealthDetails": "Papildu veselības informācija",
+    "additionalHealthDetails": "Papildus Veselības Informācija",
     "petLocation": "Mājdzīvnieka atrašanās vieta",
     "markings": "Markējumi",
     "mainColor": "Galvenā krāsa",
     "markingColors": "Markējumu krāsas",
     "datetime": "Datums un laiks",
     "uploadFile": "Augšupielādēt failu",
-    "phoneCode": "Tālruņa kods",
-    "phoneNumber": "Tālruņa numurs",
+    "phoneCode": "Kods",
+    "phoneNumber": "Telefona numurs",
     "email": "E-pasts",
     "notes": "Piezīmes",
-    "updatedStatus": "Atjauninātais statuss",
-    "updatedStatusDescription": "Atjauninātā statusa apraksts"
+    "updatedStatus": "Pašreizējais statuss",
+    "updatedStatusDescription": "Pašreizējā statusa apraksts"
   },
   "formTitles": {
     "petDetails": "Dzīvnieka informācija",
@@ -259,7 +280,7 @@
     "pawclix": "PawClix",
     "lostPetReunionsOneClickAway": "Lost Pet Reunions, One Click Away",
     "ourGoal": "Our Goal",
-    "reportAPet": "Report a Pet",
+    "reportAPet": "Ziņot par mājdzīvnieku",
     "contactUs": "Contact Us",
     "leaveYourFeedback": "Leave Your Feedback",
     "supportOurProject": "Support Our Project",
@@ -291,17 +312,17 @@
   },
   "footerLinks": {
     "about": "Par Mums",
-    "pets": "Mājdzīvnieki",
+    "pets": "Meklēt Mājdzīvniekus",
     "petServices": "Pakalpojumi",
     "virtualPetTrainingClasses": "Virtuālās Apmācības Klases",
-    "communityForums": "Kopienas Forumi",
+    "communityForums": "Kopienas Forums",
     "emergencyPetAlerts": "Ārkārtas Mājdzīvnieku Brīdinājumi",
-    "petCareGuide": "Mājdzīvnieku Aprūpes Ceļvedis",
+    "petCareGuide": "Mājdzīvnieku Aprūpe",
     "petCompatibilityQuiz": "Mājdzīvnieku Saderības Tests",
     "lostPetPreventionTips": "Pazudušu Mājdzīvnieku Novēršanas Padomi",
-    "guideToRetrievingLostPets": "Ceļvedis Pazudušo Mājdzīvnieku Atgūšanai",
+    "guideToRetrievingLostPets": "Kā atgūt pazudušo mājdzīvnieku?",
     "adoptDoNotShop": "Adoptējiet, Nepērciet",
-    "howTo": "Kā",
+    "howTo": "Kā...?",
     "privacyPolicy": "Privātuma Politika",
     "termsOfService": "Pakalpojumu Noteikumi",
     "cookiePolicy": "Sīkdatņu Politika",
@@ -337,9 +358,9 @@
     "errorOccurred": "An error occurred. Please try again."
   },
   "placeholders": {
-    "searchPets": "Search for pets...",
-    "enterEmail": "Enter your email address",
-    "identifier": "Mājdzīvnieka vārds vai identifikators"
+    "updatedStatusDescription": "Ievadiet informāciju, piemēram, kur mājdzīvnieks tika atrasts, patversmes nosaukumu, veterinārās klīnikas nosaukumu.",
+    "identifier": "Mājdzīvnieka vārds vai identifikators",
+    "notes": "Izskats, uzvedība, īpaša medicīniskā aprūpe, zaudēšanas apstākļi vai citas būtiskas piezīmes."
   },
   "tooltips": {
     "edit": "Edit",

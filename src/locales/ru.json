@@ -26,10 +26,8 @@
       { "value": "0", "label": "Н/Д" },
       { "value": "1", "label": "Дружелюбный" },
       { "value": "2", "label": "Агрессивный" },
-      { "value": "3", "label": "Защитный" },
-      { "value": "4", "label": "Игривый" },
-      { "value": "5", "label": "Спокойный" },
-      { "value": "6", "label": "Скромный" }
+      { "value": "3", "label": "Спокойный" },
+      { "value": "4", "label": "Пугливый" }
     ],
     "ageOptions": {
       "1": [
@@ -63,7 +61,7 @@
     },
     "breedOptions": {
       "1": [
-        { "value": "0", "label": "Лабрадор" },
+        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Лабрадор" },
         { "value": "2", "label": "Бульдог" },
         { "value": "3", "label": "Пудель" },
@@ -98,7 +96,7 @@
         { "value": "32", "label": "Гончая" }
       ],
       "2": [
-        { "value": "0", "label": "N/A" },
+        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Сиамская" },
         { "value": "2", "label": "Персидская" },
         { "value": "3", "label": "Мейн-кун" },
@@ -121,7 +119,7 @@
         { "value": "20", "label": "Шартрез" }
       ],
       "3": [
-        { "value": "0", "label": "N/A" },
+        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Голштинская" },
         { "value": "2", "label": "Ангус" },
         { "value": "3", "label": "Герефорд" },
@@ -134,7 +132,7 @@
         { "value": "10", "label": "Гернсийская" }
       ],
       "4": [
-        { "value": "0", "label": "N/A" },
+        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Арабская" },
         { "value": "2", "label": "Торо" },
         { "value": "3", "label": "Квартал" },
@@ -151,18 +149,18 @@
       { "value": "1", "label": "Здоровый" },
       { "value": "2", "label": "Раненый" },
       { "value": "3", "label": "Больной" },
-      { "value": "2", "label": "Истощенный" },
-      { "value": "3", "label": "Слепой" },
-      { "value": "2", "label": "Глухой" },
-      { "value": "3", "label": "Проблемы с подвижностью" },
-      { "value": "2", "label": "Умерший" }
+      { "value": "4", "label": "Истощенный" },
+      { "value": "5", "label": "Слепой" },
+      { "value": "6", "label": "Глухой" },
+      { "value": "7", "label": "Проблемы с подвижностью" },
+      { "value": "8", "label": "Умерший" }
     ],
     "markingOptions": [
       { "value": "1", "label": "Сплошной" },
       { "value": "2", "label": "Полосатый" },
-      { "value": "3", "label": "Пятнистый" },
+      { "value": "3", "label": "Точечный" },
       { "value": "4", "label": "Пятнистый" },
-      { "value": "5", "label": "Мраморный" }
+      { "value": "5", "label": "Рябой" }
     ],
     "colorOptions": [
       { "value": "#000000", "label": "Черный" },
@@ -187,7 +185,30 @@
       { "value": "+371", "label": "+371" },
       { "value": "+372", "label": "+372" },
       { "value": "+370", "label": "+370" }
-    ]
+    ],
+    "updatedStatusOptions": {
+      "1": [
+        { "value": "1", "label": "Активные поиски" },
+        { "value": "2", "label": "Все еще пропал" },
+        { "value": "3", "label": "Воссоединен" },
+        { "value": "4", "label": "Погиб" },
+        { "value": "5", "label": "Другое" }
+      ],
+      "2": [
+        { "value": "1", "label": "Ожидает владельца" },
+        { "value": "2", "label": "Усыновлен" },
+        { "value": "3", "label": "Отправлен в приют" },
+        { "value": "4", "label": "Отправлен в ветеринарную клинику" },
+        { "value": "5", "label": "Погиб" },
+        { "value": "6", "label": "Другое" }
+      ],
+      "3": [
+        { "value": "1", "label": "Сообщено властям" },
+        { "value": "2", "label": "Свободное блуждание" },
+        { "value": "3", "label": "Погиб" },
+        { "value": "4", "label": "Другое" }
+      ]
+    }
   },
   "formLabels": {
     "initialStatus": "Статус",
@@ -199,19 +220,19 @@
     "age": "Возраст",
     "breed": "Порода",
     "healthInformation": "Информация о здоровье",
-    "additionalHealthDetails": "Дополнительная информация о здоровье",
+    "additionalHealthDetails": "Дополнительная Информация о Здоровье",
     "petLocation": "Местоположение животного",
     "markings": "Отметки",
     "mainColor": "Основной цвет",
     "markingColors": "Цвета отметок",
     "datetime": "Дата и время",
     "uploadFile": "Загрузить файл",
-    "phoneCode": "Код телефона",
+    "phoneCode": "Код",
     "phoneNumber": "Номер телефона",
     "email": "Электронная почта",
     "notes": "Примечания",
-    "updatedStatus": "Обновленный статус",
-    "updatedStatusDescription": "Описание обновленного статуса"
+    "updatedStatus": "Текущий статус",
+    "updatedStatusDescription": "Описание текущего статуса"
   },
   "formTitles": {
     "petDetails": "Инофрмация о питомце",
@@ -259,7 +280,7 @@
     "pawclix": "PawClix",
     "lostPetReunionsOneClickAway": "Lost Pet Reunions, One Click Away",
     "ourGoal": "Our Goal",
-    "reportAPet": "Report a Pet",
+    "reportAPet": "Сообщить о питомце",
     "contactUs": "Contact Us",
     "leaveYourFeedback": "Leave Your Feedback",
     "supportOurProject": "Support Our Project",
@@ -292,27 +313,27 @@
     "about": "О Нас",
     "pets": "Питомцы",
     "petServices": "Сервисы для питомцев",
-    "virtualPetTrainingClasses": "Virtual Pet Training Classes",
-    "communityForums": "Community Forums",
-    "emergencyPetAlerts": "Emergency Pet Alerts",
-    "petCareGuide": "Pet Care Guide",
-    "petCompatibilityQuiz": "Pet Compatibility Quiz",
-    "lostPetPreventionTips": "Lost Pet Prevention Tips",
-    "guideToRetrievingLostPets": "Guide To Retrieving Lost Pets",
-    "adoptDoNotShop": "Adopt, Don't Shop",
-    "howTo": "How To",
-    "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service",
-    "cookiePolicy": "Cookie Policy",
-    "dataProtectionPolicy": "Data Protection Policy",
-    "disclaimer": "Disclaimer",
-    "communityGuidelines": "Community Guidelines",
-    "contact": "Contact",
-    "feedback": "Feedback",
-    "support": "Support",
-    "partners": "Partners",
-    "social Media": "Social Media",
-    "sponsors": "Sponsors"
+    "virtualPetTrainingClasses": "Виртуальные классы дрессировки питомцев",
+    "communityForums": "Форумы сообщества",
+    "emergencyPetAlerts": "Экстренные оповещения о питомцах",
+    "petCareGuide": "Руководство по уходу за питомцами",
+    "petCompatibilityQuiz": "Тест на совместимость с питомцем",
+    "lostPetPreventionTips": "Советы по предотвращению потери питомцев",
+    "guideToRetrievingLostPets": "Руководство по возврату потерянных питомцев",
+    "adoptDoNotShop": "Приютите, не покупайте",
+    "howTo": "Как сделать",
+    "privacyPolicy": "Политика конфиденциальности",
+    "termsOfService": "Условия обслуживания",
+    "cookiePolicy": "Политика использования файлов cookie",
+    "dataProtectionPolicy": "Политика защиты данных",
+    "disclaimer": "Отказ от ответственности",
+    "communityGuidelines": "Правила сообщества",
+    "contact": "Контакты",
+    "feedback": "Обратная связь",
+    "support": "Поддержка",
+    "partners": "Партнеры",
+    "socialMedia": "Социальные сети",
+    "sponsors": "Спонсоры"
   },
   "altText": {
     "logo": "Company Logo",
@@ -335,9 +356,9 @@
     "errorOccurred": "An error occurred. Please try again."
   },
   "placeholders": {
-    "searchPets": "Search for pets...",
-    "enterEmail": "Enter your email address",
-    "identifier": "Имя или идентификатор домашнего животного"
+    "updatedStatusDescription": "Введите подробности, такие как место нахождения питомца, название приюта, название ветеринарной клиники.",
+    "identifier": "Имя или идентификатор домашнего животного",
+    "notes": "Внешний вид, поведение, особый медицинский уход, обстоятельства потери или любые другие важные примечания."
   },
   "tooltips": {
     "edit": "Edit",

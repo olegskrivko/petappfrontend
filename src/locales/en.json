@@ -26,10 +26,8 @@
       { "value": "0", "label": "N/A" },
       { "value": "1", "label": "Friendly" },
       { "value": "2", "label": "Aggressive" },
-      { "value": "3", "label": "Protective" },
-      { "value": "4", "label": "Playful" },
-      { "value": "5", "label": "Calm" },
-      { "value": "6", "label": "Shy" }
+      { "value": "3", "label": "Calm" },
+      { "value": "4", "label": "Fearful" }
     ],
     "ageOptions": {
       "1": [
@@ -63,7 +61,7 @@
     },
     "breedOptions": {
       "1": [
-        { "value": "0", "label": "Labrador" },
+        { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Labrador" },
         { "value": "2", "label": "Bulldog" },
         { "value": "3", "label": "Poodle" },
@@ -151,11 +149,11 @@
       { "value": "1", "label": "Healthy" },
       { "value": "2", "label": "Injured" },
       { "value": "3", "label": "Sick" },
-      { "value": "2", "label": "Malnourished" },
-      { "value": "3", "label": "Blind" },
-      { "value": "2", "label": "Deaf" },
-      { "value": "3", "label": "Mobility Issues" },
-      { "value": "2", "label": "Deceased" }
+      { "value": "4", "label": "Malnourished" },
+      { "value": "5", "label": "Blind" },
+      { "value": "6", "label": "Deaf" },
+      { "value": "7", "label": "Mobility Issues" },
+      { "value": "8", "label": "Deceased" }
     ],
     "markingOptions": [
       { "value": "1", "label": "Solid" },
@@ -187,7 +185,30 @@
       { "value": "+371", "label": "+371" },
       { "value": "+372", "label": "+372" },
       { "value": "+370", "label": "+370" }
-    ]
+    ],
+    "updatedStatusOptions": {
+      "1": [
+        { "value": "1", "label": "Actively Searching" },
+        { "value": "2", "label": "Still Missing" },
+        { "value": "3", "label": "Reunited" },
+        { "value": "4", "label": "Deceased" },
+        { "value": "5", "label": "Other" }
+      ],
+      "2": [
+        { "value": "1", "label": "Awaiting Owner" },
+        { "value": "2", "label": "Adopted" },
+        { "value": "3", "label": "Taken to Shelter" },
+        { "value": "4", "label": "Taken to Veterinary Clinic" },
+        { "value": "5", "label": "Deceased" },
+        { "value": "6", "label": "Other" }
+      ],
+      "3": [
+        { "value": "1", "label": "Reported to Authorities" },
+        { "value": "2", "label": "Free Roaming" },
+        { "value": "3", "label": "Deceased" },
+        { "value": "4", "label": "Other" }
+      ]
+    }
   },
   "formLabels": {
     "initialStatus": "Status",
@@ -205,13 +226,13 @@
     "mainColor": "Main Color",
     "markingColors": "Marking Colors",
     "datetime": "Date and Time",
-    "uploadFile": "Upload File",
+    "uploadFile": "Upload file",
     "phoneCode": "Code",
-    "phoneNumber": "Phone",
+    "phoneNumber": "Phone number",
     "email": "Email",
     "notes": "Notes",
-    "updatedStatus": "Updated Status",
-    "updatedStatusDescription": "Updated Status Description"
+    "updatedStatus": "Current status",
+    "updatedStatusDescription": "Current status description"
   },
   "formTitles": {
     "petDetails": "Pet Details",
@@ -259,7 +280,7 @@
     "pawclix": "PawClix",
     "lostPetReunionsOneClickAway": "Lost Pet Reunions, One Click Away",
     "ourGoal": "Our Goal",
-    "reportAPet": "Report a Pet",
+    "reportAPet": "Report a pet",
     "contactUs": "Contact Us",
     "leaveYourFeedback": "Leave Your Feedback",
     "supportOurProject": "Support Our Project",
@@ -336,9 +357,9 @@
     "errorOccurred": "An error occurred. Please try again."
   },
   "placeholders": {
-    "searchPets": "Search for pets...",
-    "enterEmail": "Enter your email address",
-    "identifier": "Pet's name or identifier"
+    "updatedStatusDescription": "Enter details such as where the pet was found, shelter name, vet clinic name.",
+    "identifier": "Pet's name or identifier",
+    "notes": "Appearance, behavior, special medical care, circumstances of loss, or any other relevant notes."
   },
   "tooltips": {
     "edit": "Edit",

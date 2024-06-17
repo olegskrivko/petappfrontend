@@ -104,24 +104,19 @@
 // };
 
 // export default PetHealth;
-import React from "react";
-import {
-  Grid,
-  TextField,
-  FormControlLabel,
-  Checkbox,
-  Typography,
-} from "@mui/material";
+import React from 'react';
+import { Grid, TextField, FormControlLabel, Checkbox, Typography } from '@mui/material';
+import { t } from 'i18next';
 
 const commonHealthIssues = [
-  "Healthy",
-  "Injured",
-  "Sick",
-  "Malnourished",
-  "Blind",
-  "Deaf",
-  "Mobility Issues",
-  "Deceased",
+  'Healthy',
+  'Injured',
+  'Sick',
+  'Malnourished',
+  'Blind',
+  'Deaf',
+  'Mobility Issues',
+  'Deceased',
   // ...other issues
 ];
 
@@ -156,17 +151,12 @@ const PetHealth = ({ formState, setFormState }) => {
   return (
     <>
       <Grid item xs={12}>
-        <Typography
-          variant="body1"
-          style={{ fontWeight: "500" }}
-          gutterBottom
-          textAlign="left"
-        >
+        <Typography variant="body1" style={{ fontWeight: '500' }} gutterBottom textAlign="left">
           Health Information
         </Typography>
       </Grid>
-      <Grid item xs={12} style={{ marginBottom: "1rem" }}>
-        {commonHealthIssues.map((issue) => (
+      <Grid item xs={12} style={{ marginBottom: '1rem' }}>
+        {/* {commonHealthIssues.map((issue) => (
           <FormControlLabel
             key={issue}
             control={
@@ -178,15 +168,29 @@ const PetHealth = ({ formState, setFormState }) => {
             }
             label={issue}
           />
+        ))} */}
+
+        {t('selectOptions.healthInformationOptions', { returnObjects: true }).map((issue) => (
+          <FormControlLabel
+            key={issue.value}
+            control={
+              <Checkbox
+                name={issue.value}
+                checked={formState.health.includes(issue.value)}
+                onChange={handleCheckboxChange}
+              />
+            }
+            label={issue.label}
+          />
         ))}
       </Grid>
       <Grid item xs={12}>
         <TextField
-          label="Additional Health Details"
+          label={t('formLabels.additionalHealthDetails')}
           name="healthDetails"
           multiline
           rows={3}
-          value={formState.healthDetails || ""}
+          value={formState.healthDetails || ''}
           InputLabelProps={{
             shrink: true,
           }}

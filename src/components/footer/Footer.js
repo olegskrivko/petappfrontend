@@ -96,7 +96,7 @@ const Footer = () => {
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link to="/community-forums" style={{ color: 'darkgray', textDecoration: 'none' }}>
-                Community Forums
+                {/* Community Forums */} {t('footerLinks.communityForums')}
               </Link>
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
@@ -104,7 +104,7 @@ const Footer = () => {
                 to="/emergency-pet-alerts"
                 style={{ color: 'darkgray', textDecoration: 'none' }}
               >
-                Emergency Pet Alerts
+                {/* Emergency Pet Alerts */} {t('footerLinks.emergencyPetAlerts')}
               </Link>
             </Typography>
           </Grid>
@@ -114,7 +114,7 @@ const Footer = () => {
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link to="/pet-care-guide" style={{ color: 'darkgray', textDecoration: 'none' }}>
-                Pet Care Guide
+                {/* Pet Care Guide */} {t('footerLinks.petCareGuide')}
               </Link>
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
@@ -122,7 +122,7 @@ const Footer = () => {
                 to="/pet-compatibility-quiz"
                 style={{ color: 'darkgray', textDecoration: 'none' }}
               >
-                Pet Compatibility Quiz
+                {/* Pet Compatibility Quiz */} {t('footerLinks.petCompatibilityQuiz')}
               </Link>
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
@@ -130,7 +130,7 @@ const Footer = () => {
                 to="/lost-pet-prevention-tips"
                 style={{ color: 'darkgray', textDecoration: 'none' }}
               >
-                Lost Pet Prevention Tips
+                {/* Lost Pet Prevention Tips */} {t('footerLinks.lostPetPreventionTips')}
               </Link>
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
@@ -138,18 +138,18 @@ const Footer = () => {
                 to="/guide-to-retrieving-lost-pets"
                 style={{ color: 'darkgray', textDecoration: 'none' }}
               >
-                Guide to Retrieving Lost Pets
+                {/* Guide to Retrieving Lost Pets */} {t('footerLinks.guideToRetrievingLostPets')}
               </Link>
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link to="/adopt-do-not-shop" style={{ color: 'darkgray', textDecoration: 'none' }}>
-                Adopt, Don't Shop
+                {/* Adopt, Don't Shop */} {t('footerLinks.adoptDoNotShop')}
               </Link>
             </Typography>
 
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link to="/how-to" style={{ color: 'darkgray', textDecoration: 'none' }}>
-                How To
+                {/* How To */} {t('footerLinks.howTo')}
               </Link>
             </Typography>
           </Grid>

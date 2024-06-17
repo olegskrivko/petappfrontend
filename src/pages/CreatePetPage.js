@@ -59,8 +59,9 @@ function CreatePetPage() {
     health: [],
     healthDetails: '',
     location: { lat: null, lng: null },
-    mainColor: '',
-    markingPattern: 'solid',
+    // mainColor: '',
+    mainColor: { hex: '', label: '' },
+    markingPattern: '1',
     markingColors: [],
     date: getCurrentDate(),
     time: getCurrentTime(),
@@ -98,6 +99,12 @@ function CreatePetPage() {
 
   const [ageOptions, setAgeOptions] = useState([]);
 
+  const [breedOptions, setBreedOptions] = useState([]);
+
+  const [updatedStatusOptions, setUpdatedStatusOptions] = useState([]);
+
+  // const [colorsListOptions, setColorsListOptions] = useState([]);
+
   useEffect(() => {
     const fetchAgeOptions = () => {
       const category = formState.category || 1;
@@ -116,6 +123,60 @@ function CreatePetPage() {
     fetchAgeOptions();
   }, [formState.category, t]);
 
+  useEffect(() => {
+    const fetchBreedOptions = () => {
+      const category = formState.category || 1;
+      const options = t(`selectOptions.breedOptions.${category}`, { returnObjects: true }) || [];
+
+      //Ensure options is an array before setting state
+      if (Array.isArray(options)) {
+        console.log('Fetched xxx breed options:', options);
+        setBreedOptions(options);
+      } else {
+        console.error('Invalid breed YYY options structure:', options);
+        setBreedOptions([]);
+      }
+    };
+
+    fetchBreedOptions();
+  }, [formState.category, t]);
+
+  useEffect(() => {
+    const fetchUpdatedStatusOptions = () => {
+      const initialStatus = formState.initialStatus || 1;
+      const options =
+        t(`selectOptions.updatedStatusOptions.${initialStatus}`, { returnObjects: true }) || [];
+
+      //Ensure options is an array before setting state
+      if (Array.isArray(options)) {
+        console.log('Fetched xxx breed options:', options);
+        setUpdatedStatusOptions(options);
+      } else {
+        console.error('Invalid breed YYY options structure:', options);
+        setUpdatedStatusOptions([]);
+      }
+    };
+
+    fetchUpdatedStatusOptions();
+  }, [formState.initialStatus, t]);
+
+  // useEffect(() => {
+  //   const fetchColorOptions = () => {
+  //     const options = t(`selectOptions.colorOptions`, { returnObjects: true }) || [];
+
+  //     //Ensure options is an array before setting state
+  //     if (Array.isArray(options)) {
+  //       console.log('Fetched xxx breed options:', options);
+  //       setColorsListOptions(options);
+  //     } else {
+  //       console.error('Invalid breed YYY options structure:', options);
+  //       setColorsListOptions([]);
+  //     }
+  //   };
+
+  //   fetchColorOptions();
+  // }, [formState.markingPattern, t]);
+
   // const fetchTranslations = async () => {
   //   try {
   //     const response = await axios.get(`${BASE_URL}/translations`, {
@@ -133,11 +194,11 @@ function CreatePetPage() {
   // };
   // Fetch size options based on user's language on component mount
   useEffect(() => {
-    fetchInitialStatusOptions();
-    fetchSizeOptions();
-    fetchGenderOptions();
-    fetchCategoryOptions();
-    fetchBehaviorOptions();
+    // fetchInitialStatusOptions();
+    // fetchSizeOptions();
+    // fetchGenderOptions();
+    // fetchCategoryOptions();
+    // fetchBehaviorOptions();
   }, []);
 
   const fetchTranslations = async () => {
@@ -162,128 +223,128 @@ function CreatePetPage() {
     fetchTranslations();
   }, [selectedLanguage]);
 
-  const fetchInitialStatusOptions = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/options/initialStatus`, {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'Accept-Language': selectedLanguage,
-        },
-      });
+  // const fetchInitialStatusOptions = async () => {
+  //   try {
+  //     const response = await axios.get(`${BASE_URL}/options/initialStatus`, {
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //         'Accept-Language': selectedLanguage,
+  //       },
+  //     });
 
-      console.log('Response from fetch initial status options:', response.data.options);
-      if (response.data && response.data.options) {
-        const initialStatusOption = response.data.options.find(
-          (opt) => opt.key === 'initialStatus',
-        );
-        if (initialStatusOption) {
-          setInitialStatusLabel(initialStatusOption.name);
-          setInitialStatusOptions(initialStatusOption.values);
-          console.log('Initial status options fetched successfully:', initialStatusOption.values);
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching initial status options:', error);
-    }
-  };
+  //     console.log('Response from fetch initial status options:', response.data.options);
+  //     if (response.data && response.data.options) {
+  //       const initialStatusOption = response.data.options.find(
+  //         (opt) => opt.key === 'initialStatus',
+  //       );
+  //       if (initialStatusOption) {
+  //         setInitialStatusLabel(initialStatusOption.name);
+  //         setInitialStatusOptions(initialStatusOption.values);
+  //         console.log('Initial status options fetched successfully:', initialStatusOption.values);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching initial status options:', error);
+  //   }
+  // };
 
-  const fetchSizeOptions = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/options/size`, {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'Accept-Language': selectedLanguage,
-        },
-      });
+  // const fetchSizeOptions = async () => {
+  //   try {
+  //     const response = await axios.get(`${BASE_URL}/options/size`, {
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //         'Accept-Language': selectedLanguage,
+  //       },
+  //     });
 
-      console.log('Response from fetch size options:', response.data.options);
-      if (response.data && response.data.options) {
-        const sizeOption = response.data.options.find((opt) => opt.key === 'size');
-        if (sizeOption) {
-          setSizeLabel(sizeOption.name);
-          setSizeOptions(sizeOption.values);
-          console.log('Size options fetched successfully:', sizeOption.values);
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching size options:', error);
-    }
-  };
+  //     console.log('Response from fetch size options:', response.data.options);
+  //     if (response.data && response.data.options) {
+  //       const sizeOption = response.data.options.find((opt) => opt.key === 'size');
+  //       if (sizeOption) {
+  //         setSizeLabel(sizeOption.name);
+  //         setSizeOptions(sizeOption.values);
+  //         console.log('Size options fetched successfully:', sizeOption.values);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching size options:', error);
+  //   }
+  // };
 
-  const fetchBehaviorOptions = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/options/behavior`, {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'Accept-Language': selectedLanguage,
-        },
-      });
+  // const fetchBehaviorOptions = async () => {
+  //   try {
+  //     const response = await axios.get(`${BASE_URL}/options/behavior`, {
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //         'Accept-Language': selectedLanguage,
+  //       },
+  //     });
 
-      console.log('Response from fetch behavior options:', response.data.options);
-      if (response.data && response.data.options) {
-        const behaviorOption = response.data.options.find((opt) => opt.key === 'behavior');
-        if (behaviorOption) {
-          setBehaviorLabel(behaviorOption.name);
-          setBehaviorOptions(behaviorOption.values);
-          console.log('Behavior options fetched successfully:', behaviorOption.values);
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching behavior options:', error);
-    }
-  };
+  //     console.log('Response from fetch behavior options:', response.data.options);
+  //     if (response.data && response.data.options) {
+  //       const behaviorOption = response.data.options.find((opt) => opt.key === 'behavior');
+  //       if (behaviorOption) {
+  //         setBehaviorLabel(behaviorOption.name);
+  //         setBehaviorOptions(behaviorOption.values);
+  //         console.log('Behavior options fetched successfully:', behaviorOption.values);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching behavior options:', error);
+  //   }
+  // };
 
-  const fetchGenderOptions = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/options/gender`, {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'Accept-Language': selectedLanguage,
-        },
-      });
+  // const fetchGenderOptions = async () => {
+  //   try {
+  //     const response = await axios.get(`${BASE_URL}/options/gender`, {
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //         'Accept-Language': selectedLanguage,
+  //       },
+  //     });
 
-      console.log('Response from fetch gender options:', response.data.options);
-      if (response.data && response.data.options) {
-        const genderOption = response.data.options.find((opt) => opt.key === 'gender');
-        if (genderOption) {
-          setGenderLabel(genderOption.name);
-          setGenderOptions(genderOption.values);
-          console.log('Gender options fetched successfully:', genderOption.values);
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching gender options:', error);
-    }
-  };
+  //     console.log('Response from fetch gender options:', response.data.options);
+  //     if (response.data && response.data.options) {
+  //       const genderOption = response.data.options.find((opt) => opt.key === 'gender');
+  //       if (genderOption) {
+  //         setGenderLabel(genderOption.name);
+  //         setGenderOptions(genderOption.values);
+  //         console.log('Gender options fetched successfully:', genderOption.values);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching gender options:', error);
+  //   }
+  // };
 
-  const fetchCategoryOptions = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/options/category`, {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'Accept-Language': selectedLanguage,
-        },
-      });
+  // const fetchCategoryOptions = async () => {
+  //   try {
+  //     const response = await axios.get(`${BASE_URL}/options/category`, {
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //         'Accept-Language': selectedLanguage,
+  //       },
+  //     });
 
-      console.log('Response from fetch category options:', response.data.options);
-      if (response.data && response.data.options) {
-        const categoryOption = response.data.options.find((opt) => opt.key === 'category');
-        if (categoryOption) {
-          setCategoryLabel(categoryOption.name);
-          setCategoryOptions(categoryOption.values);
-          console.log('Category options fetched successfully:', categoryOption.values);
-          // console.log('Category options fetched successfully:', categoryOptions);
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching category options:', error);
-    }
-  };
+  //     console.log('Response from fetch category options:', response.data.options);
+  //     if (response.data && response.data.options) {
+  //       const categoryOption = response.data.options.find((opt) => opt.key === 'category');
+  //       if (categoryOption) {
+  //         setCategoryLabel(categoryOption.name);
+  //         setCategoryOptions(categoryOption.values);
+  //         console.log('Category options fetched successfully:', categoryOption.values);
+  //         // console.log('Category options fetched successfully:', categoryOptions);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching category options:', error);
+  //   }
+  // };
   // const initialStatusOptions = [
   //   { value: 'missing', label: 'Missing' },
   //   { value: 'found', label: 'Found' },
@@ -355,39 +416,39 @@ function CreatePetPage() {
   //   return ageOptionsMap[formState.category] || [];
   // };
 
-  const markingPatternOptions = [
-    { value: 'solid', label: 'No' },
-    { value: 'striped', label: 'Striped' },
-    { value: 'spotted', label: 'Spotted' },
-    { value: 'patched', label: 'Patched' },
-    { value: 'marbled', label: 'Marbled' },
-  ];
+  // const markingPatternOptions = [
+  //   { value: 'solid', label: 'No' },
+  //   { value: 'striped', label: 'Striped' },
+  //   { value: 'spotted', label: 'Spotted' },
+  //   { value: 'patched', label: 'Patched' },
+  //   { value: 'marbled', label: 'Marbled' },
+  // ];
 
-  const phoneCodeOptions = [
-    { value: '', label: 'N/A' },
-    { value: '+371', label: '+371' },
-    { value: '+372', label: '+372' },
-    { value: '+370', label: '+370' },
-  ];
+  // const phoneCodeOptions = [
+  //   { value: '', label: 'N/A' },
+  //   { value: '+371', label: '+371' },
+  //   { value: '+372', label: '+372' },
+  //   { value: '+370', label: '+370' },
+  // ];
 
-  const colorsListOptions = [
-    { name: 'Black', hexCode: '#000000' },
-    { name: 'Gray', hexCode: '#BEBEBE' },
-    { name: 'White', hexCode: '#f7f7f7' },
-    { name: 'Cream', hexCode: '#FFF1B9' },
-    { name: 'Yellow', hexCode: '#FCDC5C' },
-    { name: 'Golden', hexCode: '#FFA500' },
-    { name: 'Brown', hexCode: '#C37C4D' },
-    { name: 'Red', hexCode: '#A71A20' },
-    { name: 'Lilac', hexCode: '#BA97AA' },
-    { name: 'Blue', hexCode: '#1A355E' },
-    { name: 'Green', hexCode: '#5F6F52' },
-    { name: 'Khaki', hexCode: '#BDB76B' },
-    { name: 'Beige', hexCode: '#E5DECA' },
-    { name: 'Tan', hexCode: '#D2B48C' },
-    { name: 'Fawn', hexCode: '#E5AA70' },
-    { name: 'Chestnut', hexCode: '#954535' },
-  ];
+  // const colorsListOptions = [
+  //   { name: 'Black', hexCode: '#000000' },
+  //   { name: 'Gray', hexCode: '#BEBEBE' },
+  //   { name: 'White', hexCode: '#f7f7f7' },
+  //   { name: 'Cream', hexCode: '#FFF1B9' },
+  //   { name: 'Yellow', hexCode: '#FCDC5C' },
+  //   { name: 'Golden', hexCode: '#FFA500' },
+  //   { name: 'Brown', hexCode: '#C37C4D' },
+  //   { name: 'Red', hexCode: '#A71A20' },
+  //   { name: 'Lilac', hexCode: '#BA97AA' },
+  //   { name: 'Blue', hexCode: '#1A355E' },
+  //   { name: 'Green', hexCode: '#5F6F52' },
+  //   { name: 'Khaki', hexCode: '#BDB76B' },
+  //   { name: 'Beige', hexCode: '#E5DECA' },
+  //   { name: 'Tan', hexCode: '#D2B48C' },
+  //   { name: 'Fawn', hexCode: '#E5AA70' },
+  //   { name: 'Chestnut', hexCode: '#954535' },
+  // ];
 
   const handleChange = (field, value) => {
     setFormState((prevState) => ({
@@ -479,102 +540,102 @@ function CreatePetPage() {
     return formErrors[field] ? formErrors[field].msg : '';
   };
 
-  const getUpdatedStatusOptions = () => {
-    const updatedStatusOptionsMap = {
-      missing: [
-        { value: '', label: 'None' },
-        { value: 'activelySearching', label: 'Actively Searching' },
-        { value: 'stillMissing', label: 'Still Missing' },
-        { value: 'reunited', label: 'Reunited' },
-        { value: 'deceased', label: 'Deceased' },
-        { value: 'other', label: 'Other' },
-      ],
-      found: [
-        { value: '', label: 'None' },
-        { value: 'awaitingOwner', label: 'Awaiting Owner' },
-        { value: 'adopted', label: 'Adopted' },
-        { value: 'takenToShelter', label: 'Taken to Shelter' },
-        {
-          value: 'takenToVeterinaryClinic',
-          label: 'Taken to Veterinary Clinic',
-        },
-        { value: 'deceased', label: 'Deceased' },
-        { value: 'other', label: 'Other' },
-      ],
-      seen: [
-        { value: '', label: 'None' },
-        { value: 'reportedToAuthorities', label: 'Reported to Authorities' },
-        { value: 'freeRoaming', label: 'Free Roaming' },
-        { value: 'deceased', label: 'Deceased' },
-        { value: 'other', label: 'Other' },
-      ],
-    };
-    return updatedStatusOptionsMap[formState.initialStatus] || [];
-  };
+  // const getUpdatedStatusOptions = () => {
+  //   const updatedStatusOptionsMap = {
+  //     missing: [
+  //       { value: '', label: 'None' },
+  //       { value: 'activelySearching', label: 'Actively Searching' },
+  //       { value: 'stillMissing', label: 'Still Missing' },
+  //       { value: 'reunited', label: 'Reunited' },
+  //       { value: 'deceased', label: 'Deceased' },
+  //       { value: 'other', label: 'Other' },
+  //     ],
+  //     found: [
+  //       { value: '', label: 'None' },
+  //       { value: 'awaitingOwner', label: 'Awaiting Owner' },
+  //       { value: 'adopted', label: 'Adopted' },
+  //       { value: 'takenToShelter', label: 'Taken to Shelter' },
+  //       {
+  //         value: 'takenToVeterinaryClinic',
+  //         label: 'Taken to Veterinary Clinic',
+  //       },
+  //       { value: 'deceased', label: 'Deceased' },
+  //       { value: 'other', label: 'Other' },
+  //     ],
+  //     seen: [
+  //       { value: '', label: 'None' },
+  //       { value: 'reportedToAuthorities', label: 'Reported to Authorities' },
+  //       { value: 'freeRoaming', label: 'Free Roaming' },
+  //       { value: 'deceased', label: 'Deceased' },
+  //       { value: 'other', label: 'Other' },
+  //     ],
+  //   };
+  //   return updatedStatusOptionsMap[formState.initialStatus] || [];
+  // };
 
-  const getBreedOptions = () => {
-    const breedOptionsMap = {
-      dog: [
-        { value: '', label: 'None' },
-        { value: 'labradorRetriever', label: 'Labrador Retriever' },
-        { value: 'germanShepherd', label: 'German Shepherd' },
-        { value: 'goldenRetriever', label: 'Golden Retriever' },
-        { value: 'bulldog', label: 'Bulldog' },
-        { value: 'beagle', label: 'Beagle' },
-        { value: 'poodle', label: 'Poodle' },
-        { value: 'rottweiler', label: 'Rottweiler' },
-        { value: 'yorkshireTerrier', label: 'Yorkshire Terrier' },
-        { value: 'boxer', label: 'Boxer' },
-        { value: 'dachshund', label: 'Dachshund' },
-      ],
-      cat: [
-        { value: '', label: 'None' },
-        { value: 'Persian', label: 'Persian' },
-        { value: 'maineCoon', label: 'Maine Coon' },
-        { value: 'ragdoll', label: 'Ragdoll' },
-        { value: 'siamese', label: 'Siamese' },
-        { value: 'scottishFold', label: 'Scottish Fold' },
-        { value: 'sphynx', label: 'Sphynx' },
-        { value: 'bengal', label: 'Bengal' },
-        { value: 'birman', label: 'Birman' },
-        { value: 'americanShorthair', label: 'American Shorthair' },
-      ],
-      cow: [
-        { value: '', label: 'None' },
-        { value: 'holstein', label: 'Holstein' },
-        { value: 'jersey', label: 'Jersey' },
-        { value: 'guernsey', label: 'Guernsey' },
-        { value: 'brownSwiss', label: 'Brown Swiss' },
-        { value: 'ayrshire', label: 'Ayrshire' },
-        { value: 'hereford', label: 'Hereford' },
-        { value: 'angus', label: 'Angus' },
-        { value: 'brahman', label: 'Brahman' },
-        { value: 'simmental', label: 'Simmental' },
-        { value: 'charolais', label: 'Charolais' },
-      ],
-      horse: [
-        { value: '', label: 'None' },
-        { value: 'arabian', label: 'Arabian' },
-        { value: 'thoroughbred', label: 'Thoroughbred' },
-        { value: 'quarterHorse', label: 'Quarter Horse' },
-        { value: 'clydesdale', label: 'Clydesdale' },
-        { value: 'friesian', label: 'Friesian' },
-        { value: 'appaloosa', label: 'Appaloosa' },
-        { value: 'shetlandPony', label: 'Shetland Pony' },
-        { value: 'americanPaintHorse', label: 'American Paint Horse' },
-        { value: 'morgan', label: 'Morgan' },
-        { value: 'tennesseeWalkingHorse', label: 'Tennessee Walking Horse' },
-      ],
-    };
-    return breedOptionsMap[formState.category] || [];
-  };
+  // const getBreedOptions = () => {
+  //   const breedOptionsMap = {
+  //     dog: [
+  //       { value: '', label: 'None' },
+  //       { value: 'labradorRetriever', label: 'Labrador Retriever' },
+  //       { value: 'germanShepherd', label: 'German Shepherd' },
+  //       { value: 'goldenRetriever', label: 'Golden Retriever' },
+  //       { value: 'bulldog', label: 'Bulldog' },
+  //       { value: 'beagle', label: 'Beagle' },
+  //       { value: 'poodle', label: 'Poodle' },
+  //       { value: 'rottweiler', label: 'Rottweiler' },
+  //       { value: 'yorkshireTerrier', label: 'Yorkshire Terrier' },
+  //       { value: 'boxer', label: 'Boxer' },
+  //       { value: 'dachshund', label: 'Dachshund' },
+  //     ],
+  //     cat: [
+  //       { value: '', label: 'None' },
+  //       { value: 'Persian', label: 'Persian' },
+  //       { value: 'maineCoon', label: 'Maine Coon' },
+  //       { value: 'ragdoll', label: 'Ragdoll' },
+  //       { value: 'siamese', label: 'Siamese' },
+  //       { value: 'scottishFold', label: 'Scottish Fold' },
+  //       { value: 'sphynx', label: 'Sphynx' },
+  //       { value: 'bengal', label: 'Bengal' },
+  //       { value: 'birman', label: 'Birman' },
+  //       { value: 'americanShorthair', label: 'American Shorthair' },
+  //     ],
+  //     cow: [
+  //       { value: '', label: 'None' },
+  //       { value: 'holstein', label: 'Holstein' },
+  //       { value: 'jersey', label: 'Jersey' },
+  //       { value: 'guernsey', label: 'Guernsey' },
+  //       { value: 'brownSwiss', label: 'Brown Swiss' },
+  //       { value: 'ayrshire', label: 'Ayrshire' },
+  //       { value: 'hereford', label: 'Hereford' },
+  //       { value: 'angus', label: 'Angus' },
+  //       { value: 'brahman', label: 'Brahman' },
+  //       { value: 'simmental', label: 'Simmental' },
+  //       { value: 'charolais', label: 'Charolais' },
+  //     ],
+  //     horse: [
+  //       { value: '', label: 'None' },
+  //       { value: 'arabian', label: 'Arabian' },
+  //       { value: 'thoroughbred', label: 'Thoroughbred' },
+  //       { value: 'quarterHorse', label: 'Quarter Horse' },
+  //       { value: 'clydesdale', label: 'Clydesdale' },
+  //       { value: 'friesian', label: 'Friesian' },
+  //       { value: 'appaloosa', label: 'Appaloosa' },
+  //       { value: 'shetlandPony', label: 'Shetland Pony' },
+  //       { value: 'americanPaintHorse', label: 'American Paint Horse' },
+  //       { value: 'morgan', label: 'Morgan' },
+  //       { value: 'tennesseeWalkingHorse', label: 'Tennessee Walking Horse' },
+  //     ],
+  //   };
+  //   return breedOptionsMap[formState.category] || [];
+  // };
 
   return (
     <React.Fragment>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="h4" gutterBottom textAlign="center">
-            Report a Pet
+            {/* Report a Pet */} {t('pageTitles.reportAPet')}
           </Typography>
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
@@ -639,6 +700,7 @@ function CreatePetPage() {
                     onChange={(e) => {
                       handleChange('category', e.target.value);
                       handleChange('age', '');
+                      handleChange('breed', '');
                     }}
                   >
                     {/* {categoriesOptions.map((category) => (
@@ -709,25 +771,19 @@ function CreatePetPage() {
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="gender-label" shrink>
-                    {/* Gender */} {genderLabel[selectedLanguage]}
+                    {/* Gender */} {t('formLabels.gender')}
                   </InputLabel>
                   <Select
                     labelId="gender-label"
                     id="gender"
                     value={formState.gender}
-                    label={genderLabel[selectedLanguage]}
+                    label={t('formLabels.gender')}
                     notched
                     onChange={(e) => handleChange('gender', e.target.value)}
                   >
-                    {/* {genderOptions.map((gender) => (
-                      <MenuItem key={gender.value} value={gender.value}>
-                        {gender.label}
-                      </MenuItem>
-                    ))} */}
-                    <MenuItem value="">None</MenuItem>
-                    {genderOptions.map((gender) => (
-                      <MenuItem key={gender._id} value={gender.value}>
-                        {gender.translations[selectedLanguage]}
+                    {t('selectOptions.genderOptions', { returnObjects: true }).map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
                       </MenuItem>
                     ))}
                   </Select>
@@ -736,25 +792,19 @@ function CreatePetPage() {
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="behavior-label" shrink>
-                    {/* Behavior */} {behaviorLabel[selectedLanguage]}
+                    {t('formLabels.behavior')}
                   </InputLabel>
                   <Select
                     labelId="behavior-label"
                     id="behavior"
                     value={formState.behavior}
                     onChange={(e) => handleChange('behavior', e.target.value)}
-                    label={behaviorLabel[selectedLanguage]}
+                    label={t('formLabels.behavior')}
                     notched
                   >
-                    {/* {behaviorOptions.map((behavior) => (
-                      <MenuItem key={behavior.value} value={behavior.value}>
-                        {behavior.label}
-                      </MenuItem>
-                    ))} */}
-                    <MenuItem value="">None</MenuItem>
-                    {behaviorOptions.map((behavior) => (
-                      <MenuItem key={behavior._id} value={behavior.value}>
-                        {behavior.translations[selectedLanguage]}
+                    {t('selectOptions.behaviorOptions', { returnObjects: true }).map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
                       </MenuItem>
                     ))}
                   </Select>
@@ -764,37 +814,21 @@ function CreatePetPage() {
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="age-label" shrink>
-                    Age
+                    {t('formLabels.age')}
                   </InputLabel>
                   <Select
                     labelId="age-label"
                     id="age"
                     value={formState.age}
-                    // disabled={!formState.category}
                     disabled={
                       formState.category === null ||
                       formState.category === '' ||
                       formState.category === undefined
                     }
-                    label="Age"
+                    label={t('formLabels.age')}
                     notched
                     onChange={(e) => handleChange('age', e.target.value)}
                   >
-                    {/* {getAgeOptions().map((age) => (
-                      <MenuItem key={age.value} value={age.value}>
-                        {age.label}
-                      </MenuItem>
-                    ))} */}
-                    {/* {ageOptions.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))} */}
-                    {/* {ageOptions.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))} */}
                     {ageOptions.map((option) => (
                       <MenuItem key={option.value} value={option.value}>
                         {option.label}
@@ -803,25 +837,33 @@ function CreatePetPage() {
                   </Select>
                 </FormControl>
               </Grid>
-              {/* {ageOptions} */}
-              {/* <p> {t(`selectOptions.ageOptions.${formState.category}`)}</p> */}
+
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="breed-label" shrink>
-                    Breed
+                    {t('formLabels.breed')}
                   </InputLabel>
                   <Select
                     labelId="breed-label"
                     id="breed"
                     value={formState.breed}
-                    disabled={!formState.category}
+                    disabled={
+                      formState.category === null ||
+                      formState.category === '' ||
+                      formState.category === undefined
+                    }
                     onChange={(e) => handleChange('breed', e.target.value)}
-                    label="Breed"
+                    label={t('formLabels.breed')}
                     notched
                   >
-                    {getBreedOptions().map((breed) => (
+                    {/* {getBreedOptions().map((breed) => (
                       <MenuItem key={breed.value} value={breed.value}>
                         {breed.label}
+                      </MenuItem>
+                    ))} */}
+                    {breedOptions.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
                       </MenuItem>
                     ))}
                   </Select>
@@ -858,7 +900,7 @@ function CreatePetPage() {
                   >
                     Does the pet have markings?
                   </Typography>
-                  <RadioGroup
+                  {/* <RadioGroup
                     style={{ display: 'flex !important', flexDirection: 'row' }}
                     value={formState.markingPattern}
                     onChange={handleMarkingPatternChange}
@@ -871,11 +913,21 @@ function CreatePetPage() {
                         label={pattern.label}
                       />
                     ))}
-                    {/* <FormControlLabel
-                      value="No"
-                      control={<Radio />}
-                      label="No"
-                    /> */}
+             
+                  </RadioGroup> */}
+                  <RadioGroup
+                    style={{ display: 'flex !important', flexDirection: 'row' }}
+                    value={formState.markingPattern}
+                    onChange={handleMarkingPatternChange}
+                  >
+                    {t('selectOptions.markingOptions', { returnObjects: true }).map((option) => (
+                      <FormControlLabel
+                        key={option.value}
+                        value={option.value}
+                        control={<Radio />}
+                        label={option.label}
+                      />
+                    ))}
                   </RadioGroup>
                 </FormControl>
               </Grid>
@@ -889,6 +941,11 @@ function CreatePetPage() {
                 >
                   Main Color
                 </Typography>
+                {/* {t('selectOptions.categoryOptions', { returnObjects: true }).map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))} */}
                 <div
                   style={{
                     display: 'flex',
@@ -901,21 +958,25 @@ function CreatePetPage() {
                   }}
                   onClick={() => setMainColorDialogOpen(true)}
                 >
-                  {formState.mainColor ? (
+                  {formState.mainColor.hex ? (
                     <div
                       style={{
                         width: '30px',
                         height: '30px',
                         borderRadius: '50%',
-                        backgroundColor: colorsListOptions.find(
-                          (color) => color.name === formState.mainColor,
-                        ).hexCode,
+                        backgroundColor: t('selectOptions.colorOptions', {
+                          returnObjects: true,
+                        }).find((color) => color.value === formState.mainColor.hex).value,
                         marginRight: '10px',
                       }}
                     />
                   ) : null}
                   <Typography variant="body1">
-                    {formState.mainColor ? formState.mainColor : 'Click to choose one color'}
+                    {formState.mainColor.label
+                      ? t('selectOptions.colorOptions', {
+                          returnObjects: true,
+                        }).find((color) => color.value === formState.mainColor.hex).label
+                      : 'Click to choose one color'}
                   </Typography>
                 </div>
               </Grid>
@@ -932,15 +993,15 @@ function CreatePetPage() {
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    cursor: formState.markingPattern === 'solid' ? 'not-allowed' : 'pointer',
+                    cursor: formState.markingPattern === '1' ? 'not-allowed' : 'pointer',
                     border: '1px solid #dadada',
                     borderRadius: '5px',
                     padding: '10px',
                     justifyContent: 'center',
-                    opacity: formState.markingPattern === 'solid' ? 0.5 : 1,
+                    opacity: formState.markingPattern === '1' ? 0.5 : 1,
                   }}
                   onClick={() =>
-                    formState.markingPattern !== 'solid' && setMarkingColorDialogOpen(true)
+                    formState.markingPattern !== '1' && setMarkingColorDialogOpen(true)
                   }
                 >
                   {formState.markingColors.length > 0 ? (
@@ -958,9 +1019,9 @@ function CreatePetPage() {
                             width: '30px',
                             height: '30px',
                             borderRadius: '50%',
-                            backgroundColor: colorsListOptions.find(
-                              (color) => color.name === colorName,
-                            ).hexCode,
+                            backgroundColor: t('selectOptions.colorOptions', {
+                              returnObjects: true,
+                            }).find((color) => color.value === colorName).value,
                             marginRight: '10px',
                           }}
                         >
@@ -998,9 +1059,11 @@ function CreatePetPage() {
               </DialogTitle>
               <DialogContent>
                 <FormGroup row>
-                  {colorsListOptions.map((color) => (
+                  {t('selectOptions.colorOptions', {
+                    returnObjects: true,
+                  }).map((color) => (
                     <div
-                      key={color.name}
+                      key={color.value}
                       style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -1009,22 +1072,24 @@ function CreatePetPage() {
                         cursor: 'pointer',
                         minWidth: '100px',
                       }}
-                      onClick={() => handleMainColorChange(color.name)}
+                      onClick={() =>
+                        handleMainColorChange({ hex: color.value, label: color.label })
+                      }
                     >
                       <div
                         style={{
                           width: '30px',
                           height: '30px',
                           borderRadius: '50%',
-                          backgroundColor: color.hexCode,
+                          backgroundColor: color.value,
                           marginRight: '8px',
                           border:
-                            formState.mainColor === color.name
+                            formState.mainColor.hex === color.value
                               ? '2px solid #2a9df4'
                               : '0px solid #dadada',
                         }}
                       />
-                      <Typography variant="body1">{color.name}</Typography>
+                      <Typography variant="body1">{color.label}</Typography>
                     </div>
                   ))}
                 </FormGroup>
@@ -1049,9 +1114,11 @@ function CreatePetPage() {
               </DialogTitle>
               <DialogContent>
                 <FormGroup row>
-                  {colorsListOptions.map((color) => (
+                  {t('selectOptions.colorOptions', {
+                    returnObjects: true,
+                  }).map((color) => (
                     <div
-                      key={color.name}
+                      key={color.value}
                       style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -1060,21 +1127,21 @@ function CreatePetPage() {
                         cursor: 'pointer',
                         minWidth: '100px',
                       }}
-                      onClick={() => handleMarkingColorChange(color.name)}
+                      onClick={() => handleMarkingColorChange(color.value)}
                     >
                       <div
                         style={{
                           width: '30px',
                           height: '30px',
                           borderRadius: '50%',
-                          backgroundColor: color.hexCode,
+                          backgroundColor: color.value,
                           marginRight: '8px',
-                          border: formState.markingColors.includes(color.name)
+                          border: formState.markingColors.includes(color.value)
                             ? '2px solid #2a9df4'
                             : '0px solid #dadada',
                         }}
                       />
-                      <Typography variant="body1">{color.name}</Typography>
+                      <Typography variant="body1">{color.label}</Typography>
                     </div>
                   ))}
                 </FormGroup>
@@ -1161,19 +1228,24 @@ function CreatePetPage() {
               <Grid item xs={3} sm={3} md={2} lg={2}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="phoneCode-label" shrink>
-                    Code
+                    {t('formLabels.phoneCode')}
                   </InputLabel>
                   <Select
                     labelId="phoneCode-label"
                     id="phoneCode"
                     value={formState.phoneCode}
                     onChange={(e) => handleChange('phoneCode', e.target.value)}
-                    label="Code"
+                    label={t('formLabels.phoneCode')}
                     notched
                   >
-                    {phoneCodeOptions.map((code) => (
+                    {/* {phoneCodeOptions.map((code) => (
                       <MenuItem key={code.value} value={code.value}>
                         {code.label}
+                      </MenuItem>
+                    ))} */}
+                    {t('selectOptions.phoneCodeOptions', { returnObjects: true }).map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
                       </MenuItem>
                     ))}
                   </Select>
@@ -1183,7 +1255,7 @@ function CreatePetPage() {
                 <TextField
                   id="phone"
                   name="phone"
-                  label="Phone"
+                  label={t('formLabels.phoneNumber')}
                   type="text"
                   fullWidth
                   placeholder="12345678"
@@ -1199,7 +1271,7 @@ function CreatePetPage() {
                 <TextField
                   id="email"
                   name="email"
-                  label="Email"
+                  label={t('formLabels.email')}
                   type="email"
                   fullWidth
                   placeholder="example@gmail.com"
@@ -1215,14 +1287,14 @@ function CreatePetPage() {
                 <TextField
                   id="notes"
                   name="notes"
-                  label="Notes"
+                  label={t('formLabels.notes')}
                   fullWidth
                   multiline
                   rows={4}
                   variant="outlined"
                   value={formState.notes}
                   onChange={(e) => handleChange('notes', e.target.value)}
-                  placeholder="Appearance, behavior, special medical care, circumstances of loss, or any other relevant notes."
+                  placeholder={t('placeholders.notes')}
                   InputLabelProps={{
                     shrink: true, // Always shrink the label
                   }}
@@ -1244,20 +1316,25 @@ function CreatePetPage() {
               <Grid item xs={12} sm={12} md={12} lg={12}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="updatedStatus-label" shrink>
-                    Updated Status
+                    {t('formLabels.updatedStatus')}
                   </InputLabel>
                   <Select
                     labelId="updatedStatus-label"
                     id="updatedStatus"
                     value={formState.updatedStatus}
                     disabled={!formState.initialStatus}
-                    label="Follow Up Updates"
+                    label={t('formLabels.updatedStatus')}
                     notched
                     onChange={(e) => handleChange('updatedStatus', e.target.value)}
                   >
-                    {getUpdatedStatusOptions().map((status) => (
+                    {/* {getUpdatedStatusOptions().map((status) => (
                       <MenuItem key={status.value} value={status.value}>
                         {status.label}
+                      </MenuItem>
+                    ))} */}
+                    {updatedStatusOptions.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
                       </MenuItem>
                     ))}
                   </Select>
@@ -1268,15 +1345,15 @@ function CreatePetPage() {
                 <TextField
                   id="updatedStatusDescription"
                   name="updatedStatusDescription"
-                  label="Updated Status Description"
-                  disabled={!formState.petLastStatus}
+                  label={t('formLabels.updatedStatusDescription')}
+                  disabled={!formState.updatedStatus}
                   fullWidth
                   // multiline
                   // rows={4}
                   variant="outlined"
                   value={formState.updatedStatusDescription}
                   onChange={(e) => handleChange('updatedStatusDescription', e.target.value)}
-                  placeholder="Enter details such as where the pet was found, shelter name, vet clinic name, and any additional information."
+                  placeholder={t('placeholders.updatedStatusDescription')}
                   InputLabelProps={{
                     shrink: true, // Always shrink the label
                   }}
