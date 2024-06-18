@@ -301,7 +301,7 @@ import TryIcon from '@mui/icons-material/Try';
 import WorkIcon from '@mui/icons-material/Work';
 import AvatarImg from '../images/beaver.avif';
 
-function ProfilePage() {
+function ProfileSettingsPage() {
   const { user, setUser } = useContext(AuthContext);
   // const [user, setUser] = useState({
   //   firstName: 'John',
@@ -950,4 +950,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default ProfileSettingsPage;
