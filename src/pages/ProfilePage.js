@@ -517,19 +517,9 @@ function ProfilePage() {
             Website
           </MuiLink>
         </Typography>
-        {/* <Typography variant="body1" gutterBottom sx={{ paddingTop: "0.4rem", paddingBottom: "0.4rem", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-          <FacebookIcon sx={{ marginRight: "0.5rem" }} />
-          <Link href={user.socialProfiles.facebook} style={{ textDecoration: "none", color: "black" }} target="_blank" rel="noopener noreferrer">
-            Facebook
-          </Link>{" "}
-          <TextField sx={{ width: "100px" }} size="small" margin="normal" name="lastName" value={user.lastName} onChange={handleChange} />
-        </Typography> */}
-        {/* <Typography variant="body1" textAlign="start" gutterBottom>
-          Insights
-        </Typography> */}
 
         <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
-          <Grid item xs={12} md={3}>
+          <Grid item xs={6} md={3}>
             <Link to="/user/profile/posts" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
                 <TryIcon fontSize="large" sx={{ color: '#ff6600' }} />
@@ -538,7 +528,7 @@ function ProfilePage() {
               </Paper>
             </Link>
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={6} md={3}>
             <Link to="/user/profile/services" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
                 <WorkIcon fontSize="large" sx={{ color: '#ff6600' }} />
@@ -546,7 +536,7 @@ function ProfilePage() {
               </Paper>
             </Link>
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={6} md={3}>
             <Link to="/user/profile/pets" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
                 <PetsIcon fontSize="large" sx={{ color: '#ff6600' }} />
@@ -555,7 +545,7 @@ function ProfilePage() {
               </Paper>
             </Link>
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={6} md={3}>
             <Link to="/user/profile/settings" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
                 <SettingsIcon fontSize="large" sx={{ color: '#ff6600' }} />
@@ -564,25 +554,8 @@ function ProfilePage() {
             </Link>
           </Grid>
         </Grid>
-        {/* <Paper style={{ padding: "1rem" }}>
-          <Typography variant="h6" gutterBottom>
-            User Statistics
-          </Typography>
-          <Divider sx={{ my: "0.5rem" }} />
-          <Typography variant="body1" gutterBottom>
-            Recipes Prepared: {user.recipesPrepared}
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Level: {user.level}
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Recipes to Next Level: {user.nextLevelRecipes}
-          </Typography>
-        </Paper> */}
-        {/* <Button variant="outlined" onClick={handleOpenPublicInformationDialog}>
-          Edit
-        </Button> */}
-        <Dialog open={openPublicInformationDialog} onClose={handleClosePublicInformationDialog}>
+
+        {/* <Dialog open={openPublicInformationDialog} onClose={handleClosePublicInformationDialog}>
           <DialogTitle>Edit Public Information</DialogTitle>
           <DialogContent>
             <TextField
@@ -611,24 +584,16 @@ function ProfilePage() {
               value={user?.bio}
               onChange={handleChange}
             />
-            {/* <Typography variant="body1" gutterBottom sx={{ paddingTop: "0.4rem", paddingBottom: "0.4rem", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-              <FacebookIcon sx={{ marginRight: "0.5rem" }} />
-              <Link href={user.socialProfiles.facebook} style={{ textDecoration: "none", color: "black" }} target="_blank" rel="noopener noreferrer"></Link> <TextField sx={{ width: "100px" }} size="small" margin="normal" name="lastName" value={user.lastName} onChange={handleChange} />
-            </Typography> */}
+
             <Box sx={{ mt: 2, display: 'flex', alignItems: 'flex-end' }}>
               <InstagramIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField
                 id="input-with-sx"
-                // label="Instagram Profile"
                 onChange={handleChange}
                 variant="standard"
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="start">
-                      {/* You can uncomment this if you want the FacebookIcon inside the input */}
-                      {/* <FacebookIcon /> */}
-                      https://instagram.com/
-                    </InputAdornment>
+                    <InputAdornment position="start">https://instagram.com/</InputAdornment>
                   ),
                 }}
               />
@@ -637,16 +602,11 @@ function ProfilePage() {
               <FacebookIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField
                 id="input-with-sx"
-                // label="Facebook Profile"
                 onChange={handleChange}
                 variant="standard"
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="start">
-                      {/* You can uncomment this if you want the FacebookIcon inside the input */}
-                      {/* <FacebookIcon /> */}
-                      https://facebook.com/
-                    </InputAdornment>
+                    <InputAdornment position="start">https://facebook.com/</InputAdornment>
                   ),
                 }}
               />
@@ -655,17 +615,10 @@ function ProfilePage() {
               <LanguageIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField
                 id="input-with-sx"
-                // label="website"
                 onChange={handleChange}
                 variant="standard"
                 InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      {/* You can uncomment this if you want the FacebookIcon inside the input */}
-                      {/* <FacebookIcon /> */}
-                      https://
-                    </InputAdornment>
-                  ),
+                  startAdornment: <InputAdornment position="start">https://</InputAdornment>,
                 }}
               />
             </Box>
@@ -678,9 +631,9 @@ function ProfilePage() {
               Save
             </Button>
           </DialogActions>
-        </Dialog>
+        </Dialog> */}
 
-        <Grid container spacing={2} justifyContent="start">
+        {/* <Grid container spacing={2} justifyContent="start">
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <Box sx={{ position: 'relative' }}>
               <Typography variant="body1" gutterBottom textAlign="start" sx={{ fontWeight: '500' }}>
@@ -754,9 +707,9 @@ function ProfilePage() {
               </Box>
             </Box>
           </Grid>
-        </Grid>
+        </Grid> */}
 
-        <Box sx={{ textAlign: 'center', position: 'relative' }}>
+        {/* <Box sx={{ textAlign: 'center', position: 'relative' }}>
           <Dialog open={openUserPreferencesDialog} onClose={handleCloseUserPreferencesDialog}>
             <DialogTitle>Edit User Preferences</DialogTitle>
             <DialogContent>
@@ -777,7 +730,7 @@ function ProfilePage() {
                       </MenuItem>
                       <MenuItem value="en">English</MenuItem>
                       <MenuItem value="es">Spanish</MenuItem>
-                      {/* Add more languages as needed */}
+                   
                     </Select>
                   </FormControl>
                   <FormControl>
@@ -787,7 +740,7 @@ function ProfilePage() {
                       </MenuItem>
                       <MenuItem value="us">United States</MenuItem>
                       <MenuItem value="uk">United Kingdom</MenuItem>
-                      {/* Add more countries as needed */}
+              
                     </Select>
                   </FormControl>
                   <FormControl>
@@ -797,7 +750,7 @@ function ProfilePage() {
                       </MenuItem>
                       <MenuItem value="+371">+371</MenuItem>
                       <MenuItem value="+372">+372</MenuItem>
-                      {/* Add more languages as needed */}
+                      
                     </Select>
                   </FormControl>
                 </FormGroup>
@@ -812,9 +765,9 @@ function ProfilePage() {
               </Button>
             </DialogActions>
           </Dialog>
-        </Box>
+        </Box> */}
 
-        <Box component="form" onSubmit={handleSubmit}>
+        {/* <Box component="form" onSubmit={handleSubmit}>
           <Box sx={{ position: 'relative' }}>
             <Typography variant="body1" gutterBottom textAlign="start" sx={{ fontWeight: '500' }}>
               User Credentials
@@ -827,8 +780,7 @@ function ProfilePage() {
               <EditIcon />
             </IconButton>
           </Box>
-          {/* <TextField fullWidth margin="normal" label="First Name" name="firstName" value={user.firstName} onChange={handleChange} />
-          <TextField fullWidth margin="normal" label="Last Name" name="lastName" value={user.lastName} onChange={handleChange} /> */}
+      
           <TextField
             disabled
             fullWidth
@@ -849,9 +801,7 @@ function ProfilePage() {
             onChange={handleChange}
           />
 
-          {/* <Button type="submit" variant="contained" color="primary" sx={{ marginTop: "1rem" }}>
-            Save Changes
-          </Button> */}
+      
         </Box>
         <Box sx={{ textAlign: 'center', position: 'relative' }}>
           <Dialog open={openUserCredentialsDialog} onClose={handleCloseUserCredentialsDialog}>
@@ -884,7 +834,7 @@ function ProfilePage() {
               </Button>
             </DialogActions>
           </Dialog>
-        </Box>
+        </Box> */}
       </Box>
       {/* <FormControlLabel control={<Checkbox checked={user.isSeller} onChange={handleCheckboxChange} />} label="I am a seller" />
       {user.isSeller && <TextField fullWidth margin="normal" label="Business Name" name="businessName" value={user.businessName} onChange={handleChange} />} */}
@@ -910,7 +860,7 @@ function ProfilePage() {
         </Typography>
       </Box> */}
 
-      <Box>
+      {/* <Box>
         <div>
           <Typography variant="body1" sx={{ fontWeight: '500' }} gutterBottom>
             Danger Zone
@@ -939,13 +889,8 @@ function ProfilePage() {
             </DialogActions>
           </Dialog>
         </div>
-        {/* <Button sx={{ display: "flex", justifyContent: "start", marginBottom: "0.8rem" }} variant="outlined" size="small" startIcon={<EditIcon />} component={Link} to="/edit-profile">
-          Edit Profile
-        </Button>
-        <Button sx={{ display: "flex", justifyContent: "start" }} variant="outlined" size="small" startIcon={<SettingsIcon />} component={Link} to="/settings-profile">
-          Profile Settings
-        </Button> */}
-      </Box>
+   
+      </Box> */}
     </Grid>
   );
 }
