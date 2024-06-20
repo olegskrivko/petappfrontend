@@ -227,46 +227,92 @@ function IconLabelTabs({ onAddLocation, onDeleteMessage, location, pet, comments
                 <Card style={{ width: '100%' }}>
                   {/* <p>{comment.author.isVerified}</p>aa */}
                   <CardContent>
-                    <Box
-                      display="flex"
-                      alignItems="center"
-                      marginBottom="1rem"
-                      padding="0.5rem"
-                      style={{ backgroundColor: '#fff', borderRadius: '8px' }}
-                    >
-                      <Avatar alt={comment.author.username} src={comment.author.username}></Avatar>
-                      <Box ml={2}>
-                        <Typography variant="h6" component="div">
-                          {comment.author.username}
-                        </Typography>
-                        <Box display="flex" alignItems="center">
-                          <Typography variant="body2" color="textSecondary">
-                            {comment.author.username}
-                          </Typography>
+                    <Box display="flex" alignItems="flex-start" justifyContent="space-between">
+                      <Box display="flex" flexDirection="column">
+                        <Box
+                          display="flex"
+                          alignItems="center"
+                          marginBottom="1rem"
+                          padding="0.5rem"
+                          style={{
+                            backgroundColor: '#fff',
+                            borderRadius: '8px',
+                            background: '#f5f5f5',
+                          }}
+                        >
+                          <Avatar
+                            alt={comment.author.username}
+                            src={comment.author.username}
+                          ></Avatar>
+                          <Box ml={2}>
+                            <Typography variant="h6" component="div">
+                              {comment.author.username}
+                            </Typography>
 
-                          {comment.author && comment.author.isVerified && (
-                            <Tooltip title="Verified user">
-                              <VerifiedIcon
-                                fontSize="small"
-                                color="primary"
-                                style={{
-                                  marginLeft: '0.5rem',
-                                  color: '#3f51b5',
-                                }}
-                              />
-                            </Tooltip>
-                          )}
+                            <Box display="flex" alignItems="center">
+                              {/* <Typography variant="body2" color="textSecondary">
+                            {comment.author.username}
+                          </Typography> */}
+
+                              {comment.author && comment.author.isVerified && (
+                                <Tooltip title="Verified user">
+                                  <VerifiedIcon
+                                    fontSize="small"
+                                    color="primary"
+                                    style={{
+                                      marginLeft: '0.5rem',
+                                      color: '#3f51b5',
+                                    }}
+                                  />
+                                </Tooltip>
+                              )}
+                            </Box>
+                            <Typography variant="body2" color="textSecondary">
+                              {moment(comment.createdAt).fromNow()}
+                            </Typography>
+                          </Box>
                         </Box>
-                        <Typography variant="body2" color="textSecondary">
-                          {moment(comment.createdAt).fromNow()}
-                        </Typography>
+                        <Box>
+                          <Typography variant="body1" style={{ color: '#333' }}>
+                            {comment.text}
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Box
+                        style={{
+                          height: 'auto',
+                          width: '200px',
+                        }}
+                      >
+                        <CardMedia
+                          component="img"
+                          style={{ borderRadius: '8px' }}
+                          image={comment.image || '/default_pet_image.jpg'}
+                        />
                       </Box>
                     </Box>
-                    <Box mb={2}>
-                      <Typography variant="body1" style={{ color: '#333' }}>
-                        {comment.text}
-                      </Typography>
+                    {/* <Typography variant="body1" style={{ color: '#333', background: 'lightgreen' }}>
+                      {comment.text}
+                    </Typography> */}
+                    <Box mb={2} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <Box>
+                        {/* <Typography variant="body1" style={{ color: '#333' }}>
+                          {comment.text}
+                        </Typography> */}
+                      </Box>
+                      {/* <Box
+                        style={{
+                          height: 'auto',
+                          width: '200px',
+                        }}
+                      >
+                        <CardMedia
+                          component="img"
+                          image={comment.image || '/default_pet_image.jpg'}
+                        />
+                      </Box> */}
                     </Box>
+
                     <Box display="flex" justifyContent="space-between">
                       <Tooltip title="Show on map">
                         <Button

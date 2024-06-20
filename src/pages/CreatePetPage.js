@@ -31,6 +31,7 @@ import '@tomtom-international/web-sdk-maps/dist/maps.css';
 import { AuthContext } from '../middleware/AuthContext';
 import { LanguageContext } from '../middleware/LanguageContext';
 import { useTranslation } from 'react-i18next';
+// import Upload from '../pages/Upload';
 
 function CreatePetPage() {
   const { t } = useTranslation();
@@ -65,8 +66,9 @@ function CreatePetPage() {
     markingColors: [],
     date: getCurrentDate(),
     time: getCurrentTime(),
-    mainImage:
-      'https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    // mainImage:
+    //   'https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: null,
     phone: '',
     phoneCode: '',
     email: '',
@@ -223,233 +225,6 @@ function CreatePetPage() {
     fetchTranslations();
   }, [selectedLanguage]);
 
-  // const fetchInitialStatusOptions = async () => {
-  //   try {
-  //     const response = await axios.get(`${BASE_URL}/options/initialStatus`, {
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //         'Accept-Language': selectedLanguage,
-  //       },
-  //     });
-
-  //     console.log('Response from fetch initial status options:', response.data.options);
-  //     if (response.data && response.data.options) {
-  //       const initialStatusOption = response.data.options.find(
-  //         (opt) => opt.key === 'initialStatus',
-  //       );
-  //       if (initialStatusOption) {
-  //         setInitialStatusLabel(initialStatusOption.name);
-  //         setInitialStatusOptions(initialStatusOption.values);
-  //         console.log('Initial status options fetched successfully:', initialStatusOption.values);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching initial status options:', error);
-  //   }
-  // };
-
-  // const fetchSizeOptions = async () => {
-  //   try {
-  //     const response = await axios.get(`${BASE_URL}/options/size`, {
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //         'Accept-Language': selectedLanguage,
-  //       },
-  //     });
-
-  //     console.log('Response from fetch size options:', response.data.options);
-  //     if (response.data && response.data.options) {
-  //       const sizeOption = response.data.options.find((opt) => opt.key === 'size');
-  //       if (sizeOption) {
-  //         setSizeLabel(sizeOption.name);
-  //         setSizeOptions(sizeOption.values);
-  //         console.log('Size options fetched successfully:', sizeOption.values);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching size options:', error);
-  //   }
-  // };
-
-  // const fetchBehaviorOptions = async () => {
-  //   try {
-  //     const response = await axios.get(`${BASE_URL}/options/behavior`, {
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //         'Accept-Language': selectedLanguage,
-  //       },
-  //     });
-
-  //     console.log('Response from fetch behavior options:', response.data.options);
-  //     if (response.data && response.data.options) {
-  //       const behaviorOption = response.data.options.find((opt) => opt.key === 'behavior');
-  //       if (behaviorOption) {
-  //         setBehaviorLabel(behaviorOption.name);
-  //         setBehaviorOptions(behaviorOption.values);
-  //         console.log('Behavior options fetched successfully:', behaviorOption.values);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching behavior options:', error);
-  //   }
-  // };
-
-  // const fetchGenderOptions = async () => {
-  //   try {
-  //     const response = await axios.get(`${BASE_URL}/options/gender`, {
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //         'Accept-Language': selectedLanguage,
-  //       },
-  //     });
-
-  //     console.log('Response from fetch gender options:', response.data.options);
-  //     if (response.data && response.data.options) {
-  //       const genderOption = response.data.options.find((opt) => opt.key === 'gender');
-  //       if (genderOption) {
-  //         setGenderLabel(genderOption.name);
-  //         setGenderOptions(genderOption.values);
-  //         console.log('Gender options fetched successfully:', genderOption.values);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching gender options:', error);
-  //   }
-  // };
-
-  // const fetchCategoryOptions = async () => {
-  //   try {
-  //     const response = await axios.get(`${BASE_URL}/options/category`, {
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //         'Accept-Language': selectedLanguage,
-  //       },
-  //     });
-
-  //     console.log('Response from fetch category options:', response.data.options);
-  //     if (response.data && response.data.options) {
-  //       const categoryOption = response.data.options.find((opt) => opt.key === 'category');
-  //       if (categoryOption) {
-  //         setCategoryLabel(categoryOption.name);
-  //         setCategoryOptions(categoryOption.values);
-  //         console.log('Category options fetched successfully:', categoryOption.values);
-  //         // console.log('Category options fetched successfully:', categoryOptions);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching category options:', error);
-  //   }
-  // };
-  // const initialStatusOptions = [
-  //   { value: 'missing', label: 'Missing' },
-  //   { value: 'found', label: 'Found' },
-  //   { value: 'seen', label: 'Seen' },
-  // ];
-
-  // const categoriesOptions = [
-  //   { value: 'dog', label: 'Dog' },
-  //   { value: 'cat', label: 'Cat' },
-  //   { value: 'cow', label: 'Cow' },
-  //   { value: 'horse', label: 'Horse' },
-  // ];
-
-  // const sizeOptions = [
-  //   { value: "", label: "None" },
-  //   { value: "small", label: "Small" },
-  //   { value: "medium", label: "Medium" },
-  //   { value: "large", label: "Large" },
-  // ];
-
-  // const genderOptions = [
-  //   { value: '', label: 'None' },
-  //   { value: 'he', label: 'He' },
-  //   { value: 'she', label: 'She' },
-  // ];
-
-  // const behaviorOptions = [
-  //   { value: '', label: 'None' },
-  //   { value: 'friendly', label: 'Friendly' },
-  //   { value: 'aggressive', label: 'Aggressive' },
-  //   { value: 'protective', label: 'Protective' },
-  //   { value: 'playful', label: 'Playful' },
-  //   { value: 'calm', label: 'Calm' },
-  // ];
-
-  // Function to fetch ageOptions based on category
-
-  // const getAgeOptions = () => {
-  //   const ageOptionsMap = {
-  //     0: [
-  //       { value: '', label: 'None' },
-  //       { value: '0', label: 'Puppy' },
-  //       { value: '1', label: 'Adolescent' },
-  //       { value: '2', label: 'Adult' },
-  //       { value: '3', label: 'Senior' },
-  //     ],
-  //     1: [
-  //       { value: '', label: 'None' },
-  //       { value: '0', label: 'Kitten' },
-  //       { value: '1', label: 'Adolescent' },
-  //       { value: '2', label: 'Adult' },
-  //       { value: '3', label: 'Senior' },
-  //     ],
-  //     2: [
-  //       { value: '', label: 'None' },
-  //       { value: '0', label: 'Calf' },
-  //       { value: '1', label: 'Adolescent' },
-  //       { value: '2', label: 'Adult' },
-  //       { value: '3', label: 'Senior' },
-  //     ],
-  //     3: [
-  //       { value: '', label: 'None' },
-  //       { value: '0', label: 'Foal' },
-  //       { value: '1', label: 'Adolescent' },
-  //       { value: '2', label: 'Adult' },
-  //       { value: '3', label: 'Senior' },
-  //     ],
-  //   };
-  //   return ageOptionsMap[formState.category] || [];
-  // };
-
-  // const markingPatternOptions = [
-  //   { value: 'solid', label: 'No' },
-  //   { value: 'striped', label: 'Striped' },
-  //   { value: 'spotted', label: 'Spotted' },
-  //   { value: 'patched', label: 'Patched' },
-  //   { value: 'marbled', label: 'Marbled' },
-  // ];
-
-  // const phoneCodeOptions = [
-  //   { value: '', label: 'N/A' },
-  //   { value: '+371', label: '+371' },
-  //   { value: '+372', label: '+372' },
-  //   { value: '+370', label: '+370' },
-  // ];
-
-  // const colorsListOptions = [
-  //   { name: 'Black', hexCode: '#000000' },
-  //   { name: 'Gray', hexCode: '#BEBEBE' },
-  //   { name: 'White', hexCode: '#f7f7f7' },
-  //   { name: 'Cream', hexCode: '#FFF1B9' },
-  //   { name: 'Yellow', hexCode: '#FCDC5C' },
-  //   { name: 'Golden', hexCode: '#FFA500' },
-  //   { name: 'Brown', hexCode: '#C37C4D' },
-  //   { name: 'Red', hexCode: '#A71A20' },
-  //   { name: 'Lilac', hexCode: '#BA97AA' },
-  //   { name: 'Blue', hexCode: '#1A355E' },
-  //   { name: 'Green', hexCode: '#5F6F52' },
-  //   { name: 'Khaki', hexCode: '#BDB76B' },
-  //   { name: 'Beige', hexCode: '#E5DECA' },
-  //   { name: 'Tan', hexCode: '#D2B48C' },
-  //   { name: 'Fawn', hexCode: '#E5AA70' },
-  //   { name: 'Chestnut', hexCode: '#954535' },
-  // ];
-
   const handleChange = (field, value) => {
     setFormState((prevState) => ({
       ...prevState,
@@ -511,43 +286,142 @@ function CreatePetPage() {
     }
   };
 
+  const handleImageUpload = (file) => {
+    handleChange('image', file);
+  };
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     // await axios.post(`${BASE_URL}/pets`, { ...formState, author: user.id });
+  //     const token = localStorage.getItem('token'); // assuming the token is stored in local storage
+
+  //     // Create a FormData object to send the form data and the file
+  //     const formData = new FormData();
+  //     Object.keys(formState).forEach((key) => {
+  //       if (key === 'image' && formState[key]) {
+  //         formData.append(key, formState[key]); // Append the image file
+  //       } else if (key === 'location') {
+  //         formData.append('location[lat]', formState.location.lat);
+  //         formData.append('location[lng]', formState.location.lng);
+  //       } else if (Array.isArray(formState[key])) {
+  //         formState[key].forEach((item, index) => {
+  //           if (typeof item === 'object' && item !== null) {
+  //             Object.keys(item).forEach((nestedKey) => {
+  //               formData.append(`${key}[${index}][${nestedKey}]`, item[nestedKey]);
+  //             });
+  //           } else {
+  //             formData.append(`${key}[]`, item);
+  //           }
+  //         });
+  //       } else {
+  //         formData.append(key, formState[key]);
+  //       }
+  //     });
+
+  //     console.log('FormData:', formData); // Log FormData before making the request
+
+  //     const response = await axios.post(
+  //       `${BASE_URL}/pets`,
+  //       { ...formState, author: user.id },
+  //       {
+  //         headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${token}` },
+  //       },
+  //     );
+  //     console.log('Pet details sent successfully to the backend.');
+  //   } catch (error) {
+  //     //   console.log("Error response from the backend:", error.response); // Add this log statement
+  //     //   if (error.response && error.response.data && error.response.data.errors) {
+  //     //     // If backend returns errors, update formErrors state with received errors
+  //     //     setFormErrors(error.response.data.errors);
+  //     //   } else {
+  //     //     console.error("Failed to send pet details to the backend:", error);
+  //     //   }
+  //     // }
+  //     console.log('Error response from the backend:', error.response);
+
+  //     if (
+  //       error.response &&
+  //       error.response.data &&
+  //       error.response.data.errors &&
+  //       Array.isArray(error.response.data.errors)
+  //     ) {
+  //       // If backend returns errors, update formErrors state with received errors
+  //       const receivedErrors = error.response.data.errors;
+  //       const newFormErrors = {};
+  //       receivedErrors.forEach((error) => {
+  //         newFormErrors[error.path] = error.msg;
+  //       });
+  //       setFormErrors(newFormErrors);
+  //       console.log('Form errors:', formErrors); // Add this log statement
+  //     } else {
+  //       console.error('Failed to send pet details to the backend:', error);
+  //     }
+  //   }
+  // };
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // await axios.post(`${BASE_URL}/pets`, { ...formState, author: user.id });
-      const token = localStorage.getItem('token'); // assuming the token is stored in local storage
-      await axios.post(
-        `${BASE_URL}/pets`,
-        { ...formState, author: user.id },
-        {
-          headers: { Authorization: `Bearer ${token}` },
+      const token = localStorage.getItem('token');
+
+      // Create FormData object to send the form data and the file
+      const formData = new FormData();
+      Object.keys(formState).forEach((key) => {
+        if (key === 'image' && formState[key]) {
+          formData.append(key, formState[key]); // Append the image file
+        } else if (key === 'location') {
+          formData.append('location[lat]', formState.location.lat);
+          formData.append('location[lng]', formState.location.lng);
+          formData.append('author', user.id);
+        } else if (Array.isArray(formState[key])) {
+          formState[key].forEach((item, index) => {
+            if (typeof item === 'object' && item !== null) {
+              Object.keys(item).forEach((nestedKey) => {
+                formData.append(`${key}[${index}][${nestedKey}]`, item[nestedKey]);
+              });
+            } else {
+              formData.append(`${key}[]`, item);
+            }
+          });
+        } else {
+          formData.append(key, formState[key]);
+        }
+      });
+
+      // Append user ID to the form data if needed
+      //  console.log('User:', user.id); // Log user object (for debugging
+      // formData.append('author', user.id);
+      const objectFromFormData = {};
+      formData.forEach((value, key) => {
+        objectFromFormData[key] = value;
+      });
+      console.log('aaaa', objectFromFormData.image);
+
+      console.log('FormData:', formData); // Log FormData before making the request
+      console.log(JSON.stringify(objectFromFormData));
+
+      const response = await axios.post(`${BASE_URL}/pets`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
         },
-      );
-      console.log('Pet details sent successfully to the backend.');
+      });
+      console.log('Pet details sent successfully to the backend.'); // Log success message
     } catch (error) {
-      //   console.log("Error response from the backend:", error.response); // Add this log statement
-      //   if (error.response && error.response.data && error.response.data.errors) {
-      //     // If backend returns errors, update formErrors state with received errors
-      //     setFormErrors(error.response.data.errors);
-      //   } else {
-      //     console.error("Failed to send pet details to the backend:", error);
-      //   }
-      // }
-      console.log('Error response from the backend:', error.response);
+      console.error('Error response from the backend:', error.response); // Log error response
       if (
         error.response &&
         error.response.data &&
         error.response.data.errors &&
         Array.isArray(error.response.data.errors)
       ) {
-        // If backend returns errors, update formErrors state with received errors
         const receivedErrors = error.response.data.errors;
         const newFormErrors = {};
         receivedErrors.forEach((error) => {
           newFormErrors[error.path] = error.msg;
         });
         setFormErrors(newFormErrors);
-        console.log('Form errors:', formErrors); // Add this log statement
+        console.log('Form errors:', formErrors);
       } else {
         console.error('Failed to send pet details to the backend:', error);
       }
@@ -705,6 +579,28 @@ function CreatePetPage() {
                 </FormControl>
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
+                {/* Input field for uploading image */}
+                <input
+                  accept="image/*"
+                  id="image"
+                  type="file"
+                  onChange={(e) => handleImageUpload(e.target.files[0])}
+                  style={{ display: 'none' }}
+                />
+                <label htmlFor="image">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    component="span"
+                    fullWidth
+                    style={{ marginTop: '20px' }}
+                  >
+                    Upload Image
+                  </Button>
+                </label>
+              </Grid>
+
+              <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="category-label" shrink>
                     {t('formLabels.category')}*
@@ -747,6 +643,7 @@ function CreatePetPage() {
                   )}
                 </FormControl>
               </Grid>
+
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <TextField
                   id="identifier"
@@ -1272,8 +1169,9 @@ function CreatePetPage() {
               </Grid>
             </Grid>
             <Grid item xs={12}>
-              <ImageUploader />
+              {/* <ImageUploader /> */}
             </Grid>
+            {/* add code here to upload image */}
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Typography

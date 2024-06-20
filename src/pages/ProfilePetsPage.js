@@ -197,6 +197,7 @@ import {
   Card,
   CardContent,
   Avatar,
+  Grid,
   Button,
   Box,
   List,
@@ -207,6 +208,9 @@ import {
 import { ArrowBackIos, ArrowForwardIos, Pets as PetsIcon } from '@mui/icons-material';
 import MaleIcon from '@mui/icons-material/Male';
 import CakeIcon from '@mui/icons-material/Cake';
+import HeightIcon from '@mui/icons-material/Height';
+import ColorLensIcon from '@mui/icons-material/ColorLens';
+import TextureIcon from '@mui/icons-material/Texture';
 const pets = [
   {
     name: 'Fluffy',
@@ -252,84 +256,126 @@ function ProfilePetsPage() {
 
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
-      {/* <Typography variant="h4" gutterBottom align="center">
+      <Grid>
+        {/* <Typography variant="h4" gutterBottom align="center">
         Your Pets
       </Typography> */}
-      <Box display="flex" alignItems="center" justifyContent="center">
-        <Button onClick={handlePrevious}>
-          <ArrowBackIos />
-        </Button>
-        <Card sx={{ borderRadius: '10px', overflow: 'hidden', width: 340, height: 'auto', p: 2 }}>
-          <CardContent sx={{ textAlign: 'left' }}>
-            <Avatar
-              src={currentPet.image}
-              alt={currentPet.name}
-              sx={{ width: 200, height: 200, margin: '0 auto' }}
-            />
-            <Box style={{ position: 'relative' }}>
-              <Box style={{ textAlign: 'center' }}>
-                <Typography variant="h6" sx={{ mt: 2 }}>
-                  {currentPet.name}
-                </Typography>
-                {/* <Typography color="textSecondary">{currentPet.type}</Typography> */}
-                <Typography color="textSecondary">{currentPet.breed}</Typography>
+        <Box display="flex" alignItems="center" justifyContent="center">
+          <Button onClick={handlePrevious}>
+            <ArrowBackIos />
+          </Button>
+          <Card sx={{ borderRadius: '10px', overflow: 'hidden', width: 340, height: 'auto', p: 2 }}>
+            <CardContent sx={{ textAlign: 'left' }}>
+              <Avatar
+                src={currentPet.image}
+                alt={currentPet.name}
+                sx={{ width: 200, height: 200, margin: '0 auto' }}
+              />
+              <Box style={{ position: 'relative' }}>
+                <Box style={{ textAlign: 'center' }}>
+                  <Typography variant="h6" sx={{ mt: 2 }}>
+                    {currentPet.name}
+                  </Typography>
+                  {/* <Typography color="textSecondary">{currentPet.type}</Typography> */}
+                  <Typography color="textSecondary">{currentPet.breed}</Typography>
+                </Box>
+                <Box style={{ position: 'absolute', top: '0', right: '0', color: '#04BADE' }}>
+                  <MaleIcon />
+                </Box>
               </Box>
-              <Box style={{ position: 'absolute', top: '0', right: '0', color: '#04BADE' }}>
-                <MaleIcon />
-              </Box>
-            </Box>
-            {/* <Typography variant="body1" sx={{ mt: 1 }}>
+              {/* <Typography variant="body1" sx={{ mt: 1 }}>
               <strong>Breed:</strong> {currentPet.breed}
             </Typography> */}
-            <Box
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-                padding: '0.8rem 0rem',
-              }}
-            >
-              <CakeIcon />
-              <Typography variant="body1" style={{ paddingLeft: '0.4rem' }}>
-                <strong>Age:</strong> {currentPet.age}
+              <Box
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  alignItems: 'center',
+                  padding: '0.8rem 0rem',
+                }}
+              >
+                <CakeIcon />
+                <Typography variant="body1" style={{ paddingLeft: '0.4rem' }}>
+                  <strong>Age:</strong> {currentPet.age}
+                </Typography>
+              </Box>
+              <Box
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  alignItems: 'center',
+                  padding: '0.8rem 0rem',
+                }}
+              >
+                <HeightIcon />
+                <Typography variant="body1" style={{ paddingLeft: '0.4rem' }}>
+                  <strong>Size:</strong> {currentPet.size}
+                </Typography>
+              </Box>
+              <Box
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  alignItems: 'center',
+                  padding: '0.8rem 0rem',
+                }}
+              >
+                <ColorLensIcon />
+                <Typography variant="body1" style={{ paddingLeft: '0.4rem' }}>
+                  <strong>Main Color:</strong> {currentPet.size}
+                </Typography>
+              </Box>
+              <Box
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  alignItems: 'center',
+                  padding: '0.8rem 0rem',
+                }}
+              >
+                <TextureIcon />
+                <Typography variant="body1" style={{ paddingLeft: '0.4rem' }}>
+                  <strong>Markings:</strong> {currentPet.size}
+                </Typography>
+              </Box>
+              <Box
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  alignItems: 'center',
+                  padding: '0.8rem 0rem',
+                }}
+              >
+                <ColorLensIcon />
+                <Typography variant="body1" style={{ paddingLeft: '0.4rem' }}>
+                  <strong>Markings Color:</strong> {currentPet.size}
+                </Typography>
+              </Box>
+              <Typography variant="h6" sx={{ mt: 2 }}>
+                Vaccinations
               </Typography>
-            </Box>
-            <Typography variant="body1">
-              <strong>Size:</strong> {currentPet.size}
-            </Typography>
-            <Typography variant="body1">
-              <strong>Main Color:</strong> {currentPet.size}
-            </Typography>
-            <Typography variant="body1">
-              <strong>Markings:</strong> {currentPet.size}
-            </Typography>
-            <Typography variant="body1">
-              <strong>Markings Color:</strong> {currentPet.size}
-            </Typography>
-            <Typography variant="h6" sx={{ mt: 2 }}>
-              Vaccinations
-            </Typography>
-            <List>
-              {currentPet.vaccinations.map((vaccination, index) => (
-                <ListItem key={index}>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <PetsIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={vaccination.name}
-                    secondary={`Due: ${vaccination.dueDate}`}
-                  />
-                </ListItem>
-              ))}
-            </List>
-          </CardContent>
-        </Card>
-        <Button onClick={handleNext}>
-          <ArrowForwardIos />
-        </Button>
-      </Box>
+              <List>
+                {currentPet.vaccinations.map((vaccination, index) => (
+                  <ListItem key={index}>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <PetsIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={vaccination.name}
+                      secondary={`Due: ${vaccination.dueDate}`}
+                    />
+                  </ListItem>
+                ))}
+              </List>
+            </CardContent>
+          </Card>
+          <Button onClick={handleNext}>
+            <ArrowForwardIos />
+          </Button>
+        </Box>
+      </Grid>
     </Container>
   );
 }

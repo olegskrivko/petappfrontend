@@ -1,6 +1,6 @@
 // export default ChatComponent;
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import axios from 'axios';
 import {
   Avatar,
   Card,
@@ -11,13 +11,13 @@ import {
   TextField,
   IconButton,
   Button,
-} from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
-import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
-import LocationOffIcon from "@mui/icons-material/LocationOff";
-import { BASE_URL } from "../../middleware/config";
+} from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import LocationOffIcon from '@mui/icons-material/LocationOff';
+import { BASE_URL } from '../../middleware/config';
 const ChatComponent = ({ user, pet, location, onAddLocation }) => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
 
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
@@ -25,9 +25,9 @@ const ChatComponent = ({ user, pet, location, onAddLocation }) => {
 
   const handleSendMessage = async () => {
     try {
-      const token = localStorage.getItem("token"); // assuming the token is stored in local storage
+      const token = localStorage.getItem('token'); // assuming the token is stored in local storage
       if (!token) {
-        console.error("No token found");
+        console.error('No token found');
         return;
       }
 
@@ -36,6 +36,9 @@ const ChatComponent = ({ user, pet, location, onAddLocation }) => {
       const data = {
         message,
         location,
+        image:
+          'https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        // image: null,
         petId: pet._id,
         author: user.id, // assuming user object has an id property
       };
@@ -44,20 +47,20 @@ const ChatComponent = ({ user, pet, location, onAddLocation }) => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      console.log("Message sent:", response.data);
-      setMessage("");
+      console.log('Message sent:', response.data);
+      setMessage('');
     } catch (error) {
-      console.error("Failed to send message:", error);
+      console.error('Failed to send message:', error);
     }
   };
 
   return (
-    <Grid item xs={12} sm={12} md={12} lg={12} style={{ paddingLeft: "0" }}>
+    <Grid item xs={12} sm={12} md={12} lg={12} style={{ paddingLeft: '0' }}>
       <Card
         style={{
-          width: "100%",
+          width: '100%',
           // backgroundColor: "#f5f5f5",
-          paddingRight: "0 !important",
+          paddingRight: '0 !important',
         }}
       >
         <CardContent>
@@ -93,7 +96,7 @@ const ChatComponent = ({ user, pet, location, onAddLocation }) => {
                 onClick={onAddLocation}
                 endIcon={<AddLocationAltIcon />}
                 size="small"
-                style={{ background: "#555" }}
+                style={{ background: '#555' }}
               >
                 Add Location
               </Button>
@@ -105,7 +108,7 @@ const ChatComponent = ({ user, pet, location, onAddLocation }) => {
                 onClick={handleSendMessage}
                 endIcon={<SendIcon />}
                 size="small"
-                style={{ background: "#555" }}
+                style={{ background: '#555' }}
               >
                 Send
               </Button>

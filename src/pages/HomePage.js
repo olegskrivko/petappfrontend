@@ -133,9 +133,7 @@ function HomePage() {
                     color: 'rgba(0, 0, 0, 0.87)',
                   }}
                 >
-                  {/* Search for a Pet */}
-
-                  {t('buttons.searchForPetsButton')}
+                  Search for a Pet
                 </Button>
               ) : (
                 <Button
@@ -151,8 +149,7 @@ function HomePage() {
                     color: 'rgba(0, 0, 0, 0.87)',
                   }}
                 >
-                  {/* Search for a Pet */}
-                  {t('buttons.searchForPetsButton')}
+                  Search for a Pet
                 </Button>
               )}
             </Link>

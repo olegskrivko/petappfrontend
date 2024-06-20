@@ -300,6 +300,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import TryIcon from '@mui/icons-material/Try';
 import WorkIcon from '@mui/icons-material/Work';
 import AvatarImg from '../images/beaver.avif';
+import BusinessIcon from '@mui/icons-material/Business';
 
 function ProfilePage() {
   const { user, setUser } = useContext(AuthContext);
@@ -418,8 +419,13 @@ function ProfilePage() {
           <EditIcon />
         </IconButton> */}
         <Box sx={{ position: 'relative' }}>
-          <Typography variant="body1" gutterBottom textAlign="start" sx={{ fontWeight: '500' }}>
-            User Public Information
+          <Typography
+            variant="body1"
+            gutterBottom
+            textAlign="center"
+            sx={{ fontWeight: '500', marginBottom: '2rem' }}
+          >
+            User Information
           </Typography>
           <IconButton
             sx={{ position: 'absolute', top: 0, right: 0 }}
@@ -440,8 +446,14 @@ function ProfilePage() {
           {user?.firstName} {user?.lastName}
         </Typography>
         <Typography variant="body1" color="textSecondary">
-          Followers: {user?.followers} | Following: {user?.following}
+          @{user?.username}
         </Typography>
+        <Typography variant="body2" color="primary" sx={{ marginTop: '1rem' }}>
+          Change Avatar
+        </Typography>
+        {/* <Typography variant="body1" color="textSecondary">
+          Followers: {user?.followers} | Following: {user?.following}
+        </Typography> */}
         {/* <Divider sx={{ my: "0.5rem" }} /> */}
         <Typography
           sx={{ paddingTop: '1rem', paddingBottom: '1rem', textAlign: 'start' }}
@@ -519,7 +531,7 @@ function ProfilePage() {
         </Typography>
 
         <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
-          <Grid item xs={6} md={3}>
+          <Grid item xs={6} md={4}>
             <Link to="/user/profile/posts" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
                 <TryIcon fontSize="large" sx={{ color: '#ff6600' }} />
@@ -528,7 +540,7 @@ function ProfilePage() {
               </Paper>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3}>
+          <Grid item xs={6} md={4}>
             <Link to="/user/profile/services" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
                 <WorkIcon fontSize="large" sx={{ color: '#ff6600' }} />
@@ -536,7 +548,7 @@ function ProfilePage() {
               </Paper>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3}>
+          <Grid item xs={6} md={4}>
             <Link to="/user/profile/pets" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
                 <PetsIcon fontSize="large" sx={{ color: '#ff6600' }} />
@@ -545,7 +557,23 @@ function ProfilePage() {
               </Paper>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3}>
+          <Grid item xs={6} md={4}>
+            <Link to="/user/profile/settings" style={{ textDecoration: 'none' }}>
+              <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
+                <ReviewsIcon fontSize="large" sx={{ color: '#ff6600' }} />
+                <Typography variant="body1">Activity Feed {user?.recipesReviewed}</Typography>
+              </Paper>
+            </Link>
+          </Grid>
+          <Grid item xs={6} md={4}>
+            <Link to="/user/profile/settings" style={{ textDecoration: 'none' }}>
+              <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
+                <BusinessIcon fontSize="large" sx={{ color: '#ff6600' }} />
+                <Typography variant="body1">Business {user?.recipesReviewed}</Typography>
+              </Paper>
+            </Link>
+          </Grid>
+          <Grid item xs={6} md={4}>
             <Link to="/user/profile/settings" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
                 <SettingsIcon fontSize="large" sx={{ color: '#ff6600' }} />
