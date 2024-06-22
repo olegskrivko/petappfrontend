@@ -1,6 +1,6 @@
 // export default PetsDetailsPage;
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import {
   Typography,
@@ -834,19 +834,19 @@ const PetsDetailsPage = () => {
             >
               <FavoriteIcon />
             </IconButton>
-
-            <IconButton
-              aria-label="Download"
-              sx={{
-                position: 'absolute',
-                top: '95px',
-                right: '20px',
-                background: '#FFFFFF', // Customize as needed
-              }}
-            >
-              <DownloadIcon />
-            </IconButton>
-
+            <Link to={`/pets/${id}/poster`}>
+              <IconButton
+                aria-label="Download"
+                sx={{
+                  position: 'absolute',
+                  top: '95px',
+                  right: '20px',
+                  background: '#FFFFFF', // Customize as needed
+                }}
+              >
+                <DownloadIcon />
+              </IconButton>
+            </Link>
             <IconButton
               aria-label="Share"
               sx={{
@@ -1106,9 +1106,9 @@ const PetsDetailsPage = () => {
           onAddLocation={handleAddLocation}
         />
       </Grid>
-      <Grid item xs={12} sm={12} md={12} lg={12}>
+      {/* <Grid item xs={12} sm={12} md={12} lg={12}>
         <Poster pet={pet} />
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 };

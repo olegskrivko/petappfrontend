@@ -1,6 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import tt from "@tomtom-international/web-sdk-maps";
-import "@tomtom-international/web-sdk-maps/dist/maps.css";
+import React, { useEffect, useRef, useState } from 'react';
+import tt from '@tomtom-international/web-sdk-maps';
+import '@tomtom-international/web-sdk-maps/dist/maps.css';
+import { TOMTOM_API } from '../../middleware/config';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { renderToStaticMarkup } from 'react-dom/server';
+
+import CustomAlert from '../alert/CustomAlert';
 
 const TomTomMap = () => {
   const mapElement = useRef(null);
@@ -10,7 +15,7 @@ const TomTomMap = () => {
     if (map.current) return; // Initialize map only once
 
     map.current = tt.map({
-      key: "xFokTxRRN2XWygHA8748GxHUGVAmcx9A", // Replace with your TomTom API key
+      key: TOMTOM_API, // Replace with your TomTom API key
       container: mapElement.current,
       center: [24.105078, 56.946285], // Initial map center [longitude, latitude]
       zoom: 6, // Initial zoom level
@@ -26,7 +31,7 @@ const TomTomMap = () => {
     };
   }, []);
 
-  return <div ref={mapElement} style={{ height: "500px", width: "100%" }} />;
+  return <div ref={mapElement} style={{ height: '500px', width: '100%' }} />;
 };
 
 export default TomTomMap;

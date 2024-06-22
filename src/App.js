@@ -31,6 +31,7 @@ import ProfilePetsPage from './pages/ProfilePetsPage';
 import ProfileSettingsPage from './pages/ProfileSettingsPage';
 import ProfileServicesPage from './pages/ProfileServicesPage';
 import ProfilePostsPage from './pages/ProfilePostsPage';
+import PetsPosterPage from './pages/PetsPosterPage';
 
 // import SponsorshipsPage from "./pages/SponsorshipsPage";
 import './i18n'; // Import the i18n configuration
@@ -46,6 +47,7 @@ function App() {
               <Route path="about" element={<AboutPage />} />
               <Route path="pets" element={<PetsListPage />} />
               <Route path="pets/:id" element={<PetsDetailsPage />} />
+              <Route path="pets/:id/poster" element={<PetsPosterPage />} />
               <Route
                 path="contact"
                 element={
