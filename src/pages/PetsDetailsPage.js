@@ -540,12 +540,13 @@ const PetsDetailsPage = () => {
   //     setSelectedLanguage(storedLanguage);
   //   }
   // }, []); // Empty dependency array ensures this effect runs only once on component mount
-
+  const { user } = useContext(AuthContext);
   const { id } = useParams();
   const [pet, setPet] = useState(null);
   const [comments, setComments] = useState(null);
   const [options, setOptions] = useState([]);
   const [location, setLocation] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(false);
   console.log('Location in petdetails:', location);
   const handleAddLocation = (location) => {
     setLocation((prevLocation) => location);
@@ -641,6 +642,7 @@ const PetsDetailsPage = () => {
       try {
         const response = await axios.get(`${BASE_URL}/pets/${id}`);
         setPet(response.data);
+        //setIsFavorite(user?.favoritedPets?.includes(response.data._id)); // Check if pet is already favorited
       } catch (error) {
         console.error('Error fetching pet details:', error.message);
         setError('Error fetching pet details');
@@ -740,6 +742,60 @@ const PetsDetailsPage = () => {
     return option ? option.label : '';
   };
 
+  // const handleFavorite = async () => {
+  //   try {
+  //     const token = localStorage.getItem('token');
+  //     const favoriteAction = isFavorite ? 'remove' : 'add';
+  //     const response = await axios.put(
+  //       `${BASE_URL}/users/${user.id}/favorites/${id}/${favoriteAction}`,
+  //       {},
+  //       {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       },
+  //     );
+  //     if (response.status === 200) {
+  //       setIsFavorite(!isFavorite); // Toggle favorite status
+  //     }
+  //   } catch (error) {
+  //     console.error('Error toggling favorite:', error);
+  //     // Handle error, e.g., show error message
+  //   }
+  // };
+
+  const handleFavorite = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const favoriteAction = isFavorite ? 'remove' : 'add';
+      const url = `${BASE_URL}/users/${user.id}/favorites/${id}/${favoriteAction}`;
+
+      // Debugging: Log URL and headers
+      console.log('Request URL:', url);
+      console.log('Token:', token);
+
+      const response = await axios.put(
+        url,
+        {},
+        // {
+        //   headers: { Authorization: `Bearer ${token}` },
+        // },
+      );
+
+      // Debugging: Log response
+      console.log('Response:', response);
+
+      if (response.status === 200) {
+        setIsFavorite(!isFavorite); // Toggle favorite status
+      }
+    } catch (error) {
+      // Debugging: Log error details
+      console.error(
+        'Error toggling favorite:',
+        error.response ? error.response.data : error.message,
+      );
+      // Handle error, e.g., show error message
+    }
+  };
+
   if (loading) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
@@ -786,7 +842,7 @@ const PetsDetailsPage = () => {
             title={pet.initialStatus}
           />
           <Box style={{ position: 'absolute', top: -20, right: 0, zIndex: 999 }}>
-            <IconButton
+            {/* <IconButton
               aria-label="add to favorites"
               sx={{
                 position: 'absolute',
@@ -796,7 +852,20 @@ const PetsDetailsPage = () => {
               }}
             >
               <FavoriteIcon />
-            </IconButton>
+            </IconButton> */}
+            <Tooltip
+              sx={{
+                position: 'absolute',
+                top: '40px',
+                right: '20px',
+                background: '#FFFFFF', // Customize as needed
+              }}
+              title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+            >
+              <IconButton onClick={handleFavorite}>
+                {isFavorite ? <FavoriteIcon color="secondary" /> : <FavoriteBorderIcon />}
+              </IconButton>
+            </Tooltip>
             <Link to={`/pets/${id}/poster`}>
               <IconButton
                 aria-label="Download"

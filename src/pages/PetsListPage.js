@@ -5,6 +5,10 @@ import Sidebar from '../components/sidebar/Siderbar'; // Create Sidebar componen
 import PetCard from '../components/petcard/PetCard'; // Create PetCard component
 import {
   CircularProgress,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
   Table,
   Typography,
   Box,
@@ -35,9 +39,10 @@ import Pagination from '@mui/material/Pagination';
 import { useDrawer } from '../context/DrawerContext';
 // Import Images
 import NoListingsAvailableImg from '../images/file_searching_amico.svg';
-
+import FilterListIcon from '@mui/icons-material/FilterList';
 const PetsListPage = () => {
-  const { isDrawerOpen, closeDrawer } = useDrawer();
+  // const { isDrawerOpen, closeDrawer } = useDrawer();
+
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -48,11 +53,11 @@ const PetsListPage = () => {
   const queryParams = new URLSearchParams(location.search);
   const [pagination, setPagination] = useState({});
 
-  // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // const handleDrawerToggle = () => {
-  //   setIsDrawerOpen(!isDrawerOpen);
-  // };
+  const handleDrawerToggle = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
 
   const [appliedFilters, setAppliedFilters] = useState({
     // recipeTitle: queryParams.get('recipeTitle') || '',
@@ -133,8 +138,8 @@ const PetsListPage = () => {
 
       const data = await response.json();
 
-      if (Array.isArray(data)) {
-        setPets(data);
+      if (Array.isArray(data.pets)) {
+        setPets(data.pets);
       } else {
         console.error('Error: Expected an array of pets, but received:', data);
       }
@@ -178,8 +183,8 @@ const PetsListPage = () => {
       const response = await fetch(`${BASE_URL}/pets`);
       const data = await response.json();
 
-      if (Array.isArray(data)) {
-        setPets(data);
+      if (Array.isArray(data.pets)) {
+        setPets(data.pets);
       } else {
         console.error('Error: Expected an array of meals, but received:', data);
       }
@@ -258,7 +263,7 @@ const PetsListPage = () => {
       <Drawer
         anchor="left"
         open={isDrawerOpen}
-        onClose={closeDrawer}
+        onClose={handleDrawerToggle}
         variant="temporary"
         style={{ width: '60% !important' }}
         // sx={{
@@ -269,28 +274,33 @@ const PetsListPage = () => {
           style={{
             width: '100%',
             height: '3.5rem',
-            backgroundColor: 'orange',
+            backgroundColor: 'black',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
           }}
         >
-          <Box style={{ margin: '1rem' }}>
-            <Link
-              to="/"
+          <Box
+            style={{
+              margin: '1rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white',
+            }}
+          >
+            <Typography
+              variant="body1"
               style={{
                 color: 'white',
-                textDecoration: 'none',
-                display: 'flex',
-                alignItems: 'center',
               }}
             >
-              <PetsIcon sx={{ marginRight: 0.4 }} /> PawClix
-            </Link>
+              Filters
+            </Typography>
           </Box>
         </Box>
         <Grid item xs={12} sm={12} md={12}>
-          <Box style={{ maxWidth: '280px' }}>
+          <Box style={{ maxWidth: '320px' }}>
             <Box style={{ padding: '0 1rem' }}>
               <Sidebar applyFilters={applyFilters} resetFilters={resetFilters} />
             </Box>
@@ -299,19 +309,74 @@ const PetsListPage = () => {
       </Drawer>
 
       {/* Sidebar */}
-      <Grid item xs={3} sm={4} md={3} sx={{ display: { xs: 'none', sm: 'block' } }}>
-        <Box style={{ maxWidth: '280px' }}>
-          {/* <Grid item xs={3} sx={{ display: { xs: 'none', md: 'block' } }}> */}
+      <Grid item xs={3} sm={4} md={3} sx={{ display: { xs: 'none', md: 'block' } }}>
+        <Box>
+          {/* <Box style={{ padding: '0 1rem' }}> */}
           <Sidebar applyFilters={applyFilters} resetFilters={resetFilters} />
-          {/* </Grid> */}
+          {/* </Box> */}
         </Box>
       </Grid>
 
       {/* Map Placeholder */}
-      <Grid item xs={12} sm={8} md={9}>
+      <Grid item xs={12} sm={12} md={9}>
         <TomTomClusterMap />
+        <Box
+          sx={{
+            display: { xs: 'flex', md: 'flex' },
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            padding: '16px 0 16px 0',
+            // marginBottom: '16px',
+            // backgroundColor: '#f9f9f9',
+            backgroundColor: '#fff',
+          }}
+        >
+          {/* <Typography variant="body1" component="div">
+            Discover {pagination.totalPets} Pet Listings Across {pagination.totalPages} Pages
+          </Typography> */}
+
+          <Button
+            variant="contained"
+            sx={{ display: { xs: 'flex', md: 'none' } }}
+            color="primary"
+            size="small"
+            onClick={handleDrawerToggle}
+            startIcon={<FilterListIcon />}
+          >
+            Filter
+          </Button>
+        </Box>
+        {/* <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '16px',
+            marginBottom: '16px',
+            backgroundColor: '#f9f9f9',
+            borderRadius: '8px',
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography variant="h6" component="div" sx={{ marginRight: '16px' }}>
+              13 Listings
+            </Typography>
+            <FormControl sx={{ minWidth: 120 }}>
+              <InputLabel>Sort By</InputLabel>
+              <Select>
+                <MenuItem value="recent">Most Recent</MenuItem>
+                <MenuItem value="nearest">Nearest</MenuItem>
+                <MenuItem value="price_asc">Price: Low to High</MenuItem>
+                <MenuItem value="price_desc">Price: High to Low</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+          <Button variant="contained" color="primary" startIcon={<FilterListIcon />}>
+            Filter
+          </Button>
+        </Box> */}
         {/* Pet Cards */}
-        <Grid item xs={12} style={{ marginTop: '2rem' }}>
+        <Grid item xs={12}>
           <Grid container spacing={3}>
             {pets.length === 0 && loading && (
               <Grid item xs={12} style={{ textAlign: 'center' }}>
@@ -386,11 +451,10 @@ const PetsListPage = () => {
         xs={12}
         sm={4}
         md={3}
-        lg={3}
         sx={{ display: { xs: 'none', sm: 'block', md: 'block' } }}
       ></Grid>
 
-      <Grid item xs={12} sm={8} md={9} lg={9}>
+      <Grid item xs={12} sm={8} md={9}>
         <Pagination
           sx={{ mt: 2 }}
           page={pagination.page}

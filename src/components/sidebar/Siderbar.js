@@ -63,6 +63,7 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
   const initialSizes = (queryParams.getAll('sizes') || []).flatMap((size) => size.split(','));
 
   const initialColors = (queryParams.getAll('colors') || []).flatMap((color) => color.split(','));
+
   const initialPatterns = (queryParams.getAll('patterns') || []).flatMap((pattern) =>
     pattern.split(','),
   );
@@ -93,130 +94,148 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
   //   fetchCategories();
   // }, [location.search]); // Empty dependency array ensures the effect runs only once when the component mounts
 
+  // new down
   useEffect(() => {
-    const fetchCategoryOptions = () => {
+    const fetchOptions = async () => {
       const category = t(`selectOptions.categoryOptions`, { returnObjects: true }) || [];
-
-      //Ensure options is an array before setting state
-      if (Array.isArray(category)) {
-        console.log('Fetched xxx category options:', category);
-        setCategories(category);
-      } else {
-        console.error('Invalid breed YYY options structure:', category);
-        setCategories([]);
-      }
-    };
-
-    fetchCategoryOptions();
-  }, [categories, t]);
-
-  useEffect(() => {
-    const fetchGenderOptions = () => {
       const gender = t(`selectOptions.genderOptions`, { returnObjects: true }) || [];
-
-      //Ensure options is an array before setting state
-      if (Array.isArray(gender)) {
-        console.log('Fetched xxx gender options:', gender);
-        setGenders(gender);
-      } else {
-        console.error('Invalid gender YYY options structure:', gender);
-        setGenders([]);
-      }
-    };
-
-    fetchGenderOptions();
-  }, [genders, t]);
-
-  useEffect(() => {
-    const fetchInitialStatusOptions = () => {
       const initialStatus = t(`selectOptions.initialStatusOptions`, { returnObjects: true }) || [];
-
-      //Ensure options is an array before setting state
-      if (Array.isArray(initialStatus)) {
-        console.log('Fetched xxx gender options:', initialStatus);
-        setStatuses(initialStatus);
-      } else {
-        console.error('Invalid gender YYY options structure:', initialStatus);
-        setStatuses([]);
-      }
-    };
-
-    fetchInitialStatusOptions();
-  }, [statuses, t]);
-
-  useEffect(() => {
-    const fetchSizesOptions = () => {
       const size = t(`selectOptions.sizeOptions`, { returnObjects: true }) || [];
-
-      //Ensure options is an array before setting state
-      if (Array.isArray(size)) {
-        console.log('Fetched xxx size options:', size);
-        setSizes(size);
-      } else {
-        console.error('Invalid size YYY options structure:', size);
-        setSizes([]);
-      }
-    };
-
-    fetchSizesOptions();
-  }, [sizes, t]);
-
-  useEffect(() => {
-    const fetchColorOptions = () => {
       const color = t(`selectOptions.colorOptions`, { returnObjects: true }) || [];
-
-      //Ensure options is an array before setting state
-      if (Array.isArray(color)) {
-        console.log('Fetched xxx color options:', color);
-        setColors(color);
-      } else {
-        console.error('Invalid color YYY options structure:', color);
-        setColors([]);
-      }
-    };
-
-    fetchColorOptions();
-  }, [colors, t]);
-
-  useEffect(() => {
-    const fetchPatternsOptions = () => {
       const pattern = t(`selectOptions.markingOptions`, { returnObjects: true }) || [];
 
-      //Ensure options is an array before setting state
-      if (Array.isArray(pattern)) {
-        console.log('Fetched xxx size options:', pattern);
-        setPatterns(pattern);
-      } else {
-        console.error('Invalid size YYY options structure:', pattern);
-        setPatterns([]);
-      }
+      setCategories(Array.isArray(category) ? category : []);
+      setGenders(Array.isArray(gender) ? gender : []);
+      setStatuses(Array.isArray(initialStatus) ? initialStatus : []);
+      setSizes(Array.isArray(size) ? size : []);
+      setColors(Array.isArray(color) ? color : []);
+      setPatterns(Array.isArray(pattern) ? pattern : []);
     };
 
-    fetchPatternsOptions();
-  }, [patterns, t]);
+    fetchOptions();
+  }, [t, selectedLanguage]);
+  // new up
+
+  // useEffect(() => {
+  //   const fetchCategoryOptions = () => {
+  //     const category = t(`selectOptions.categoryOptions`, { returnObjects: true }) || [];
+
+  //     //Ensure options is an array before setting state
+  //     if (Array.isArray(category)) {
+  //       console.log('Fetched xxx category options:', category);
+  //       setCategories(category);
+  //     } else {
+  //       console.error('Invalid breed YYY options structure:', category);
+  //       setCategories([]);
+  //     }
+  //   };
+
+  //   fetchCategoryOptions();
+  // }, [categories, t]);
+
+  // useEffect(() => {
+  //   const fetchGenderOptions = () => {
+  //     const gender = t(`selectOptions.genderOptions`, { returnObjects: true }) || [];
+
+  //     //Ensure options is an array before setting state
+  //     if (Array.isArray(gender)) {
+  //       console.log('Fetched xxx gender options:', gender);
+  //       setGenders(gender);
+  //     } else {
+  //       console.error('Invalid gender YYY options structure:', gender);
+  //       setGenders([]);
+  //     }
+  //   };
+
+  //   fetchGenderOptions();
+  // }, [genders, t]);
+
+  // useEffect(() => {
+  //   const fetchInitialStatusOptions = () => {
+  //     const initialStatus = t(`selectOptions.initialStatusOptions`, { returnObjects: true }) || [];
+
+  //     //Ensure options is an array before setting state
+  //     if (Array.isArray(initialStatus)) {
+  //       console.log('Fetched xxx gender options:', initialStatus);
+  //       setStatuses(initialStatus);
+  //     } else {
+  //       console.error('Invalid gender YYY options structure:', initialStatus);
+  //       setStatuses([]);
+  //     }
+  //   };
+
+  //   fetchInitialStatusOptions();
+  // }, [statuses, t]);
+
+  // useEffect(() => {
+  //   const fetchSizesOptions = () => {
+  //     const size = t(`selectOptions.sizeOptions`, { returnObjects: true }) || [];
+
+  //     //Ensure options is an array before setting state
+  //     if (Array.isArray(size)) {
+  //       console.log('Fetched xxx size options:', size);
+  //       setSizes(size);
+  //     } else {
+  //       console.error('Invalid size YYY options structure:', size);
+  //       setSizes([]);
+  //     }
+  //   };
+
+  //   fetchSizesOptions();
+  // }, [sizes, t]);
+
+  // useEffect(() => {
+  //   const fetchColorOptions = () => {
+  //     const color = t(`selectOptions.colorOptions`, { returnObjects: true }) || [];
+
+  //     //Ensure options is an array before setting state
+  //     if (Array.isArray(color)) {
+  //       console.log('Fetched xxx color options:', color);
+  //       setColors(color);
+  //     } else {
+  //       console.error('Invalid color YYY options structure:', color);
+  //       setColors([]);
+  //     }
+  //   };
+
+  //   fetchColorOptions();
+  // }, [colors, t]);
+
+  // useEffect(() => {
+  //   const fetchPatternsOptions = () => {
+  //     const pattern = t(`selectOptions.markingOptions`, { returnObjects: true }) || [];
+
+  //     //Ensure options is an array before setting state
+  //     if (Array.isArray(pattern)) {
+  //       console.log('Fetched xxx size options:', pattern);
+  //       setPatterns(pattern);
+  //     } else {
+  //       console.error('Invalid size YYY options structure:', pattern);
+  //       setPatterns([]);
+  //     }
+  //   };
+
+  //   fetchPatternsOptions();
+  // }, [patterns, t]);
 
   useEffect(() => {
-    // Update the state when the query parameters change
-    // setRecipeAuthor(queryParams.get("recipeAuthor") || "");
-    // setTotalTime(queryParams.get("totalTime") || "");
-    // setRecipeTitle(queryParams.get("recipeTitle") || "");
-    // // setHasReviews(queryParams.get("hasReviews") || "");
-    // setDifficulties(queryParams.getAll("difficulties") || []);
-    // setCuisines(queryParams.getAll("cuisines") || []);
-    // setOccasions(queryParams.getAll("occasions") || []);
-    // setCookingMethods(queryParams.getAll("cookingMethods") || []);
-    // setMeals(queryParams.getAll("meals") || []);
-    // setDiets(queryParams.getAll("diets") || []);
-    setCategories(queryParams.getAll('categories') || []);
-    setGenders(queryParams.getAll('genders') || []);
-    setStatuses(queryParams.getAll('statuses') || []);
-    setSizes(queryParams.getAll('sizes') || []);
     setIdentifier(queryParams.get('identifier') || '');
     setDate(queryParams.get('date') || '');
     setDistance(parseInt(queryParams.get('distance')) || 5);
-    setColors(queryParams.getAll('colors') || []);
-    setPatterns(queryParams.getAll('patterns') || []);
   }, [location.search]);
+
+  // useEffect(() => {
+
+  //   setCategories(queryParams.getAll('categories') || []);
+  //   setGenders(queryParams.getAll('genders') || []);
+  //   setStatuses(queryParams.getAll('statuses') || []);
+  //   setSizes(queryParams.getAll('sizes') || []);
+  //   setIdentifier(queryParams.get('identifier') || '');
+  //   setDate(queryParams.get('date') || '');
+  //   setDistance(parseInt(queryParams.get('distance')) || 5);
+  //   setColors(queryParams.getAll('colors') || []);
+  //   setPatterns(queryParams.getAll('patterns') || []);
+  // }, [location.search]);
 
   const handleApplyFilters = (e) => {
     e.preventDefault();
@@ -425,27 +444,9 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
     }
   };
 
-  // const handleColorChange = (color) => {
-  //   const isSelected = selectedColors.includes(color);
-
-  //   if (isSelected) {
-  //     // If the color is already selected, remove it from the selection
-  //     setSelectedColors((prevColors) =>
-  //       prevColors.filter((selectedColor) => selectedColor !== color),
-  //     );
-  //   } else {
-  //     // If the color is not selected, add it to the selection
-  //     setSelectedColors((prevColors) => [...prevColors, color]);
-  //   }
-  // };
-
   const handleSliderChange = (event, newValue) => {
     setDistance(newValue);
   };
-
-  // const handleIdentifierChange = (event) => {
-  //   setIdentifier(event.target.value);
-  // };
 
   const [breed, setBreed] = useState('');
 
@@ -455,20 +456,8 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
 
   return (
     <form onSubmit={handleApplyFilters}>
-      <Typography variant="h6">Filters</Typography>
+      {/* <Typography variant="h6">Filters</Typography> */}
       <List>
-        {/* <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
-            <Box>
-              <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Status</InputLabel>
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Missing" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Found" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Reunited" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Adopted" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Sheltered" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Deceased" />
-            </Box>
-          </ListItem> */}
-
         {/* Filter by Initial Status */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box>
@@ -573,31 +562,6 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
           </Box>
         </ListItem>
 
-        {/* <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
-            <Box>
-              <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Category</InputLabel>
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Dog" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Cat" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Cow" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Horse" />
-            </Box>
-          </ListItem> */}
-        {/* <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
-            <Box>
-              <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Gender</InputLabel>
-              <Chip sx={{ marginRight: '5px' }} size="small" label="He" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="She" />
-            </Box>
-          </ListItem> */}
-        {/* <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
-            <Box>
-              <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Size</InputLabel>
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Small" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Medium" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Large" />
-            </Box>
-          </ListItem> */}
-
         {/* <ListItem
             sx={{ padding: "0 !important", paddingTop: "0.8rem !important" }}
           >
@@ -655,31 +619,6 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
             />
           </Box>
         </ListItem>
-        {/* <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
-            <Box>
-              <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Distance</InputLabel>
-              <Chip sx={{ marginRight: '5px' }} size="small" label="1km" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="5km" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="10km" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="50km" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="100km" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label=">100km" />
-            </Box>
-          </ListItem> */}
-
-        {/* <ListItem
-            sx={{ padding: "0 !important", paddingTop: "0.8rem !important" }}
-          >
-            <Box>
-              <InputLabel sx={{ fontWeight: "500", color: "#000" }}>
-                Coat Type
-              </InputLabel>
-              <Chip sx={{ marginRight: "5px" }} size="small" label="Hairless" />
-              <Chip sx={{ marginRight: "5px" }} size="small" label="Short" />
-              <Chip sx={{ marginRight: "5px" }} size="small" label="Medium" />
-              <Chip sx={{ marginRight: "5px" }} size="small" label="Long" />
-            </Box>
-          </ListItem> */}
 
         {/* Filter by Pattern */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
@@ -716,21 +655,6 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
               ))}
           </Box>
         </ListItem>
-
-        {/* <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
-            <Box>
-              <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Color</InputLabel>
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Black" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="White" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Brown" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Red" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Gold" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Blue" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Gray" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Cream" />
-              <Chip sx={{ marginRight: '5px' }} size="small" label="Yellow" />
-            </Box>
-          </ListItem> */}
       </List>
       {/* Apply Filters Button */}
       <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
@@ -738,7 +662,13 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
           Apply Filters
         </Button>
       </ListItem>
-      <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
+      <ListItem
+        sx={{
+          padding: '0 !important',
+          paddingTop: '0.8rem !important',
+          paddingBottom: '0.8rem !important',
+        }}
+      >
         <Button
           onClick={handleResetFilters}
           variant="outlined"
