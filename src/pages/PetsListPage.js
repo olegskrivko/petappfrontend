@@ -21,18 +21,23 @@ import {
   DialogActions,
   TextField,
   IconButton,
+  Drawer,
   colors,
 } from '@mui/material';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import PetsIcon from '@mui/icons-material/Pets';
 import { Link as MuiLink } from '@mui/material';
 import CardMedia from '@mui/material/CardMedia';
 import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../middleware/config';
 import TomTomClusterMap from '../components/map/TomTomClusterMap';
 import Pagination from '@mui/material/Pagination';
+import { useDrawer } from '../context/DrawerContext';
 // Import Images
 import NoListingsAvailableImg from '../images/file_searching_amico.svg';
 
 const PetsListPage = () => {
+  const { isDrawerOpen, closeDrawer } = useDrawer();
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -42,6 +47,12 @@ const PetsListPage = () => {
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const [pagination, setPagination] = useState({});
+
+  // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  // const handleDrawerToggle = () => {
+  //   setIsDrawerOpen(!isDrawerOpen);
+  // };
 
   const [appliedFilters, setAppliedFilters] = useState({
     // recipeTitle: queryParams.get('recipeTitle') || '',
@@ -227,13 +238,77 @@ const PetsListPage = () => {
 
   return (
     <Grid container spacing={3}>
+      {/* <Button
+        onClick={handleDrawerToggle}
+        style={{ margin: '8px ', color: 'white' }}
+        sx={{
+          display: {
+            xs: 'flex',
+            md: 'none',
+            position: 'fixed',
+            bottom: '100px',
+            backgroundColor: 'orange',
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
+        }}
+      >
+        <KeyboardDoubleArrowRightIcon style={{ margin: '8px ' }} />
+      </Button> */}
+      <Drawer
+        anchor="left"
+        open={isDrawerOpen}
+        onClose={closeDrawer}
+        variant="temporary"
+        style={{ width: '60% !important' }}
+        // sx={{
+        //   display: { xs: 'block', md: 'none' }, // Show only on small screens
+        // }}
+      >
+        <Box
+          style={{
+            width: '100%',
+            height: '3.5rem',
+            backgroundColor: 'orange',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Box style={{ margin: '1rem' }}>
+            <Link
+              to="/"
+              style={{
+                color: 'white',
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <PetsIcon sx={{ marginRight: 0.4 }} /> PawClix
+            </Link>
+          </Box>
+        </Box>
+        <Grid item xs={12} sm={12} md={12}>
+          <Box style={{ maxWidth: '280px' }}>
+            <Box style={{ padding: '0 1rem' }}>
+              <Sidebar applyFilters={applyFilters} resetFilters={resetFilters} />
+            </Box>
+          </Box>
+        </Grid>
+      </Drawer>
+
       {/* Sidebar */}
-      <Grid item xs={3}>
-        <Sidebar applyFilters={applyFilters} resetFilters={resetFilters} />
+      <Grid item xs={3} sm={4} md={3} sx={{ display: { xs: 'none', sm: 'block' } }}>
+        <Box style={{ maxWidth: '280px' }}>
+          {/* <Grid item xs={3} sx={{ display: { xs: 'none', md: 'block' } }}> */}
+          <Sidebar applyFilters={applyFilters} resetFilters={resetFilters} />
+          {/* </Grid> */}
+        </Box>
       </Grid>
 
       {/* Map Placeholder */}
-      <Grid item xs={9}>
+      <Grid item xs={12} sm={8} md={9}>
         <TomTomClusterMap />
         {/* Pet Cards */}
         <Grid item xs={12} style={{ marginTop: '2rem' }}>
@@ -306,9 +381,16 @@ const PetsListPage = () => {
           color="warning"
         /> */}
       </Grid>
-      <Grid item xs={3}></Grid>
+      <Grid
+        item
+        xs={12}
+        sm={4}
+        md={3}
+        lg={3}
+        sx={{ display: { xs: 'none', sm: 'block', md: 'block' } }}
+      ></Grid>
 
-      <Grid item xs={9}>
+      <Grid item xs={12} sm={8} md={9} lg={9}>
         <Pagination
           sx={{ mt: 2 }}
           page={pagination.page}

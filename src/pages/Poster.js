@@ -470,7 +470,7 @@ const Poster = ({ pet }) => {
               </Typography> */}
               {/* Generate QR code with pet ID or any relevant information */}
               <QRCode
-                value={`${DOMAIN_URL}/pets/${pet.id}`} // Change URL to your endpoint or pet details page
+                value={`${DOMAIN_URL}/pets/${pet._id}`} // Change URL to your endpoint or pet details page
                 style={{ width: 200, height: 200 }}
               />
             </Box>

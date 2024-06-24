@@ -740,43 +740,6 @@ const PetsDetailsPage = () => {
     return option ? option.label : '';
   };
 
-  // Function to generate PDF
-  // function generatePDF() {
-  //   const mapElement = document.getElementById("map");
-
-  //   // Check if the map element exists
-  //   if (!mapElement) {
-  //     console.error("Map element not found");
-  //     return;
-  //   }
-
-  //   // Use html2canvas to capture the map element as a canvas
-  //   html2canvas(mapElement, {
-  //     useCORS: true,
-  //     background: "#ffffff",
-  //   })
-  //     .then((canvas) => {
-  //       // Convert the canvas to a data URL
-  //       const imgData = canvas.toDataURL("image/jpeg", 1.0);
-
-  //       // Adjust width and height
-  //       const imgWidth = (canvas.width * 60) / 240;
-  //       const imgHeight = (canvas.height * 70) / 240;
-
-  //       // Create a new PDF document
-  //       const pdf = new jsPDF("p", "mm", "a4");
-
-  //       // Add the image to the PDF document
-  //       pdf.addImage(imgData, "PNG", 15, 2, imgWidth, imgHeight);
-
-  //       // Save the PDF
-  //       pdf.save(`Budgeting.pdf`);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error creating PDF:", error);
-  //     });
-  // }
-
   if (loading) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" height="100vh">

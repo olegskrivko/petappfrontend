@@ -22,10 +22,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import { BASE_URL } from '../../middleware/config';
 import PetsIcon from '@mui/icons-material/Pets';
 import LanguageSelector from '../LanguageSelector';
+import ManageSearchIcon from '@mui/icons-material/ManageSearch';
+
 // Custom Components
 // import { useAuth } from "../../middleware/AuthContext";
 import { useAuth } from '../../middleware/AuthContext';
 import { LanguageContext } from '../../middleware/LanguageContext';
+import { useDrawer } from '../../context/DrawerContext';
 
 const drawerWidth = 240;
 
@@ -41,6 +44,7 @@ const navItems = {
 };
 
 function DrawerAppBar(props) {
+  const { openDrawer } = useDrawer();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   // const { isAuthenticated, logout } = useAuth();
   const { user, logout } = useAuth();
@@ -174,7 +178,20 @@ function DrawerAppBar(props) {
                 </Link>
               )}
             </Box>
-            <LanguageSelector />
+
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={openDrawer}
+                sx={{ display: { xs: 'block', sm: 'none', md: 'none' }, marginRight: 1 }}
+              >
+                <SearchIcon />
+              </IconButton>
+
+              <LanguageSelector />
+            </Box>
           </Toolbar>
         </Container>
       </AppBar>
