@@ -299,12 +299,12 @@ const PetsListPage = () => {
             </Typography>
           </Box>
         </Box>
-        <Grid item xs={12} sm={12} md={12}>
-          <Box style={{ maxWidth: '320px' }}>
-            <Box style={{ padding: '0 1rem' }}>
-              <Sidebar applyFilters={applyFilters} resetFilters={resetFilters} />
-            </Box>
+        <Grid item xs={12} sm={12} md={12} style={{}}>
+          {/* <Box style={{ maxWidth: '320px' }}> */}
+          <Box style={{ padding: '0 1rem', width: '70vw' }}>
+            <Sidebar applyFilters={applyFilters} resetFilters={resetFilters} />
           </Box>
+          {/* </Box> */}
         </Grid>
       </Drawer>
 
@@ -319,7 +319,7 @@ const PetsListPage = () => {
 
       {/* Map Placeholder */}
       <Grid item xs={12} sm={12} md={9}>
-        <TomTomClusterMap />
+        <TomTomClusterMap pets={pets} />
         <Box
           sx={{
             display: { xs: 'flex', md: 'flex' },
