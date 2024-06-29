@@ -679,7 +679,7 @@ const TomTomClusterMap = ({ pets }) => {
       const points = pets.map((point, index) => ({
         coordinates: [point.location.coordinates[0], point.location.coordinates[1]],
         properties: {
-          petId: point._id,
+          // petId: point._id,
           id: point._id,
           name: point.initialStatus,
           img: point.mainImage ? point.mainImage : 'images/placeholder.jpg',
@@ -802,7 +802,7 @@ const TomTomClusterMap = ({ pets }) => {
                   newMarker.setPopup(
                     new tt.Popup({ offset: 30, closeButton: false }).setHTML(
                       `<div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden;">
-                        <a href='/pets/${feature.properties.petId}'>
+                        <a href='/pets/${feature.properties.id}'>
                           <div style="width: 120px; height: 120px; border-radius: 50%;  border: 3px solid white; 
                           background-image: url(${feature.properties.img});
                           background-size: cover;
@@ -858,81 +858,81 @@ const TomTomClusterMap = ({ pets }) => {
             map.current.getCanvas().style.cursor = '';
           });
 
-          if ('geolocation' in navigator) {
-            navigator.geolocation.getCurrentPosition((position) => {
-              const userLat = position.coords.latitude;
-              const userLng = position.coords.longitude;
-              const size = 200;
+          // if ('geolocation' in navigator) {
+          //   navigator.geolocation.getCurrentPosition((position) => {
+          //     const userLat = position.coords.latitude;
+          //     const userLng = position.coords.longitude;
+          //     const size = 200;
 
-              const locationPoint = {
-                width: size,
-                height: size,
-                data: new Uint8Array(size * size * 4),
-                onAdd: function () {
-                  const canvas = document.createElement('canvas');
-                  canvas.width = this.width;
-                  canvas.height = this.height;
-                  this.context = canvas.getContext('2d');
-                },
-                render: function () {
-                  const duration = 1100;
-                  const t = (performance.now() % duration) / duration;
+          //     const locationPoint = {
+          //       width: size,
+          //       height: size,
+          //       data: new Uint8Array(size * size * 4),
+          //       onAdd: function () {
+          //         const canvas = document.createElement('canvas');
+          //         canvas.width = this.width;
+          //         canvas.height = this.height;
+          //         this.context = canvas.getContext('2d');
+          //       },
+          //       render: function () {
+          //         const duration = 1100;
+          //         const t = (performance.now() % duration) / duration;
 
-                  const radius = 18 + 2 * this.easeInOutSine(t);
-                  const outerRadius = 80 * this.easeInOutSine(t) + radius;
-                  const context = this.context;
+          //         const radius = 18 + 2 * this.easeInOutSine(t);
+          //         const outerRadius = 80 * this.easeInOutSine(t) + radius;
+          //         const context = this.context;
 
-                  context.clearRect(0, 0, this.width, this.height);
-                  context.beginPath();
-                  context.arc(this.width / 2, this.height / 2, outerRadius, 0, Math.PI * 2);
-                  context.fillStyle = 'rgba(0, 145, 255,' + this.easeInOutSine(1 - t) + ')';
-                  context.fill();
+          //         context.clearRect(0, 0, this.width, this.height);
+          //         context.beginPath();
+          //         context.arc(this.width / 2, this.height / 2, outerRadius, 0, Math.PI * 2);
+          //         context.fillStyle = 'rgba(0, 145, 255,' + this.easeInOutSine(1 - t) + ')';
+          //         context.fill();
 
-                  context.beginPath();
-                  context.arc(this.width / 2, this.height / 2, radius, 0, Math.PI * 2);
-                  context.fillStyle = 'rgba(0, 145, 255, 1)';
-                  context.strokeStyle = 'white';
-                  context.lineWidth = 3 + this.easeInOutSine(1 - t);
-                  context.fill();
-                  context.stroke();
+          //         context.beginPath();
+          //         context.arc(this.width / 2, this.height / 2, radius, 0, Math.PI * 2);
+          //         context.fillStyle = 'rgba(0, 145, 255, 1)';
+          //         context.strokeStyle = 'white';
+          //         context.lineWidth = 3 + this.easeInOutSine(1 - t);
+          //         context.fill();
+          //         context.stroke();
 
-                  this.data = context.getImageData(0, 0, this.width, this.height).data;
-                  map.current.triggerRepaint();
-                  return true;
-                },
-                easeInOutSine: function (x) {
-                  return -(Math.cos(Math.PI * x) - 1) / 2;
-                },
-              };
+          //         this.data = context.getImageData(0, 0, this.width, this.height).data;
+          //         map.current.triggerRepaint();
+          //         return true;
+          //       },
+          //       easeInOutSine: function (x) {
+          //         return -(Math.cos(Math.PI * x) - 1) / 2;
+          //       },
+          //     };
 
-              map.current.addImage('pulsing-dot', locationPoint, { pixelRatio: 2 });
+          //     map.current.addImage('pulsing-dot', locationPoint, { pixelRatio: 2 });
 
-              map.current.addSource('points', {
-                type: 'geojson',
-                data: {
-                  type: 'FeatureCollection',
-                  features: [
-                    {
-                      type: 'Feature',
-                      geometry: {
-                        type: 'Point',
-                        coordinates: [userLng, userLat],
-                      },
-                    },
-                  ],
-                },
-              });
+          //     map.current.addSource('points', {
+          //       type: 'geojson',
+          //       data: {
+          //         type: 'FeatureCollection',
+          //         features: [
+          //           {
+          //             type: 'Feature',
+          //             geometry: {
+          //               type: 'Point',
+          //               coordinates: [userLng, userLat],
+          //             },
+          //           },
+          //         ],
+          //       },
+          //     });
 
-              map.current.addLayer({
-                id: 'points',
-                type: 'symbol',
-                source: 'points',
-                layout: {
-                  'icon-image': 'pulsing-dot',
-                },
-              });
-            });
-          }
+          //     map.current.addLayer({
+          //       id: 'points',
+          //       type: 'symbol',
+          //       source: 'points',
+          //       layout: {
+          //         'icon-image': 'pulsing-dot',
+          //       },
+          //     });
+          //   });
+          // }
         }
       });
     });

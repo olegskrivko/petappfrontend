@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import tt from "@tomtom-international/web-sdk-maps";
-import "@tomtom-international/web-sdk-maps/dist/maps.css";
-import { TOMTOM_API } from "../../middleware/config";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { renderToStaticMarkup } from "react-dom/server";
+import React, { useEffect, useRef, useState } from 'react';
+import tt from '@tomtom-international/web-sdk-maps';
+import '@tomtom-international/web-sdk-maps/dist/maps.css';
+import { TOMTOM_API } from '../../middleware/config';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { renderToStaticMarkup } from 'react-dom/server';
 
-import CustomAlert from "../alert/CustomAlert";
+import CustomAlert from '../alert/CustomAlert';
 
 const TomTomMap = ({ onLocationChange }) => {
   const mapElement = useRef(null);
@@ -34,9 +34,9 @@ const TomTomMap = ({ onLocationChange }) => {
     // iconElement.style.height = "30px";
     // iconElement.style.borderRadius = "50%";
     // Create a custom marker icon using a Material-UI icon
-    const iconElement = document.createElement("div");
+    const iconElement = document.createElement('div');
     const iconMarkup = renderToStaticMarkup(
-      <LocationOnIcon style={{ color: "#D30A0A", fontSize: "2rem" }} />
+      <LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />,
     );
     iconElement.innerHTML = iconMarkup;
 
@@ -105,34 +105,28 @@ const TomTomMap = ({ onLocationChange }) => {
       (error) => {
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            setErrorMessage("Geolocation Permission Denied");
+            setErrorMessage('Geolocation Permission Denied');
             setSolutionMessage(
-              "Please enable GPS and allow location access in your browser settings."
+              'Please enable GPS and allow location access in your browser settings.',
             );
             break;
           case error.POSITION_UNAVAILABLE:
-            setErrorMessage("Location Information Unavailable");
-            setSolutionMessage(
-              "Please check your device's location settings or try again later."
-            );
+            setErrorMessage('Location Information Unavailable');
+            setSolutionMessage("Please check your device's location settings or try again later.");
             break;
           case error.TIMEOUT:
-            setErrorMessage("Geolocation Request Timed Out");
-            setSolutionMessage(
-              "Please ensure your device has a stable connection and try again."
-            );
+            setErrorMessage('Geolocation Request Timed Out');
+            setSolutionMessage('Please ensure your device has a stable connection and try again.');
             break;
           case error.UNKNOWN_ERROR:
-            setErrorMessage("Unknown Error Occurred");
+            setErrorMessage('Unknown Error Occurred');
             setSolutionMessage(
-              "An unknown error occurred while retrieving your location. Please try again."
+              'An unknown error occurred while retrieving your location. Please try again.',
             );
             break;
           default:
-            setErrorMessage("An Error Occurred");
-            setSolutionMessage(
-              "An unexpected error occurred. Please try again."
-            );
+            setErrorMessage('An Error Occurred');
+            setSolutionMessage('An unexpected error occurred. Please try again.');
         }
         // Fallback to hardcoded initial value
         const initialLngLat = [24.105078, 56.946285];
@@ -140,10 +134,10 @@ const TomTomMap = ({ onLocationChange }) => {
           marker.current.setLngLat(initialLngLat);
           map.current.setCenter(initialLngLat);
         }
-      }
+      },
     );
     // Handle marker drag end event to update coordinates
-    marker.current.on("dragend", () => {
+    marker.current.on('dragend', () => {
       const lngLat = marker.current.getLngLat();
       console.log(`Longitude: ${lngLat.lng}, Latitude: ${lngLat.lat}`);
       const coords = { lat: lngLat.lat, lng: lngLat.lng };
@@ -151,7 +145,7 @@ const TomTomMap = ({ onLocationChange }) => {
     });
 
     // Add click event listener to the map to place the marker
-    map.current.on("click", (event) => {
+    map.current.on('click', (event) => {
       const { lng, lat } = event.lngLat;
       marker.current.setLngLat([lng, lat]);
       console.log(`Marker placed at Longitude: ${lng}, Latitude: ${lat}`);
@@ -170,12 +164,9 @@ const TomTomMap = ({ onLocationChange }) => {
   return (
     <div>
       {errorMessage && (
-        <CustomAlert
-          errorMessage={errorMessage}
-          solutionMessage={solutionMessage}
-        ></CustomAlert>
+        <CustomAlert errorMessage={errorMessage} solutionMessage={solutionMessage}></CustomAlert>
       )}
-      <div ref={mapElement} style={{ height: "500px", width: "100%" }} />
+      <div ref={mapElement} style={{ height: '500px', width: '100%' }} />
     </div>
   );
 };
