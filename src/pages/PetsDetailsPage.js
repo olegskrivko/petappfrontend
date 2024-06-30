@@ -114,7 +114,7 @@ function CustomTabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3, pr: '0 !important' }}>{children}</Box>}
+      {value === index && <Box sx={{ padding: '1rem 0' }}>{children}</Box>}
     </Box>
   );
 }
@@ -203,7 +203,7 @@ function IconLabelTabs({ onAddLocation, onDeleteMessage, location, pet, comments
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <Grid container spacing={3}>
+        <Grid container>
           {user && (
             <ChatComponent
               user={user}
@@ -366,12 +366,13 @@ function IconLabelTabs({ onAddLocation, onDeleteMessage, location, pet, comments
       </CustomTabPanel>
 
       <CustomTabPanel value={value} index={1}>
-        <Grid container spacing={3}>
+        <Grid container>
           <LocationHistory pet={pet} />
         </Grid>
       </CustomTabPanel>
+
       <CustomTabPanel value={value} index={2}>
-        <Grid container spacing={3}>
+        <Grid container>
           <Grid item xs={12} style={{ paddingLeft: '0' }}>
             <Box mb={3}>
               <Box display="flex" alignItems="center" mb={1}>
@@ -457,7 +458,7 @@ function IconLabelTabs({ onAddLocation, onDeleteMessage, location, pet, comments
         </Grid>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
-        <Grid container spacing={3}>
+        <Grid container>
           <Grid item xs={12} sm={12} md={12} lg={12} style={{ paddingLeft: '0' }}>
             <Box mb={3}>
               <Box display="flex" alignItems="center" mb={1}>
@@ -815,7 +816,7 @@ const PetsDetailsPage = () => {
   const genderIcon = pet.gender === 'Male' ? <MaleIcon /> : <FemaleIcon />;
 
   return (
-    <Grid container spacing={3} padding={2}>
+    <Grid container spacing={3}>
       <Grid item xs={12}>
         <Typography variant="h5" gutterBottom textAlign="center">
           <span style={{ textTransform: 'capitalize' }}>

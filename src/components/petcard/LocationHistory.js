@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Grid,
   Typography,
@@ -11,55 +11,54 @@ import {
   TextField,
   Box,
   Avatar,
-} from "@mui/material";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import moment from "moment";
-import AssistantPhotoIcon from "@mui/icons-material/AssistantPhoto";
-import EventIcon from "@mui/icons-material/Event";
-import EventBusyIcon from "@mui/icons-material/EventBusy";
-import EventAvailableIcon from "@mui/icons-material/EventAvailable";
-import EditCalendarIcon from "@mui/icons-material/EditCalendar";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import EventRepeatIcon from "@mui/icons-material/EventRepeat";
-import LocationOffIcon from "@mui/icons-material/LocationOff";
+} from '@mui/material';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import moment from 'moment';
+import AssistantPhotoIcon from '@mui/icons-material/AssistantPhoto';
+import EventIcon from '@mui/icons-material/Event';
+import EventBusyIcon from '@mui/icons-material/EventBusy';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import EventRepeatIcon from '@mui/icons-material/EventRepeat';
+import LocationOffIcon from '@mui/icons-material/LocationOff';
 
 const LocationHistory = ({ pet }) => {
   return (
-    <>
-      <Grid item xs={12} style={{ paddingLeft: "0" }}>
+    <Grid container rowSpacing={2}>
+      <Grid item xs={12} style={{ paddingLeft: '0' }}>
         <Card>
           <CardContent>
             <Box
               gap={2}
               style={{
-                display: "flex",
-                justifyContent: "start",
-                alignItems: "center",
+                display: 'flex',
+                justifyContent: 'start',
+                alignItems: 'center',
               }}
             >
-              <Avatar style={{ background: "#555" }}>
+              <Avatar style={{ background: '#555' }}>
                 <EventAvailableIcon />
               </Avatar>
               <Typography variant="body1">
-                Pet was {pet.initialStatus}{" "}
-                {moment(`${pet.date}T${pet.time}`).fromNow()}
+                Pet was {pet.initialStatus} {moment(`${pet.date}T${pet.time}`).fromNow()}
               </Typography>
             </Box>
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={12} style={{ paddingLeft: "0" }}>
+      <Grid item xs={12} style={{ paddingLeft: '0' }}>
         <Card>
           <CardContent>
             <Box
               gap={2}
               style={{
-                display: "flex",
-                justifyContent: "start",
-                alignItems: "center",
+                display: 'flex',
+                justifyContent: 'start',
+                alignItems: 'center',
               }}
             >
-              <Avatar style={{ background: "#555" }}>
+              <Avatar style={{ background: '#555' }}>
                 <EditCalendarIcon />
               </Avatar>
               <Typography variant="body1">
@@ -71,22 +70,22 @@ const LocationHistory = ({ pet }) => {
       </Grid>
       {/* {loc.location.coordinates} */}
       {pet && pet.locationHistory && pet.locationHistory.length > 0 ? (
-        <Grid item xs={12} style={{ paddingLeft: "0" }}>
+        <Grid item xs={12} style={{ paddingLeft: '0' }}>
           <Card>
             <CardContent>
               <List>
                 {pet.locationHistory.map((loc, index) => (
-                  <ListItem key={loc._id} divider style={{ paddingLeft: "0" }}>
+                  <ListItem key={loc._id} divider style={{ paddingLeft: '0' }}>
                     <ListItemAvatar>
-                      <Avatar style={{ background: "#555" }}>
+                      <Avatar style={{ background: '#555' }}>
                         <LocationOnIcon />
                       </Avatar>
                     </ListItemAvatar>
                     <ListItemText
                       primary={`Show on map`}
-                      secondary={`Added by ${loc.userId.username} on ${moment(
-                        loc.date
-                      ).format("MMMM Do YYYY, HH:mm")}`}
+                      secondary={`Added by ${loc.userId.username} on ${moment(loc.date).format(
+                        'MMMM Do YYYY, HH:mm',
+                      )}`}
                     />
                   </ListItem>
                 ))}
@@ -95,23 +94,21 @@ const LocationHistory = ({ pet }) => {
           </Card>
         </Grid>
       ) : (
-        <Grid item xs={12} style={{ paddingLeft: "0" }}>
+        <Grid item xs={12} style={{ paddingLeft: '0' }}>
           <Card>
             <CardContent>
               <Box
                 gap={2}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <Avatar style={{ background: "#555" }}>
+                <Avatar style={{ background: '#555' }}>
                   <LocationOffIcon />
                 </Avatar>
-                <Typography variant="body1">
-                  No location history available
-                </Typography>
+                <Typography variant="body1">No location history available</Typography>
               </Box>
             </CardContent>
           </Card>
@@ -150,18 +147,18 @@ const LocationHistory = ({ pet }) => {
         </Grid>
       )} */}
       {pet && pet.updatedStatus ? (
-        <Grid item xs={12} style={{ paddingLeft: "0" }}>
+        <Grid item xs={12} style={{ paddingLeft: '0' }}>
           <Card>
             <CardContent>
               <Box
                 gap={2}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <Avatar style={{ background: "#555" }}>
+                <Avatar style={{ background: '#555' }}>
                   <AssistantPhotoIcon />
                 </Avatar>
                 {/* <Typography variant="body1">Reunited</Typography> */}
@@ -169,14 +166,12 @@ const LocationHistory = ({ pet }) => {
                   <Typography variant="body1">{pet.updatedStatus}</Typography>
                   <ListItemText
                     // primary={`He was hiding in the city park.`}
-                    secondary={`${moment(pet.updatedAt).format(
-                      "MMMM Do YYYY, h:mm a"
-                    )}`}
+                    secondary={`${moment(pet.updatedAt).format('MMMM Do YYYY, h:mm a')}`}
                   />
                 </Box>
               </Box>
               <Box>
-                <Grid item xs={12} style={{ marginTop: "1rem" }}>
+                <Grid item xs={12} style={{ marginTop: '1rem' }}>
                   <TextField
                     id="petLastStatusDescription"
                     name="petLastStatusDescription"
@@ -197,18 +192,18 @@ const LocationHistory = ({ pet }) => {
           </Card>
         </Grid>
       ) : (
-        <Grid item xs={12} style={{ paddingLeft: "0" }}>
+        <Grid item xs={12} style={{ paddingLeft: '0' }}>
           <Card>
             <CardContent>
               <Box
                 gap={2}
                 style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
                 }}
               >
-                <Avatar style={{ background: "#555" }}>
+                <Avatar style={{ background: '#555' }}>
                   {/* <EventRepeatIcon /> */}
                   <EventBusyIcon />
                 </Avatar>
@@ -283,7 +278,7 @@ const LocationHistory = ({ pet }) => {
           </CardContent>
         </Card>
       </Grid> */}
-    </>
+    </Grid>
   );
 };
 
