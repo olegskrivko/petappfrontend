@@ -170,9 +170,9 @@ function IconLabelTabs({ onAddLocation, onDeleteMessage, location, pet, comments
   // };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <div sx={{ margin: '0', padding: '0' }}>
       {/* {user.id === pet.author ? <p>pet author</p> : <p>not pet author</p>} */}
-      <Box>
+      <div style={{ margin: '2rem 0' }}>
         <Tabs value={value} centered onChange={handleChange} aria-label="basic tabs example">
           <Tab
             icon={<MessageIcon />}
@@ -201,7 +201,7 @@ function IconLabelTabs({ onAddLocation, onDeleteMessage, location, pet, comments
             {...a11yProps(3)}
           />
         </Tabs>
-      </Box>
+      </div>
       <CustomTabPanel value={value} index={0}>
         <Grid container>
           {user && (
@@ -528,7 +528,7 @@ function IconLabelTabs({ onAddLocation, onDeleteMessage, location, pet, comments
           </Grid>
         </Grid>
       </CustomTabPanel>
-    </Box>
+    </div>
   );
 }
 // const formattedText = `${mainColor} ${petCategory} is ${petStatus} since ${petLostOrFoundDate} at ${petLostOrFoundTime}. It is a ${petAge} ${petBreed} with a ${markingPattern} pattern and ${markingColors.join(', ')} markings. The pet's identifier is ${petIdentifier}, and it is described as ${petSize} in size, ${petGender} in gender, and ${petBehavior} in behavior. Notes: ${notes}. If found, please contact the owner at phone number ${contactPhone} or email at ${contactEmail}.`;

@@ -10,7 +10,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.marker-icon {
+/* .marker-icon {
   background-position: center;
   background-size: 22px 22px;
   border-radius: 50%;
@@ -21,12 +21,12 @@ code {
   top: 3px;
   transform: rotate(45deg);
   width: 22px;
-  /* background-image: url('./images/cat.png'); */
-}
-.marker {
+
+} */
+/* .marker {
   height: 30px;
   width: 30px;
-}
+} */
 /* .marker-content {
   background: #9b59b6 !important;
   border-radius: 50% 50% 50% 0;
@@ -41,19 +41,19 @@ code {
   width: 30px;
 } */
 
-.marker-content {
+/* .marker-content {
   background: rgba(0, 0, 0, 0) !important;
   border-radius: 50% 50% 50% 0;
   height: 30px;
-  /* height: 30px; */
+  
   left: 50%;
   margin: -15px 0 0 -15px;
   position: absolute;
   top: 50%;
-  /* \transform: rotate(-45deg); */
+  
   width: 30px;
-  /* width: 30px; */
-}
+  
+} */
 .marker-content::before {
   /* background: #ffffff;
   border-radius: 50%;
@@ -66,11 +66,11 @@ code {
   z-index: -1; */
 }
 
-.mapboxgl-popup-tip {
+/* .mapboxgl-popup-tip {
   display: none !important;
-}
+} */
 
-.mapboxgl-popup-content {
+/* .mapboxgl-popup-content {
   background-color: none !important;
   background: none !important;
   border: 3px solid white;
@@ -80,5 +80,4 @@ code {
   padding: 0;
   margin: 0;
 
-  /*all: unset;*/
-}
+} */
