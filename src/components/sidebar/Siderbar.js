@@ -230,20 +230,20 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
     setDistance(parseInt(queryParams.get('distance')) || 5);
 
     // Check if userLocation is defined and update userCurrentLocation if necessary
+    // if (userLocation && userLocation.latitude && userLocation.longitude) {
+    //   setUserCurrentLocation(`${userLocation.latitude},${userLocation.longitude}`);
+    // }
+    // added userLocation to dependency array
+  }, [location.search]);
+
+  useEffect(() => {
+    console.log('userLocation:', userLocation);
+
     if (userLocation && userLocation.latitude && userLocation.longitude) {
+      console.log('Setting userCurrentLocation:', userLocation.latitude, userLocation.longitude);
       setUserCurrentLocation(`${userLocation.latitude},${userLocation.longitude}`);
     }
-    // added userLocation to dependency array
-  }, [location.search, userLocation]);
-
-  // useEffect(() => {
-  //   console.log('userLocation:', userLocation);
-
-  //   if (userLocation && userLocation.latitude && userLocation.longitude) {
-  //     console.log('Setting userCurrentLocation:', userLocation.latitude, userLocation.longitude);
-  //     setUserCurrentLocation(`${userLocation.latitude},${userLocation.longitude}`);
-  //   }
-  // }, [userLocation]);
+  }, [userLocation]);
 
   // useEffect(() => {
 
