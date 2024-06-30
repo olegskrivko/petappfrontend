@@ -95,8 +95,23 @@ const Footer = () => {
               </Link>
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
-              <Link to="/community-forums" style={{ color: 'darkgray', textDecoration: 'none' }}>
+              <Link to="/pet-infrastructure" style={{ color: 'darkgray', textDecoration: 'none' }}>
                 {/* Community Forums */} {t('footerLinks.communityForums')}
+              </Link>
+            </Typography>
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/pet-infrastructure" style={{ color: 'darkgray', textDecoration: 'none' }}>
+                How much does it cost to own a pet?
+              </Link>
+            </Typography>
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/pet-infrastructure" style={{ color: 'darkgray', textDecoration: 'none' }}>
+                Dog breeds
+              </Link>
+            </Typography>
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/pet-infrastructure" style={{ color: 'darkgray', textDecoration: 'none' }}>
+                Cat breeds
               </Link>
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
@@ -113,13 +128,16 @@ const Footer = () => {
               Explore
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
-              <Link to="/pet-care-guide" style={{ color: 'darkgray', textDecoration: 'none' }}>
+              <Link
+                to="/articles/how-to-find-a-lost-cat"
+                style={{ color: 'darkgray', textDecoration: 'none' }}
+              >
                 {/* Pet Care Guide */} {t('footerLinks.petCareGuide')}
               </Link>
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
-                to="/pet-compatibility-quiz"
+                to="/articles/how-to-find-a-lost-dog"
                 style={{ color: 'darkgray', textDecoration: 'none' }}
               >
                 {/* Pet Compatibility Quiz */} {t('footerLinks.petCompatibilityQuiz')}
@@ -148,8 +166,8 @@ const Footer = () => {
             </Typography>
 
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
-              <Link to="/how-to" style={{ color: 'darkgray', textDecoration: 'none' }}>
-                {/* How To */} {t('footerLinks.howTo')}
+              <Link to="/articles" style={{ color: 'darkgray', textDecoration: 'none' }}>
+                {/* How To */} {t('footerLinks.tipsAndAdvice')}
               </Link>
             </Typography>
           </Grid>

@@ -33,6 +33,9 @@ import ProfileSettingsPage from './pages/ProfileSettingsPage';
 import ProfileServicesPage from './pages/ProfileServicesPage';
 import ProfilePostsPage from './pages/ProfilePostsPage';
 import PetsPosterPage from './pages/PetsPosterPage';
+import CreateArticleForm from './pages/CreateArticleForm';
+import ArticlesListPage from './pages/ArticlesListPage';
+import ServicesListPage from './pages/ServicesListPage';
 
 // import SponsorshipsPage from "./pages/SponsorshipsPage";
 import './i18n'; // Import the i18n configuration
@@ -50,6 +53,8 @@ function App() {
                 <Route path="pets" element={<PetsListPage />} />
                 <Route path="pets/:id" element={<PetsDetailsPage />} />
                 <Route path="pets/:id/poster" element={<PetsPosterPage />} />
+                <Route path="articles" element={<ArticlesListPage />} />
+                <Route path="articles/:slug" element={<ArticleDetailsPage />} />
                 <Route
                   path="contact"
                   element={
@@ -60,6 +65,7 @@ function App() {
                 />
                 <Route path="feedback" element={<FeedbackPage />} />
                 <Route path="support" element={<SupportPage />} />
+
                 <Route path="admin/dashboard" element={<DashboardPage />} />
                 <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
                 <Route path="terms-of-service" element={<TermsOfServicePage />} />
@@ -84,9 +90,11 @@ function App() {
                 <Route path="user/profile" element={<ProfilePage />} />
                 <Route path="user/profile/posts" element={<ProfilePostsPage />} />
                 <Route path="user/profile/services" element={<ProfileServicesPage />} />
-
+                <Route path="create-article" element={<CreateArticleForm />} />
                 <Route path="user/profile/pets" element={<ProfilePetsPage />} />
                 <Route path="user/profile/settings" element={<ProfileSettingsPage />} />
+                <Route path="services" element={<ServicesListPage />} />
+
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="*" element={<NotFoundPage />} />
