@@ -29,7 +29,7 @@ import { AuthContext } from '../../middleware/AuthContext';
 import { LanguageContext } from '../../middleware/LanguageContext';
 import { useTranslation } from 'react-i18next';
 
-const Sidebar = ({ applyFilters, resetFilters }) => {
+const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
   const { t } = useTranslation();
   const { user } = useContext(AuthContext);
   const { selectedLanguage } = useContext(LanguageContext);
@@ -47,6 +47,7 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
   const [distance, setDistance] = useState(5);
   const [colors, setColors] = useState([]);
   const [patterns, setPatterns] = useState([]);
+  const [userCurrentLocation, setUserCurrentLocation] = useState('');
 
   const initialCategories = (queryParams.getAll('categories') || []).flatMap((category) =>
     category.split(','),
@@ -67,6 +68,10 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
   const initialPatterns = (queryParams.getAll('patterns') || []).flatMap((pattern) =>
     pattern.split(','),
   );
+  // const initialUserCurrentLocation = queryParams.getAll('userCurrentLocation') || '';
+
+  // console.log(initialUserCurrentLocation, 'initialUserCurrentLocationx');
+  console.log(userCurrentLocation, 'userCurrentLocationx');
   //const initialIdentifier = queryParams.get('identifier') || '';
 
   // Use selected state to manage UI updates
@@ -76,6 +81,7 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
   const [selectedSizes, setSelectedSizes] = useState(initialSizes);
   const [selectedColors, setSelectedColors] = useState(initialColors);
   const [selectedPatterns, setSelectedPatterns] = useState(initialPatterns);
+
   //const [selectedIndentifer, setSelectedIndentifer] = useState(initialIdentifier);
 
   // useEffect(() => {
@@ -222,7 +228,22 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
     setIdentifier(queryParams.get('identifier') || '');
     setDate(queryParams.get('date') || '');
     setDistance(parseInt(queryParams.get('distance')) || 5);
-  }, [location.search]);
+
+    // Check if userLocation is defined and update userCurrentLocation if necessary
+    if (userLocation && userLocation.latitude && userLocation.longitude) {
+      setUserCurrentLocation(`${userLocation.latitude},${userLocation.longitude}`);
+    }
+    // added userLocation to dependency array
+  }, [location.search, userLocation]);
+
+  // useEffect(() => {
+  //   console.log('userLocation:', userLocation);
+
+  //   if (userLocation && userLocation.latitude && userLocation.longitude) {
+  //     console.log('Setting userCurrentLocation:', userLocation.latitude, userLocation.longitude);
+  //     setUserCurrentLocation(`${userLocation.latitude},${userLocation.longitude}`);
+  //   }
+  // }, [userLocation]);
 
   // useEffect(() => {
 
@@ -311,6 +332,12 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
       newQueryParams.append('colors', colors);
     }
 
+    // Append userLocation as latitude,longitude if available
+    if (userCurrentLocation && userCurrentLocation.latitude && userCurrentLocation.longitude) {
+      const locationString = `${userCurrentLocation.latitude},${userCurrentLocation.longitude}`;
+      console.log('User Location:', locationString);
+      newQueryParams.append('userCurrentLocation', locationString);
+    }
     // Update the URL with the new query parameters
     navigate(`${location.pathname}?${newQueryParams}`);
 
@@ -325,6 +352,7 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
       distance,
       colors: selectedColors,
       patterns: selectedPatterns,
+      userCurrentLocation,
     });
   };
 
@@ -340,6 +368,7 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
     setDistance(5); // Reset distance to initial value
     setColors([]);
     setPatterns([]);
+    setUserCurrentLocation(''); // Reset userCurrentLocation to null or default
     // Reset the URL to remove query parameters
     navigate(location.pathname);
   };
@@ -604,6 +633,13 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
               value={distance}
               onChange={handleSliderChange}
               step={20}
+              disabled={
+                userCurrentLocation === '' ||
+                userCurrentLocation === null ||
+                userCurrentLocation === undefined
+                  ? true
+                  : false
+              }
               min={5}
               max={105}
               marks={[
@@ -656,6 +692,17 @@ const Sidebar = ({ applyFilters, resetFilters }) => {
           </Box>
         </ListItem>
       </List>
+      <div>
+        {userLocation ? (
+          <div>
+            <p>User Location:</p>
+            <p>Latitude: {userLocation.latitude}</p>
+            <p>Longitude: {userLocation.longitude}</p>
+          </div>
+        ) : (
+          <p>No user location available.</p>
+        )}
+      </div>
       {/* Apply Filters Button */}
       <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
         <Button type="submit" variant="contained" sx={{ width: '100%' }} color="warning">

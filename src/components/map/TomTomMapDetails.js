@@ -1,20 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
-import tt from "@tomtom-international/web-sdk-maps";
-import "@tomtom-international/web-sdk-maps/dist/maps.css";
-import { TOMTOM_API } from "../../middleware/config";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { renderToStaticMarkup } from "react-dom/server";
+import React, { useEffect, useRef, useState } from 'react';
+import tt from '@tomtom-international/web-sdk-maps';
+import '@tomtom-international/web-sdk-maps/dist/maps.css';
+import { TOMTOM_API } from '../../middleware/config';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { renderToStaticMarkup } from 'react-dom/server';
 
-import CustomAlert from "../alert/CustomAlert";
+import CustomAlert from '../alert/CustomAlert';
 
-const TomTomMapDetails = ({
-  pet,
-  location,
-  onAddLocation,
-  onRemoveLocation,
-}) => {
-  const [markerPosition, setMarkerPosition] = useState("hello test");
-  console.log("petpetpetpet", pet);
+const TomTomMapDetails = ({ pet, location, onAddLocation, onRemoveLocation }) => {
+  const [markerPosition, setMarkerPosition] = useState('hello test');
+  console.log('petpetpetpet', pet);
   const mapElement = useRef(null);
   const map = useRef(null);
   const marker = useRef(null);
@@ -29,9 +24,9 @@ const TomTomMapDetails = ({
     }
 
     // Create a new iconElement for the marker
-    const iconElement = document.createElement("div");
+    const iconElement = document.createElement('div');
     const iconMarkups = renderToStaticMarkup(
-      <LocationOnIcon style={{ color: "#006FB9", fontSize: "2rem" }} />
+      <LocationOnIcon style={{ color: '#006FB9', fontSize: '2rem' }} />,
     );
     iconElement.innerHTML = iconMarkups;
 
@@ -58,10 +53,10 @@ const TomTomMapDetails = ({
       .addTo(map.current);
 
     // Add an event listener to the marker's dragend event
-    addedMarker.current.on("dragend", () => {
+    addedMarker.current.on('dragend', () => {
       // Get the marker's new position
       const newPosition = addedMarker.current.getLngLat();
-      console.log("newPosition", newPosition);
+      console.log('newPosition', newPosition);
       // Update the marker position
       // setMarkerPosition(newPosition);
 
@@ -79,7 +74,7 @@ const TomTomMapDetails = ({
     // this worked when dependency was location, but now it's map.current. otherwise it will keep updating, loop.
     // }
 
-    console.log("location correct", center.lng, center.lat);
+    console.log('location correct', center.lng, center.lat);
   }, [map.current]); // Run this effect whenever location changes, // Run this effect whenever map.current or addLocationClicked changes
   // useEffect(() => {
   //   // Ensure the map is initialized
@@ -158,14 +153,14 @@ const TomTomMapDetails = ({
     // iconElement.style.height = "30px";
     // iconElement.style.borderRadius = "50%";
     // Create a custom marker icon using a Material-UI icon
-    const iconElement = document.createElement("div");
+    const iconElement = document.createElement('div');
     const iconMarkups = renderToStaticMarkup(
-      <LocationOnIcon style={{ color: "#800080", fontSize: "2rem" }} />
+      <LocationOnIcon style={{ color: '#800080', fontSize: '2rem' }} />,
     );
     iconElement.innerHTML = iconMarkups;
 
     const iconMarkup = renderToStaticMarkup(
-      <LocationOnIcon style={{ color: "#D30A0A", fontSize: "2rem" }} />
+      <LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />,
     );
 
     iconElement.innerHTML = iconMarkup;
@@ -181,14 +176,11 @@ const TomTomMapDetails = ({
     pet.locationHistory.forEach((location) => {
       if (location.location && Array.isArray(location.location.coordinates)) {
         // Create a new iconElement for each marker
-        const iconElement = document.createElement("div");
+        const iconElement = document.createElement('div');
         iconElement.innerHTML = iconMarkups;
 
         const marker = new tt.Marker({ element: iconElement, draggable: false })
-          .setLngLat([
-            location.location.coordinates[1],
-            location.location.coordinates[0],
-          ]) // [longitude, latitude]
+          .setLngLat([location.location.coordinates[1], location.location.coordinates[0]]) // [longitude, latitude]
           .addTo(map.current);
       }
     });
@@ -346,12 +338,9 @@ const TomTomMapDetails = ({
   return (
     <div>
       {errorMessage && (
-        <CustomAlert
-          errorMessage={errorMessage}
-          solutionMessage={solutionMessage}
-        ></CustomAlert>
+        <CustomAlert errorMessage={errorMessage} solutionMessage={solutionMessage}></CustomAlert>
       )}
-      <div ref={mapElement} style={{ height: "400px", width: "100%" }} />
+      <div ref={mapElement} style={{ height: '400px', width: '100%' }} />
     </div>
   );
 };

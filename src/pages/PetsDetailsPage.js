@@ -806,28 +806,41 @@ const PetsDetailsPage = () => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
+        <Typography variant="h6" color="error">
+          {error}
+        </Typography>
+      </Box>
+    );
   }
 
-  if (!pet) {
-    return <div>No pet found</div>;
-  }
+  // Check if pet is not found after loading
+  // if (!pet && loading) {
+  //   return (
+  //     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
+  //       <Typography variant="h6">Pet not found.</Typography>
+  //     </Box>
+  //   );
+  // }
 
-  const genderIcon = pet.gender === 'Male' ? <MaleIcon /> : <FemaleIcon />;
+  //const genderIcon = pet.gender === 'Male' ? <MaleIcon /> : <FemaleIcon />;
 
   return (
-    <Grid container spacing={3}>
-      <Grid item xs={12}>
-        <Typography variant="h5" gutterBottom textAlign="center">
-          <span style={{ textTransform: 'capitalize' }}>
-            {getInitialStatusLabel(pet.initialStatus)}
-          </span>{' '}
-          <span style={{ textTransform: 'capitalize' }}>{getCategoryLabel(pet.category)}</span>
-        </Typography>
-      </Grid>
-      <Grid item xs={12} sm={12} md={6} lg={6}>
-        <Card style={{ position: 'relative' }}>
-          {/* <CardActions>
+    <>
+      {pet && (
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Typography variant="h5" gutterBottom textAlign="center">
+              <span style={{ textTransform: 'capitalize' }}>
+                {getInitialStatusLabel(pet.initialStatus)}
+              </span>{' '}
+              <span style={{ textTransform: 'capitalize' }}>{getCategoryLabel(pet.category)}</span>
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={6}>
+            <Card style={{ position: 'relative' }}>
+              {/* <CardActions>
             <Avatar>A</Avatar>
             <Typography variant="body1">antohysmith32</Typography>
             <IconButton>
@@ -835,15 +848,15 @@ const PetsDetailsPage = () => {
             </IconButton>
           </CardActions> */}
 
-          <CardMedia
-            component="img"
-            alt={pet.initialStatus}
-            height="400"
-            image={pet.mainImage || '/default_pet_image.jpg'}
-            title={pet.initialStatus}
-          />
-          <Box style={{ position: 'absolute', top: -20, right: 0, zIndex: 999 }}>
-            {/* <IconButton
+              <CardMedia
+                component="img"
+                alt={pet.initialStatus}
+                height="400"
+                image={pet.mainImage || '/default_pet_image.jpg'}
+                title={pet.initialStatus}
+              />
+              <Box style={{ position: 'absolute', top: -20, right: 0, zIndex: 999 }}>
+                {/* <IconButton
               aria-label="add to favorites"
               sx={{
                 position: 'absolute',
@@ -854,232 +867,232 @@ const PetsDetailsPage = () => {
             >
               <FavoriteIcon />
             </IconButton> */}
-            <Tooltip
-              sx={{
-                position: 'absolute',
-                top: '40px',
-                right: '20px',
-                background: '#FFFFFF', // Customize as needed
-              }}
-              title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-            >
-              <IconButton onClick={handleFavorite}>
-                {isFavorite ? <FavoriteIcon color="secondary" /> : <FavoriteBorderIcon />}
-              </IconButton>
-            </Tooltip>
-            <Link to={`/pets/${id}/poster`}>
-              <IconButton
-                aria-label="Download"
-                sx={{
-                  position: 'absolute',
-                  top: '95px',
-                  right: '20px',
-                  background: '#FFFFFF', // Customize as needed
-                }}
-              >
-                <DownloadIcon />
-              </IconButton>
-            </Link>
-            <IconButton
-              aria-label="Share"
-              sx={{
-                position: 'absolute',
-                top: '150px',
-                right: '20px',
-                background: '#FFFFFF', // Customize as needed
-              }}
-              onClick={handleShare}
-            >
-              <ShareIcon />
-            </IconButton>
-          </Box>
-          <Box display="flex" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
-            <Box display="flex" alignItems="center" p={2}>
-              <VisibilityIcon color="action" />
-              <Typography variant="body2" color="textSecondary" ml={1}>
-                {pet.views} views
-              </Typography>
-            </Box>
-            <Box display="flex" alignItems="center" p={2}>
-              <FlagIcon color="action" />
-              <Typography variant="body2" color="textSecondary" ml={1}>
-                Report
-              </Typography>
-            </Box>
-          </Box>
-        </Card>
-      </Grid>
-      <Grid item xs={12} sm={12} md={6} lg={6}>
-        <Box>
-          <Grid container spacing={1}>
-            <Grid item xs={12} mb={1}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                }}
-              >
-                <TagIcon /> <b>Identifier:</b> {pet.identifier ? pet.identifier : 'N/A'}
-                <Typography variant="body1" gutterBottom></Typography>
+                <Tooltip
+                  sx={{
+                    position: 'absolute',
+                    top: '40px',
+                    right: '20px',
+                    background: '#FFFFFF', // Customize as needed
+                  }}
+                  title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                >
+                  <IconButton onClick={handleFavorite}>
+                    {isFavorite ? <FavoriteIcon color="secondary" /> : <FavoriteBorderIcon />}
+                  </IconButton>
+                </Tooltip>
+                <Link to={`/pets/${id}/poster`}>
+                  <IconButton
+                    aria-label="Download"
+                    sx={{
+                      position: 'absolute',
+                      top: '95px',
+                      right: '20px',
+                      background: '#FFFFFF', // Customize as needed
+                    }}
+                  >
+                    <DownloadIcon />
+                  </IconButton>
+                </Link>
+                <IconButton
+                  aria-label="Share"
+                  sx={{
+                    position: 'absolute',
+                    top: '150px',
+                    right: '20px',
+                    background: '#FFFFFF', // Customize as needed
+                  }}
+                  onClick={handleShare}
+                >
+                  <ShareIcon />
+                </IconButton>
               </Box>
-            </Grid>
-            <Grid item xs={12} mb={1}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                }}
-              >
-                {/* {pet.size ? getSizeName(options, pet.size) : "N/A"} */}
-                <HeightIcon /> <b>Size:</b> {getSizeLabel(pet.size)}
-                <Typography variant="body1" gutterBottom></Typography>
+              <Box display="flex" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+                <Box display="flex" alignItems="center" p={2}>
+                  <VisibilityIcon color="action" />
+                  <Typography variant="body2" color="textSecondary" ml={1}>
+                    {pet.views} views
+                  </Typography>
+                </Box>
+                <Box display="flex" alignItems="center" p={2}>
+                  <FlagIcon color="action" />
+                  <Typography variant="body2" color="textSecondary" ml={1}>
+                    Report
+                  </Typography>
+                </Box>
               </Box>
-            </Grid>
-            <Grid item xs={12} mb={1}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                }}
-              >
-                <MaleIcon /> <b>Gender:</b> {getGenderLabel(pet.gender)}
-                <Typography variant="body1" gutterBottom></Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} mb={1}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                }}
-              >
-                <MoodIcon /> <b>Behavior:</b> {getBehaviorLabel(pet.behavior)}
-                <Typography variant="body1" gutterBottom></Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} mb={1}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                }}
-              >
-                <CakeIcon /> <b>Age:</b> {getAgeLabel(pet.age)}
-                <Typography variant="body1" gutterBottom></Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} mb={1}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                }}
-              >
-                <MergeTypeIcon /> <b>Breed:</b> {getBreedLabel(pet.breed)}
-                <Typography variant="body1" gutterBottom></Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} mb={1}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                }}
-              >
-                <ColorLensIcon /> <b>Main Color:</b> {getMainColorLabel(pet.mainColor)}
-                <Typography variant="body1" gutterBottom></Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} mb={1}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                }}
-              >
-                <TextureIcon /> <b>Marking Pattern:</b> {getMarkingLabel(pet.markingPattern)}
-                <Typography variant="body1" gutterBottom></Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} mb={1}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                }}
-              >
-                <ColorLensIcon /> <b>Marking Colors:</b>{' '}
-                {pet.markingColors.join(', ') ? pet.markingColors.join(', ') : 'N/A'}
-                <Typography variant="body1" gutterBottom></Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} mb={1}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                }}
-              >
-                <EventIcon />{' '}
-                <span style={{ textTransform: 'capitalize' }}>
-                  <b>{getInitialStatusLabel(pet.initialStatus)}</b>
-                </span>
-                <b>Date:</b> {pet.date}
-              </Box>
-            </Grid>
-            <Grid item xs={12} mb={1}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                }}
-              >
-                <WatchLaterIcon />
-                <span style={{ textTransform: 'capitalize' }}>
-                  <b>{getInitialStatusLabel(pet.initialStatus)}</b>
-                </span>
-                <b>Time:</b> {pet.time}
-              </Box>
-            </Grid>
-            <Grid item xs={12}>
-              <Card style={{ border: 'none', boxShadow: 'none' }}>
-                <CardContent style={{ padding: '0' }}>
-                  <Box style={{ display: 'flex' }}>
-                    <Typography fontSize="small" variant="body1" style={{ color: 'gray' }}>
-                      Created {moment(pet.createdAt).fromNow()} <span>&nbsp;&nbsp;&nbsp;</span>|
-                      <span>&nbsp;&nbsp;&nbsp;</span>
-                      Updated {moment(pet.updatedAt).fromNow()}
-                    </Typography>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
+            </Card>
           </Grid>
-        </Box>
-      </Grid>
-      {/* <Button
+          <Grid item xs={12} sm={12} md={6} lg={6}>
+            <Box>
+              <Grid container spacing={1}>
+                <Grid item xs={12} mb={1}>
+                  <Box
+                    gap={1}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'start',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <TagIcon /> <b>Identifier:</b> {pet.identifier ? pet.identifier : 'N/A'}
+                    <Typography variant="body1" gutterBottom></Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} mb={1}>
+                  <Box
+                    gap={1}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'start',
+                      alignItems: 'center',
+                    }}
+                  >
+                    {/* {pet.size ? getSizeName(options, pet.size) : "N/A"} */}
+                    <HeightIcon /> <b>Size:</b> {getSizeLabel(pet.size)}
+                    <Typography variant="body1" gutterBottom></Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} mb={1}>
+                  <Box
+                    gap={1}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'start',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <MaleIcon /> <b>Gender:</b> {getGenderLabel(pet.gender)}
+                    <Typography variant="body1" gutterBottom></Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} mb={1}>
+                  <Box
+                    gap={1}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'start',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <MoodIcon /> <b>Behavior:</b> {getBehaviorLabel(pet.behavior)}
+                    <Typography variant="body1" gutterBottom></Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} mb={1}>
+                  <Box
+                    gap={1}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'start',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <CakeIcon /> <b>Age:</b> {getAgeLabel(pet.age)}
+                    <Typography variant="body1" gutterBottom></Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} mb={1}>
+                  <Box
+                    gap={1}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'start',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <MergeTypeIcon /> <b>Breed:</b> {getBreedLabel(pet.breed)}
+                    <Typography variant="body1" gutterBottom></Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} mb={1}>
+                  <Box
+                    gap={1}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'start',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <ColorLensIcon /> <b>Main Color:</b> {getMainColorLabel(pet.mainColor)}
+                    <Typography variant="body1" gutterBottom></Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} mb={1}>
+                  <Box
+                    gap={1}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'start',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <TextureIcon /> <b>Marking Pattern:</b> {getMarkingLabel(pet.markingPattern)}
+                    <Typography variant="body1" gutterBottom></Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} mb={1}>
+                  <Box
+                    gap={1}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'start',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <ColorLensIcon /> <b>Marking Colors:</b>{' '}
+                    {pet.markingColors.join(', ') ? pet.markingColors.join(', ') : 'N/A'}
+                    <Typography variant="body1" gutterBottom></Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} mb={1}>
+                  <Box
+                    gap={1}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'start',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <EventIcon />{' '}
+                    <span style={{ textTransform: 'capitalize' }}>
+                      <b>{getInitialStatusLabel(pet.initialStatus)}</b>
+                    </span>
+                    <b>Date:</b> {pet.date}
+                  </Box>
+                </Grid>
+                <Grid item xs={12} mb={1}>
+                  <Box
+                    gap={1}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'start',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <WatchLaterIcon />
+                    <span style={{ textTransform: 'capitalize' }}>
+                      <b>{getInitialStatusLabel(pet.initialStatus)}</b>
+                    </span>
+                    <b>Time:</b> {pet.time}
+                  </Box>
+                </Grid>
+                <Grid item xs={12}>
+                  <Card style={{ border: 'none', boxShadow: 'none' }}>
+                    <CardContent style={{ padding: '0' }}>
+                      <Box style={{ display: 'flex' }}>
+                        <Typography fontSize="small" variant="body1" style={{ color: 'gray' }}>
+                          Created {moment(pet.createdAt).fromNow()} <span>&nbsp;&nbsp;&nbsp;</span>|
+                          <span>&nbsp;&nbsp;&nbsp;</span>
+                          Updated {moment(pet.updatedAt).fromNow()}
+                        </Typography>
+                      </Box>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
+            </Box>
+          </Grid>
+          {/* <Button
         variant="contained"
         color="primary"
         onClick={() => generatePDF(pet)} // Call the generatePDF function with pet data
@@ -1088,8 +1101,8 @@ const PetsDetailsPage = () => {
         Download PDF
       </Button> */}
 
-      {/* Render the LostPetPage component with pet data */}
-      {/* <Box
+          {/* Render the LostPetPage component with pet data */}
+          {/* <Box
         id="pdf-content"
         sx={{ padding: 4, border: "1px solid #ccc", borderRadius: "8px" }}
       >
@@ -1119,7 +1132,7 @@ const PetsDetailsPage = () => {
           />
         )}
       </Box> */}
-      {/* <Button
+          {/* <Button
         variant="contained"
         color="primary"
         onClick={generatePDF}
@@ -1127,22 +1140,24 @@ const PetsDetailsPage = () => {
       >
         Download PDF
       </Button> */}
-      <Grid item xs={12} sm={12} md={12} lg={12}>
-        <TomTomMapDetails pet={pet} location={location} onAddLocation={handleAddLocation} />
-      </Grid>
-      <Grid item xs={12} sm={12} md={12} lg={12}>
-        <IconLabelTabs
-          pet={pet}
-          comments={comments}
-          location={location}
-          onDeleteMessage={handleDeleteMessage}
-          onAddLocation={handleAddLocation}
-        />
-      </Grid>
-      {/* <Grid item xs={12} sm={12} md={12} lg={12}>
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <TomTomMapDetails pet={pet} location={location} onAddLocation={handleAddLocation} />
+          </Grid>
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <IconLabelTabs
+              pet={pet}
+              comments={comments}
+              location={location}
+              onDeleteMessage={handleDeleteMessage}
+              onAddLocation={handleAddLocation}
+            />
+          </Grid>
+          {/* <Grid item xs={12} sm={12} md={12} lg={12}>
         <Poster pet={pet} />
       </Grid> */}
-    </Grid>
+        </Grid>
+      )}
+    </>
   );
 };
 

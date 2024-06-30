@@ -42,7 +42,7 @@ import NoListingsAvailableImg from '../images/file_searching_amico.svg';
 import FilterListIcon from '@mui/icons-material/FilterList';
 const PetsListPage = () => {
   // const { isDrawerOpen, closeDrawer } = useDrawer();
-
+  const [userLocation, setUserLocation] = useState(null);
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -60,11 +60,6 @@ const PetsListPage = () => {
   };
 
   const [appliedFilters, setAppliedFilters] = useState({
-    // recipeTitle: queryParams.get('recipeTitle') || '',
-    // // hasReviews: queryParams.get("hasReviews") || "",
-    // difficulties: queryParams.getAll('difficulties') || [],
-    // totalTime: queryParams.get('totalTime') || '',
-    // cuisines: queryParams.getAll('cuisines') || [],
     categories: queryParams.getAll('categories') || [],
     genders: queryParams.getAll('genders') || [],
     statuses: queryParams.getAll('statuses') || [],
@@ -73,10 +68,7 @@ const PetsListPage = () => {
     date: queryParams.get('date') || '',
     colors: queryParams.getAll('colors') || [],
     patterns: queryParams.getAll('patterns') || [],
-    // meals: queryParams.getAll('meals') || [],
-    // diets: queryParams.getAll('diets') || [],
-    // cookingMethods: queryParams.getAll('cookingMethods') || [],
-    // Add other filter keys and their default values here
+    userCurrentLocation: queryParams.get('userCurrentLocation') || '',
   });
 
   // new useEffect
@@ -156,11 +148,6 @@ const PetsListPage = () => {
 
       // Clear any applied filters
       const emptyFilters = {
-        // recipeTitle: '',
-        // // hasReviews: "",
-        // difficulties: [],
-        // totalTime: '',
-        // cookingMethods: [],
         categories: [],
         genders: [],
         statuses: [],
@@ -169,10 +156,7 @@ const PetsListPage = () => {
         date: '',
         colors: [],
         patterns: [],
-        // diets: [],
-        // meals: [],
-        // cuisines: [],
-        // Add other filter keys and their default values here
+        userCurrentLocation: '',
       };
 
       setAppliedFilters(emptyFilters);
@@ -302,7 +286,11 @@ const PetsListPage = () => {
         <Grid item xs={12} sm={12} md={12} style={{}}>
           {/* <Box style={{ maxWidth: '320px' }}> */}
           <Box style={{ padding: '0 1rem', width: '70vw' }}>
-            <Sidebar applyFilters={applyFilters} resetFilters={resetFilters} />
+            <Sidebar
+              applyFilters={applyFilters}
+              resetFilters={resetFilters}
+              userLocation={userLocation}
+            />
           </Box>
           {/* </Box> */}
         </Grid>
@@ -312,14 +300,18 @@ const PetsListPage = () => {
       <Grid item xs={3} sm={4} md={3} sx={{ display: { xs: 'none', md: 'block' } }}>
         <Box>
           {/* <Box style={{ padding: '0 1rem' }}> */}
-          <Sidebar applyFilters={applyFilters} resetFilters={resetFilters} />
+          <Sidebar
+            applyFilters={applyFilters}
+            resetFilters={resetFilters}
+            userLocation={userLocation}
+          />
           {/* </Box> */}
         </Box>
       </Grid>
 
       {/* Map Placeholder */}
       <Grid item xs={12} sm={12} md={9}>
-        <TomTomClusterMap pets={pets} />
+        <TomTomClusterMap pets={pets} onUserLocationChange={setUserLocation} />
         <Box
           sx={{
             display: { xs: 'flex', md: 'flex' },
