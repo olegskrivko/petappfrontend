@@ -244,7 +244,7 @@ import {
 } from '@mui/material';
 import avatarImg from '../images/paw.png';
 import { Link as ScrollLink, Element } from 'react-scroll';
-
+import { BASE_URL } from '../middleware/config';
 const ArticleDetailsPage = () => {
   const { slug } = useParams();
   const [article, setArticle] = useState(null);
@@ -254,7 +254,7 @@ const ArticleDetailsPage = () => {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const response = await axios.get(`/api/articles/${slug}`);
+        const response = await axios.get(`${BASE_URL}/articles/${slug}`);
         setArticle(response.data);
       } catch (err) {
         setError('Error fetching article');
