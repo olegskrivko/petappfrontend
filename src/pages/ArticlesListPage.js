@@ -64,6 +64,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { BASE_URL } from '../middleware/config';
 
 const ArticlesListPage = () => {
   const [articles, setArticles] = useState([]);
@@ -73,7 +74,7 @@ const ArticlesListPage = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await axios.get('/api/articles');
+        const response = await axios.get(`${BASE_URL}/articles`);
         setArticles(response.data);
         setLoading(false);
       } catch (err) {
