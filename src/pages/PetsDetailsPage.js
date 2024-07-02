@@ -241,12 +241,12 @@ function IconLabelTabs({ onAddLocation, onDeleteMessage, location, pet, comments
                           }}
                         >
                           <Avatar
-                            alt={comment.author.username}
-                            src={comment.author.username}
+                            alt={comment.author?.username}
+                            src={comment.author?.username}
                           ></Avatar>
                           <Box ml={2}>
                             <Typography variant="h6" component="div">
-                              {comment.author.username}
+                              {comment.author?.username}
                             </Typography>
 
                             <Box display="flex" alignItems="center">
@@ -473,12 +473,12 @@ function IconLabelTabs({ onAddLocation, onDeleteMessage, location, pet, comments
                   <Box display="flex" alignItems="center" gap={2} mb={2}>
                     <Avatar
                       style={{ background: '#555' }}
-                      alt={pet.author.username}
+                      alt={pet.author?.username}
                       // src={pet.author.username}
                     />
 
                     <Typography variant="body1">
-                      <b>Username:</b> {pet.author.username}
+                      <b>Username:</b> {pet.author?.username}
                     </Typography>
                     {/* <FiberManualRecordIcon
                       style={{
@@ -640,10 +640,20 @@ const PetsDetailsPage = () => {
 
   useEffect(() => {
     const fetchPet = async () => {
+      const token = localStorage.getItem('token');
       try {
         const response = await axios.get(`${BASE_URL}/pets/${id}`);
         setPet(response.data);
         //setIsFavorite(user?.favoritedPets?.includes(response.data._id)); // Check if pet is already favorited
+
+        if (user && id) {
+          // Check if the pet is in the user's favorites
+          const favoritesResponse = await axios.get(`${BASE_URL}/users/${user.id}/favorites`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          const favoritedPets = favoritesResponse.data;
+          setIsFavorite(favoritedPets.some((favPet) => favPet._id === id));
+        }
       } catch (error) {
         console.error('Error fetching pet details:', error.message);
         setError('Error fetching pet details');
@@ -651,6 +661,25 @@ const PetsDetailsPage = () => {
         setLoading(false);
       }
     };
+
+    // const fetchPet = async () => {
+    //   const token = localStorage.getItem('token');
+    //   try {
+    //     const response = await axios.get(`${BASE_URL}/pets/${id}`, {
+    //       headers: { Authorization: `Bearer ${token}` },
+    //     });
+    //     setPet(response.data);
+
+    //     // Check if the pet is in the user's favorites
+    //     const favoritesResponse = await axios.get(`${BASE_URL}/users/${user.id}/favorites`, {
+    //       headers: { Authorization: `Bearer ${token}` },
+    //     });
+    //     const favoritedPets = favoritesResponse.data;
+    //     setIsFavorite(favoritedPets.some((favPet) => favPet._id === id));
+    //   } catch (error) {
+    //     console.error('Error fetching pet details:', error);
+    //   }
+    // };
 
     const fetchOptions = async () => {
       try {
@@ -747,18 +776,32 @@ const PetsDetailsPage = () => {
   //   try {
   //     const token = localStorage.getItem('token');
   //     const favoriteAction = isFavorite ? 'remove' : 'add';
+  //     const url = `${BASE_URL}/users/${user.id}/favorites/${id}/${favoriteAction}`;
+
+  //     // Debugging: Log URL and headers
+  //     console.log('Request URL:', url);
+  //     console.log('Token:', token);
+
   //     const response = await axios.put(
-  //       `${BASE_URL}/users/${user.id}/favorites/${id}/${favoriteAction}`,
+  //       url,
   //       {},
-  //       {
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       },
+  //       // {
+  //       //   headers: { Authorization: `Bearer ${token}` },
+  //       // },
   //     );
+
+  //     // Debugging: Log response
+  //     console.log('Response:', response);
+
   //     if (response.status === 200) {
   //       setIsFavorite(!isFavorite); // Toggle favorite status
   //     }
   //   } catch (error) {
-  //     console.error('Error toggling favorite:', error);
+  //     // Debugging: Log error details
+  //     console.error(
+  //       'Error toggling favorite:',
+  //       error.response ? error.response.data : error.message,
+  //     );
   //     // Handle error, e.g., show error message
   //   }
   // };
@@ -769,31 +812,27 @@ const PetsDetailsPage = () => {
       const favoriteAction = isFavorite ? 'remove' : 'add';
       const url = `${BASE_URL}/users/${user.id}/favorites/${id}/${favoriteAction}`;
 
-      // Debugging: Log URL and headers
       console.log('Request URL:', url);
       console.log('Token:', token);
 
       const response = await axios.put(
         url,
         {},
-        // {
-        //   headers: { Authorization: `Bearer ${token}` },
-        // },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
       );
 
-      // Debugging: Log response
       console.log('Response:', response);
 
       if (response.status === 200) {
         setIsFavorite(!isFavorite); // Toggle favorite status
       }
     } catch (error) {
-      // Debugging: Log error details
       console.error(
         'Error toggling favorite:',
         error.response ? error.response.data : error.message,
       );
-      // Handle error, e.g., show error message
     }
   };
 
@@ -867,12 +906,26 @@ const PetsDetailsPage = () => {
             >
               <FavoriteIcon />
             </IconButton> */}
-                <Tooltip
+                {/* <Tooltip
                   sx={{
                     position: 'absolute',
                     top: '40px',
                     right: '20px',
                     background: '#FFFFFF', // Customize as needed
+                  }}
+                  title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                >
+                  <IconButton onClick={handleFavorite}>
+                    {isFavorite ? <FavoriteIcon color="secondary" /> : <FavoriteBorderIcon />}
+                  </IconButton>
+                </Tooltip> */}
+
+                <Tooltip
+                  sx={{
+                    position: 'absolute',
+                    top: '40px',
+                    right: '20px',
+                    background: '#FFFFFF',
                   }}
                   title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
                 >

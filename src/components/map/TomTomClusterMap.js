@@ -404,42 +404,212 @@
 ///////////////////////////////////////////////////////////
 // CUSTOM ICONS START
 ///////////////////////////////////////////////////////////
+// import React, { useEffect, useRef, useState } from 'react';
+// import tt from '@tomtom-international/web-sdk-maps';
+// import '@tomtom-international/web-sdk-maps/dist/maps.css';
+// import { TOMTOM_API } from '../../middleware/config';
+// import { renderToStaticMarkup } from 'react-dom/server';
+// import LocationOnIcon from '@mui/icons-material/LocationOn'; // Import MUI icon
+// import iconDog from '../../images/dog.png';
+// import iconCat from '../../images/cat.png';
+// import iconPaw from '../../images/paw.png';
+
+// const TomTomMap = ({ pets, onUserLocationChange }) => {
+//   const mapElement = useRef(null);
+//   const map = useRef(null);
+//   const markersOnTheMap = useRef({});
+//   const [errorMessage, setErrorMessage] = useState(null);
+//   const [solutionMessage, setSolutionMessage] = useState(null);
+
+//   const addedMarker = useRef(null);
+
+//   // Function to get icon URL based on pet category
+//   const getIconForCategory = (category) => {
+//     switch (category) {
+//       case '1':
+//         return iconDog; // Replace with actual path for category 1
+//       case '2':
+//         return iconCat; // Replace with actual path for category 2
+//       default:
+//         return iconPaw; // Replace with actual default icon path
+//     }
+//   };
+
+//   useEffect(() => {
+//     // if (!mapElement.current) return;
+//     if (!mapElement.current || !pets.length) return;
+
+//     // Initialize the map
+//     map.current = tt.map({
+//       key: TOMTOM_API,
+//       container: mapElement.current,
+//       center: [24.105078, 56.946285], // Example initial center
+//       zoom: 6, // Example initial zoom level
+//     });
+
+//     // Add controls to the map
+//     map.current.addControl(new tt.FullscreenControl());
+//     map.current.addControl(new tt.NavigationControl());
+
+//     // Add Geolocation control to the map
+//     const geolocateControl = new tt.GeolocateControl({
+//       positionOptions: {
+//         enableHighAccuracy: true,
+//       },
+//       showAccuracyCircle: false,
+//       trackUserLocation: true,
+//     });
+
+//     map.current.addControl(geolocateControl);
+
+//     // Event listener for when the user's position is found
+//     geolocateControl.on('geolocate', (e) => {
+//       const coords = e.coords;
+//       const { latitude, longitude } = coords;
+//       onUserLocationChange({ latitude, longitude });
+//     });
+
+//     // Clear existing markers
+//     Object.values(markersOnTheMap.current).forEach((marker) => marker.remove());
+//     markersOnTheMap.current = {};
+
+//     // Add new markers for each pet
+//     pets.forEach((pet) => {
+//       const { _id, location, mainImage, category } = pet;
+//       const { coordinates } = location;
+
+//       const iconUrl = getIconForCategory(category);
+
+//       const iconElement = document.createElement('div');
+//       const iconMarkups = renderToStaticMarkup(
+//         <img
+//           src={iconUrl}
+//           alt={`Category ${category}`}
+//           style={{ width: '30px', height: '30px' }}
+//         />,
+//       );
+//       iconElement.innerHTML = iconMarkups;
+
+//       if (coordinates && coordinates.length === 2) {
+//         const marker = new tt.Marker({ element: iconElement })
+//           .setLngLat(coordinates)
+//           .addTo(map.current)
+//           .setPopup(
+//             new tt.Popup({ offset: 30, closeButton: false }).setHTML(
+//               `<div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden;">
+//                  <a href='/pets/${_id}'>
+//                    <div style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;
+//                      background-image: url(${mainImage});
+//                      background-size: cover;
+//                      background-position: center;">
+//                    </div>
+//                  </a>
+//                </div>`,
+//             ),
+//           );
+
+//         markersOnTheMap.current[_id] = marker;
+//       }
+//     });
+
+//     return () => {
+//       if (map.current) {
+//         map.current.remove();
+//         map.current = null;
+//       }
+//     }; // Cleanup on unmount
+//   }, [pets]);
+
+//   // useEffect(() => {
+//   //   if (!mapElement.current) return;
+
+//   //   map.current = tt.map({
+//   //     key: TOMTOM_API,
+//   //     container: mapElement.current,
+//   //     center: [24.105078, 56.946285], // Example initial center
+//   //     zoom: 6, // Example initial zoom level
+//   //   });
+
+//   //   map.current.addControl(new tt.FullscreenControl());
+//   //   map.current.addControl(new tt.NavigationControl());
+
+//   //   return () => {
+//   //     if (map.current) {
+//   //       map.current.remove();
+//   //       map.current = null;
+//   //     }
+//   //   }; // Cleanup on unmount
+//   // }, []);
+
+//   // useEffect(() => {
+//   //   if (!map.current || !pets.length) return;
+
+//   //   // Clear existing markers
+//   //   Object.values(markersOnTheMap.current).forEach((marker) => marker.remove());
+//   //   markersOnTheMap.current = {};
+
+//   //   // Add new markers for each pet
+//   //   pets.forEach((pet) => {
+//   //     const { _id, location, mainImage, category } = pet;
+//   //     const { coordinates } = location;
+
+//   //     const iconUrl = getIconForCategory(category);
+
+//   //     const iconElement = document.createElement('div');
+//   //     const iconMarkups = renderToStaticMarkup(
+//   //       <img
+//   //         src={iconUrl}
+//   //         alt={`Category ${category}`}
+//   //         style={{ width: '30px', height: '30px' }}
+//   //       />,
+//   //     );
+//   //     iconElement.innerHTML = iconMarkups;
+
+//   //     if (coordinates && coordinates.length === 2) {
+//   //       const marker = new tt.Marker({ element: iconElement })
+//   //         .setLngLat(coordinates)
+//   //         .addTo(map.current)
+//   //         .setPopup(
+//   //           new tt.Popup({ offset: 30, closeButton: false }).setHTML(
+//   //             `<div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden;">
+//   //               <a href='/pets/${_id}'>
+//   //                 <div style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;
+//   //                   background-image: url(${mainImage});
+//   //                   background-size: cover;
+//   //                   background-position: center;">
+//   //                 </div>
+//   //               </a>
+//   //             </div>`,
+//   //           ),
+//   //         );
+
+//   //       markersOnTheMap.current[_id] = marker;
+//   //     }
+//   //   });
+//   // }, [pets]);
+
+//   return <div ref={mapElement} style={{ width: '100%', height: '500px' }} />;
+// };
+
+// export default TomTomMap;
+///////////////////////////////////////////////////////////
+// CUSTOM ICONS END
+///////////////////////////////////////////////////////////
 import React, { useEffect, useRef, useState } from 'react';
 import tt from '@tomtom-international/web-sdk-maps';
 import '@tomtom-international/web-sdk-maps/dist/maps.css';
 import { TOMTOM_API } from '../../middleware/config';
 import { renderToStaticMarkup } from 'react-dom/server';
-import LocationOnIcon from '@mui/icons-material/LocationOn'; // Import MUI icon
-import iconDog from '../../images/dog.png';
-import iconCat from '../../images/cat.png';
-import iconPaw from '../../images/paw.png';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
-const TomTomMap = ({ pets, onUserLocationChange }) => {
+const TomTomMap = ({ pets }) => {
   const mapElement = useRef(null);
   const map = useRef(null);
   const markersOnTheMap = useRef({});
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [solutionMessage, setSolutionMessage] = useState(null);
-
-  const addedMarker = useRef(null);
-
-  // Function to get icon URL based on pet category
-  const getIconForCategory = (category) => {
-    switch (category) {
-      case '1':
-        return iconDog; // Replace with actual path for category 1
-      case '2':
-        return iconCat; // Replace with actual path for category 2
-      default:
-        return iconPaw; // Replace with actual default icon path
-    }
-  };
 
   useEffect(() => {
-    // if (!mapElement.current) return;
-    if (!mapElement.current || !pets.length) return;
+    if (!mapElement.current) return;
 
-    // Initialize the map
     map.current = tt.map({
       key: TOMTOM_API,
       container: mapElement.current,
@@ -447,46 +617,84 @@ const TomTomMap = ({ pets, onUserLocationChange }) => {
       zoom: 6, // Example initial zoom level
     });
 
-    // Add controls to the map
     map.current.addControl(new tt.FullscreenControl());
     map.current.addControl(new tt.NavigationControl());
 
-    // Add Geolocation control to the map
-    const geolocateControl = new tt.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true,
-      },
-      showAccuracyCircle: false,
-      trackUserLocation: true,
-    });
+    return () => {
+      if (map.current) {
+        map.current.remove();
+        map.current = null;
+      }
+    }; // Cleanup on unmount
+  }, []);
 
-    map.current.addControl(geolocateControl);
-
-    // Event listener for when the user's position is found
-    geolocateControl.on('geolocate', (e) => {
-      const coords = e.coords;
-      const { latitude, longitude } = coords;
-      onUserLocationChange({ latitude, longitude });
-    });
+  useEffect(() => {
+    if (!map.current || !pets.length) return;
 
     // Clear existing markers
     Object.values(markersOnTheMap.current).forEach((marker) => marker.remove());
     markersOnTheMap.current = {};
 
-    // Add new markers for each pet
-    pets.forEach((pet) => {
-      const { _id, location, mainImage, category } = pet;
-      const { coordinates } = location;
+    // Create an array of features for clustering
+    const features = pets.map((pet) => ({
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [pet.location.coordinates[0], pet.location.coordinates[1]],
+      },
+      properties: pet,
+    }));
 
-      const iconUrl = getIconForCategory(category);
+    // Add clustering source
+    map.current.addSource('cluster-source', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: features,
+      },
+      cluster: true,
+      clusterMaxZoom: 14, // Max zoom to cluster points on the map
+      clusterRadius: 50, // Radius of each cluster when clustering points
+    });
+
+    // Add clustering layer
+    map.current.addLayer({
+      id: 'clusters',
+      type: 'circle',
+      source: 'cluster-source',
+      filter: ['has', 'point_count'],
+      paint: {
+        'circle-color': ['step', ['get', 'point_count'], '#EC619F', 4, '#008D8D', 7, '#004B7F'],
+        'circle-radius': ['step', ['get', 'point_count'], 15, 4, 20, 7, 25],
+        'circle-stroke-width': 1,
+        'circle-stroke-color': 'white',
+        'circle-stroke-opacity': 1,
+      },
+    });
+
+    // Add cluster count text layer
+    map.current.addLayer({
+      id: 'cluster-count',
+      type: 'symbol',
+      source: 'cluster-source',
+      filter: ['has', 'point_count'],
+      layout: {
+        'text-field': '{point_count_abbreviated}',
+        'text-size': 16,
+      },
+      paint: {
+        'text-color': 'white',
+      },
+    });
+
+    // Add individual markers for non-clustered points
+    features.forEach((feature) => {
+      const { _id, location, mainImage } = feature.properties;
+      const { coordinates } = feature.geometry;
 
       const iconElement = document.createElement('div');
       const iconMarkups = renderToStaticMarkup(
-        <img
-          src={iconUrl}
-          alt={`Category ${category}`}
-          style={{ width: '30px', height: '30px' }}
-        />,
+        <LocationOnIcon style={{ color: '#800080', fontSize: '2rem' }} />,
       );
       iconElement.innerHTML = iconMarkups;
 
@@ -513,85 +721,17 @@ const TomTomMap = ({ pets, onUserLocationChange }) => {
     });
 
     return () => {
-      if (map.current) {
-        map.current.remove();
-        map.current = null;
-      }
-    }; // Cleanup on unmount
+      map.current.removeSource('cluster-source');
+      map.current.removeLayer('clusters');
+      map.current.removeLayer('cluster-count');
+
+      // Clear existing markers
+      Object.values(markersOnTheMap.current).forEach((marker) => marker.remove());
+      markersOnTheMap.current = {};
+    };
   }, [pets]);
-
-  // useEffect(() => {
-  //   if (!mapElement.current) return;
-
-  //   map.current = tt.map({
-  //     key: TOMTOM_API,
-  //     container: mapElement.current,
-  //     center: [24.105078, 56.946285], // Example initial center
-  //     zoom: 6, // Example initial zoom level
-  //   });
-
-  //   map.current.addControl(new tt.FullscreenControl());
-  //   map.current.addControl(new tt.NavigationControl());
-
-  //   return () => {
-  //     if (map.current) {
-  //       map.current.remove();
-  //       map.current = null;
-  //     }
-  //   }; // Cleanup on unmount
-  // }, []);
-
-  // useEffect(() => {
-  //   if (!map.current || !pets.length) return;
-
-  //   // Clear existing markers
-  //   Object.values(markersOnTheMap.current).forEach((marker) => marker.remove());
-  //   markersOnTheMap.current = {};
-
-  //   // Add new markers for each pet
-  //   pets.forEach((pet) => {
-  //     const { _id, location, mainImage, category } = pet;
-  //     const { coordinates } = location;
-
-  //     const iconUrl = getIconForCategory(category);
-
-  //     const iconElement = document.createElement('div');
-  //     const iconMarkups = renderToStaticMarkup(
-  //       <img
-  //         src={iconUrl}
-  //         alt={`Category ${category}`}
-  //         style={{ width: '30px', height: '30px' }}
-  //       />,
-  //     );
-  //     iconElement.innerHTML = iconMarkups;
-
-  //     if (coordinates && coordinates.length === 2) {
-  //       const marker = new tt.Marker({ element: iconElement })
-  //         .setLngLat(coordinates)
-  //         .addTo(map.current)
-  //         .setPopup(
-  //           new tt.Popup({ offset: 30, closeButton: false }).setHTML(
-  //             `<div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden;">
-  //               <a href='/pets/${_id}'>
-  //                 <div style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid white;
-  //                   background-image: url(${mainImage});
-  //                   background-size: cover;
-  //                   background-position: center;">
-  //                 </div>
-  //               </a>
-  //             </div>`,
-  //           ),
-  //         );
-
-  //       markersOnTheMap.current[_id] = marker;
-  //     }
-  //   });
-  // }, [pets]);
 
   return <div ref={mapElement} style={{ width: '100%', height: '500px' }} />;
 };
 
 export default TomTomMap;
-///////////////////////////////////////////////////////////
-// CUSTOM ICONS END
-///////////////////////////////////////////////////////////

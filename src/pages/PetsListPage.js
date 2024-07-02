@@ -35,6 +35,8 @@ import CardMedia from '@mui/material/CardMedia';
 import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../middleware/config';
 import TomTomClusterMap from '../components/map/TomTomClusterMap';
+import LeafletClusterMap from '../components/map/LeafletClusterMap';
+
 import Pagination from '@mui/material/Pagination';
 import { useDrawer } from '../context/DrawerContext';
 // Import Images
@@ -311,7 +313,9 @@ const PetsListPage = () => {
 
       {/* Map Placeholder */}
       <Grid item xs={12} sm={12} md={9}>
-        <TomTomClusterMap pets={pets} onUserLocationChange={setUserLocation} />
+        {/* <TomTomClusterMap pets={pets} onUserLocationChange={setUserLocation} /> */}
+        <LeafletClusterMap pets={pets} />
+
         <Box
           sx={{
             display: { xs: 'flex', md: 'flex' },
