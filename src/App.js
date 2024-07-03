@@ -36,7 +36,7 @@ import PetsPosterPage from './pages/PetsPosterPage';
 import CreateArticleForm from './pages/CreateArticleForm';
 import ArticlesListPage from './pages/ArticlesListPage';
 import ServicesListPage from './pages/ServicesListPage';
-
+import EditPetPage from './pages/EditPetPage';
 // import SponsorshipsPage from "./pages/SponsorshipsPage";
 import './i18n'; // Import the i18n configuration
 
@@ -53,6 +53,7 @@ function App() {
                 <Route path="pets" element={<PetsListPage />} />
                 <Route path="pets/:id" element={<PetsDetailsPage />} />
                 <Route path="pets/:id/poster" element={<PetsPosterPage />} />
+                <Route path="edit-pet/:petId" element={<EditPetPage />} />
                 <Route path="articles" element={<ArticlesListPage />} />
                 <Route path="articles/:slug" element={<ArticleDetailsPage />} />
                 <Route

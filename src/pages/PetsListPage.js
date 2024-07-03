@@ -287,7 +287,7 @@ const PetsListPage = () => {
         </Box>
         <Grid item xs={12} sm={12} md={12} style={{}}>
           {/* <Box style={{ maxWidth: '320px' }}> */}
-          <Box style={{ padding: '0 1rem', width: '70vw' }}>
+          <Box style={{ padding: '0 1rem', width: '80vw' }}>
             <Sidebar
               applyFilters={applyFilters}
               resetFilters={resetFilters}
