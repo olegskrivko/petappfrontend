@@ -291,7 +291,7 @@ const ArticleDetailsPage = () => {
 
   return (
     <Grid container spacing={3}>
-      <Grid item xs={8}>
+      <Grid item xs={12} sm={8} order={{ xs: 2, sm: 1 }}>
         <Box>
           <Box sx={{ marginBottom: 4 }}>
             <Typography variant="h4" component="h1" gutterBottom>
@@ -345,7 +345,7 @@ const ArticleDetailsPage = () => {
           </Grid>
         </Box>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={12} sm={4} order={{ xs: 1, sm: 2 }}>
         <Box
           display="flex"
           alignItems="center"

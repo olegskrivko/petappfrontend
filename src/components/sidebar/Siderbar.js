@@ -28,7 +28,9 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { AuthContext } from '../../middleware/AuthContext';
 import { LanguageContext } from '../../middleware/LanguageContext';
 import { useTranslation } from 'react-i18next';
-
+import { LocationOn } from '@mui/icons-material';
+import MyLocationIcon from '@mui/icons-material/MyLocation';
+import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
 const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
   const { t } = useTranslation();
   const { user } = useContext(AuthContext);
@@ -626,33 +628,39 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box sx={{ width: '100%' }}>
             <InputLabel sx={{ fontWeight: '500', color: '#000' }}>
-              Distance {distance && distance < 100 ? distance : '100+'}km
+              Distance {'<'} {distance && distance < 100 ? distance : '100'}km
             </InputLabel>
             <Slider
               sx={{ height: '8px', color: '#ff6600' }}
               value={distance}
               onChange={handleSliderChange}
-              step={20}
-              disabled={
-                userCurrentLocation === '' ||
-                userCurrentLocation === null ||
-                userCurrentLocation === undefined
-                  ? true
-                  : false
-              }
+              step={5}
+              // disabled={
+              //   userCurrentLocation === '' ||
+              //   userCurrentLocation === null ||
+              //   userCurrentLocation === undefined
+              //     ? true
+              //     : false
+              // }
               min={5}
-              max={105}
+              max={100}
               marks={[
                 // { value: 0, label: 0 },
                 { value: 5, label: 5 },
                 { value: 25 },
-                { value: 45 },
-                { value: 65 },
-                { value: 85 },
-                { value: 105, label: '100+' },
+                { value: 50 },
+                { value: 75 },
+                { value: 100, label: 100 },
               ]}
               // valueLabelDisplay="auto"
             />
+            {/* <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+              <MyLocationIcon />
+
+              <Typography variant="body2">Change User Location</Typography>
+              <LocationSearchingIcon />
+              <Typography variant="body2">Show User Location</Typography>
+            </Box> */}
           </Box>
         </ListItem>
 
