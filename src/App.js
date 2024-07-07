@@ -37,6 +37,10 @@ import CreateArticleForm from './pages/CreateArticleForm';
 import ArticlesListPage from './pages/ArticlesListPage';
 import ServicesListPage from './pages/ServicesListPage';
 import EditPetPage from './pages/EditPetPage';
+import SheltersListPage from './pages/SheltersListPage';
+import CreateShelterForm from './pages/CreateShelterForm';
+import ShelterDetailsPage from './pages/ShelterDetailsPage';
+
 // import SponsorshipsPage from "./pages/SponsorshipsPage";
 import './i18n'; // Import the i18n configuration
 
@@ -56,6 +60,8 @@ function App() {
                 <Route path="edit-pet/:petId" element={<EditPetPage />} />
                 <Route path="articles" element={<ArticlesListPage />} />
                 <Route path="articles/:slug" element={<ArticleDetailsPage />} />
+                <Route path="shelters" element={<SheltersListPage />} />
+                <Route path="shelters/:slug" element={<ShelterDetailsPage />} />
                 <Route
                   path="contact"
                   element={
@@ -66,6 +72,7 @@ function App() {
                 />
                 <Route path="feedback" element={<FeedbackPage />} />
                 <Route path="support" element={<SupportPage />} />
+                <Route path="create-shelter" element={<CreateShelterForm />} />
 
                 <Route path="admin/dashboard" element={<DashboardPage />} />
                 <Route path="privacy-policy" element={<PrivacyPolicyPage />} />

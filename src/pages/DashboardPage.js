@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Grid } from '@mui/material';
 import { BASE_URL } from '../middleware/config';
-
+import { Link } from 'react-router-dom';
 const DashboardPage = () => {
   const [optionKey, setOptionKey] = useState('');
   const [optionNames, setOptionNames] = useState({ en: '', lv: '', ru: '' });
@@ -148,6 +148,7 @@ const DashboardPage = () => {
           Save Option
         </Button>
       </Grid>
+      <Link to="/create-article">Create Article</Link>
     </Grid>
   );
 };

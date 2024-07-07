@@ -160,7 +160,7 @@ const Footer = () => {
               </Link>
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
-              <Link to="/adopt-do-not-shop" style={{ color: 'darkgray', textDecoration: 'none' }}>
+              <Link to="/shelters" style={{ color: 'darkgray', textDecoration: 'none' }}>
                 {/* Adopt, Don't Shop */} {t('footerLinks.adoptDoNotShop')}
               </Link>
             </Typography>

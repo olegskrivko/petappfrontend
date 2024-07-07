@@ -1,5 +1,5 @@
-// export default PetsDetailsPage;
-import React, { useState, useEffect, useContext } from 'react';
+// PetsDetailsPage.js
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import {
@@ -10,529 +10,93 @@ import {
   CardMedia,
   CircularProgress,
   Box,
-  Icon,
-  Chip,
-  CardHeader,
-  CardActions,
-  Avatar,
-  Button,
   IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
 } from '@mui/material';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import {
-  Pets as PetsIcon,
-  Category as CategoryIcon,
-  Tag as TagIcon,
-  Height as HeightIcon,
-  Male as MaleIcon,
-  Female as FemaleIcon,
-  Mood as MoodIcon,
-  CalendarToday as CalendarTodayIcon,
-  WatchLater as WatchLaterIcon,
-  Phone as PhoneIcon,
-  Email as EmailIcon,
-  Notes as NotesIcon,
-  ColorLens as ColorLensIcon,
-  MergeType as MergeTypeIcon,
-  EventNote as EventNoteIcon,
-  MoreVert as MoreVertIcon,
-  Visibility as VisibilityIcon,
-  FavoriteBorder as FavoriteBorderIcon,
-  Print as PrintIcon,
-} from '@mui/icons-material';
 
+import TagIcon from '@mui/icons-material/Tag';
+import HeightIcon from '@mui/icons-material/Height';
+import FemaleIcon from '@mui/icons-material/Female';
+import MaleIcon from '@mui/icons-material/Male';
+import MoodIcon from '@mui/icons-material/Mood';
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
+import ColorLensIcon from '@mui/icons-material/ColorLens';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CakeIcon from '@mui/icons-material/Cake';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import DownloadIcon from '@mui/icons-material/Download';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import EventIcon from '@mui/icons-material/Event';
 import TextureIcon from '@mui/icons-material/Texture';
-import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import { BASE_URL } from '../middleware/config';
-import TomTomMapDetails from '../components/map/TomTomMapDetails';
-import ChatComponent from '../components/map/ChatComponent';
-import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
-import MarkunreadIcon from '@mui/icons-material/Markunread';
-import MessageIcon from '@mui/icons-material/Message';
-import ContactPageIcon from '@mui/icons-material/ContactPage';
+import LeafletPetDetailsMap from '../components/map/LeafletPetDetailsMap';
 import FlagIcon from '@mui/icons-material/Flag';
-import MapIcon from '@mui/icons-material/Map';
-import ChecklistIcon from '@mui/icons-material/Checklist';
-import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
-import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
-import LocationHistory from '../components/petcard/LocationHistory';
-import VerifiedIcon from '@mui/icons-material/Verified';
-import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-import LocationOffIcon from '@mui/icons-material/LocationOff';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Tooltip from '@mui/material/Tooltip';
-import DeleteIcon from '@mui/icons-material/Delete';
 import moment from 'moment';
-import PersonIcon from '@mui/icons-material/Person';
-import InfoIcon from '@mui/icons-material/Info';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import FeedIcon from '@mui/icons-material/Feed';
-import Poster from './Poster';
 import { AuthContext } from '../middleware/AuthContext';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import { LanguageContext } from '../middleware/LanguageContext';
 import { useTranslation } from 'react-i18next';
+import IconLabelTabs from '../components/IconLabelTabs';
+import ChatComponent from '../components/map/ChatComponent';
 
-// Example data
-// const locations = [
-//   {
-//     lat: 56.752259533288,
-//     lng: 24.389414976480396,
-//     user: "John Doe",
-//     timestamp: "2024-05-24T19:47:59.420Z",
-//   },
-//   {
-//     lat: 56.854657543288,
-//     lng: 24.475894976480396,
-//     user: "Jane Smith",
-//     timestamp: "2024-05-23T17:30:45.320Z",
-//   },
-//   // Add more locations as needed
-// ];
+const PetsDetailsPage = () => {
+  const [markerPosition, setMarkerPosition] = useState(null);
+  const mapRef = useRef();
+  // Function to add a new marker to the map
+  // const addMarkerToMap = (newLocation) => {
+  //   // Logic to add a new marker to the map (you'll implement this in MapComponent)
+  //   console.log('Adding marker to map:', newLocation);
+  //   // Update state or send new location data to MapComponent
+  // };
+  console.log('markerPosition', markerPosition);
+  const sendMessage = async (message) => {
+    try {
+      const token = localStorage.getItem('token');
+      //console.log('markerPosition', markerPosition);
+      if (!token) {
+        console.error('No token found');
+        return;
+      }
 
-function CustomTabPanel(props) {
-  const { children, value, index, ...other } = props;
+      const url = `${BASE_URL}/pets/${pet._id}/comments`;
+      const data = {
+        message,
+        location: markerPosition ? { lat: markerPosition[1], lng: markerPosition[0] } : undefined,
+        image:
+          'https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        petId: pet._id,
+        author: user.id,
+      };
 
-  return (
-    <Box
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box sx={{ padding: '1rem 0' }}>{children}</Box>}
-    </Box>
-  );
-}
+      const response = await axios.post(url, data, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-CustomTabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-// const TabPanel = ({ value, index, children }) => {
-//   return (
-//     <div role="tabpanel" hidden={value !== index}>
-//       {value === index && <Box sx={{ padding: "1rem 0" }}>{children}</Box>}
-//     </div>
-//   );
-// };
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+      // console.log('Message sent:', response.data);
+      // setMessages([...messages, response.data]);
+    } catch (error) {
+      console.error('Failed to send message:', error);
+    }
   };
-}
 
-function IconLabelTabs({ onAddLocation, onDeleteMessage, location, pet, comments }) {
-  const { user } = useContext(AuthContext);
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-  const handleDelete = (commentId) => {
-    onDeleteMessage(commentId);
-  };
-  // Define your function at the top of your component
-  // const handleDeleteMessage = async (id, commentId) => {
-  //   const token = localStorage.getItem("token"); // assuming the token is stored in local storage
-  //   try {
-  //     console.log(`Deleting message with id: ${commentId}`);
-  //     // Make a request to your server to delete the message
-  //     await axios.delete(`${BASE_URL}/pets/${id}/comments/${commentId}`, {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     });
-
-  //     // Remove the message from the local state
-  //     // setComments((prevComments) =>
-  //     //   prevComments.filter((comment) => comment._id !== commentId)
-  //     // );
-  //   } catch (error) {
-  //     console.error("Failed to delete message:", error);
-  //   }
+  // const handleAddLocation = (location) => {
+  //   console.log('I clicked in parent component add location');
+  //   setMarkerPosition(location);
   // };
 
-  return (
-    <div sx={{ margin: '0', padding: '0' }}>
-      {/* {user.id === pet.author ? <p>pet author</p> : <p>not pet author</p>} */}
-      <div style={{ margin: '2rem 0' }}>
-        <Tabs value={value} centered onChange={handleChange} aria-label="basic tabs example">
-          <Tab
-            icon={<MessageIcon />}
-            label="MESSAGES"
-            sx={{ fontSize: '0.7rem' }}
-            {...a11yProps(2)}
-          />
-          <Tab
-            icon={<AirlineStopsIcon />}
-            label="HISTORY"
-            sx={{ fontSize: '0.7rem' }}
-            {...a11yProps(3)}
-          />
-          <Tab icon={<NotesIcon />} label="NOTES" sx={{ fontSize: '0.7rem' }} {...a11yProps(0)} />
-          {/* <Tab
-            icon={<LocalHospitalIcon />}
-            label="HEALTH"
-            sx={{ fontSize: "0.7rem" }}
-            {...a11yProps(1)}
-          /> */}
+  const handleAddLocation = () => {
+    if (mapRef.current) {
+      const center = mapRef.current.getCenter();
+      setMarkerPosition([center.lat, center.lng]);
+    }
+  };
 
-          <Tab
-            icon={<ContactPageIcon />}
-            label="CONTACTS"
-            sx={{ fontSize: '0.7rem' }}
-            {...a11yProps(3)}
-          />
-        </Tabs>
-      </div>
-      <CustomTabPanel value={value} index={0}>
-        <Grid container>
-          {user && (
-            <ChatComponent
-              user={user}
-              location={location}
-              onAddLocation={onAddLocation}
-              pet={pet}
-            />
-          )}
+  const handleRemoveLocation = () => {
+    console.log('I clicked in parent component remove location');
+    setMarkerPosition(null);
+  };
 
-          {comments && comments.length > 0 ? (
-            comments.map((comment) => (
-              <Grid
-                key={comment._id} // Add this line
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={12}
-                style={{ paddingLeft: '0' }}
-              >
-                <Card style={{ width: '100%' }}>
-                  {/* <p>{comment.author.isVerified}</p>aa */}
-                  <CardContent>
-                    <Box display="flex" alignItems="flex-start" justifyContent="space-between">
-                      <Box display="flex" flexDirection="column">
-                        <Box
-                          display="flex"
-                          alignItems="center"
-                          marginBottom="1rem"
-                          padding="0.5rem"
-                          style={{
-                            backgroundColor: '#fff',
-                            borderRadius: '8px',
-                            background: '#f5f5f5',
-                          }}
-                        >
-                          <Avatar
-                            alt={comment.author?.username}
-                            src={comment.author?.username}
-                          ></Avatar>
-                          <Box ml={2}>
-                            <Typography variant="h6" component="div">
-                              {comment.author?.username}
-                            </Typography>
-
-                            <Box display="flex" alignItems="center">
-                              {/* <Typography variant="body2" color="textSecondary">
-                            {comment.author.username}
-                          </Typography> */}
-
-                              {comment.author && comment.author.isVerified && (
-                                <Tooltip title="Verified user">
-                                  <VerifiedIcon
-                                    fontSize="small"
-                                    color="primary"
-                                    style={{
-                                      marginLeft: '0.5rem',
-                                      color: '#3f51b5',
-                                    }}
-                                  />
-                                </Tooltip>
-                              )}
-                            </Box>
-                            <Typography variant="body2" color="textSecondary">
-                              {moment(comment.createdAt).fromNow()}
-                            </Typography>
-                          </Box>
-                        </Box>
-                        <Box>
-                          <Typography variant="body1" style={{ color: '#333' }}>
-                            {comment.text}
-                          </Typography>
-                        </Box>
-                      </Box>
-                      <Box
-                        style={{
-                          height: 'auto',
-                          width: '200px',
-                        }}
-                      >
-                        <CardMedia
-                          component="img"
-                          style={{ borderRadius: '8px' }}
-                          image={comment.image || '/default_pet_image.jpg'}
-                        />
-                      </Box>
-                    </Box>
-                    {/* <Typography variant="body1" style={{ color: '#333', background: 'lightgreen' }}>
-                      {comment.text}
-                    </Typography> */}
-                    <Box mb={2} style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <Box>
-                        {/* <Typography variant="body1" style={{ color: '#333' }}>
-                          {comment.text}
-                        </Typography> */}
-                      </Box>
-                      {/* <Box
-                        style={{
-                          height: 'auto',
-                          width: '200px',
-                        }}
-                      >
-                        <CardMedia
-                          component="img"
-                          image={comment.image || '/default_pet_image.jpg'}
-                        />
-                      </Box> */}
-                    </Box>
-
-                    <Box display="flex" justifyContent="space-between">
-                      <Tooltip title="Show on map">
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          endIcon={<LocationOnIcon />}
-                          size="small"
-                          style={{ background: '#555' }}
-                        >
-                          Show on map
-                        </Button>
-                      </Tooltip>
-                      {user && user.id === comment.author._id && (
-                        <Tooltip title="Delete message">
-                          <Button
-                            variant="contained"
-                            color="secondary"
-                            endIcon={<DeleteIcon />}
-                            size="small"
-                            style={{ background: '#d32f2f' }}
-                            onClick={() => handleDelete(comment._id)} // Add this line
-                          >
-                            Delete
-                          </Button>
-                        </Tooltip>
-                      )}
-                    </Box>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))
-          ) : (
-            <Grid item xs={12} sm={12} md={12} lg={12} style={{ paddingLeft: '0' }}>
-              <Card style={{ width: '100%' }}>
-                <CardContent>
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    padding="0.5rem"
-                    style={{ backgroundColor: '#fff', borderRadius: '8px' }}
-                  ></Box>
-
-                  <Typography variant="body1" style={{ color: '#333' }}>
-                    No comments available
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          )}
-        </Grid>
-      </CustomTabPanel>
-
-      <CustomTabPanel value={value} index={1}>
-        <Grid container>
-          <LocationHistory pet={pet} />
-        </Grid>
-      </CustomTabPanel>
-
-      <CustomTabPanel value={value} index={2}>
-        <Grid container>
-          <Grid item xs={12} style={{ paddingLeft: '0' }}>
-            <Box mb={3}>
-              <Box display="flex" alignItems="center" mb={1}>
-                <LocalHospitalIcon />
-                <Typography variant="h6" style={{ fontSize: '1rem' }} ml={1} fontWeight="bold">
-                  Health Details
-                </Typography>
-              </Box>
-              <Card elevation={3}>
-                <CardContent style={{ paddingBottom: '1rem' }}>
-                  {(pet.health && pet.health.length > 0) || pet.healthDetails ? (
-                    <>
-                      {pet.health && pet.health.length > 0 && (
-                        <Box>
-                          {pet.health.map((item, index) => (
-                            <Chip
-                              key={index}
-                              label={item}
-                              size="small"
-                              variant="contained"
-                              sx={{ m: 0.5 }}
-                            />
-                          ))}
-                        </Box>
-                      )}
-                      {pet.healthDetails && (
-                        <Typography variant="body2" style={{ marginTop: '1rem' }}>
-                          {pet.healthDetails}
-                        </Typography>
-                      )}
-                    </>
-                  ) : (
-                    <Typography variant="body2">No health information given.</Typography>
-                  )}
-                </CardContent>
-              </Card>
-              {/* <Card elevation={3}>
-                <CardContent style={{ paddingBottom: "1rem" }}>
-                  {pet.health && pet.health.length > 0 ? (
-                    <Box>
-                      {pet.health.map((item, index) => (
-                        <Chip
-                          key={index}
-                          label={item}
-                          size="small"
-                          variant="contained"
-                          sx={{ m: 0.5 }}
-                        />
-                      ))}
-                    </Box>
-                  ) : (
-                    <Typography variant="body2">
-                      No health information given.
-                    </Typography>
-                  )}
-
-                  <Typography variant="body2" style={{ marginTop: "1rem" }}>
-                    {pet.healthDetails
-                      ? pet.healthDetails
-                      : "No additional health information given."}
-                  </Typography>
-                </CardContent>
-              </Card> */}
-            </Box>
-
-            <Box>
-              <Box display="flex" alignItems="center" mb={1}>
-                {/* <InfoIcon /> */}
-                <FeedIcon />
-                <Typography variant="h6" ml={1} style={{ fontSize: '1rem' }} fontWeight="bold">
-                  Additional Information
-                </Typography>
-              </Box>
-              <Card elevation={3}>
-                <CardContent style={{ paddingBottom: '1rem' }}>
-                  <Typography variant="body2">
-                    {pet.notes ? pet.notes : 'No additional information given.'}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Box>
-          </Grid>
-        </Grid>
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={3}>
-        <Grid container>
-          <Grid item xs={12} sm={12} md={12} lg={12} style={{ paddingLeft: '0' }}>
-            <Box mb={3}>
-              <Box display="flex" alignItems="center" mb={1}>
-                {/* <PersonIcon /> */}
-                <AccountBoxIcon />
-                <Typography variant="h6" style={{ fontSize: '1rem' }} ml={1} fontWeight="bold">
-                  Contact Person
-                </Typography>
-              </Box>
-              <Card style={{ width: '100%' }}>
-                <CardContent>
-                  <Box display="flex" alignItems="center" gap={2} mb={2}>
-                    <Avatar
-                      style={{ background: '#555' }}
-                      alt={pet.author?.username}
-                      // src={pet.author.username}
-                    />
-
-                    <Typography variant="body1">
-                      <b>Username:</b> {pet.author?.username}
-                    </Typography>
-                    {/* <FiberManualRecordIcon
-                      style={{
-                        weight: "0.5rem",
-                        height: "0.5rem",
-                        marginLeft: "-1rem",
-                        marginRight: "-1rem",
-                      }}
-                    /> */}
-                    {/* <Typography variant="body1">John242</Typography> */}
-                    {pet.author && pet.author.isVerified && (
-                      <Tooltip title="Verified user">
-                        <VerifiedIcon
-                          fontSize="small"
-                          color="primary"
-                          style={{
-                            color: '#3f51b5',
-                          }}
-                        />
-                      </Tooltip>
-                    )}
-                  </Box>
-
-                  <Box display="flex" alignItems="center" gap={2} style={{ marginTop: '1rem' }}>
-                    {/* <PhoneIcon /> */}
-                    <Avatar style={{ background: '#555' }}>
-                      <PhoneIcon />
-                    </Avatar>
-                    <Typography variant="body1">
-                      <b>Phone:</b> {pet.phoneCode ? pet.phoneCode : ''}{' '}
-                      {pet.phone ? pet.phone : 'N/A'}
-                    </Typography>
-                  </Box>
-
-                  <Box display="flex" alignItems="center" gap={2} style={{ marginTop: '1rem' }}>
-                    {/* <EmailIcon /> */}
-                    <Avatar style={{ background: '#555' }}>
-                      <EmailIcon />
-                    </Avatar>
-                    <Typography variant="body1">
-                      <b>Email:</b> {pet.email ? pet.email : 'N/A'}
-                    </Typography>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Box>
-          </Grid>
-        </Grid>
-      </CustomTabPanel>
-    </div>
-  );
-}
-// const formattedText = `${mainColor} ${petCategory} is ${petStatus} since ${petLostOrFoundDate} at ${petLostOrFoundTime}. It is a ${petAge} ${petBreed} with a ${markingPattern} pattern and ${markingColors.join(', ')} markings. The pet's identifier is ${petIdentifier}, and it is described as ${petSize} in size, ${petGender} in gender, and ${petBehavior} in behavior. Notes: ${notes}. If found, please contact the owner at phone number ${contactPhone} or email at ${contactEmail}.`;
-const PetsDetailsPage = () => {
   //const [selectedLanguage, setSelectedLanguage] = useState("lv"); // Default language
   // Assuming your language preferences are stored as "preferredLanguage" in localStorage
   // useEffect(() => {
@@ -549,9 +113,25 @@ const PetsDetailsPage = () => {
   const [location, setLocation] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
   console.log('Location in petdetails:', location);
-  const handleAddLocation = (location) => {
-    setLocation((prevLocation) => location);
-  };
+
+  // const handleAddLocation = (newLocation) => {
+  //   setLocation(newLocation);
+  // };
+
+  // const handleRemoveLocation = () => {
+  //   setLocation(null);
+  // };
+
+  // const [markerPosition, setMarkerPosition] = useState(null);
+
+  // const handleAddMarker = () => {
+  //   setMarkerPosition([pet.location.coordinates[1], pet.location.coordinates[0]]);
+  // };
+
+  // const handleMarkerDrag = (newPosition) => {
+  //   setMarkerPosition(newPosition);
+  // };
+
   const { selectedLanguage } = useContext(LanguageContext); // Use LanguageContext to get selectedLanguage
   const { t } = useTranslation();
   const getSizeName = (sizeOptions, sizeValue) => {
@@ -563,20 +143,6 @@ const PetsDetailsPage = () => {
 
     return sizeValueInfo.translations[selectedLanguage]; // Assuming "en" translation is always available
   };
-
-  // const handleDeleteMessage = async (commentId) => {
-  //   try {
-  //     // Make a request to your server to delete the message
-  //     await axios.delete(`${BASE_URL}/pets/${id}/comments/${commentId}`);
-
-  //     // Remove the message from the local state
-  //     setComments((prevComments) =>
-  //       prevComments.filter((comment) => comment._id !== commentId)
-  //     );
-  //   } catch (error) {
-  //     console.error("Failed to delete message:", error);
-  //   }
-  // };
 
   const handleDeleteMessage = async (commentId) => {
     const token = localStorage.getItem('token'); // assuming the token is stored in local storage
@@ -593,22 +159,6 @@ const PetsDetailsPage = () => {
       console.error('Failed to delete message:', error);
     }
   };
-
-  // const handleAddLocation = () => {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       const newLocation = {
-  //         lat: position.coords.latitude,
-  //         lng: position.coords.longitude,
-  //       };
-  //       console.log("Current location in PetsDetailsPage.js:", newLocation);
-  //       setLocation(newLocation); // Set the new location
-  //     });
-  //   } else {
-  //     // Geolocation is not supported by this browser
-  //     console.log("Geolocation is not supported by this browser.");
-  //   }
-  // };
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -772,40 +322,6 @@ const PetsDetailsPage = () => {
     return option ? option.label : '';
   };
 
-  // const handleFavorite = async () => {
-  //   try {
-  //     const token = localStorage.getItem('token');
-  //     const favoriteAction = isFavorite ? 'remove' : 'add';
-  //     const url = `${BASE_URL}/users/${user.id}/favorites/${id}/${favoriteAction}`;
-
-  //     // Debugging: Log URL and headers
-  //     console.log('Request URL:', url);
-  //     console.log('Token:', token);
-
-  //     const response = await axios.put(
-  //       url,
-  //       {},
-  //       // {
-  //       //   headers: { Authorization: `Bearer ${token}` },
-  //       // },
-  //     );
-
-  //     // Debugging: Log response
-  //     console.log('Response:', response);
-
-  //     if (response.status === 200) {
-  //       setIsFavorite(!isFavorite); // Toggle favorite status
-  //     }
-  //   } catch (error) {
-  //     // Debugging: Log error details
-  //     console.error(
-  //       'Error toggling favorite:',
-  //       error.response ? error.response.data : error.message,
-  //     );
-  //     // Handle error, e.g., show error message
-  //   }
-  // };
-
   const handleFavorite = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -863,8 +379,6 @@ const PetsDetailsPage = () => {
   //   );
   // }
 
-  //const genderIcon = pet.gender === 'Male' ? <MaleIcon /> : <FemaleIcon />;
-
   return (
     <>
       {pet && (
@@ -879,14 +393,6 @@ const PetsDetailsPage = () => {
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6}>
             <Card style={{ position: 'relative' }}>
-              {/* <CardActions>
-            <Avatar>A</Avatar>
-            <Typography variant="body1">antohysmith32</Typography>
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
-          </CardActions> */}
-
               <CardMedia
                 component="img"
                 alt={pet.initialStatus}
@@ -987,7 +493,8 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <TagIcon /> <b>Identifier:</b> {pet.identifier ? pet.identifier : 'N/A'}
+                    <TagIcon /> <b>{t('formLabels.identifier')}:</b>{' '}
+                    {pet.identifier ? pet.identifier : 'N/A'}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
@@ -1001,7 +508,7 @@ const PetsDetailsPage = () => {
                     }}
                   >
                     {/* {pet.size ? getSizeName(options, pet.size) : "N/A"} */}
-                    <HeightIcon /> <b>Size:</b> {getSizeLabel(pet.size)}
+                    <HeightIcon /> <b>{t('formLabels.size')}:</b> {getSizeLabel(pet.size)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
@@ -1014,7 +521,7 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <MaleIcon /> <b>Gender:</b> {getGenderLabel(pet.gender)}
+                    <MaleIcon /> <b>{t('formLabels.gender')}:</b> {getGenderLabel(pet.gender)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
@@ -1027,7 +534,7 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <MoodIcon /> <b>Behavior:</b> {getBehaviorLabel(pet.behavior)}
+                    <MoodIcon /> <b>{t('formLabels.behavior')}:</b> {getBehaviorLabel(pet.behavior)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
@@ -1040,7 +547,7 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <CakeIcon /> <b>Age:</b> {getAgeLabel(pet.age)}
+                    <CakeIcon /> <b>{t('formLabels.age')}:</b> {getAgeLabel(pet.age)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
@@ -1053,7 +560,7 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <MergeTypeIcon /> <b>Breed:</b> {getBreedLabel(pet.breed)}
+                    <MergeTypeIcon /> <b>{t('formLabels.breed')}:</b> {getBreedLabel(pet.breed)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
@@ -1066,7 +573,8 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <ColorLensIcon /> <b>Main Color:</b> {getMainColorLabel(pet.mainColor)}
+                    <ColorLensIcon /> <b>{t('formLabels.mainColor')}:</b>{' '}
+                    {getMainColorLabel(pet.mainColor)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
@@ -1079,7 +587,8 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <TextureIcon /> <b>Marking Pattern:</b> {getMarkingLabel(pet.markingPattern)}
+                    <TextureIcon /> <b>{t('formLabels.markings')}:</b>{' '}
+                    {getMarkingLabel(pet.markingPattern)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
@@ -1092,7 +601,7 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <ColorLensIcon /> <b>Marking Colors:</b>{' '}
+                    <ColorLensIcon /> <b>{t('formLabels.markingColors')}:</b>{' '}
                     {pet.markingColors.join(', ') ? pet.markingColors.join(', ') : 'N/A'}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
@@ -1106,11 +615,7 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <EventIcon />{' '}
-                    <span style={{ textTransform: 'capitalize' }}>
-                      <b>{getInitialStatusLabel(pet.initialStatus)}</b>
-                    </span>
-                    <b>Date:</b> {pet.date}
+                    <EventIcon /> <b>{t('formLabels.date')}:</b> {pet.date}
                   </Box>
                 </Grid>
                 <Grid item xs={12} mb={1}>
@@ -1123,10 +628,7 @@ const PetsDetailsPage = () => {
                     }}
                   >
                     <WatchLaterIcon />
-                    <span style={{ textTransform: 'capitalize' }}>
-                      <b>{getInitialStatusLabel(pet.initialStatus)}</b>
-                    </span>
-                    <b>Time:</b> {pet.time}
+                    <b>{t('formLabels.time')}:</b> {pet.time}
                   </Box>
                 </Grid>
                 <Grid item xs={12}>
@@ -1145,69 +647,44 @@ const PetsDetailsPage = () => {
               </Grid>
             </Box>
           </Grid>
-          {/* <Button
-        variant="contained"
-        color="primary"
-        onClick={() => generatePDF(pet)} // Call the generatePDF function with pet data
-        sx={{ marginTop: 4 }}
-      >
-        Download PDF
-      </Button> */}
 
-          {/* Render the LostPetPage component with pet data */}
-          {/* <Box
-        id="pdf-content"
-        sx={{ padding: 4, border: "1px solid #ccc", borderRadius: "8px" }}
-      >
-        <Typography variant="h4" component="h1" gutterBottom>
-          Lost Pet Information
-        </Typography>
-        <Typography variant="h6" component="h2" gutterBottom>
-          Name: {pet.name}
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          <strong>Breed:</strong> {pet.breed}
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          <strong>Age:</strong> {pet.age}
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          <strong>Last Seen:</strong> {pet.lastSeen}
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          <strong>Description:</strong> {pet.description}
-        </Typography>
-        {pet.image && (
-          <img
-            src={pet.image}
-            alt={pet.name}
-            style={{ maxWidth: "100%", height: "auto", marginTop: "20px" }}
-          />
-        )}
-      </Box> */}
-          {/* <Button
-        variant="contained"
-        color="primary"
-        onClick={generatePDF}
-        sx={{ marginTop: 4 }}
-      >
-        Download PDF
-      </Button> */}
           <Grid item xs={12} sm={12} md={12} lg={12}>
-            <TomTomMapDetails pet={pet} location={location} onAddLocation={handleAddLocation} />
+            <LeafletPetDetailsMap
+              pet={pet}
+              location={location}
+              markerPosition={markerPosition}
+              onAddLocation={handleAddLocation}
+              onRemoveLocation={handleRemoveLocation}
+              onMapLoad={(map) => (mapRef.current = map)}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            {user && (
+              <ChatComponent
+                pet={pet}
+                user={user}
+                // location={location}
+                onSendMessage={sendMessage}
+                onAddLocation={handleAddLocation}
+                onRemoveLocation={handleRemoveLocation}
+              />
+            )}
           </Grid>
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <IconLabelTabs
               pet={pet}
+              user={user}
               comments={comments}
-              location={location}
+              // location={location}
+              // messages={messages}
+              // onSendMessage={sendMessage}
               onDeleteMessage={handleDeleteMessage}
-              onAddLocation={handleAddLocation}
+              //onAddLocation={handleAddLocation} // Make sure this prop is passed correctly
+              onRemoveLocation={handleRemoveLocation} // And this one too
+              // markerPosition={markerPosition}
+              // onMarkerDrag={handleMarkerDrag}
             />
           </Grid>
-          {/* <Grid item xs={12} sm={12} md={12} lg={12}>
-        <Poster pet={pet} />
-      </Grid> */}
         </Grid>
       )}
     </>

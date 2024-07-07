@@ -285,7 +285,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Avatar from '@mui/material/Avatar';
 import EditIcon from '@mui/icons-material/Edit';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LanguageIcon from '@mui/icons-material/Language';
@@ -302,8 +302,22 @@ import WorkIcon from '@mui/icons-material/Work';
 import AvatarImg from '../images/beaver.avif';
 import BusinessIcon from '@mui/icons-material/Business';
 
+import { LanguageContext } from '../middleware/LanguageContext';
+
 function ProfilePage() {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, logout } = useContext(AuthContext);
+
+  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    console.log('Logging out...');
+    logout();
+    console.log('Logout successful');
+    navigate('/'); // Redirect to the homepage after logout
+  };
+
   // const [user, setUser] = useState({
   //   firstName: 'John',
   //   lastName: 'Doe',
@@ -582,6 +596,31 @@ function ProfilePage() {
             </Link>
           </Grid>
         </Grid>
+
+        {user ? (
+          <Link to="/">
+            <Button onClick={handleLogout} variant="contained" sx={{ fontWeight: '400' }}>
+              Logout
+            </Button>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <Button
+              size="small"
+              sx={{
+                color: '#000', // Change font color to black for better contrast
+                fontWeight: '500',
+
+                backgroundColor: '#ffc107',
+                '&:hover': {
+                  backgroundColor: '#e0a800', // Adjust the hover color as needed
+                },
+              }}
+            >
+              Login
+            </Button>
+          </Link>
+        )}
 
         {/* <Dialog open={openPublicInformationDialog} onClose={handleClosePublicInformationDialog}>
           <DialogTitle>Edit Public Information</DialogTitle>
