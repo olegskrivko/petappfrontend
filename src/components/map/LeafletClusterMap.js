@@ -352,8 +352,91 @@
 // }
 
 // export default LeafletClusterMap;
-import React, { useState } from 'react';
-import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
+// import React, { useState, useEffect } from 'react';
+// import { MapContainer, Marker, TileLayer, Popup, useMap } from 'react-leaflet';
+// import L from 'leaflet';
+// import MarkerClusterGroup from 'react-leaflet-cluster';
+// import 'leaflet/dist/leaflet.css';
+
+// // Custom icon for markers
+// const customIcon = new L.Icon({
+//   iconUrl: require('./location.svg').default,
+//   iconSize: new L.Point(40, 47),
+// });
+
+// // Function to create custom cluster icons
+// const createClusterCustomIcon = function (cluster) {
+//   return new L.DivIcon({
+//     html: `<span>${cluster.getChildCount()}</span>`,
+//     className: 'custom-marker-cluster',
+//     iconSize: L.point(33, 33, true),
+//   });
+// };
+
+// function LeafletClusterMap({ pets, centerCoords }) {
+//   const [mapCenter, setMapCenter] = useState(centerCoords || [56.946285, 24.105078]); // Initial center or center based on pet's coordinates
+//   console.log('centerCoords', centerCoords);
+//   // Hook to update map center when centerCoords prop changes
+//   // Hook to update map center when centerCoords prop changes
+//   useEffect(() => {
+//     setMapCenter(centerCoords || [56.946285, 24.105078]); // Set initial center or center based on new coordinates
+//   }, [centerCoords]);
+
+//   // const map = useMap();
+
+//   // const handleClick = () => {
+//   //   map.setView(mapCenter, 15); // Zoom to pet's location with a zoom level of 15
+//   // };
+
+//   return (
+//     <div>
+//       <MapContainer style={{ height: '500px' }} center={mapCenter} zoom={7} scrollWheelZoom={true}>
+//         <TileLayer
+//           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+//           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+//         />
+//         {/* MarkerClusterGroup for clustering markers */}
+//         <MarkerClusterGroup
+//           iconCreateFunction={createClusterCustomIcon} // Custom cluster icon function
+//           maxClusterRadius={150}
+//           spiderfyOnMaxZoom={false}
+//           showCoverageOnHover={false}
+//         >
+//           {/* Map through pets to render individual markers */}
+//           {pets.map((pet) => (
+//             <Marker
+//               key={pet._id}
+//               position={[pet.location.coordinates[1], pet.location.coordinates[0]]} // Leaflet takes [latitude, longitude]
+//               icon={customIcon}
+//             >
+//               <Popup offset={[0, 5]}>
+//                 <div style={{ textAlign: 'center' }}>
+//                   <a href={`/pets/${pet._id}`}>
+//                     <img
+//                       src={pet.mainImage}
+//                       alt={pet._id}
+//                       style={{
+//                         width: '120px',
+//                         height: '120px',
+//                         borderRadius: '50%',
+//                         border: '3px solid white',
+//                         objectFit: 'cover',
+//                       }}
+//                     />
+//                   </a>
+//                 </div>
+//               </Popup>
+//             </Marker>
+//           ))}
+//         </MarkerClusterGroup>
+//       </MapContainer>
+//     </div>
+//   );
+// }
+
+// LeafletClusterMap.js
+import React, { useState, useEffect, useRef } from 'react';
+import { MapContainer, Marker, TileLayer, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import 'leaflet/dist/leaflet.css';
@@ -373,7 +456,20 @@ const createClusterCustomIcon = function (cluster) {
   });
 };
 
-function LeafletClusterMap({ pets }) {
+// Component to update the map center and zoom level
+const MapUpdater = ({ centerCoords }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (centerCoords) {
+      map.setView(centerCoords, 9); // Zoom to pet's location with a zoom level of 15
+    }
+  }, [centerCoords, map]);
+
+  return null;
+};
+
+function LeafletClusterMap({ pets, centerCoords }) {
   return (
     <div>
       <MapContainer
@@ -386,18 +482,17 @@ function LeafletClusterMap({ pets }) {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {/* MarkerClusterGroup for clustering markers */}
+        <MapUpdater centerCoords={centerCoords} />
         <MarkerClusterGroup
-          iconCreateFunction={createClusterCustomIcon} // Custom cluster icon function
+          iconCreateFunction={createClusterCustomIcon}
           maxClusterRadius={150}
           spiderfyOnMaxZoom={false}
           showCoverageOnHover={false}
         >
-          {/* Map through pets to render individual markers */}
           {pets.map((pet) => (
             <Marker
               key={pet._id}
-              position={[pet.location.coordinates[1], pet.location.coordinates[0]]} // Leaflet takes [latitude, longitude]
+              position={[pet.location.coordinates[1], pet.location.coordinates[0]]}
               icon={customIcon}
             >
               <Popup offset={[0, 5]}>

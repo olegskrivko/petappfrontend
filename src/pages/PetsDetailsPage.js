@@ -43,40 +43,93 @@ import ChatComponent from '../components/map/ChatComponent';
 const PetsDetailsPage = () => {
   const [markerPosition, setMarkerPosition] = useState(null);
   const mapRef = useRef();
-  // Function to add a new marker to the map
-  // const addMarkerToMap = (newLocation) => {
-  //   // Logic to add a new marker to the map (you'll implement this in MapComponent)
-  //   console.log('Adding marker to map:', newLocation);
-  //   // Update state or send new location data to MapComponent
+
+  // State for handling image upload
+  const [image, setImage] = useState(null); // Uploaded image file
+  // const [imagePreview, setImagePreview] = useState(null); // Image preview URL
+
+  const handleUploadImage = async (file) => {
+    console.log('handleUploadImage', file);
+    setImage(file);
+  };
+
+  // const sendMessage = async (message, file) => {
+  //   try {
+  //     const token = localStorage.getItem('token');
+  //     if (!token) {
+  //       console.error('No token found');
+  //       return;
+  //     }
+
+  //     const formData = new FormData();
+  //     formData.append('message', message);
+  //     formData.append('author', user.id);
+  //     formData.append('petId', pet._id);
+
+  //     // Append image file if it exists
+  //     if (file) {
+  //       formData.append('image', file);
+  //     }
+
+  //     // Append marker position if it exists
+  //     if (markerPosition) {
+  //       formData.append('location[lat]', markerPosition[1]);
+  //       formData.append('location[lng]', markerPosition[0]);
+  //     }
+
+  //     const response = await axios.post(`${BASE_URL}/pets/${pet._id}/comments`, formData, {
+  //       headers: {
+  //         'Content-Type': 'multipart/form-data',
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+
+  //     console.log('Message sent:', response.data);
+  //     // Handle response as needed, e.g., update state with new message
+  //   } catch (error) {
+  //     console.error('Failed to send message:', error);
+  //     // Handle error as needed
+  //   }
   // };
-  console.log('markerPosition', markerPosition);
   const sendMessage = async (message) => {
     try {
       const token = localStorage.getItem('token');
-      //console.log('markerPosition', markerPosition);
       if (!token) {
         console.error('No token found');
         return;
       }
 
-      const url = `${BASE_URL}/pets/${pet._id}/comments`;
-      const data = {
-        message,
-        location: markerPosition ? { lat: markerPosition[1], lng: markerPosition[0] } : undefined,
-        image:
-          'https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        petId: pet._id,
-        author: user.id,
-      };
+      const formData = new FormData();
+      formData.append('message', message);
+      formData.append('author', user.id);
+      formData.append('petId', pet._id);
 
-      const response = await axios.post(url, data, {
-        headers: { Authorization: `Bearer ${token}` },
+      // Append image file if it exists
+      if (image) {
+        formData.append('image', image);
+      }
+
+      // Append marker position if it exists
+      if (markerPosition) {
+        formData.append('location[lat]', markerPosition[1]);
+        formData.append('location[lng]', markerPosition[0]);
+      }
+
+      const response = await axios.post(`${BASE_URL}/pets/${pet._id}/comments`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+        },
       });
 
-      // console.log('Message sent:', response.data);
-      // setMessages([...messages, response.data]);
+      console.log('Message sent:', response.data);
+      // Handle response as needed, e.g., update state with new message
+
+      // Clear image and image preview after sending
+      setImage(null);
     } catch (error) {
       console.error('Failed to send message:', error);
+      // Handle error as needed
     }
   };
 
@@ -112,37 +165,8 @@ const PetsDetailsPage = () => {
   const [options, setOptions] = useState([]);
   const [location, setLocation] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
-  console.log('Location in petdetails:', location);
-
-  // const handleAddLocation = (newLocation) => {
-  //   setLocation(newLocation);
-  // };
-
-  // const handleRemoveLocation = () => {
-  //   setLocation(null);
-  // };
-
-  // const [markerPosition, setMarkerPosition] = useState(null);
-
-  // const handleAddMarker = () => {
-  //   setMarkerPosition([pet.location.coordinates[1], pet.location.coordinates[0]]);
-  // };
-
-  // const handleMarkerDrag = (newPosition) => {
-  //   setMarkerPosition(newPosition);
-  // };
-
   const { selectedLanguage } = useContext(LanguageContext); // Use LanguageContext to get selectedLanguage
   const { t } = useTranslation();
-  const getSizeName = (sizeOptions, sizeValue) => {
-    // Find the size option and return the corresponding name for the size value
-    // console.log("Size options:", sizeOptions[0].values);
-    // console.log("Size options Inside:", sizeOptions[0].values[0].value);
-    const sizeValueInfo = sizeOptions[0].values.find((option) => option.value == sizeValue);
-    if (!sizeValueInfo) return 'N/A';
-
-    return sizeValueInfo.translations[selectedLanguage]; // Assuming "en" translation is always available
-  };
 
   const handleDeleteMessage = async (commentId) => {
     const token = localStorage.getItem('token'); // assuming the token is stored in local storage
@@ -267,6 +291,16 @@ const PetsDetailsPage = () => {
     };
     fetchComments();
   }, [id]);
+
+  const getSizeName = (sizeOptions, sizeValue) => {
+    // Find the size option and return the corresponding name for the size value
+    // console.log("Size options:", sizeOptions[0].values);
+    // console.log("Size options Inside:", sizeOptions[0].values[0].value);
+    const sizeValueInfo = sizeOptions[0].values.find((option) => option.value == sizeValue);
+    if (!sizeValueInfo) return 'N/A';
+
+    return sizeValueInfo.translations[selectedLanguage]; // Assuming "en" translation is always available
+  };
 
   const getInitialStatusLabel = (value) => {
     const options = t('selectOptions.initialStatusOptions', { returnObjects: true });
@@ -658,12 +692,13 @@ const PetsDetailsPage = () => {
               onMapLoad={(map) => (mapRef.current = map)}
             />
           </Grid>
+
           <Grid item xs={12} sm={12} md={12} lg={12}>
             {user && (
               <ChatComponent
                 pet={pet}
                 user={user}
-                // location={location}
+                onUploadImage={handleUploadImage} // Pass handleUploadImage function to handle image upload
                 onSendMessage={sendMessage}
                 onAddLocation={handleAddLocation}
                 onRemoveLocation={handleRemoveLocation}

@@ -39,10 +39,19 @@ import Card from '@mui/material/Card';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { useTranslation } from 'react-i18next';
 
-const PetCard = ({ pet }) => {
+const PetCard = ({ pet, onPanToLocation }) => {
   const [userCoords, setUserCoords] = useState(null);
   const [distance, setDistance] = useState(null);
   const { t } = useTranslation();
+
+  const handleLocationClick = () => {
+    console.log(
+      'pet coords from pet card',
+      pet.location.coordinates[1],
+      pet.location.coordinates[0],
+    );
+    onPanToLocation(pet.location.coordinates[1], pet.location.coordinates[0]);
+  };
 
   useEffect(() => {
     // Get user's current location
@@ -128,7 +137,7 @@ const PetCard = ({ pet }) => {
       </Link>
       <CardActions disableSpacing style={{ justifyContent: 'start', padding: '8px' }}>
         <Box style={{ display: 'flex', alignItems: 'center', color: '#343a40' }}>
-          <LocationOnIcon fontSize="small" />
+          <LocationOnIcon fontSize="small" onClick={handleLocationClick} />
           <Typography variant="body2" style={{ marginLeft: '4px' }}>
             {distance !== null ? `${distance} km` : 'Calculating...'}
           </Typography>

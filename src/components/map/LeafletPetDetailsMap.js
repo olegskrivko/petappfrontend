@@ -280,11 +280,30 @@ import 'leaflet/dist/leaflet.css';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { renderToStaticMarkup } from 'react-dom/server';
 import PropTypes from 'prop-types';
-
+import PetsIcon from '@mui/icons-material/Pets';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 // Function to create a custom icon with a specified color
 const createCustomIcon = (color) =>
   new L.DivIcon({
     html: renderToStaticMarkup(<LocationOnIcon style={{ fontSize: 40, color }} />),
+    className: 'custom-div-icon',
+    iconSize: [40, 47],
+    iconAnchor: [20, 47],
+    popupAnchor: [0, -47],
+  });
+
+const createCustomMainIcon = (color) =>
+  new L.DivIcon({
+    html: renderToStaticMarkup(<PetsIcon style={{ fontSize: 40, color }} />),
+    className: 'custom-div-icon',
+    iconSize: [40, 47],
+    iconAnchor: [20, 47],
+    popupAnchor: [0, -47],
+  });
+
+const createCustomAddNewIcon = (color) =>
+  new L.DivIcon({
+    html: renderToStaticMarkup(<AddLocationAltIcon style={{ fontSize: 40, color }} />),
     className: 'custom-div-icon',
     iconSize: [40, 47],
     iconAnchor: [20, 47],
@@ -301,9 +320,9 @@ const MapWrapper = ({ onMapLoad }) => {
 };
 
 function LeafletPetDetailsMap({ pet, markerPosition, onMapLoad, onAddLocation }) {
-  const mainIcon = createCustomIcon('#7F00FF');
+  const mainIcon = createCustomMainIcon('#7F00FF');
   const historyIcon = createCustomIcon('#FF0000');
-  const newMarkerIcon = createCustomIcon('#00FF00');
+  const newMarkerIcon = createCustomAddNewIcon('#0000FF');
 
   return (
     <MapContainer

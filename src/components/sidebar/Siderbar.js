@@ -73,7 +73,7 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
   // const initialUserCurrentLocation = queryParams.getAll('userCurrentLocation') || '';
 
   // console.log(initialUserCurrentLocation, 'initialUserCurrentLocationx');
-  console.log(userCurrentLocation, 'userCurrentLocationx');
+  //console.log(userCurrentLocation, 'userCurrentLocationx');
   //const initialIdentifier = queryParams.get('identifier') || '';
 
   // Use selected state to manage UI updates
@@ -664,6 +664,29 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
           </Box>
         </ListItem>
 
+        <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
+          <Box sx={{ width: '100%' }}>
+            {userLocation ? (
+              // <InputLabel sx={{ fontWeight: '500', color: '#000', backgroundColor: 'red' }}>
+              //   User Location Is On
+              // </InputLabel>
+              <Chip
+                sx={{ marginRight: '5px', marginBottom: '5px' }}
+                size="small"
+                label="User Location Is On"
+                color={'warning'} // Adjusted condition here
+              />
+            ) : (
+              <Chip
+                sx={{ marginRight: '5px', marginBottom: '5px' }}
+                size="small"
+                label="No user location available."
+                color={'default'} // Adjusted condition here
+              />
+            )}
+          </Box>
+        </ListItem>
+
         {/* Filter by Pattern */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box>
@@ -700,17 +723,17 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
           </Box>
         </ListItem>
       </List>
-      <div>
+      {/* <div>
         {userLocation ? (
           <div>
-            <p>User Location:</p>
-            <p>Latitude: {userLocation.latitude}</p>
-            <p>Longitude: {userLocation.longitude}</p>
+            <p>User Location Is On:</p>
+            <p>Lat: {userLocation.latitude}</p>
+            <p>Long: {userLocation.longitude}</p>
           </div>
         ) : (
           <p>No user location available.</p>
         )}
-      </div>
+      </div> */}
       {/* Apply Filters Button */}
       <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
         <Button type="submit" variant="contained" sx={{ width: '100%' }} color="warning">

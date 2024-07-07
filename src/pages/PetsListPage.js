@@ -45,6 +45,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 const PetsListPage = () => {
   // const { isDrawerOpen, closeDrawer } = useDrawer();
   const [userLocation, setUserLocation] = useState(null);
+
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -53,6 +54,16 @@ const PetsListPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
+
+  // State for map center coordinates
+  const [centerCoords, setCenterCoords] = useState([56.946285, 24.105078]); // Initial center coordinates
+
+  // Function to handle panning to pet's location
+  const handlePanToLocation = (lat, lng) => {
+    console.log('lat, lng', lat, lng);
+    setCenterCoords([lat, lng]);
+  };
+
   const [pagination, setPagination] = useState({});
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -72,6 +83,28 @@ const PetsListPage = () => {
     patterns: queryParams.getAll('patterns') || [],
     userCurrentLocation: queryParams.get('userCurrentLocation') || '',
   });
+
+  // Use effect to fetch user location
+  useEffect(() => {
+    const fetchUserLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            setUserLocation({ latitude, longitude });
+            console.log('User location:', { latitude, longitude });
+          },
+          (error) => {
+            console.error('Error fetching user location:', error);
+          },
+        );
+      } else {
+        console.error('Geolocation is not supported by this browser.');
+      }
+    };
+
+    fetchUserLocation();
+  }, []);
 
   // new useEffect
   useEffect(() => {
@@ -314,7 +347,7 @@ const PetsListPage = () => {
       {/* Map Placeholder */}
       <Grid item xs={12} sm={12} md={9}>
         {/* <TomTomClusterMap pets={pets} onUserLocationChange={setUserLocation} /> */}
-        <LeafletClusterMap pets={pets} />
+        <LeafletClusterMap pets={pets} centerCoords={centerCoords} />
 
         <Box
           sx={{
@@ -428,7 +461,7 @@ const PetsListPage = () => {
             )}
             {pets.map((pet) => (
               <Grid item xs={12} sm={6} md={4} key={pet._id}>
-                <PetCard pet={pet} />
+                <PetCard pet={pet} onPanToLocation={handlePanToLocation} />
               </Grid>
             ))}
           </Grid>

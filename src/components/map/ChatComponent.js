@@ -143,31 +143,44 @@ import LocationOffIcon from '@mui/icons-material/LocationOff';
 import WrongLocationIcon from '@mui/icons-material/WrongLocation';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-const ChatComponent = ({ user, onSendMessage, onAddPhoto, onAddLocation, onRemoveLocation }) => {
+const ChatComponent = ({
+  user,
+  onSendMessage,
+  onUploadImage,
+  imagePreview,
+  onAddLocation,
+  onRemoveLocation,
+}) => {
   const [message, setMessage] = useState('');
+  const [file, setFile] = useState(null); // State to hold the selected file
 
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
   };
+
   const handleAddLocation = () => {
-    console.log('I clicked in chatcomponent add loc');
-    // This will be handled in the map component
+    console.log('Adding location');
     onAddLocation();
   };
-  const handleAddPhoto = () => {
-    console.log('I clicked in chatcomponent add photo');
-    // This will be handled in the map component
-    onAddPhoto();
+
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+    console.log('file', file);
+    if (file) {
+      setFile(file);
+      onUploadImage(file); // Pass the file to the parent component
+    }
   };
 
   const handleRemoveLocation = () => {
-    console.log('I clicked in chatcomponent remove loc');
-    // This will be handled in the map component
+    console.log('Removing location');
     onRemoveLocation();
   };
 
   const handleSendMessage = () => {
+    // Call the parent component's function to send the message
     onSendMessage(message);
+    // Clear the message input field after sending
     setMessage('');
   };
 
@@ -220,16 +233,25 @@ const ChatComponent = ({ user, onSendMessage, onAddPhoto, onAddLocation, onRemov
               >
                 Remove Location
               </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleAddPhoto}
-                endIcon={<AddPhotoAlternateIcon />}
-                size="small"
-                style={{ background: '#555', marginLeft: '1rem' }}
-              >
-                Add Photo
-              </Button>
+              <label htmlFor="photo-upload-input">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  component="span"
+                  endIcon={<AddPhotoAlternateIcon />}
+                  size="small"
+                  style={{ background: '#555', marginLeft: '1rem' }}
+                >
+                  Add Photo
+                </Button>
+              </label>
+              <input
+                accept="image/*"
+                id="photo-upload-input"
+                type="file"
+                onChange={handleFileInputChange}
+                style={{ display: 'none' }}
+              />
             </Box>
 
             <Box>
