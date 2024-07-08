@@ -45,7 +45,7 @@ function ShelterDetailsPage() {
             <Card>
               <CardMedia
                 component="img"
-                style={{ height: '300px', objectFit: 'cover' }}
+                style={{ height: '400px', objectFit: 'cover' }}
                 image={shelter.coverPicture}
                 title={shelter.name}
               />

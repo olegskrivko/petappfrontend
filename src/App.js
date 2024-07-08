@@ -40,7 +40,8 @@ import EditPetPage from './pages/EditPetPage';
 import SheltersListPage from './pages/SheltersListPage';
 import CreateShelterForm from './pages/CreateShelterForm';
 import ShelterDetailsPage from './pages/ShelterDetailsPage';
-
+import VirtualPetTrainingClasses from './pages/VirtualPetTrainingClasses';
+import PetInfrastructurePage from './pages/PetInfrastructurePage';
 // import SponsorshipsPage from "./pages/SponsorshipsPage";
 import './i18n'; // Import the i18n configuration
 
@@ -62,6 +63,11 @@ function App() {
                 <Route path="articles/:slug" element={<ArticleDetailsPage />} />
                 <Route path="shelters" element={<SheltersListPage />} />
                 <Route path="shelters/:slug" element={<ShelterDetailsPage />} />
+                <Route
+                  path="virtual-pet-training-classes"
+                  element={<VirtualPetTrainingClasses />}
+                />
+                <Route path="pet-infrastructure" element={<PetInfrastructurePage />} />
                 <Route
                   path="contact"
                   element={

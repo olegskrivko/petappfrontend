@@ -554,14 +554,14 @@ function ProfilePage() {
               </Paper>
             </Link>
           </Grid>
-          <Grid item xs={6} md={4}>
+          {/* <Grid item xs={6} md={4}>
             <Link to="/user/profile/services" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
                 <WorkIcon fontSize="large" sx={{ color: '#ff6600' }} />
                 <Typography variant="body1">Services {user?.currentLevel}</Typography>
               </Paper>
             </Link>
-          </Grid>
+          </Grid> */}
           <Grid item xs={6} md={4}>
             <Link to="/user/profile/pets" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
@@ -571,22 +571,22 @@ function ProfilePage() {
               </Paper>
             </Link>
           </Grid>
-          <Grid item xs={6} md={4}>
+          {/* <Grid item xs={6} md={4}>
             <Link to="/user/profile/settings" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
                 <NotificationsIcon fontSize="large" sx={{ color: '#ff6600' }} />
                 <Typography variant="body1">Activity Feed {user?.recipesReviewed}</Typography>
               </Paper>
             </Link>
-          </Grid>
-          <Grid item xs={6} md={4}>
+          </Grid> */}
+          {/* <Grid item xs={6} md={4}>
             <Link to="/user/profile/settings" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
                 <BusinessIcon fontSize="large" sx={{ color: '#ff6600' }} />
                 <Typography variant="body1">Business {user?.recipesReviewed}</Typography>
               </Paper>
             </Link>
-          </Grid>
+          </Grid> */}
           <Grid item xs={6} md={4}>
             <Link to="/user/profile/settings" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>

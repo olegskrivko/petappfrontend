@@ -5,6 +5,7 @@ import {
   Card,
   CardContent,
   CardMedia,
+  Chip,
   Grid,
   CircularProgress,
   Container,
@@ -47,35 +48,52 @@ const SheltersListPage = () => {
       </Typography>
       <Grid container spacing={4}>
         {shelters.map((shelter) => (
-          <Grid item key={shelter._id} xs={12} sm={6} md={4}>
+          <Grid item key={shelter._id} xs={12} sm={3} md={3}>
             <Card>
               <CardMedia
                 component="img"
-                height="140"
+                style={{ backgroundImage: 'cover' }}
                 image={shelter.coverPicture}
                 alt={shelter.name}
               />
               <CardContent>
-                <Typography variant="h5" component="div">
+                <Typography variant="h5">
                   {/* Link to Shelter Details Page */}
-                  <Link to={`/shelters/${shelter.slug}`} color="inherit" underline="none">
+                  <Link
+                    to={`/shelters/${shelter.slug}`}
+                    color="inherit"
+                    underline="none"
+                    style={{ textDecoration: 'none' }}
+                  >
                     {shelter.name}
                   </Link>
                 </Typography>
-                <Typography variant="h5" component="div">
-                  {shelter.name}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
+
+                {/* <Typography variant="body2" color="textSecondary">
                   {shelter.description}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" marginTop="10px">
+                </Typography> */}
+                {/* <Typography variant="body2" color="textSecondary" marginTop="10px">
                   Location: {shelter.location.city}, {shelter.location.country}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" marginTop="10px">
+                </Typography> */}
+                {/* <Typography variant="body2" color="textSecondary" marginTop="10px">
                   Contact: {shelter.contact.phone}
-                </Typography>
+                </Typography> */}
                 <Typography variant="body2" color="textSecondary" marginTop="10px">
-                  Tags: {shelter.tags.join(', ')}
+                  {shelter.tags.map((tag) => (
+                    <Chip
+                      key={tag}
+                      label={tag}
+                      size="small"
+                      variant="contained"
+                      sx={{
+                        textTransform: 'capitalize',
+                        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                        color: 'white',
+                        position: 'relative', // Changed from 'absolute' to 'relative'
+                        marginRight: '4px',
+                      }}
+                    />
+                  ))}
                 </Typography>
               </CardContent>
             </Card>

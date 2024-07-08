@@ -89,31 +89,17 @@ const Footer = () => {
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/virtual-pet-training-classes"
-                style={{ color: 'darkgray', textDecoration: 'none' }}
+                style={{ color: '#fff', textDecoration: 'none' }}
               >
                 {/* Virtual Pet Training Classes */} {t('footerLinks.virtualPetTrainingClasses')}
               </Link>
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
-              <Link to="/pet-infrastructure" style={{ color: 'darkgray', textDecoration: 'none' }}>
-                {/* Community Forums */} {t('footerLinks.communityForums')}
+              <Link to="/pet-infrastructure" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* Community Forums */} {t('footerLinks.petInfrastructure')}
               </Link>
             </Typography>
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
-              <Link to="/pet-infrastructure" style={{ color: 'darkgray', textDecoration: 'none' }}>
-                How much does it cost to own a pet?
-              </Link>
-            </Typography>
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
-              <Link to="/pet-infrastructure" style={{ color: 'darkgray', textDecoration: 'none' }}>
-                Dog breeds
-              </Link>
-            </Typography>
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
-              <Link to="/pet-infrastructure" style={{ color: 'darkgray', textDecoration: 'none' }}>
-                Cat breeds
-              </Link>
-            </Typography>
+
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/emergency-pet-alerts"
@@ -128,46 +114,29 @@ const Footer = () => {
               Explore
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/shelters" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* Guide to Retrieving Lost Pets */} {t('footerLinks.adoptDoNotShop')}
+              </Link>
+            </Typography>
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link to="/articles" style={{ color: '#fff', textDecoration: 'none' }}>
+                {/* petCareTips */} {t('footerLinks.petCareTips')}
+              </Link>
+            </Typography>
+            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/articles/how-to-find-a-lost-cat"
-                style={{ color: 'darkgray', textDecoration: 'none' }}
+                style={{ color: '#fff', textDecoration: 'none' }}
               >
-                {/* Pet Care Guide */} {t('footerLinks.petCareGuide')}
+                {/* Pet Compatibility Quiz */} {t('footerLinks.howToFindALostCat')}
               </Link>
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/articles/how-to-find-a-lost-dog"
-                style={{ color: 'darkgray', textDecoration: 'none' }}
+                style={{ color: '#fff', textDecoration: 'none' }}
               >
-                {/* Pet Compatibility Quiz */} {t('footerLinks.petCompatibilityQuiz')}
-              </Link>
-            </Typography>
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
-              <Link
-                to="/lost-pet-prevention-tips"
-                style={{ color: 'darkgray', textDecoration: 'none' }}
-              >
-                {/* Lost Pet Prevention Tips */} {t('footerLinks.lostPetPreventionTips')}
-              </Link>
-            </Typography>
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
-              <Link
-                to="/guide-to-retrieving-lost-pets"
-                style={{ color: 'darkgray', textDecoration: 'none' }}
-              >
-                {/* Guide to Retrieving Lost Pets */} {t('footerLinks.guideToRetrievingLostPets')}
-              </Link>
-            </Typography>
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
-              <Link to="/shelters" style={{ color: 'darkgray', textDecoration: 'none' }}>
-                {/* Adopt, Don't Shop */} {t('footerLinks.adoptDoNotShop')}
-              </Link>
-            </Typography>
-
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
-              <Link to="/articles" style={{ color: 'darkgray', textDecoration: 'none' }}>
-                {/* How To */} {t('footerLinks.tipsAndAdvice')}
+                {/* Lost Pet Prevention Tips */} {t('footerLinks.howToFindALostDog')}
               </Link>
             </Typography>
           </Grid>
