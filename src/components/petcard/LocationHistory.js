@@ -22,8 +22,16 @@ import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import LocationOffIcon from '@mui/icons-material/LocationOff';
+import { useTranslation } from 'react-i18next';
 
 const LocationHistory = ({ pet }) => {
+  const { t } = useTranslation();
+
+  const getInitialStatusLabel = (value) => {
+    const options = t('selectOptions.initialStatusOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
   return (
     <Grid container rowSpacing={2}>
       <Grid item xs={12} style={{ paddingLeft: '0' }}>
@@ -41,7 +49,8 @@ const LocationHistory = ({ pet }) => {
                 <EventAvailableIcon />
               </Avatar>
               <Typography variant="body1">
-                Pet was {pet.initialStatus} {moment(`${pet.date}T${pet.time}`).fromNow()}
+                Pet was {getInitialStatusLabel(pet.initialStatus)}{' '}
+                {moment(`${pet.date}T${pet.time}`).fromNow()}
               </Typography>
             </Box>
           </CardContent>

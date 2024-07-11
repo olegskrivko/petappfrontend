@@ -131,7 +131,7 @@ function IconLabelTabs({
 }) {
   const { user } = useContext(AuthContext);
   const [value, setValue] = useState(0);
-
+  const { t } = useTranslation();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -152,6 +152,12 @@ function IconLabelTabs({
     setSelectedImage(null);
   };
   console.log('value', value);
+
+  const getHealthInformationLabel = (value) => {
+    const options = t('selectOptions.healthInformationOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
 
   return (
     <div sx={{ margin: '0', padding: '0' }}>
@@ -368,7 +374,7 @@ function IconLabelTabs({
                           {pet.health.map((item, index) => (
                             <Chip
                               key={index}
-                              label={item}
+                              label={getHealthInformationLabel(item)}
                               size="small"
                               variant="contained"
                               sx={{ m: 0.5 }}

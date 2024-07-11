@@ -99,71 +99,74 @@ function PartnershipsAndSponsorshipsPage() {
           Join Our Mission
         </Typography>
       </Grid>
-
-      <Typography variant="body1" gutterBottom color="textSecondary">
-        We are proud to collaborate with outstanding partners and sponsors who support our mission
-        to reunite lost pets with their owners. Their contributions are vital to our efforts and
-        help us provide better services to our community.
-      </Typography>
-      <Typography variant="body1" gutterBottom color="textSecondary">
-        Through their generous support, we are able to expand our reach, enhance our platform, and
-        implement innovative solutions to tackle the challenges of pet recovery. We are incredibly
-        grateful for their dedication and commitment to making a difference in the lives of pets and
-        their owners.
-      </Typography>
-
-      <Box
-        position="relative"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-      >
-        {/* Banner Image */}
-        <CardMedia
-          component="img"
-          src={img2}
-          alt="Influencer"
-          style={{
-            width: 'auto',
-            maxHeight: '280px',
-            // objectFit: "cover",
-          }}
-        />
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <Typography variant="body1" gutterBottom color="textSecondary">
+          We are proud to collaborate with outstanding partners and sponsors who support our mission
+          to reunite lost pets with their owners. Their contributions are vital to our efforts and
+          help us provide better services to our community.
+        </Typography>
+        <Typography variant="body1" gutterBottom color="textSecondary">
+          Through their generous support, we are able to expand our reach, enhance our platform, and
+          implement innovative solutions to tackle the challenges of pet recovery. We are incredibly
+          grateful for their dedication and commitment to making a difference in the lives of pets
+          and their owners.
+        </Typography>
+      </Grid>
+      <Grid item xs={12} sm={12} md={12} lg={12}>
         <Box
-          style={{
-            marginTop: '0.5rem',
-            display: 'flex',
-            alignItems: 'center',
-          }}
+          position="relative"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
         >
-          <MuiLink
-            href="https://storyset.com/rocket"
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* Banner Image */}
+          <CardMedia
+            component="img"
+            src={img2}
+            alt="Influencer"
             style={{
-              fontSize: '0.6rem',
-              fontStyle: 'italic',
-              color: '#999',
-              fontWeight: '300',
+              maxWidth: '400px', // Adjust the width to 100% to make it fill the container
+              height: '100%', // Adjust the height to auto to maintain aspect ratio
+              // Remove maxHeight restriction
+              objectFit: 'cover', // Cover to ensure it covers the entire container
+            }}
+          />
+          <Box
+            style={{
+              marginTop: '0.5rem',
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
-            Rocket illustrations by Storyset
-          </MuiLink>
+            <MuiLink
+              href="https://storyset.com/rocket"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontSize: '0.6rem',
+                fontStyle: 'italic',
+                color: '#999',
+                fontWeight: '300',
+              }}
+            >
+              Rocket illustrations by Storyset
+            </MuiLink>
+          </Box>
         </Box>
-      </Box>
-      {/* </Box> */}
-
-      <Box id="sponsors" sx={{ textAlign: 'center', mt: 4, mb: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          Sponsors
-        </Typography>
-        <Typography variant="body1" color="textSecondary">
-          Our sponsors play a crucial role in our mission. Their support helps us keep our platform
-          running and allows us to implement new features and reach more pet owners in need. We are
-          deeply thankful for their contributions.
-        </Typography>
-      </Box>
+      </Grid>
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <Box id="sponsors" sx={{ textAlign: 'center', mt: 4, mb: 4 }}>
+          <Typography variant="h5" gutterBottom>
+            Sponsors
+          </Typography>
+          <Typography variant="body1" color="textSecondary">
+            Our sponsors play a crucial role in our mission. Their support helps us keep our
+            platform running and allows us to implement new features and reach more pet owners in
+            need. We are deeply thankful for their contributions.
+          </Typography>
+        </Box>
+      </Grid>
       <Grid container spacing={4}>
         {sponsorships.map((sponsor) => (
           <Grid item xs={12} sm={6} md={4} key={sponsor.id}>
@@ -182,19 +185,20 @@ function PartnershipsAndSponsorshipsPage() {
           </Grid>
         ))}
       </Grid>
-
-      <Box id="partners" sx={{ textAlign: 'center', mt: 4, mb: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          Partners
-        </Typography>
-        <Typography variant="body1" color="textSecondary">
-          Our partners play a crucial role in enhancing our visibility and expanding our reach.
-          Through media coverage, joint initiatives, and collaborative efforts, our partners help us
-          connect with more pet owners and animal lovers. These partnerships enable us to spread
-          awareness about lost and found pets, improve our services, and ultimately, reunite more
-          pets with their families.
-        </Typography>
-      </Box>
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <Box id="partners" sx={{ textAlign: 'center', mt: 4, mb: 4 }}>
+          <Typography variant="h5" gutterBottom>
+            Partners
+          </Typography>
+          <Typography variant="body1" color="textSecondary">
+            Our partners play a crucial role in enhancing our visibility and expanding our reach.
+            Through media coverage, joint initiatives, and collaborative efforts, our partners help
+            us connect with more pet owners and animal lovers. These partnerships enable us to
+            spread awareness about lost and found pets, improve our services, and ultimately,
+            reunite more pets with their families.
+          </Typography>
+        </Box>
+      </Grid>
       <Grid container spacing={4}>
         {partnerships.map((partner) => (
           <Grid item xs={12} sm={6} md={4} key={partner.id}>

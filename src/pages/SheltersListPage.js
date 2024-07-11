@@ -10,11 +10,17 @@ import {
   CircularProgress,
   Container,
 } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { BASE_URL } from '../middleware/config';
 
 const SheltersListPage = () => {
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
   const [shelters, setShelters] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -42,11 +48,24 @@ const SheltersListPage = () => {
   }
 
   return (
-    <Container>
-      <Typography variant="h3" gutterBottom align="center" marginTop="20px">
-        Shelters
-      </Typography>
-      <Grid container spacing={4}>
+    <React.Fragment>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Typography
+            variant="h4"
+            textAlign="center"
+            style={{
+              fontSize: isSmallScreen ? '1.2rem' : '2rem',
+              marginBottom: isSmallScreen ? '1.6rem' : '2rem',
+              marginTop: isSmallScreen ? '0.4rem' : '1rem',
+            }}
+            gutterBottom
+          >
+            Shelters
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid container spacing={3}>
         {shelters.map((shelter) => (
           <Grid item key={shelter._id} xs={12} sm={3} md={3}>
             <Card>
@@ -100,7 +119,7 @@ const SheltersListPage = () => {
           </Grid>
         ))}
       </Grid>
-    </Container>
+    </React.Fragment>
   );
 };
 

@@ -36,13 +36,13 @@ const navItems = {
   // "/": "Home",
   '/pets': 'Pets',
   // "/about": "About",
-  '/services': 'Services',
+  // '/services': 'Services',
   '/shelters': 'Shelters',
   '/articles': 'Articles',
   // '/create-article': 'Create Article',
   // "/contact": "Contact",
   // '/user/profile': 'Profile',
-  '/admin/dashboard': 'Dashboard',
+  // '/admin/dashboard': 'Dashboard',
   // "/login": "Login",
 };
 
@@ -104,6 +104,42 @@ function DrawerAppBar(props) {
             </ListItemButton>
           </ListItem>
         ))}
+        {user ? (
+          <Link to="/user/profile">
+            <Button
+              variant="contained"
+              size="small"
+              sx={{
+                color: '#000', // Change font color to black for better contrast
+                fontWeight: '500',
+
+                backgroundColor: '#ffc107',
+                '&:hover': {
+                  backgroundColor: '#e0a800', // Adjust the hover color as needed
+                },
+              }}
+            >
+              Profile
+            </Button>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <Button
+              size="small"
+              sx={{
+                color: '#000', // Change font color to black for better contrast
+                fontWeight: '500',
+
+                backgroundColor: '#ffc107',
+                '&:hover': {
+                  backgroundColor: '#e0a800', // Adjust the hover color as needed
+                },
+              }}
+            >
+              Login
+            </Button>
+          </Link>
+        )}
         {/* {isAuthenticated() && (
           <ListItem disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
