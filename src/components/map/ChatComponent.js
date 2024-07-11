@@ -189,13 +189,13 @@ const ChatComponent = ({
       <Card style={{ width: '100%', paddingRight: '0 !important' }}>
         <CardContent>
           <Box display="flex" alignItems="center" marginBottom="1rem">
-            <Avatar alt={user.username}></Avatar>
+            <Avatar alt={user.username} src={user.avatar}></Avatar>
             <Box ml={2}>
-              <Typography variant="h6" component="div">
-                {user.username}
+              <Typography variant="body1" style={{ fontWeight: 'bold' }}>
+                @{user.username}
               </Typography>
               <Typography variant="body2" color="textSecondary">
-                {user.username}
+                Online
               </Typography>
             </Box>
           </Box>

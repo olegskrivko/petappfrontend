@@ -264,6 +264,7 @@ function ProfilePetsPage() {
       {/* <Typography variant="h4" gutterBottom align="center">
         Your Pets
       </Typography> */}
+      <Button variant="contained">Add Your Pet</Button>
       <Box display="flex" alignItems="center" justifyContent="center">
         {/* <Button onClick={handlePrevious}>
           <ArrowBackIos />

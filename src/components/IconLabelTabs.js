@@ -52,6 +52,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { Tooltip, Modal, Backdrop, Fade } from '@mui/material';
 import EventIcon from '@mui/icons-material/Event';
 import TextureIcon from '@mui/icons-material/Texture';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
@@ -73,7 +74,7 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import LocationOffIcon from '@mui/icons-material/LocationOff';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import Tooltip from '@mui/material/Tooltip';
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import moment from 'moment';
 import PersonIcon from '@mui/icons-material/Person';
@@ -137,6 +138,19 @@ function IconLabelTabs({
   const handleDelete = (commentId) => {
     onDeleteMessage(commentId);
   };
+
+  const [open, setOpen] = useState(false); // State for controlling the image modal
+  const [selectedImage, setSelectedImage] = useState(null); // State to track selected image for modal
+
+  const handleOpen = (image) => {
+    setSelectedImage(image);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedImage(null);
+  };
   console.log('value', value);
 
   return (
@@ -192,44 +206,26 @@ function IconLabelTabs({
                 style={{ paddingLeft: '0', marginBottom: '1rem' }}
               >
                 <Card style={{ width: '100%' }}>
-                  {/* <p>{comment.author.isVerified}</p>aa */}
                   <CardContent>
-                    <Box display="flex" alignItems="flex-start" justifyContent="space-between">
-                      <Box display="flex" flexDirection="column">
-                        <Box
-                          display="flex"
-                          alignItems="center"
-                          marginBottom="1rem"
-                          padding="0.5rem"
-                          style={{
-                            backgroundColor: '#fff',
-                            borderRadius: '8px',
-                            background: '#f5f5f5',
-                          }}
-                        >
+                    <Grid container spacing={2}>
+                      {/* Left section (avatar, author info, text) */}
+                      <Grid item xs={12} md={8}>
+                        <Box display="flex" alignItems="flex-start">
                           <Avatar
-                            alt={comment.author?.username}
-                            src={comment.author?.username}
+                            alt={comment.author?.avatar}
+                            src={comment.author?.avatar}
                           ></Avatar>
                           <Box ml={2}>
-                            <Typography variant="h6" component="div">
-                              {comment.author?.username}
+                            <Typography variant="body1" style={{ fontWeight: 'bold' }}>
+                              @{comment.author?.username}
                             </Typography>
-
                             <Box display="flex" alignItems="center">
-                              {/* <Typography variant="body2" color="textSecondary">
-                              {comment.author.username}
-                            </Typography> */}
-
                               {comment.author && comment.author.isVerified && (
                                 <Tooltip title="Verified user">
                                   <VerifiedIcon
                                     fontSize="small"
                                     color="primary"
-                                    style={{
-                                      marginLeft: '0.5rem',
-                                      color: '#3f51b5',
-                                    }}
+                                    style={{ marginLeft: '0.5rem' }}
                                   />
                                 </Tooltip>
                               )}
@@ -239,74 +235,91 @@ function IconLabelTabs({
                             </Typography>
                           </Box>
                         </Box>
-                        <Box>
+                        <Box mt={1}>
                           <Typography variant="body1" style={{ color: '#333' }}>
                             {comment.text}
                           </Typography>
                         </Box>
-                      </Box>
-                      <Box
-                        style={{
-                          height: 'auto',
-                          width: '200px',
-                        }}
-                      >
-                        <CardMedia
-                          component="img"
-                          style={{ borderRadius: '8px' }}
-                          image={comment.image || '/default_pet_image.jpg'}
-                        />
-                      </Box>
-                    </Box>
-                    {/* <Typography variant="body1" style={{ color: '#333', background: 'lightgreen' }}>
-                        {comment.text}
-                      </Typography> */}
-                    <Box mb={2} style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <Box>
-                        {/* <Typography variant="body1" style={{ color: '#333' }}>
-                            {comment.text}
-                          </Typography> */}
-                      </Box>
-                      {/* <Box
-                          style={{
-                            height: 'auto',
-                            width: '200px',
-                          }}
-                        >
+                      </Grid>
+
+                      {/* Right section (image and buttons) */}
+                      <Grid item xs={12} md={4}>
+                        <Box position="relative">
                           <CardMedia
                             component="img"
+                            style={{
+                              borderRadius: '8px',
+                              cursor: 'pointer',
+                              maxWidth: '100%',
+                              height: 'auto',
+                            }}
                             image={comment.image || '/default_pet_image.jpg'}
+                            onClick={() => handleOpen(comment.image || '/default_pet_image.jpg')} // Open modal with clicked image
                           />
-                        </Box> */}
-                    </Box>
-
-                    <Box display="flex" justifyContent="space-between">
-                      <Tooltip title="Show on map">
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          endIcon={<LocationOnIcon />}
-                          size="small"
-                          style={{ background: '#555' }}
-                        >
-                          Show on map
-                        </Button>
-                      </Tooltip>
-                      {user && user.id === comment.author._id && (
-                        <Tooltip title="Delete message">
-                          <Button
-                            variant="contained"
-                            color="secondary"
-                            endIcon={<DeleteIcon />}
-                            size="small"
-                            style={{ background: '#d32f2f' }}
-                            onClick={() => handleDelete(comment._id)} // Add this line
+                          {/* Show image modal */}
+                          <Modal
+                            open={open}
+                            onClose={handleClose}
+                            closeAfterTransition
+                            BackdropComponent={Backdrop}
+                            BackdropProps={{
+                              timeout: 500,
+                            }}
                           >
-                            Delete
-                          </Button>
-                        </Tooltip>
-                      )}
-                    </Box>
+                            <Fade in={open}>
+                              <Box
+                                sx={{
+                                  position: 'absolute',
+                                  top: '50%',
+                                  left: '50%',
+                                  transform: 'translate(-50%, -50%)',
+                                  maxWidth: '90vw',
+                                  maxHeight: '90vh',
+                                  outline: 'none',
+                                }}
+                              >
+                                <img
+                                  src={selectedImage || '/default_pet_image.jpg'}
+                                  alt="Modal"
+                                  style={{ borderRadius: '8px', width: '100%', height: 'auto' }}
+                                />
+                              </Box>
+                            </Fade>
+                          </Modal>
+                        </Box>
+                      </Grid>
+
+                      {/* Buttons section */}
+                      <Grid item xs={12}>
+                        <Box display="flex" justifyContent="space-between">
+                          <Tooltip title="Show on map">
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              endIcon={<LocationOnIcon />}
+                              size="small"
+                              style={{ background: '#555' }}
+                            >
+                              Show on map
+                            </Button>
+                          </Tooltip>
+                          {user && user.id === comment.author?._id && (
+                            <Tooltip title="Delete message">
+                              <Button
+                                variant="contained"
+                                color="secondary"
+                                endIcon={<DeleteIcon />}
+                                size="small"
+                                style={{ background: '#d32f2f' }}
+                                onClick={() => handleDelete(comment._id)} // Add this line
+                              >
+                                Delete
+                              </Button>
+                            </Tooltip>
+                          )}
+                        </Box>
+                      </Grid>
+                    </Grid>
                   </CardContent>
                 </Card>
               </Grid>
@@ -439,11 +452,11 @@ function IconLabelTabs({
                     <Avatar
                       style={{ background: '#555' }}
                       alt={pet.author?.username}
-                      // src={pet.author.username}
+                      src={pet.author?.avatar}
                     />
 
                     <Typography variant="body1">
-                      <b>Username:</b> {pet.author?.username}
+                      <b>Username:</b> @{pet.author?.username}
                     </Typography>
                     {/* <FiberManualRecordIcon
                         style={{

@@ -306,7 +306,7 @@ import { LanguageContext } from '../middleware/LanguageContext';
 
 function ProfilePage() {
   const { user, setUser, logout } = useContext(AuthContext);
-
+  console.log(user);
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
 
   const navigate = useNavigate();
@@ -451,20 +451,21 @@ function ProfilePage() {
         </Box>
 
         <Avatar
-          alt={`${user?.firstName} ${user?.lastName}`}
-          src={AvatarImg}
+          alt={user.avatar}
+          src={user.avatar}
           sx={{ width: 150, height: 150, margin: 'auto', border: '2px solid lightgray' }}
         />
 
-        <Typography variant="h6" gutterBottom sx={{ marginTop: '1rem' }}>
+        {/* <Typography variant="h6" gutterBottom sx={{ marginTop: '1rem' }}>
           {user?.firstName} {user?.lastName}
+        </Typography> */}
+        <Typography variant="body1" color="primary">
+          @{user.username}
         </Typography>
-        <Typography variant="body1" color="textSecondary">
-          @{user?.username}
-        </Typography>
-        <Typography variant="body2" color="primary" sx={{ marginTop: '1rem' }}>
+
+        {/* <Typography variant="body2" color="textSecondary" sx={{ marginTop: '1rem' }}>
           Change Avatar
-        </Typography>
+        </Typography> */}
         {/* <Typography variant="body1" color="textSecondary">
           Followers: {user?.followers} | Following: {user?.following}
         </Typography> */}

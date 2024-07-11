@@ -1,264 +1,3 @@
-// import React, { useState } from "react";
-// import {
-//   Avatar,
-//   Button,
-//   Container,
-//   Grid,
-//   TextField,
-//   Typography,
-// } from "@mui/material";
-
-// function ProfilePage() {
-//   // Dummy user data (replace with actual user data fetched from backend)
-//   const [user, setUser] = useState({
-//     firstName: "John",
-//     lastName: "Doe",
-//     email: "john.doe@example.com",
-//     profilePicture: "path/to/profile_picture.jpg",
-//     // Add more user data as needed
-//   });
-
-//   // Dummy pets data (replace with actual pets data fetched from backend)
-//   const [pets, setPets] = useState([]);
-
-//   const handleInputChange = (e) => {
-//     setUser({
-//       ...user,
-//       [e.target.name]: e.target.value,
-//     });
-//   };
-
-//   const handleSaveChanges = () => {
-//     // Send updated user data to backend
-//     console.log("Updated user data:", user);
-//   };
-
-//   return (
-//     <Container maxWidth="md">
-//       <Grid container spacing={3}>
-//         <Grid item xs={12}>
-//           <Typography variant="h3" gutterBottom>
-//             User Profile
-//           </Typography>
-//         </Grid>
-//         <Grid item xs={12} md={4}>
-//           <Avatar
-//             alt="Profile Picture"
-//             src={user.profilePicture}
-//             sx={{ width: 200, height: 200 }}
-//           />
-//         </Grid>
-//         <Grid item xs={12} md={8}>
-//           <TextField
-//             fullWidth
-//             label="First Name"
-//             name="firstName"
-//             value={user.firstName}
-//             onChange={handleInputChange}
-//             variant="outlined"
-//             mb={2}
-//           />
-//           <TextField
-//             fullWidth
-//             label="Last Name"
-//             name="lastName"
-//             value={user.lastName}
-//             onChange={handleInputChange}
-//             variant="outlined"
-//             mb={2}
-//           />
-//           <TextField
-//             fullWidth
-//             label="Email"
-//             name="email"
-//             value={user.email}
-//             onChange={handleInputChange}
-//             variant="outlined"
-//             mb={2}
-//           />
-//           {/* Add more user details here */}
-//           <Button
-//             variant="contained"
-//             color="primary"
-//             onClick={handleSaveChanges}
-//           >
-//             Save Changes
-//           </Button>
-//         </Grid>
-//         <Grid item xs={12}>
-//           <Typography variant="h4" gutterBottom>
-//             Pets I Follow
-//           </Typography>
-//           {/* Render list of pets user follows */}
-//           {pets.map((pet) => (
-//             <div key={pet.id}>
-//               <Avatar alt={pet.name} src={pet.profilePicture} />
-//               <Typography>{pet.name}</Typography>
-//               {/* Add more pet details here */}
-//             </div>
-//           ))}
-//         </Grid>
-//       </Grid>
-//     </Container>
-//   );
-// }
-
-// export default ProfilePage;
-
-// import React, { useState } from "react";
-// import { Box, Tab, Tabs, Grid, Typography, List, ListItem, ListItemText, ListItemSecondaryAction, Checkbox } from "@mui/material";
-// import Avatar from "@mui/material/Avatar";
-
-// // import Grid from "@mui/material/Grid";
-// import Button from "@mui/material/Button";
-// import Paper from "@mui/material/Paper";
-// import Divider from "@mui/material/Divider";
-
-// import ListItemAvatar from "@mui/material/ListItemAvatar";
-
-// import FavoriteIcon from "@mui/icons-material/Favorite";
-// import PeopleIcon from "@mui/icons-material/People";
-// import RecipeIcon from "@mui/icons-material/Receipt";
-// import BookmarkIcon from "@mui/icons-material/Bookmark";
-// import KitchenIcon from "@mui/icons-material/Kitchen";
-// import NoMealsIcon from "@mui/icons-material/NoMeals";
-// import IconButton from "@mui/material/IconButton";
-// import EditIcon from "@mui/icons-material/Edit";
-// import FacebookIcon from "@mui/icons-material/Facebook";
-// import TwitterIcon from "@mui/icons-material/Twitter";
-// import InstagramIcon from "@mui/icons-material/Instagram";
-// import ReviewsIcon from "@mui/icons-material/Reviews";
-// import EventIcon from "@mui/icons-material/Event";
-// import LogoutIcon from "@mui/icons-material/Logout";
-// import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-// import MenuBookIcon from "@mui/icons-material/MenuBook";
-// import LanguageIcon from "@mui/icons-material/Language";
-// import SettingsIcon from "@mui/icons-material/Settings";
-// import { Link } from "react-router-dom";
-// import PersonIcon from "@mui/icons-material/Person";
-
-// function MyAccount() {
-//   const user = {
-//     name: "John Doe",
-//     avatar: "/path/to/avatar.jpg",
-//     followers: 1200,
-//     following: 560,
-//     recipesPrepared: 50,
-//     level: 3,
-//     nextLevelRecipes: 20,
-//     favorites: [
-//       { id: 1, title: "Spaghetti Carbonara" },
-//       { id: 2, title: "Chicken Tikka Masala" },
-//       { id: 3, title: "Vegetable Stir-Fry" },
-//     ],
-//     ownRecipes: [
-//       { id: 4, title: "Chocolate Chip Cookies" },
-//       { id: 5, title: "Grilled Salmon with Lemon" },
-//     ],
-//     reviewedRecipes: [
-//       { id: 4, title: "Mango Chips" },
-//       { id: 5, title: "Salmon with Lemon" },
-//     ],
-//     preparedRecipes: [
-//       { id: 4, title: "Mango Chips", preparationCount: 5, firstPrepared: "2023-05-15", lastPrepared: "2024-03-20" },
-//       { id: 5, title: "Salmon with Lemon", preparationCount: 10, firstPrepared: "2023-07-10", lastPrepared: "2024-04-08" },
-//     ],
-//     dietaryRestrictions: ["Vegetarian", "Gluten-Free"],
-//     kitchenTools: ["Blender", "Oven", "Knife Set", "Mixing Bowls"],
-//     mealPlan: [
-//       { day: "Monday", recipe: "Spaghetti Carbonara" },
-//       { day: "Tuesday", recipe: "Chicken Tikka Masala" },
-//       { day: "Wednesday", recipe: "Vegetable Stir-Fry" },
-//       { day: "Thursday", recipe: "Grilled Salmon with Lemon" },
-//       { day: "Friday", recipe: "Chocolate Chip Cookies" },
-//       { day: "Saturday", recipe: "Pizza" },
-//       { day: "Sunday", recipe: "Pasta with Mushrooms" },
-//     ],
-//     socialProfiles: {
-//       facebook: "https://www.facebook.com/johndoe",
-//       twitter: "https://twitter.com/johndoe",
-//       instagram: "https://www.instagram.com/johndoe/",
-//     },
-//     bio: "Passionate home cook exploring new recipes and flavors. Follow me for tasty inspiration!",
-//   };
-//   return (
-//     <Grid item xs={12} md={12}>
-//       {/* <Paper style={{ padding: "1rem", textAlign: "center" }}> */}
-//       {/* <Typography variant="h6" color="textSecondary" gutterBottom sx={{ textAlign: "start" }}>
-//         PERSONAL
-//       </Typography> */}
-//       <Box sx={{ textAlign: "center" }}>
-//         <Avatar alt={user.name} src={user.avatar} sx={{ width: 150, height: 150, margin: "auto" }} />
-//         <Typography variant="h6" gutterBottom sx={{ marginTop: "1rem" }}>
-//           {user.name}
-//         </Typography>
-//         <Typography variant="body2" color="textSecondary">
-//           Followers: {user.followers} | Following: {user.following}
-//         </Typography>
-//         {/* <Typography variant="h6" gutterBottom>
-//     Bio
-//   </Typography> */}
-//         <Divider sx={{ my: "0.5rem" }} />
-//         <Typography sx={{ padding: "1rem", textAlign: "start" }} variant="body1" gutterBottom>
-//           {user.bio}
-//         </Typography>
-//         <Divider sx={{ my: "0.5rem" }} />
-// <Paper style={{ padding: "1rem" }}>
-//   <Typography variant="h6" gutterBottom>
-//     User Statistics
-//   </Typography>
-//   <Divider sx={{ my: "0.5rem" }} />
-//   <Typography variant="body1" gutterBottom>
-//     Recipes Prepared: {user.recipesPrepared}
-//   </Typography>
-//   <Typography variant="body1" gutterBottom>
-//     Level: {user.level}
-//   </Typography>
-//   <Typography variant="body1" gutterBottom>
-//     Recipes to Next Level: {user.nextLevelRecipes}
-//   </Typography>
-// </Paper>
-//       </Box>
-//       {/* <Typography variant="h6" gutterBottom>
-//     Social Networks
-//   </Typography> */}
-//       <Divider sx={{ my: "0.5rem" }} />
-//       <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "start", padding: "1rem" }}>
-//         <Typography variant="body1" gutterBottom sx={{ paddingTop: "0.4rem", paddingBottom: "0.4rem", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-//           <FacebookIcon sx={{ marginRight: "0.5rem" }} />
-//           <Link href={user.socialProfiles.facebook} target="_blank" rel="noopener noreferrer">
-//             Facebook
-//           </Link>
-//         </Typography>
-
-//         <Typography variant="body1" gutterBottom sx={{ paddingTop: "0.4rem", paddingBottom: "0.4rem", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-//           <LanguageIcon sx={{ marginRight: "0.5rem" }} />
-//           <Link href={user.socialProfiles.website} target="_blank" rel="noopener noreferrer">
-//             Website
-//           </Link>
-//         </Typography>
-//         <Typography variant="body1" gutterBottom sx={{ paddingTop: "0.4rem", paddingBottom: "0.4rem", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-//           <InstagramIcon sx={{ marginRight: "0.5rem" }} />
-//           <Link href={user.socialProfiles.instagram} target="_blank" rel="noopener noreferrer">
-//             Instagram
-//           </Link>
-//         </Typography>
-//       </Box>
-//       <Box>
-//         <Button sx={{ display: "flex", justifyContent: "start", marginBottom: "0.8rem" }} variant="outlined" size="small" startIcon={<EditIcon />} component={Link} to="/edit-profile">
-//           Edit Profile
-//         </Button>
-//         <Button sx={{ display: "flex", justifyContent: "start" }} variant="outlined" size="small" startIcon={<SettingsIcon />} component={Link} to="/settings-profile">
-//           Profile Settings
-//         </Button>
-//       </Box>
-//       {/* </Paper> */}
-//     </Grid>
-//   );
-// }
-
-// export default MyAccount;
 import React, { useState, useContext, useEffect } from 'react';
 import {
   Box,
@@ -285,7 +24,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Avatar from '@mui/material/Avatar';
 import EditIcon from '@mui/icons-material/Edit';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LanguageIcon from '@mui/icons-material/Language';
@@ -300,65 +39,100 @@ import CloseIcon from '@mui/icons-material/Close';
 import TryIcon from '@mui/icons-material/Try';
 import WorkIcon from '@mui/icons-material/Work';
 import AvatarImg from '../images/beaver.avif';
+import { BASE_URL } from '../middleware/config';
 
 function ProfileSettingsPage() {
   const { user, setUser } = useContext(AuthContext);
-  // const [user, setUser] = useState({
-  //   firstName: 'John',
-  //   lastName: 'Doe',
-  //   email: 'john.doe@example.com',
-  //   password: '********',
-  //   isSeller: true,
-  //   businessName: '',
-  //   nextLevel: 9,
-  //   country: 'Latvia',
-  //   language: 'Latvian',
-  //   currentLevel: 'Recipe Ninja',
-  //   recipesPrepared: 1,
-  //   recipesReviewed: 2,
-  //   avatar: '/path/to/avatar.jpg',
-  //   followers: 1200,
-  //   following: 560,
-  //   bio: 'Passionate home cook exploring new recipes and flavors. Follow me for tasty inspiration! Follow me for tasty inspiration!',
-  //   socialProfiles: {
-  //     facebook: 'https://www.facebook.com/johndoe',
-  //     instagram: 'https://www.instagram.com/johndoe/',
-  //     website: 'https://www.example.com',
-  //   },
-  // });
-
-  const handleChange = (e) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleCheckboxChange = (e) => {
-    setUser({
-      ...user,
-      isSeller: e.target.checked,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Logic to submit updated user data
-    console.log('Updated user data:', user);
-  };
-
-  const [openDialog, setOpenDialog] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const [openPublicInformationDialog, setOpenPublicInformationDialog] = useState(false);
   const [openUserPreferencesDialog, setOpenUserPreferencesDialog] = useState(false);
   const [openUserCredentialsDialog, setOpenUserCredentialsDialog] = useState(false);
 
+  // State for input values
+  const [formData, setFormData] = useState({
+    firstName: user.firstName || '',
+    lastName: user.lastName || '',
+    bio: user.bio || '',
+
+    language: user.language || '',
+    country: user.country || '',
+    phone: user.phone || '',
+    phoneCode: user.phoneCode || '',
+
+    // Add more fields as needed
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: checked,
+    });
+  };
+  console.log('userxxxxxxx', user.id);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(`${BASE_URL}/users/${user.id}`, {
+        method: 'PUT',
+
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to update user data');
+      }
+
+      const updatedUserData = await response.json();
+      setUser(updatedUserData); // Assuming your backend returns updated user data
+      console.log('Updated user data:', updatedUserData);
+
+      // Close dialogs after successful update if needed
+      handleClosePublicInformationDialog();
+      handleCloseUserPreferencesDialog();
+      handleCloseUserCredentialsDialog();
+    } catch (error) {
+      console.error('Error updating user data:', error.message);
+      // Handle error gracefully, e.g., show error message to the user
+    }
+  };
+  const [openDialog, setOpenDialog] = useState(false);
+
   const [inputValue, setInputValue] = useState('');
-  const handleDeleteAccount = () => {
-    // Implement your logic to delete the account here
-    // This could involve making API calls or updating state
-    // Once the account is deleted, you may want to redirect the user or show a confirmation message
-    console.log('Deleting account...');
+
+  const handleDeleteAccount = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(`${BASE_URL}/auth/delete`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to delete user account');
+      }
+      const deletedMessage = await response.json();
+      console.log('Account deleted:', deletedMessage);
+      setUser(null); // Clear user data after deletion
+      navigate('/'); // Navigate to the home page after successful deletion
+    } catch (error) {
+      console.error('Error deleting account:', error.message);
+      // Handle error gracefully
+    }
     setOpenDialog(false); // Close the dialog after account deletion
   };
 
@@ -517,16 +291,6 @@ function ProfileSettingsPage() {
             Website
           </MuiLink>
         </Typography>
-        {/* <Typography variant="body1" gutterBottom sx={{ paddingTop: "0.4rem", paddingBottom: "0.4rem", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-          <FacebookIcon sx={{ marginRight: "0.5rem" }} />
-          <Link href={user.socialProfiles.facebook} style={{ textDecoration: "none", color: "black" }} target="_blank" rel="noopener noreferrer">
-            Facebook
-          </Link>{" "}
-          <TextField sx={{ width: "100px" }} size="small" margin="normal" name="lastName" value={user.lastName} onChange={handleChange} />
-        </Typography> */}
-        {/* <Typography variant="body1" textAlign="start" gutterBottom>
-          Insights
-        </Typography> */}
 
         <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
           <Grid item xs={12} md={3}>
@@ -564,24 +328,7 @@ function ProfileSettingsPage() {
             </Link>
           </Grid>
         </Grid>
-        {/* <Paper style={{ padding: "1rem" }}>
-          <Typography variant="h6" gutterBottom>
-            User Statistics
-          </Typography>
-          <Divider sx={{ my: "0.5rem" }} />
-          <Typography variant="body1" gutterBottom>
-            Recipes Prepared: {user.recipesPrepared}
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Level: {user.level}
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Recipes to Next Level: {user.nextLevelRecipes}
-          </Typography>
-        </Paper> */}
-        {/* <Button variant="outlined" onClick={handleOpenPublicInformationDialog}>
-          Edit
-        </Button> */}
+
         <Dialog open={openPublicInformationDialog} onClose={handleClosePublicInformationDialog}>
           <DialogTitle>Edit Public Information</DialogTitle>
           <DialogContent>
@@ -770,11 +517,17 @@ function ProfileSettingsPage() {
                     control={<Checkbox checked={false} onChange={() => {}} />}
                     label="Receive newsletters"
                   />
-                  <FormControl>
-                    <Select value="" onChange={() => {}} displayEmpty>
-                      <MenuItem value="" disabled>
-                        Preferred Language
-                      </MenuItem>
+                  <FormControl fullWidth>
+                    <InputLabel id="language-select-label">Preferred Language</InputLabel>
+                    <Select
+                      labelId="language-select-label"
+                      id="language-select"
+                      value={formData.language}
+                      label="Preferred Language"
+                      name="language"
+                      onChange={handleChange}
+                    >
+                      <MenuItem value="">Select Language</MenuItem>
                       <MenuItem value="en">English</MenuItem>
                       <MenuItem value="es">Spanish</MenuItem>
                       {/* Add more languages as needed */}
@@ -804,10 +557,10 @@ function ProfileSettingsPage() {
               </FormControl>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleCloseUserPreferencesDialog} color="primary">
+              <Button onClick={handleClosePublicInformationDialog} color="primary">
                 Cancel
               </Button>
-              <Button onClick={handleSaveUserPreferencesDialog} color="error">
+              <Button onClick={handleSubmit} color="primary">
                 Save
               </Button>
             </DialogActions>
@@ -827,15 +580,14 @@ function ProfileSettingsPage() {
               <EditIcon />
             </IconButton>
           </Box>
-          {/* <TextField fullWidth margin="normal" label="First Name" name="firstName" value={user.firstName} onChange={handleChange} />
-          <TextField fullWidth margin="normal" label="Last Name" name="lastName" value={user.lastName} onChange={handleChange} /> */}
+
           <TextField
             disabled
             fullWidth
             margin="normal"
             label="Email"
             name="email"
-            value={user?.email}
+            value={user.email}
             onChange={handleChange}
           />
           <TextField
@@ -845,7 +597,7 @@ function ProfileSettingsPage() {
             type="password"
             label="Password"
             name="password"
-            value={user?.password}
+            value={user.password}
             onChange={handleChange}
           />
 
@@ -862,16 +614,17 @@ function ProfileSettingsPage() {
                 margin="normal"
                 label="Email"
                 name="email"
-                value={user?.email}
+                value={user.email}
                 onChange={handleChange}
               />
+
               <TextField
                 fullWidth
                 margin="normal"
                 type="password"
                 label="Password"
                 name="password"
-                value={user?.password}
+                value={user.password}
                 onChange={handleChange}
               />
             </DialogContent>
@@ -886,29 +639,6 @@ function ProfileSettingsPage() {
           </Dialog>
         </Box>
       </Box>
-      {/* <FormControlLabel control={<Checkbox checked={user.isSeller} onChange={handleCheckboxChange} />} label="I am a seller" />
-      {user.isSeller && <TextField fullWidth margin="normal" label="Business Name" name="businessName" value={user.businessName} onChange={handleChange} />} */}
-      {/* <Divider sx={{ my: "0.5rem" }} />
-      <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "start", padding: "1rem" }}>
-        <Typography variant="body1" gutterBottom sx={{ paddingTop: "0.4rem", paddingBottom: "0.4rem", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-          <FacebookIcon sx={{ marginRight: "0.5rem" }} />
-          <Link href={user.socialProfiles.facebook} target="_blank" rel="noopener noreferrer">
-            Facebook
-          </Link>
-        </Typography>
-        <Typography variant="body1" gutterBottom sx={{ paddingTop: "0.4rem", paddingBottom: "0.4rem", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-          <LanguageIcon sx={{ marginRight: "0.5rem" }} />
-          <Link href={user.socialProfiles.website} target="_blank" rel="noopener noreferrer">
-            Website
-          </Link>
-        </Typography>
-        <Typography variant="body1" gutterBottom sx={{ paddingTop: "0.4rem", paddingBottom: "0.4rem", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-          <InstagramIcon sx={{ marginRight: "0.5rem" }} />
-          <Link href={user.socialProfiles.instagram} target="_blank" rel="noopener noreferrer">
-            Instagram
-          </Link>
-        </Typography>
-      </Box> */}
 
       <Box>
         <div>
@@ -930,11 +660,11 @@ function ProfileSettingsPage() {
               </Typography>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleCloseDialog} color="primary">
-                Cancel
+              <Button onClick={handleDeleteAccount} variant="contained" color="error">
+                Delete
               </Button>
-              <Button onClick={handleDeleteAccount} color="error">
-                Delete Account
+              <Button onClick={() => setOpenDialog(false)} color="primary">
+                Cancel
               </Button>
             </DialogActions>
           </Dialog>

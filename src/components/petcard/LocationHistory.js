@@ -83,7 +83,7 @@ const LocationHistory = ({ pet }) => {
                     </ListItemAvatar>
                     <ListItemText
                       primary={`Show on map`}
-                      secondary={`Added by ${loc.userId.username} on ${moment(loc.date).format(
+                      secondary={`Added by ${loc.userId?.username} on ${moment(loc.date).format(
                         'MMMM Do YYYY, HH:mm',
                       )}`}
                     />

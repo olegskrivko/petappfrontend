@@ -54,7 +54,7 @@ function DrawerAppBar(props) {
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
   const { t } = useTranslation();
   const navigate = useNavigate();
-  console.log('user', user);
+  console.log('userDRAWer', user);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
