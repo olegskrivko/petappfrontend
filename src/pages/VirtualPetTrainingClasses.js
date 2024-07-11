@@ -1,7 +1,13 @@
 import React from 'react';
 import { Card, CardContent, CardMedia, Typography, Box, Grid } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 function VirtualPetTrainingClasses() {
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
   const videos = [
     {
       title: 'FREE DOG TRAINING SERIES – Lesson 1: how to teach your dog to sit and drop',
@@ -30,11 +36,24 @@ function VirtualPetTrainingClasses() {
   ];
 
   return (
-    <Box padding={4}>
-      <Typography variant="h4" textAlign="center" gutterBottom>
-        Virtual Pet Training Classes
-      </Typography>
-      <Grid container spacing={4} justifyContent="flext-start">
+    <React.Fragment>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Typography
+            variant="h4"
+            textAlign="center"
+            style={{
+              fontSize: isSmallScreen ? '1.2rem' : '2rem',
+              marginBottom: isSmallScreen ? '1.6rem' : '2rem',
+              marginTop: isSmallScreen ? '0.4rem' : '1rem',
+            }}
+            gutterBottom
+          >
+            Virtual Pet Training Classes
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid container spacing={3}>
         {videos.map((video, index) => (
           <Grid item key={index} xs={12} sm={6} md={4}>
             <Card sx={{ maxWidth: 800, boxShadow: 5, borderRadius: 2 }}>
@@ -61,7 +80,7 @@ function VirtualPetTrainingClasses() {
                 />
               </CardMedia>
               <CardContent>
-                <Typography variant="h6" component="div" gutterBottom>
+                <Typography variant="h6" gutterBottom style={{ fontSize: '1rem' }}>
                   {video.title}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
@@ -72,7 +91,7 @@ function VirtualPetTrainingClasses() {
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </React.Fragment>
   );
 }
 
