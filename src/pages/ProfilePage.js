@@ -441,13 +441,13 @@ function ProfilePage() {
           >
             User Information
           </Typography>
-          <IconButton
+          {/* <IconButton
             sx={{ position: 'absolute', top: 0, right: 0 }}
             variant="outlined"
             onClick={handleOpenPublicInformationDialog}
           >
             <EditIcon />
-          </IconButton>
+          </IconButton> */}
         </Box>
 
         <Avatar
@@ -470,7 +470,7 @@ function ProfilePage() {
           Followers: {user?.followers} | Following: {user?.following}
         </Typography> */}
         {/* <Divider sx={{ my: "0.5rem" }} /> */}
-        <Typography
+        {/* <Typography
           sx={{ paddingTop: '1rem', paddingBottom: '1rem', textAlign: 'start' }}
           variant="body1"
           gutterBottom
@@ -543,7 +543,7 @@ function ProfilePage() {
           >
             Website
           </MuiLink>
-        </Typography>
+        </Typography> */}
 
         <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
           <Grid item xs={6} md={4}>
@@ -563,7 +563,7 @@ function ProfilePage() {
               </Paper>
             </Link>
           </Grid> */}
-          <Grid item xs={6} md={4}>
+          {/* <Grid item xs={6} md={4}>
             <Link to="/user/profile/pets" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
                 <PetsIcon fontSize="large" sx={{ color: '#ff6600' }} />
@@ -571,7 +571,7 @@ function ProfilePage() {
                 <Typography variant="body1">Pets {user?.nextLevel}</Typography>
               </Paper>
             </Link>
-          </Grid>
+          </Grid> */}
           {/* <Grid item xs={6} md={4}>
             <Link to="/user/profile/settings" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>

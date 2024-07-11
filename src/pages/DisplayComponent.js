@@ -77,55 +77,53 @@ const DisplayComponent = ({ pet }) => {
     return option ? option.label : '';
   };
   return (
-    <Box>
-      {/* <Typography variant="h3">
-        Display Component - {pet.name} ({pet.category})
-      </Typography> */}
-      <Typography variant="body1">
-        This is a scaled-down view of the pet information for display.
-      </Typography>
-      <Box
-        id="page"
-        sx={{
-          padding: 4,
-          border: '1px solid #ccc',
-          borderRadius: '8px',
-          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-          backgroundColor: '#fff',
-        }}
-      >
-        <Box
-          style={{
-            background: 'darkred',
-            padding: '1rem 0',
-            marginBottom: '1rem',
-          }}
-        >
-          <Typography
-            variant="h1"
-            textAlign="center"
+    <Box
+      id="page"
+      sx={{
+        padding: 4,
+        border: '1px solid #ccc',
+        borderRadius: '8px',
+        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+        backgroundColor: '#fff',
+      }}
+    >
+      <Grid container>
+        <Grid item xs={12} mb={2}>
+          <Box
             style={{
-              textTransform: 'uppercase',
-              fontWeight: '700',
-              color: '#fff',
-              fontSize: '3rem',
+              width: '100%',
+              background: 'darkred',
+              padding: '1rem 0',
+              marginBottom: '1rem',
             }}
           >
-            {getInitialStatusLabel(pet.initialStatus)} {getCategoryLabel(pet.category)}
-          </Typography>
-          <Typography
-            variant="h6"
-            textAlign="center"
-            style={{
-              color: '#fff',
-              textTransform: 'uppercase',
-              letterSpacing: '1px',
-              fontSize: '1rem',
-            }}
-          >
-            Have you seen this {getCategoryLabel(pet.category)}?
-          </Typography>
-        </Box>
+            <Typography
+              variant="h1"
+              textAlign="center"
+              style={{
+                textTransform: 'uppercase',
+                fontWeight: '700',
+                color: '#fff',
+                fontSize: isSmallScreen ? '1rem' : '3rem',
+              }}
+            >
+              {getInitialStatusLabel(pet.initialStatus)} {getCategoryLabel(pet.category)}
+            </Typography>
+            <Typography
+              variant="h6"
+              textAlign="center"
+              style={{
+                color: '#fff',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                fontSize: isSmallScreen ? '0.8rem' : '1rem',
+              }}
+            >
+              Have you seen this {getCategoryLabel(pet.category)}?
+            </Typography>
+          </Box>
+        </Grid>
+
         <Grid container spacing={3}>
           <Grid item xs={5} sm={5} md={5} lg={5}>
             <Grid item xs={12} sm={12} mb={2}>
@@ -135,9 +133,11 @@ const DisplayComponent = ({ pet }) => {
                   display: 'flex',
                   justifyContent: 'start',
                   alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
                 }}
               >
-                <TagIcon /> <b>Name or ID:</b>{' '}
+                <TagIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+                <b>Name or ID:</b>{' '}
                 <span style={{ textTransform: 'capitalize' }}>
                   {pet.identifier ? pet.identifier : 'N/A'}
                 </span>
@@ -150,9 +150,10 @@ const DisplayComponent = ({ pet }) => {
                   display: 'flex',
                   justifyContent: 'start',
                   alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
                 }}
               >
-                <MaleIcon /> <b>Gender:</b>{' '}
+                <MaleIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} /> <b>Gender:</b>{' '}
                 <span style={{ textTransform: 'capitalize' }}>
                   {pet.gender ? pet.gender : 'N/A'}
                 </span>
@@ -165,9 +166,10 @@ const DisplayComponent = ({ pet }) => {
                   display: 'flex',
                   justifyContent: 'start',
                   alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
                 }}
               >
-                <HeightIcon /> <b>Size:</b>{' '}
+                <HeightIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} /> <b>Size:</b>{' '}
                 <span style={{ textTransform: 'capitalize' }}>{pet.size ? pet.size : 'N/A'}</span>
               </Box>
             </Grid>
@@ -178,9 +180,11 @@ const DisplayComponent = ({ pet }) => {
                   display: 'flex',
                   justifyContent: 'start',
                   alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
                 }}
               >
-                <MoodIcon /> <b>Behavior:</b>{' '}
+                <MoodIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+                <b>Behavior:</b>{' '}
                 <span style={{ textTransform: 'capitalize' }}>
                   {pet.behavior ? pet.behavior : 'N/A'}
                 </span>
@@ -193,9 +197,10 @@ const DisplayComponent = ({ pet }) => {
                   display: 'flex',
                   justifyContent: 'start',
                   alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
                 }}
               >
-                <CakeIcon /> <b>Age:</b>{' '}
+                <CakeIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} /> <b>Age:</b>{' '}
                 <span style={{ textTransform: 'capitalize' }}>{pet.age ? pet.age : 'N/A'}</span>
               </Box>
             </Grid>
@@ -206,9 +211,11 @@ const DisplayComponent = ({ pet }) => {
                   display: 'flex',
                   justifyContent: 'start',
                   alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
                 }}
               >
-                <MergeTypeIcon /> <b>Breed:</b>{' '}
+                <MergeTypeIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+                <b>Breed:</b>{' '}
                 <span style={{ textTransform: 'capitalize' }}>{pet.breed ? pet.breed : 'N/A'}</span>
               </Box>
             </Grid>
@@ -219,9 +226,11 @@ const DisplayComponent = ({ pet }) => {
                   display: 'flex',
                   justifyContent: 'start',
                   alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
                 }}
               >
-                <ColorLensIcon /> <b>Main Color:</b>{' '}
+                <ColorLensIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+                <b>Main Color:</b>{' '}
                 <span style={{ textTransform: 'capitalize' }}>
                   {pet.mainColor ? pet.mainColor : 'N/A'}
                 </span>
@@ -234,9 +243,11 @@ const DisplayComponent = ({ pet }) => {
                   display: 'flex',
                   justifyContent: 'start',
                   alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
                 }}
               >
-                <TextureIcon /> <b>Marking Pattern:</b>{' '}
+                <TextureIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+                <b>Marking Pattern:</b>{' '}
                 <span style={{ textTransform: 'capitalize' }}>
                   {pet.markingPattern ? pet.markingPattern : 'N/A'}
                 </span>
@@ -249,9 +260,11 @@ const DisplayComponent = ({ pet }) => {
                   display: 'flex',
                   justifyContent: 'start',
                   alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
                 }}
               >
-                <ColorLensIcon /> <b>Marking Colors:</b>{' '}
+                <ColorLensIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+                <b>Marking Colors:</b>{' '}
                 <span style={{ textTransform: 'capitalize' }}>
                   {pet.markingColors.join(', ') ? pet.markingColors.join(', ') : 'N/A'}
                 </span>
@@ -264,9 +277,10 @@ const DisplayComponent = ({ pet }) => {
                   display: 'flex',
                   justifyContent: 'start',
                   alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
                 }}
               >
-                <EventIcon />{' '}
+                <EventIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
                 <span style={{ textTransform: 'capitalize' }}>
                   <b>{pet.initialStatus}</b>
                 </span>
@@ -280,9 +294,10 @@ const DisplayComponent = ({ pet }) => {
                   display: 'flex',
                   justifyContent: 'start',
                   alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
                 }}
               >
-                <WatchLaterIcon />
+                <WatchLaterIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />
                 <span style={{ textTransform: 'capitalize' }}>
                   <b>{pet.initialStatus}</b>
                 </span>
@@ -326,20 +341,25 @@ const DisplayComponent = ({ pet }) => {
           <Grid item xs={12} mb={1}>
             <Box>
               <Box display="flex" alignItems="center" mb={1}>
-                <FeedIcon />
-                <Typography variant="h6" ml={1} style={{ fontSize: '1rem' }} fontWeight="bold">
+                <FeedIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />
+                <Typography
+                  variant="h6"
+                  ml={1}
+                  style={{ fontSize: isSmallScreen ? '0.8rem' : '1rem' }}
+                  fontWeight="bold"
+                >
                   Additional Information:
                 </Typography>
               </Box>
 
-              <Typography variant="body2">
+              <Typography variant="body2" style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }}>
                 {pet.notes ? pet.notes : 'No additional information given.'}
               </Typography>
             </Box>
           </Grid>
         </Grid>
 
-        <Box style={{ background: 'darkred', padding: '1rem 0' }}>
+        <Box style={{ background: 'darkred', padding: '1rem 0', width: '100%' }}>
           <Typography
             variant="h6"
             textAlign="center"
@@ -347,6 +367,7 @@ const DisplayComponent = ({ pet }) => {
               textTransform: 'uppercase',
               fontWeight: '700',
               color: '#fff',
+              fontSize: isSmallScreen ? '0.7rem' : '1rem',
             }}
           >
             If you have any information please contact
@@ -358,6 +379,7 @@ const DisplayComponent = ({ pet }) => {
               color: '#fff',
               textTransform: 'uppercase',
               letterSpacing: '1px',
+              fontSize: isSmallScreen ? '0.6rem' : '1rem',
             }}
           >
             {pet.phoneCode} {pet.phone}
@@ -400,9 +422,10 @@ const DisplayComponent = ({ pet }) => {
               {/* Generate QR code with pet ID or any relevant information */}
               <QRCode
                 value={`${DOMAIN_URL}/pets/${pet._id}`} // Change URL to your endpoint or pet details page
-                style={{ width: 200, height: 200 }}
+                style={{ width: isSmallScreen ? 80 : 200, height: isSmallScreen ? 80 : 200 }}
               />
             </Box>
+
             <Box
               style={{
                 display: 'flex',
@@ -412,51 +435,78 @@ const DisplayComponent = ({ pet }) => {
                 marginLeft: '1rem',
               }}
             >
-              <Typography variant="body1" textAlign="start" sx={{ mt: 1, fontWeight: 'bold' }}>
+              <Typography
+                variant="body1"
+                textAlign="start"
+                sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
+              >
                 1. Open camera on your smartphone
               </Typography>
-              <Typography variant="body1" textAlign="start" sx={{ mt: 1, fontWeight: 'bold' }}>
+              <Typography
+                variant="body1"
+                textAlign="start"
+                sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
+              >
                 2. Point the camera at the QR code
               </Typography>
-              <Typography variant="body1" textAlign="start" sx={{ mt: 1, fontWeight: 'bold' }}>
+              <Typography
+                variant="body1"
+                textAlign="start"
+                sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
+              >
                 3. Click on the link that appears
               </Typography>
-              <Typography variant="body1" textAlign="start" sx={{ mt: 1, fontWeight: 'bold' }}>
+              <Typography
+                variant="body1"
+                textAlign="start"
+                sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
+              >
                 4. Follow up on the pet
               </Typography>
-              <Typography variant="body1" textAlign="start" sx={{ mt: 1, fontWeight: 'bold' }}>
+              <Typography
+                variant="body1"
+                textAlign="start"
+                sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
+              >
                 5. Share the link with others
               </Typography>
-              <Typography variant="body1" textAlign="start" sx={{ mt: 1, fontWeight: 'bold' }}>
+              <Typography
+                variant="body1"
+                textAlign="start"
+                sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
+              >
                 6. Help reunite the pet with its owner and save a life
               </Typography>
             </Box>
           </Box>
         </Box>
-        <Box style={{ background: 'darkred', padding: '1rem 0' }}>
-          <Typography
-            variant="body1"
-            textAlign="center"
-            style={{ color: '#fff', fontWeight: 'bold' }}
-            gutterBottom
-          >
-            Scan to view map, details and track updates on the pet's status.
-          </Typography>
-          {/* <Typography
+        <Grid item xs={12}>
+          <Box style={{ background: 'darkred', padding: '1rem 1rem', width: '100%' }}>
+            <Typography
+              variant="body1"
+              textAlign="center"
+              style={{
+                color: '#fff',
+                fontWeight: 'bold',
+                fontSize: isSmallScreen ? '0.7rem' : '1rem',
+              }}
+              gutterBottom
+            >
+              Scan to view map, details and track updates on the pet's status.
+            </Typography>
+            {/* <Typography
             variant="body1"
             textAlign="center"
             style={{ mt: 2, color: "#fff" }}
           >
             Poster generated by www.pawclix.com
           </Typography> */}
-        </Box>
+          </Box>
+        </Grid>
         <Typography variant="caption" textAlign="center" sx={{ mt: 1 }}>
           Poster generated by PawClix
         </Typography>
-      </Box>
-      {/* <Box>
-        <QRCode value={`https://example.com/pets/${pet.id}`} />
-      </Box> */}
+      </Grid>
     </Box>
   );
 };

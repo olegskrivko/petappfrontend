@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Container, Typography, TextField, Button, Grid } from '@mui/material';
+import { Container, Typography, MenuItem, TextField, Button, Grid } from '@mui/material';
 import { BASE_URL } from '../middleware/config';
+import { useTranslation } from 'react-i18next';
 
 function EditPetPage() {
+  const { t } = useTranslation();
   const { petId } = useParams();
+
   const navigate = useNavigate(); // Use useNavigate hook to navigate programmatically
   const [pet, setPet] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [formData, setFormData] = useState({
-    petName: '',
-    category: '',
-    initialStatus: '',
+    updatedStatusDescription: '',
+    updatedStatus: '',
   });
 
   useEffect(() => {
@@ -25,9 +27,8 @@ function EditPetPage() {
         const data = await response.json();
         setPet(data);
         setFormData({
-          petName: data.petName,
-          category: data.category,
-          initialStatus: data.initialStatus,
+          updatedStatusDescription: data.updatedStatusDescription,
+          updatedStatus: data.updatedStatus,
         });
         setLoading(false);
       } catch (error) {
@@ -70,6 +71,17 @@ function EditPetPage() {
     }
   };
 
+  const getUpdatedStatusOptions = () => {
+    const initialStatus = pet.initialStatus; // Assuming 'initialStatus' exists in the pet object
+    console.log('initialStatus', initialStatus);
+    // if (!initialStatus) return [];
+
+    const options = t(`selectOptions.updatedStatusOptions.${initialStatus}`, {
+      returnObjects: true,
+    });
+    return options || [];
+  };
+
   if (loading) {
     return <Typography variant="h4">Loading...</Typography>;
   }
@@ -85,36 +97,35 @@ function EditPetPage() {
       </Typography>
       <form onSubmit={handleFormSubmit}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="Pet Name"
-              name="petName"
-              value={formData.petName}
-              onChange={handleInputChange}
-              required
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="Category"
-              name="category"
-              value={formData.category}
-              onChange={handleInputChange}
-              required
-            />
-          </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
-              label="Initial Status"
-              name="initialStatus"
-              value={formData.initialStatus}
+              select
+              label="Updated Status"
+              name="updatedStatus"
+              value={formData.updatedStatus}
+              onChange={handleInputChange}
+              required
+            >
+              {getUpdatedStatusOptions().map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Grid>
+
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Description"
+              name="updatedStatusDescription"
+              value={formData.updatedStatusDescription}
               onChange={handleInputChange}
               required
             />
           </Grid>
+
           <Grid item xs={12}>
             <Button variant="contained" color="primary" type="submit">
               Save Changes

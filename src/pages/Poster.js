@@ -637,7 +637,7 @@ const Poster = ({ pet }) => {
               setIsGenerating(true);
               // Show PDFGenerationComponent before generating PDF
               document.getElementById('display-component').style.display = 'none';
-              document.getElementById('pdf-generation-component').style.display = 'block';
+              document.getElementById('pdf-generation-component').style.display = 'none';
               generatePDF();
             }}
           >

@@ -32,6 +32,17 @@ const LocationHistory = ({ pet }) => {
     const option = options.find((option) => option.value === value);
     return option ? option.label : '';
   };
+
+  const getUpdatedStatusOptions = (value) => {
+    const initialStatus = pet.initialStatus; // Assuming 'initialStatus' exists in the pet object
+    console.log('initialStatus', initialStatus);
+    // if (!initialStatus) return [];
+
+    const options = t(`selectOptions.updatedStatusOptions.${initialStatus}`, {
+      returnObjects: true,
+    });
+    return options[value].label || '';
+  };
   return (
     <Grid container rowSpacing={2}>
       <Grid item xs={12} style={{ paddingLeft: '0' }}>
@@ -172,7 +183,9 @@ const LocationHistory = ({ pet }) => {
                 </Avatar>
                 {/* <Typography variant="body1">Reunited</Typography> */}
                 <Box>
-                  <Typography variant="body1">{pet.updatedStatus}</Typography>
+                  <Typography variant="body1">
+                    {getUpdatedStatusOptions(pet.updatedStatus)}
+                  </Typography>
                   <ListItemText
                     // primary={`He was hiding in the city park.`}
                     secondary={`${moment(pet.updatedAt).format('MMMM Do YYYY, h:mm a')}`}
@@ -186,7 +199,7 @@ const LocationHistory = ({ pet }) => {
                     name="petLastStatusDescription"
                     label="Comment"
                     fullWidth
-                    value="He was hiding in the city park."
+                    value={pet.updatedStatusDescription}
                     // multiline
                     // rows={4}
                     variant="outlined"

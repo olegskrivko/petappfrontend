@@ -137,12 +137,24 @@
 // ChatComponent.js
 
 import React, { useState } from 'react';
-import { Avatar, Card, CardContent, Grid, Typography, Box, TextField, Button } from '@mui/material';
+import {
+  Avatar,
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+  Box,
+  TextField,
+  Button,
+  IconButton,
+} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import LocationOffIcon from '@mui/icons-material/LocationOff';
 import WrongLocationIcon from '@mui/icons-material/WrongLocation';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 const ChatComponent = ({
   user,
   onSendMessage,
@@ -153,7 +165,9 @@ const ChatComponent = ({
 }) => {
   const [message, setMessage] = useState('');
   const [file, setFile] = useState(null); // State to hold the selected file
-
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
   };
@@ -213,38 +227,71 @@ const ChatComponent = ({
           </Box>
           <Box display="flex" justifyContent="space-between">
             <Box>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleAddLocation}
-                endIcon={<AddLocationAltIcon />}
-                size="small"
-                style={{ background: '#555' }}
-              >
-                Add Location
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleRemoveLocation}
-                endIcon={<WrongLocationIcon />}
-                size="small"
-                style={{ background: '#555', marginLeft: '1rem' }}
-              >
-                Remove Location
-              </Button>
-              <label htmlFor="photo-upload-input">
+              {isSmallScreen ? (
+                <IconButton
+                  variant="contained"
+                  color="primary"
+                  onClick={handleAddLocation}
+                  style={{ backgroundColor: '#555' }}
+                >
+                  <AddLocationAltIcon />
+                </IconButton>
+              ) : (
                 <Button
                   variant="contained"
                   color="primary"
-                  component="span"
-                  endIcon={<AddPhotoAlternateIcon />}
+                  onClick={handleAddLocation}
+                  endIcon={<AddLocationAltIcon />}
+                  style={{ backgroundColor: '#555' }}
+                >
+                  Add Location
+                </Button>
+              )}
+              {isSmallScreen ? (
+                <IconButton
+                  variant="contained"
+                  onClick={handleRemoveLocation}
+                  style={{ backgroundColor: '#555', color: 'tomato', marginLeft: '1rem' }}
+                >
+                  <WrongLocationIcon />
+                </IconButton>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleRemoveLocation}
+                  endIcon={<WrongLocationIcon />}
                   size="small"
                   style={{ background: '#555', marginLeft: '1rem' }}
                 >
-                  Add Photo
+                  Remove Location
                 </Button>
-              </label>
+              )}
+              {isSmallScreen ? (
+                <label htmlFor="photo-upload-input">
+                  <IconButton
+                    variant="contained"
+                    color="primary"
+                    style={{ background: '#555', marginLeft: '1rem' }}
+                  >
+                    <AddPhotoAlternateIcon />
+                  </IconButton>
+                </label>
+              ) : (
+                <label htmlFor="photo-upload-input">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    component="span"
+                    endIcon={<AddPhotoAlternateIcon />}
+                    size="small"
+                    style={{ background: '#555', marginLeft: '1rem' }}
+                  >
+                    Add Photo
+                  </Button>
+                </label>
+              )}
+
               <input
                 accept="image/*"
                 id="photo-upload-input"
