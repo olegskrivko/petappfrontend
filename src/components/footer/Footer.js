@@ -77,15 +77,15 @@ const Footer = () => {
                 {/* Pets */} {t('footerLinks.pets')}
               </Link>
             </Typography>
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+            {/* <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/pet-services"
                 disabled
                 style={{ color: 'darkgray', textDecoration: 'none' }}
               >
-                {/* Pet Services */} {t('footerLinks.petServices')}
+                {t('footerLinks.petServices')}
               </Link>
-            </Typography>
+            </Typography> */}
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/virtual-pet-training-classes"
@@ -100,14 +100,14 @@ const Footer = () => {
               </Link>
             </Typography>
 
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+            {/* <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/emergency-pet-alerts"
                 style={{ color: 'darkgray', textDecoration: 'none' }}
               >
-                {/* Emergency Pet Alerts */} {t('footerLinks.emergencyPetAlerts')}
+                {t('footerLinks.emergencyPetAlerts')}
               </Link>
-            </Typography>
+            </Typography> */}
           </Grid>
           <Grid item xs={12} sm={3} textAlign="left">
             <Typography variant="h6" color="#ffc107" style={{ fontWeight: '500' }}>

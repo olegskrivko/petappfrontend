@@ -136,6 +136,191 @@
 // export default ChatComponent;
 // ChatComponent.js
 
+// import React, { useState } from 'react';
+// import {
+//   Avatar,
+//   Card,
+//   CardContent,
+//   Grid,
+//   Typography,
+//   Box,
+//   TextField,
+//   Button,
+//   IconButton,
+// } from '@mui/material';
+// import SendIcon from '@mui/icons-material/Send';
+// import LocationOffIcon from '@mui/icons-material/LocationOff';
+// import WrongLocationIcon from '@mui/icons-material/WrongLocation';
+// import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+// import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+// import useMediaQuery from '@mui/material/useMediaQuery';
+// import { useTheme } from '@mui/material/styles';
+// const ChatComponent = ({
+//   user,
+//   onSendMessage,
+//   onUploadImage,
+//   imagePreview,
+//   onAddLocation,
+//   onRemoveLocation,
+// }) => {
+//   const [message, setMessage] = useState('');
+//   const [file, setFile] = useState(null); // State to hold the selected file
+//   const theme = useTheme();
+//   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
+//   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+//   const handleMessageChange = (event) => {
+//     setMessage(event.target.value);
+//   };
+
+//   const handleAddLocation = () => {
+//     console.log('Adding location');
+//     onAddLocation();
+//   };
+
+//   const handleFileInputChange = (event) => {
+//     const file = event.target.files[0];
+//     console.log('file', file);
+//     if (file) {
+//       setFile(file);
+//       onUploadImage(file); // Pass the file to the parent component
+//     }
+//   };
+
+//   const handleRemoveLocation = () => {
+//     console.log('Removing location');
+//     onRemoveLocation();
+//   };
+
+//   const handleSendMessage = () => {
+//     // Call the parent component's function to send the message
+//     onSendMessage(message);
+//     // Clear the message input field after sending
+//     setMessage('');
+//   };
+
+//   return (
+//     <Grid item xs={12} sm={12} md={12} lg={12} style={{ paddingLeft: '0', marginBottom: '1rem' }}>
+//       <Card style={{ width: '100%', paddingRight: '0 !important' }}>
+//         <CardContent>
+//           <Box display="flex" alignItems="center" marginBottom="1rem">
+//             <Avatar alt={user.username} src={user.avatar}></Avatar>
+//             <Box ml={2}>
+//               <Typography variant="body1" style={{ fontWeight: 'bold' }}>
+//                 @{user.username}
+//               </Typography>
+//               <Typography variant="body2" color="textSecondary">
+//                 Online
+//               </Typography>
+//             </Box>
+//           </Box>
+//           <Box mb={2}>
+//             <TextField
+//               id="message-input"
+//               label="Type a message"
+//               variant="outlined"
+//               fullWidth
+//               multiline
+//               rows={3}
+//               value={message}
+//               onChange={handleMessageChange}
+//             />
+//           </Box>
+//           <Box display="flex" justifyContent="space-between">
+//             <Box>
+//               {isSmallScreen ? (
+//                 <IconButton
+//                   variant="contained"
+//                   color="primary"
+//                   onClick={handleAddLocation}
+//                   style={{ backgroundColor: '#555' }}
+//                 >
+//                   <AddLocationAltIcon />
+//                 </IconButton>
+//               ) : (
+//                 <Button
+//                   variant="contained"
+//                   color="primary"
+//                   onClick={handleAddLocation}
+//                   endIcon={<AddLocationAltIcon />}
+//                   style={{ backgroundColor: '#555' }}
+//                 >
+//                   Add Location
+//                 </Button>
+//               )}
+//               {isSmallScreen ? (
+//                 <IconButton
+//                   variant="contained"
+//                   onClick={handleRemoveLocation}
+//                   style={{ backgroundColor: '#555', color: 'tomato', marginLeft: '1rem' }}
+//                 >
+//                   <WrongLocationIcon />
+//                 </IconButton>
+//               ) : (
+//                 <Button
+//                   variant="contained"
+//                   color="primary"
+//                   onClick={handleRemoveLocation}
+//                   endIcon={<WrongLocationIcon />}
+//                   size="small"
+//                   style={{ background: '#555', marginLeft: '1rem' }}
+//                 >
+//                   Remove Location
+//                 </Button>
+//               )}
+//               {isSmallScreen ? (
+//                 <label htmlFor="photo-upload-input">
+//                   <IconButton
+//                     variant="contained"
+//                     color="primary"
+//                     style={{ background: '#555', marginLeft: '1rem' }}
+//                   >
+//                     <AddPhotoAlternateIcon />
+//                   </IconButton>
+//                 </label>
+//               ) : (
+//                 <label htmlFor="photo-upload-input">
+//                   <Button
+//                     variant="contained"
+//                     color="primary"
+//                     component="span"
+//                     endIcon={<AddPhotoAlternateIcon />}
+//                     size="small"
+//                     style={{ background: '#555', marginLeft: '1rem' }}
+//                   >
+//                     Add Photo
+//                   </Button>
+//                 </label>
+//               )}
+
+//               <input
+//                 accept="image/*"
+//                 id="photo-upload-input"
+//                 type="file"
+//                 onChange={handleFileInputChange}
+//                 style={{ display: 'none' }}
+//               />
+//             </Box>
+
+//             <Box>
+//               <Button
+//                 variant="contained"
+//                 color="primary"
+//                 onClick={handleSendMessage}
+//                 endIcon={<SendIcon />}
+//                 size="small"
+//                 style={{ background: '#555' }}
+//               >
+//                 Send
+//               </Button>
+//             </Box>
+//           </Box>
+//         </CardContent>
+//       </Card>
+//     </Grid>
+//   );
+// };
+
+// export default ChatComponent;
 import React, { useState } from 'react';
 import {
   Avatar,
@@ -149,12 +334,12 @@ import {
   IconButton,
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import LocationOffIcon from '@mui/icons-material/LocationOff';
 import WrongLocationIcon from '@mui/icons-material/WrongLocation';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+
 const ChatComponent = ({
   user,
   onSendMessage,
@@ -168,6 +353,7 @@ const ChatComponent = ({
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
   };
@@ -230,9 +416,8 @@ const ChatComponent = ({
               {isSmallScreen ? (
                 <IconButton
                   variant="contained"
-                  color="primary"
                   onClick={handleAddLocation}
-                  style={{ backgroundColor: '#555' }}
+                  style={{ backgroundColor: '#555', color: '#fff' }}
                 >
                   <AddLocationAltIcon />
                 </IconButton>
@@ -251,14 +436,13 @@ const ChatComponent = ({
                 <IconButton
                   variant="contained"
                   onClick={handleRemoveLocation}
-                  style={{ backgroundColor: '#555', color: 'tomato', marginLeft: '1rem' }}
+                  style={{ backgroundColor: '#555', color: '#fff', marginLeft: '1rem' }}
                 >
                   <WrongLocationIcon />
                 </IconButton>
               ) : (
                 <Button
                   variant="contained"
-                  color="primary"
                   onClick={handleRemoveLocation}
                   endIcon={<WrongLocationIcon />}
                   size="small"
@@ -267,31 +451,17 @@ const ChatComponent = ({
                   Remove Location
                 </Button>
               )}
-              {isSmallScreen ? (
-                <label htmlFor="photo-upload-input">
-                  <IconButton
-                    variant="contained"
-                    color="primary"
-                    style={{ background: '#555', marginLeft: '1rem' }}
-                  >
-                    <AddPhotoAlternateIcon />
-                  </IconButton>
-                </label>
-              ) : (
-                <label htmlFor="photo-upload-input">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    component="span"
-                    endIcon={<AddPhotoAlternateIcon />}
-                    size="small"
-                    style={{ background: '#555', marginLeft: '1rem' }}
-                  >
-                    Add Photo
-                  </Button>
-                </label>
-              )}
-
+              <label htmlFor="photo-upload-input" style={{ marginLeft: '1rem' }}>
+                <Button
+                  variant="contained"
+                  component="span"
+                  endIcon={<AddPhotoAlternateIcon />}
+                  size="small"
+                  style={{ background: '#555' }}
+                >
+                  Add Photo
+                </Button>
+              </label>
               <input
                 accept="image/*"
                 id="photo-upload-input"

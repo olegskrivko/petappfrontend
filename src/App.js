@@ -68,14 +68,16 @@ function App() {
                   element={<VirtualPetTrainingClasses />}
                 />
                 <Route path="pet-infrastructure" element={<PetInfrastructurePage />} />
-                <Route
+                <Route path="contact" element={<ContactPage />} />
+
+                {/* <Route
                   path="contact"
                   element={
                     <PrivateRoute>
                       <ContactPage />
                     </PrivateRoute>
                   }
-                />
+                /> */}
                 <Route path="feedback" element={<FeedbackPage />} />
                 <Route path="support" element={<SupportPage />} />
                 <Route path="create-shelter" element={<CreateShelterForm />} />
@@ -92,21 +94,29 @@ function App() {
 
                 <Route path="article" element={<ArticleDetailsPage />} />
                 {/* <Route path="add-pet" element={<CreatePetPage />} /> */}
-                <Route
+                {/* <Route
                   path="add-pet"
                   element={
                     <PrivateRoute>
                       <CreatePetPage />
                     </PrivateRoute>
                   }
-                />
+                /> */}
+                <Route path="create-article" element={<CreateArticleForm />} />
+
                 <Route path="add-pet" element={<PrivateRoute element={<CreatePetPage />} />} />
+                {/* <Route path="user/profile" element={<ProfilePage />} />
+                <Route path="user/profile/posts" element={<ProfilePostsPage />} />
+                <Route path="user/profile/settings" element={<ProfileSettingsPage />} /> */}
+
                 <Route path="user/profile" element={<ProfilePage />} />
                 <Route path="user/profile/posts" element={<ProfilePostsPage />} />
-                <Route path="user/profile/services" element={<ProfileServicesPage />} />
-                <Route path="create-article" element={<CreateArticleForm />} />
-                <Route path="user/profile/pets" element={<ProfilePetsPage />} />
                 <Route path="user/profile/settings" element={<ProfileSettingsPage />} />
+
+                <Route path="user/profile/services" element={<ProfileServicesPage />} />
+
+                <Route path="user/profile/pets" element={<ProfilePetsPage />} />
+
                 <Route path="services" element={<ServicesListPage />} />
 
                 <Route path="/login" element={<Login />} />
