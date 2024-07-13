@@ -1,10 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Typography, Grid, Paper, Card, CardContent, CardMedia } from '@mui/material';
+import {
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  Chip,
+  Box,
+  List,
+  ListItem,
+  Link as MuiLink,
+  ListItemIcon,
+  ListItemText,
+} from '@mui/material';
 import { BASE_URL } from '../middleware/config';
 import { useParams } from 'react-router-dom'; // Import useParams hook
+import PhoneIcon from '@mui/icons-material/Phone';
+import EmailIcon from '@mui/icons-material/Email';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import PublicIcon from '@mui/icons-material/Public';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+// Import Custom hook
+import useFontSizes from '../utils/getFontSize';
 
 function ShelterDetailsPage() {
+  const { getTypography } = useFontSizes();
   const { slug } = useParams(); // Retrieve slug from URL params
   const [shelter, setShelter] = useState(null);
 
@@ -32,79 +56,205 @@ function ShelterDetailsPage() {
     );
   }
 
+  const handleLocationClick = () => {
+    const latitude = shelter.location.coordinates[0];
+    const longitude = shelter.location.coordinates[1];
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+    window.open(googleMapsUrl, '_blank');
+  };
+
   return (
-    <div style={{ flexGrow: 1, padding: '20px' }}>
-      <Paper style={{ padding: '20px', maxWidth: '800px', margin: 'auto' }}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Typography variant="h5" align="center" gutterBottom>
-              {shelter.name}
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Card>
-              <CardMedia
-                component="img"
-                style={{ height: '400px', objectFit: 'cover' }}
-                image={shelter.coverPicture}
-                title={shelter.name}
-              />
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Card>
-              <CardContent>
-                <Typography variant="body1">
-                  <strong>Description:</strong> {shelter.description}
-                </Typography>
-                <Typography variant="body1">
-                  <strong>Author:</strong> {shelter.author}
-                </Typography>
-                <Typography variant="body1">
-                  <strong>URL:</strong>{' '}
-                  <a
-                    href={shelter.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textDecoration: 'none', color: 'inherit' }}
-                  >
-                    {shelter.url}
-                  </a>
-                </Typography>
-                <Typography variant="body1">
-                  <strong>Address:</strong> {shelter.addressDetails?.address},{' '}
-                  {shelter.addressDetails?.city}, {shelter.addressDetails?.country}
-                </Typography>
-                <Typography variant="body1">
-                  <strong>Coordinates:</strong> Latitude: {shelter.location.coordinates[1]},
-                  Longitude: {shelter.location.coordinates[0]}
-                </Typography>
-                <Typography variant="body1">
-                  <strong>Contact:</strong> Phone: {shelter.contact.phone}, Email:{' '}
-                  {shelter.contact.email}
-                </Typography>
-                <Typography variant="body1">
-                  <strong>Social Media:</strong>
-                  <ul style={{ listStyleType: 'none', padding: 0 }}>
-                    <li>Facebook: {shelter.socialMedia.facebook}</li>
-                    <li>Twitter: {shelter.socialMedia.twitter}</li>
-                    <li>Instagram: {shelter.socialMedia.instagram}</li>
-                    <li>LinkedIn: {shelter.socialMedia.linkedin}</li>
-                    <li>YouTube: {shelter.socialMedia.youtube}</li>
-                  </ul>
-                </Typography>
-                <Typography variant="body1">
-                  <strong>Services:</strong> {shelter.services.join(', ')}
-                </Typography>
-                <Typography variant="body1">
-                  <strong>Tags:</strong> {shelter.tags.join(', ')}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+    <React.Fragment>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          <Typography
+            variant="h1"
+            textAlign="center"
+            sx={{ mb: 3 }}
+            gutterBottom
+            style={{
+              fontSize: getTypography('h1').fontSize,
+              fontWeight: getTypography('h1').fontWeight,
+            }}
+          >
+            {shelter.name}
+          </Typography>
         </Grid>
-      </Paper>
-    </div>
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={5}>
+          <Card style={{ boxShadow: 'none' }}>
+            <CardMedia
+              component="img"
+              style={{ height: 'auto', objectFit: 'cover' }}
+              image={shelter.coverPicture}
+              title={shelter.name}
+            />
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={7}>
+          <Card style={{ boxShadow: 'none' }}>
+            <CardContent style={{ paddingTop: '0' }}>
+              {/* <Typography variant="body1" gutterBottom>
+                <strong>Author:</strong> {shelter.author}
+              </Typography> */}
+              <Typography variant="body1">
+                <strong>Description:</strong> {shelter.description}
+              </Typography>
+              {/* <Typography variant="body1">
+                <strong>Website:</strong>{' '}
+                <a
+                  href={shelter.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  {shelter.url}
+                </a>
+              </Typography> */}
+              <Typography variant="body1">
+                <strong>Website:</strong>
+              </Typography>
+              <List>
+                <ListItem>
+                  <ListItemIcon>
+                    <PublicIcon style={{ color: '#6E6E6E' }} />
+                  </ListItemIcon>
+                  <ListItemText style={{ marginLeft: '-1rem' }}>
+                    <a
+                      href={shelter.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ textDecoration: 'none', color: 'inherit' }}
+                    >
+                      {shelter.url}
+                    </a>
+                  </ListItemText>
+                </ListItem>
+              </List>
+              <Typography variant="body1">
+                <strong>Address:</strong>
+              </Typography>
+              <List>
+                <ListItem>
+                  <ListItemIcon>
+                    <LocationOnIcon style={{ color: '#6E6E6E' }} />
+                  </ListItemIcon>
+                  <ListItemText style={{ marginLeft: '-1rem' }}>
+                    <MuiLink onClick={handleLocationClick} style={{ cursor: 'pointer' }}>
+                      <Typography variant="body1" sx={{ display: 'inline-block' }}>
+                        {shelter.addressDetails?.address}, {shelter.addressDetails?.city},{' '}
+                        {shelter.addressDetails?.country}
+                      </Typography>
+                    </MuiLink>
+                  </ListItemText>
+                </ListItem>
+              </List>
+              {/* <Typography variant="body1">
+                <strong>Address:</strong> {shelter.addressDetails?.address},{' '}
+                {shelter.addressDetails?.city}, {shelter.addressDetails?.country}
+              </Typography> */}
+
+              {/* <Box>
+                <MuiLink onClick={handleLocationClick}>
+                  <Typography variant="body1" sx={{ display: 'inline-block' }}>
+                    <strong>Address:</strong> {shelter.addressDetails?.address},{' '}
+                    {shelter.addressDetails?.city}, {shelter.addressDetails?.country}
+                  </Typography>
+                </MuiLink>
+              </Box> */}
+
+              {/* <Typography variant="body1">
+                <strong>Coordinates:</strong> Latitude: {shelter.location.coordinates[1]},
+                Longitude: {shelter.location.coordinates[0]}
+              </Typography> */}
+              <Typography variant="body1">
+                <strong>Contact:</strong>
+              </Typography>
+              <List>
+                <ListItem>
+                  <ListItemIcon>
+                    <PhoneIcon style={{ color: '#6E6E6E' }} />
+                  </ListItemIcon>
+                  <ListItemText primary={shelter.contact.phone} style={{ marginLeft: '-1rem' }} />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <EmailIcon style={{ color: '#6E6E6E' }} />
+                  </ListItemIcon>
+                  <ListItemText primary={shelter.contact.email} style={{ marginLeft: '-1rem' }} />
+                </ListItem>
+              </List>
+              <Typography variant="body1">
+                <strong>Social Media:</strong>
+              </Typography>
+              <List>
+                <ListItem>
+                  <ListItemIcon>
+                    <FacebookIcon style={{ color: '#6E6E6E' }} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={shelter.socialMedia.facebook}
+                    style={{ marginLeft: '-1rem' }}
+                  />
+                </ListItem>
+
+                <ListItem>
+                  <ListItemIcon>
+                    <InstagramIcon style={{ color: '#6E6E6E' }} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={shelter.socialMedia.instagram}
+                    style={{ marginLeft: '-1rem' }}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <LinkedInIcon style={{ color: '#6E6E6E' }} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={shelter.socialMedia.linkedin}
+                    style={{ marginLeft: '-1rem' }}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <YouTubeIcon style={{ color: '#6E6E6E' }} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={shelter.socialMedia.youtube}
+                    style={{ marginLeft: '-1rem' }}
+                  />
+                </ListItem>
+              </List>
+              <Typography variant="body1" gutterBottom>
+                <strong>Services:</strong> {shelter.services.join(', ')}
+              </Typography>
+              <Typography variant="body1">
+                <strong>Tags:</strong>{' '}
+                {shelter.tags.map((tag) => (
+                  <Chip
+                    key={tag}
+                    label={tag}
+                    size="small"
+                    variant="contained"
+                    sx={{
+                      textTransform: 'capitalize',
+                      backgroundColor: '#6E6E6E',
+                      // backgroundColor: '#20c997',
+                      // backgroundColor: 'rgba(0,0,0,0.5)',
+                      color: 'white',
+                      position: 'relative', // Changed from 'absolute' to 'relative'
+                      marginRight: '4px',
+                    }}
+                  />
+                ))}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+    </React.Fragment>
   );
 }
 

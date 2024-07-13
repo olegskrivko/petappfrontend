@@ -16,7 +16,11 @@ import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { BASE_URL } from '../middleware/config';
 
+// Import Custom hook
+import useFontSizes from '../utils/getFontSize';
+
 const SheltersListPage = () => {
+  const { getTypography } = useFontSizes();
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -50,53 +54,64 @@ const SheltersListPage = () => {
   return (
     <React.Fragment>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
           <Typography
-            variant="h4"
+            variant="h1"
             textAlign="center"
-            style={{
-              fontSize: isSmallScreen ? '1.2rem' : '2rem',
-              marginBottom: isSmallScreen ? '1.6rem' : '2rem',
-              marginTop: isSmallScreen ? '0.4rem' : '1rem',
-            }}
+            sx={{ mb: 3 }}
             gutterBottom
+            style={{
+              fontSize: getTypography('h1').fontSize,
+              fontWeight: getTypography('h1').fontWeight,
+            }}
           >
-            Shelters
+            Adopt, Don't Shop!
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          <Typography paragraph>
+            If you've lost a pet or are considering bringing a new furry friend into your life, we
+            encourage you to start your search at these local shelters. They provide loving care and
+            support to animals in need, and you can make a real difference by adopting rather than
+            buying.
+          </Typography>
+          <Typography paragraph>
+            Each shelter listed below offers a unique opportunity to find a companion who will bring
+            joy to your home. Click on their names to learn more about their work and how you can
+            support their mission.
           </Typography>
         </Grid>
       </Grid>
       <Grid container spacing={3}>
         {shelters.map((shelter) => (
-          <Grid item key={shelter._id} xs={12} sm={3} md={3}>
+          <Grid item key={shelter._id} xs={12} sm={6} md={3}>
             <Card>
-              <CardMedia
-                component="img"
-                style={{ backgroundImage: 'cover' }}
-                image={shelter.coverPicture}
-                alt={shelter.name}
-              />
-              <CardContent>
-                <Typography variant="h5">
-                  {/* Link to Shelter Details Page */}
-                  <Link
-                    to={`/shelters/${shelter.slug}`}
-                    color="inherit"
-                    underline="none"
-                    style={{ textDecoration: 'none' }}
-                  >
-                    {shelter.name}
-                  </Link>
+              <Link
+                to={`/shelters/${shelter.slug}`}
+                color="inherit"
+                underline="none"
+                style={{ textDecoration: 'none' }}
+              >
+                <CardMedia
+                  component="img"
+                  style={{ backgroundImage: 'cover', height: '300px' }}
+                  image={shelter.coverPicture}
+                  alt={shelter.name}
+                />
+              </Link>
+              <CardContent style={{ paddingBottom: '1rem' }}>
+                <Typography
+                  variant="h3"
+                  style={{
+                    fontSize: getTypography('h3').fontSize,
+                    fontWeight: getTypography('h3').fontWeight,
+                  }}
+                >
+                  {shelter.name}
                 </Typography>
 
-                {/* <Typography variant="body2" color="textSecondary">
-                  {shelter.description}
-                </Typography> */}
-                {/* <Typography variant="body2" color="textSecondary" marginTop="10px">
-                  Location: {shelter.location.city}, {shelter.location.country}
-                </Typography> */}
-                {/* <Typography variant="body2" color="textSecondary" marginTop="10px">
-                  Contact: {shelter.contact.phone}
-                </Typography> */}
                 <Typography variant="body2" color="textSecondary" marginTop="10px">
                   {shelter.tags.map((tag) => (
                     <Chip
@@ -106,7 +121,9 @@ const SheltersListPage = () => {
                       variant="contained"
                       sx={{
                         textTransform: 'capitalize',
-                        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                        // backgroundColor: '#ff6600',
+                        // backgroundColor: '#20c997',
+                        backgroundColor: 'rgba(0,0,0,0.5)',
                         color: 'white',
                         position: 'relative', // Changed from 'absolute' to 'relative'
                         marginRight: '4px',

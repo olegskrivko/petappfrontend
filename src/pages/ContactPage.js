@@ -473,13 +473,10 @@ const ContactPage = () => {
             </Paper>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Paper
-              sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}
-              onClick={handleLocationClick}
-            >
+            <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
               <LocationOnIcon fontSize="large" sx={{ color: '#ff6600' }} />
               <Box>
-                <MuiLink href={`tel:${PHONE}`} onClick={handleLocationClick}>
+                <MuiLink onClick={handleLocationClick} style={{ cursor: 'pointer' }}>
                   <Typography variant="body1" sx={{ display: 'inline-block' }}>
                     Location:{' '}
                     <strong>
