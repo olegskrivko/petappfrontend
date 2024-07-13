@@ -64,17 +64,16 @@ const Footer = () => {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={3} textAlign="left">
             <Typography variant="h6" color="#ffc107" style={{ fontWeight: '500' }}>
-              App
+              {t('footerTitles.app')}
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link to="/about" style={{ color: '#fff', textDecoration: 'none' }}>
-                {/* About */}
                 {t('footerLinks.about')}
               </Link>
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link to="/pets" style={{ color: '#fff', textDecoration: 'none' }}>
-                {/* Pets */} {t('footerLinks.pets')}
+                {t('footerLinks.pets')}
               </Link>
             </Typography>
             {/* <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
@@ -111,7 +110,7 @@ const Footer = () => {
           </Grid>
           <Grid item xs={12} sm={3} textAlign="left">
             <Typography variant="h6" color="#ffc107" style={{ fontWeight: '500' }}>
-              Explore
+              {t('footerTitles.explore')}
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link to="/shelters" style={{ color: '#fff', textDecoration: 'none' }}>
@@ -142,7 +141,7 @@ const Footer = () => {
           </Grid>
           <Grid item xs={12} sm={3} textAlign="left">
             <Typography variant="h6" color="#ffc107" style={{ fontWeight: '500' }}>
-              Policies and Guidelines
+              {t('footerTitles.policiesAndGuidelines')}
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link to="/privacy-policy" style={{ color: '#fff', textDecoration: 'none' }}>
@@ -177,7 +176,7 @@ const Footer = () => {
           </Grid>
           <Grid item xs={12} sm={3} textAlign="left">
             <Typography variant="h6" color="#ffc107" style={{ fontWeight: '500' }}>
-              Information
+              {t('footerTitles.information')}
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link to="/contact" style={{ color: '#fff', textDecoration: 'none' }}>
@@ -219,22 +218,22 @@ const Footer = () => {
         </Grid>
       </Container>
       <Typography gutterBottom variant="body2" color="#adb5bd" style={{ fontSize: '0.8rem' }}>
-        We are grateful for any support or sponsorship that can help us unlock the full potential of
-        our web application -{' '}
+        {t('footerNote.supportText')} -{' '}
         <Link
           to="/support"
           style={{
             color: '#ffc107',
             fontWeight: '500',
             textDecoration: 'none',
+            textTransform: 'uppercase',
           }}
         >
-          SUPPORT
+          {t('footerLinks.support')}
         </Link>
       </Typography>
 
       <Typography variant="body2" color="#fff">
-        &copy; 2024 Pawclix. All rights reserved.
+        &copy; 2024 Pawclix. {t('footerNote.allRightsReserved')}
       </Typography>
     </Box>
   );

@@ -339,7 +339,16 @@
     "socialMedia": "Sociālie tīkli",
     "sponsors": "Sponsori"
   },
-
+  "footerTitles": {
+    "app": "Lietotne",
+    "explore": "Izpētīt",
+    "policiesAndGuidelines": "Politikas un vadlīnijas",
+    "information": "Informācija"
+  },
+  "footerNote": {
+    "supportText": "Mēs esam pateicīgi par jebkādu atbalstu vai sponsora palīdzību, kas var palīdzēt atklāt lietotnes pilno potenciālu",
+    "allRightsReserved": "Visas tiesības aizsargātas."
+  },
   "altText": {
     "logo": "Company Logo",
     "petImage": "Pet Image"

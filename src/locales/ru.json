@@ -338,6 +338,17 @@
     "socialMedia": "Социальные сети",
     "sponsors": "Спонсоры"
   },
+  "footerTitles": {
+    "app": "Приложение",
+    "explore": "Исследовать",
+    "policiesAndGuidelines": "Политики и руководства",
+    "information": "Информация"
+  },
+  "footerNote": {
+    "supportText": "Мы благодарим за любую поддержку или спонсорство, которые могут помочь нам раскрыть полный потенциал нашего веб-приложения",
+    "allRightsReserved": "Все права защищены."
+  },
+
   "altText": {
     "logo": "Company Logo",
     "petImage": "Pet Image"

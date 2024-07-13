@@ -339,6 +339,16 @@
     "socialMedia": "Social Media",
     "sponsors": "Sponsors"
   },
+  "footerTitles": {
+    "app": "Application",
+    "explore": "Explore",
+    "policiesAndGuidelines": "Policies and Guidelines",
+    "information": "Information"
+  },
+  "footerNote": {
+    "supportText": "We are grateful for any support or sponsorship that can help us unlock the full potential of our web application",
+    "allRightsReserved": "All rights reserved."
+  },
   "altText": {
     "logo": "Company Logo",
     "petImage": "Pet Image"
