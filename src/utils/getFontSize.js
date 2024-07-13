@@ -38,6 +38,11 @@ const useFontSizes = () => {
           fontSize: isLargeScreen ? '1rem' : isSmallScreen ? '0.9rem' : '1rem', // Body Text
           fontWeight: isLargeScreen ? 400 : 300, // Example of adjusting fontWeight
         };
+      case 'body2':
+        return {
+          fontSize: isLargeScreen ? '1rem' : isSmallScreen ? '0.9rem' : '1rem', // Body Text
+          fontWeight: isLargeScreen ? 400 : 400, // Example of adjusting fontWeight
+        };
       case 'caption':
         return {
           fontSize: isLargeScreen ? '0.9rem' : isSmallScreen ? '0.8rem' : '0.9rem', // Small Text/Notes

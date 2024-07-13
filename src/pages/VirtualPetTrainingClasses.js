@@ -1,9 +1,23 @@
 import React from 'react';
-import { Card, CardContent, CardMedia, Typography, Box, Grid } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  Box,
+  Grid,
+} from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
+// Import Custom hook
+import useFontSizes from '../utils/getFontSize';
+
 function VirtualPetTrainingClasses() {
+  const { getTypography } = useFontSizes();
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -38,18 +52,62 @@ function VirtualPetTrainingClasses() {
   return (
     <React.Fragment>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
           <Typography
-            variant="h4"
+            variant="h1"
             textAlign="center"
-            style={{
-              fontSize: isSmallScreen ? '1.2rem' : '2rem',
-              marginBottom: isSmallScreen ? '1.6rem' : '2rem',
-              marginTop: isSmallScreen ? '0.4rem' : '1rem',
-            }}
+            sx={{ mb: 3 }}
             gutterBottom
+            style={{
+              fontSize: getTypography('h1').fontSize,
+              fontWeight: getTypography('h1').fontWeight,
+            }}
           >
             Virtual Pet Training Classes
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          <Typography
+            variant="body1"
+            sx={{ mb: 3 }}
+            gutterBottom
+            style={{
+              fontSize: getTypography('body1').fontSize,
+              fontWeight: getTypography('body1').fontWeight,
+            }}
+          >
+            Welcome to our comprehensive guide on pet training through curated video tutorials!
+            Here, you'll discover engaging resources designed to equip you with essential skills for
+            effective pet training. Whether you're a new pet owner or seeking to refine your
+            techniques, these videos cover everything from basic commands to advanced behavioral
+            strategies.
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ mb: 3 }}
+            gutterBottom
+            style={{
+              fontSize: getTypography('body1').fontSize,
+              fontWeight: getTypography('body1').fontWeight,
+            }}
+          >
+            Mastering pet training is essential for nurturing a strong bond based on trust and
+            communication. By learning these techniques, you'll enhance your pet's obedience and
+            socialization, enriching your relationship with your furry companion.
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ mb: 3 }}
+            gutterBottom
+            style={{
+              fontSize: getTypography('body1').fontSize,
+              fontWeight: getTypography('body1').fontWeight,
+            }}
+          >
+            Delve into these tutorials and embark on a rewarding journey towards understanding and
+            nurturing your pet's behavior.
           </Typography>
         </Grid>
       </Grid>
@@ -80,16 +138,163 @@ function VirtualPetTrainingClasses() {
                 />
               </CardMedia>
               <CardContent>
-                <Typography variant="h6" gutterBottom style={{ fontSize: '1rem' }}>
+                <Typography
+                  variant="h3"
+                  gutterBottom
+                  style={{
+                    fontSize: getTypography('h3').fontSize,
+                    fontWeight: getTypography('h3').fontWeight,
+                  }}
+                >
                   {video.title}
                 </Typography>
-                <Typography variant="body2" color="textSecondary">
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  style={{
+                    fontSize: getTypography('body2').fontSize,
+                    fontWeight: getTypography('body2').fontWeight,
+                  }}
+                >
                   Learn how to train your dog with our free video series.
                 </Typography>
               </CardContent>
             </Card>
           </Grid>
         ))}
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          <Typography
+            variant="h2"
+            textAlign="center"
+            sx={{ my: 3 }}
+            gutterBottom
+            style={{
+              fontSize: getTypography('h2').fontSize,
+              fontWeight: getTypography('h2').fontWeight,
+            }}
+          >
+            Essential Tips for Effective Pet Training
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          <List>
+            <ListItem sx={{ px: '0 !important' }}>
+              <ListItemText
+                primary={
+                  <Typography variant="body1">
+                    <strong>Start with Basic Commands:</strong> Begin with fundamental commands like
+                    sit, stay, and come. These provide a foundation for further training and help
+                    establish your role as the leader.
+                  </Typography>
+                }
+              />
+            </ListItem>
+            <ListItem sx={{ px: '0 !important' }}>
+              <ListItemText
+                primary={
+                  <Typography variant="body1">
+                    <strong>Use Positive Reinforcement:</strong> Reward your pet with treats,
+                    praise, or playtime when they exhibit desired behaviors. Positive reinforcement
+                    encourages them to repeat those behaviors.
+                  </Typography>
+                }
+              />
+            </ListItem>
+            <ListItem sx={{ px: '0 !important' }}>
+              <ListItemText
+                primary={
+                  <Typography variant="body1">
+                    <strong>Be Consistent:</strong> Consistency is key to successful training. Use
+                    the same cues and rewards consistently so your pet learns what is expected of
+                    them.
+                  </Typography>
+                }
+              />
+            </ListItem>
+            <ListItem sx={{ px: '0 !important' }}>
+              <ListItemText
+                primary={
+                  <Typography variant="body1">
+                    <strong>Keep Training Sessions Short and Positive:</strong> Pets have short
+                    attention spans, so keep training sessions brief (around 10-15 minutes) and
+                    upbeat. End on a positive note to keep them engaged and eager for the next
+                    session.
+                  </Typography>
+                }
+              />
+            </ListItem>
+            <ListItem sx={{ px: '0 !important' }}>
+              <ListItemText
+                primary={
+                  <Typography variant="body1">
+                    <strong>Patience is Vital:</strong> Understand that training takes time and
+                    patience. Avoid getting frustrated if progress is slow. Each pet learns at their
+                    own pace.
+                  </Typography>
+                }
+              />
+            </ListItem>
+            <ListItem sx={{ px: '0 !important' }}>
+              <ListItemText
+                primary={
+                  <Typography variant="body1">
+                    <strong>Understand Your Pet's Breed and Personality:</strong> Different breeds
+                    have different temperaments and behaviors. Tailor your training approach to suit
+                    your pet's specific needs and personality.
+                  </Typography>
+                }
+              />
+            </ListItem>
+            <ListItem sx={{ px: '0 !important' }}>
+              <ListItemText
+                primary={
+                  <Typography variant="body1">
+                    <strong>Socialization is Key:</strong> Expose your pet to various environments,
+                    people, and animals from a young age. Proper socialization helps prevent
+                    behavioral issues and builds confidence.
+                  </Typography>
+                }
+              />
+            </ListItem>
+            <ListItem sx={{ px: '0 !important' }}>
+              <ListItemText
+                primary={
+                  <Typography variant="body1">
+                    <strong>Seek Professional Help if Needed:</strong> If you're struggling with
+                    training or encountering behavioral issues you can't resolve, don't hesitate to
+                    seek guidance from a professional trainer or behaviorist.
+                  </Typography>
+                }
+              />
+            </ListItem>
+            <ListItem sx={{ px: '0 !important' }}>
+              <ListItemText
+                primary={
+                  <Typography variant="body1">
+                    <strong>Stay Calm and Positive:</strong> Pets can sense your emotions, so remain
+                    calm and patient during training sessions. Your positive attitude will help
+                    create a positive learning environment.
+                  </Typography>
+                }
+              />
+            </ListItem>
+            <ListItem sx={{ px: '0 !important' }}>
+              <ListItemText
+                primary={
+                  <Typography variant="body1">
+                    <strong>Enjoy the Process:</strong> Training your pet should be a fun and
+                    bonding experience for both of you. Celebrate each milestone and enjoy watching
+                    your pet grow and learn.
+                  </Typography>
+                }
+              />
+            </ListItem>
+          </List>
+        </Grid>
       </Grid>
     </React.Fragment>
   );

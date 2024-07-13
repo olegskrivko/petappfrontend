@@ -83,7 +83,7 @@ function LeafletPetInfrastructureMap() {
     <MapContainer
       center={[56.946285, 24.105078]} // Example initial center
       zoom={12} // Example initial zoom level
-      style={{ width: '100%', height: '500px' }}
+      style={{ width: '100%', height: '400px' }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <Markers />

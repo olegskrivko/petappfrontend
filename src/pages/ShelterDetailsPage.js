@@ -57,8 +57,8 @@ function ShelterDetailsPage() {
   }
 
   const handleLocationClick = () => {
-    const latitude = shelter.location.coordinates[0];
-    const longitude = shelter.location.coordinates[1];
+    const latitude = shelter.location.coordinates[1];
+    const longitude = shelter.location.coordinates[0];
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
     window.open(googleMapsUrl, '_blank');
   };
@@ -122,12 +122,12 @@ function ShelterDetailsPage() {
                   </ListItemIcon>
                   <ListItemText style={{ marginLeft: '-1rem' }}>
                     <a
-                      href={shelter.url}
+                      href={shelter.website.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{ textDecoration: 'none', color: 'inherit' }}
                     >
-                      {shelter.url}
+                      {shelter.website.name}
                     </a>
                   </ListItemText>
                 </ListItem>
@@ -194,7 +194,16 @@ function ShelterDetailsPage() {
                     <FacebookIcon style={{ color: '#6E6E6E' }} />
                   </ListItemIcon>
                   <ListItemText
-                    primary={shelter.socialMedia.facebook}
+                    primary={
+                      <MuiLink
+                        href={shelter.socialMedia.facebook.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ textDecoration: 'none', color: 'inherit' }}
+                      >
+                        {shelter.socialMedia.facebook.name}
+                      </MuiLink>
+                    }
                     style={{ marginLeft: '-1rem' }}
                   />
                 </ListItem>
@@ -204,7 +213,7 @@ function ShelterDetailsPage() {
                     <InstagramIcon style={{ color: '#6E6E6E' }} />
                   </ListItemIcon>
                   <ListItemText
-                    primary={shelter.socialMedia.instagram}
+                    primary={shelter.socialMedia.instagram.name}
                     style={{ marginLeft: '-1rem' }}
                   />
                 </ListItem>
@@ -213,7 +222,7 @@ function ShelterDetailsPage() {
                     <LinkedInIcon style={{ color: '#6E6E6E' }} />
                   </ListItemIcon>
                   <ListItemText
-                    primary={shelter.socialMedia.linkedin}
+                    primary={shelter.socialMedia.linkedin.name}
                     style={{ marginLeft: '-1rem' }}
                   />
                 </ListItem>
@@ -222,7 +231,7 @@ function ShelterDetailsPage() {
                     <YouTubeIcon style={{ color: '#6E6E6E' }} />
                   </ListItemIcon>
                   <ListItemText
-                    primary={shelter.socialMedia.youtube}
+                    primary={shelter.socialMedia.youtube.name}
                     style={{ marginLeft: '-1rem' }}
                   />
                 </ListItem>
