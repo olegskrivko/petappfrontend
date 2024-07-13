@@ -1,23 +1,23 @@
 import React from 'react';
+
+// Import React MUI Components
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
-import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import CardMedia from '@mui/material/CardMedia';
 import { Link as MuiLink } from '@mui/material';
-// import SupportImg from "../images/helping_a_partner_rafiki.svg";
-// import SupportImg from "../images/dog_paw_bro.svg";
-import SupportImg from '../images/cat_stronaut_cuate.svg';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-{
-  /* <a href="https://storyset.com/cute">Cute illustrations by Storyset</a> */
-}
+
+// Import Custom hook
+import useFontSizes from '../utils/getFontSize';
+
+// Import SVG Images
+import SupportImg from '../images/cat_stronaut_cuate.svg';
 
 function SupportPage() {
+  const { getTypography } = useFontSizes();
   const creditLink = 'https://storyset.com/business';
   const credit = 'Business illustrations by Storyset';
   const theme = useTheme();
@@ -26,12 +26,22 @@ function SupportPage() {
   return (
     <React.Fragment>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={12} md={12} lg={12} textAlign="center">
-          <Typography variant="h4" gutterBottom textAlign="center">
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          <Typography
+            variant="h1"
+            textAlign="center"
+            sx={{ mb: 3 }}
+            gutterBottom
+            style={{
+              fontSize: getTypography('h1').fontSize,
+              fontWeight: getTypography('h1').fontWeight,
+            }}
+          >
             Support Our Project
           </Typography>
         </Grid>
-
+      </Grid>
+      <Grid container spacing={3}>
         <Grid item xs={12} sm={12} md={6} lg={6} textAlign="left">
           <Box
             position="relative"

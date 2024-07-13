@@ -1,24 +1,17 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
-import { Button } from '@mui/material';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
-import axios from 'axios'; // Import axios for making HTTP requests
-import { Link } from 'react-router-dom';
-
-import CardMedia from '@mui/material/CardMedia';
-import { Link as MuiLink } from '@mui/material';
-import FeedbackImg from '../images/customer_feedback_amico.svg';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { Button, TextField, MenuItem, CardMedia, Link as MuiLink } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import FeedbackImg from '../images/customer_feedback_amico.svg';
 import { BASE_URL } from '../middleware/config';
-{
-  /* <a href="https://storyset.com/people">People illustrations by Storyset</a> */
-}
+import useFontSizes from '../utils/getFontSize';
 
 const subjects = [
   'General Feedback',
@@ -32,6 +25,7 @@ const subjects = [
 ];
 
 function FeedbackPage() {
+  const { getTypography } = useFontSizes();
   const creditLink = 'https://storyset.com/people';
   const credit = 'People illustrations by Storyset';
   const theme = useTheme();
@@ -41,28 +35,69 @@ function FeedbackPage() {
   const [subject, setSubject] = useState('General Feedback');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    let tempErrors = {};
+    tempErrors.email = email ? '' : 'Email is required.';
+    tempErrors.message = message ? '' : 'Message is required.';
+    setErrors(tempErrors);
+    return Object.values(tempErrors).every((x) => x === '');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ subject, email, message });
-    // Send form data to backend
+    if (!validate()) {
+      toast.error('Please fill in all required fields.');
+      return;
+    }
+    setLoading(true);
     try {
       const response = await axios.post(`${BASE_URL}/utilities/send-feedback`, {
         subject,
         email,
         message,
       });
-      console.log(response.data);
+      setLoading(false);
+      toast.success('Feedback submitted successfully!');
+      setEmail('');
+      setMessage('');
     } catch (error) {
+      setLoading(false);
+      if (error.response) {
+        // Server responded with a status other than 200 range
+        toast.error(`Error: ${error.response.data.message}`);
+      } else if (error.request) {
+        // Request was made but no response received
+        toast.error('Network error, please try again later.');
+      } else {
+        // Something else caused the error
+        toast.error('Error sending feedback, please try again later.');
+      }
       console.error('Error sending feedback:', error);
     }
   };
 
   return (
     <React.Fragment>
-      <Typography variant="h4" gutterBottom textAlign="center">
-        Leave Your Feedback
-      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          <Typography
+            variant="h1"
+            textAlign="center"
+            sx={{ mb: 3 }}
+            gutterBottom
+            style={{
+              fontSize: getTypography('h1').fontSize,
+              fontWeight: getTypography('h1').fontWeight,
+            }}
+          >
+            Leave Your Feedback
+          </Typography>
+        </Grid>
+      </Grid>
+
       <Grid container spacing={3}>
         <Grid item xs={12} sm={12} md={6} lg={6}>
           <Box
@@ -72,11 +107,10 @@ function FeedbackPage() {
             justifyContent="center"
             alignItems="center"
           >
-            {/* Banner Image */}
             <CardMedia
               component="img"
               src={FeedbackImg}
-              alt="Helping a partner"
+              alt="A visual representation of user reactions with thumbs-up images"
               style={{
                 width: isLargeScreen ? '400px' : '100%',
                 maxHeight: isLargeScreen ? '100%' : '60vh', // Adjust height for large screens
@@ -107,8 +141,6 @@ function FeedbackPage() {
           </Box>
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} textAlign="left">
-          {/* <Grid container justifyContent="center" alignItems="center"> */}
-          {/* <Grid item xs={12} sm={8} md={6}> */}
           <form onSubmit={handleSubmit}>
             <Box mb={2}>
               <TextField
@@ -132,6 +164,8 @@ function FeedbackPage() {
                 fullWidth
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                error={!!errors.email}
+                helperText={errors.email}
               />
             </Box>
             <Box mb={2}>
@@ -142,48 +176,27 @@ function FeedbackPage() {
                 rows={4}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
+                error={!!errors.message}
+                helperText={errors.message}
               />
             </Box>
             <Grid item xs={12} sm={12} md={12} lg={12} textAlign="center">
               <Button
                 type="submit"
+                size="small"
                 variant="contained"
                 style={{ backgroundColor: '#ffc107', color: '#000' }}
+                disabled={loading}
               >
-                Submit
+                {loading ? 'Submitting...' : 'Submit'}
               </Button>
             </Grid>
           </form>
-          {/* </Grid> */}
-          {/* </Grid> */}
         </Grid>
       </Grid>
+      <ToastContainer position="top-right" autoClose={3000} />
     </React.Fragment>
   );
 }
 
 export default FeedbackPage;
-<select class="form-control" style="max-width: 50%" id="country" required="" name="subject">
-  <option value=""></option>
-
-  <option value="General Inquiry">General Inquiry</option>
-  <option value="Technical Support">Technical Support</option>
-  <option value="Report a Bug">Report a Bug</option>
-  <option value="Feature Request">Feature Request</option>
-
-  <option value="Account Assistance">Account Assistance</option>
-
-  <option value="Pet Reunification Assistance">Pet Reunification Assistance</option>
-
-  <option value="Website/App Navigation">Website/App Navigation</option>
-
-  <option value="Data Privacy Concerns">Data Privacy Concerns</option>
-
-  <option value="Partnership Opportunities">Partnership Opportunities</option>
-
-  <option value="Media Inquiry">Media Inquiry</option>
-
-  <option value="Advertising and Sponsorship">Advertising and Sponsorship</option>
-
-  <option value="Other">Other</option>
-</select>;

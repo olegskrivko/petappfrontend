@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// Import React MUI Components
 import {
   Typography,
   Box,
@@ -25,6 +26,8 @@ import PetsIcon from '@mui/icons-material/Pets';
 import influencerImg from '../images/mobile_marketing_cuate.svg';
 import socialImg from '../images/mobile_marketing_amico.svg';
 import feedbackImg from '../images/customer_feedback_amico.svg';
+
+// Import Custom hook
 import useFontSizes from '../utils/getFontSize';
 
 // Import Variables
