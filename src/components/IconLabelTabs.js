@@ -151,6 +151,10 @@ function IconLabelTabs({
     setOpen(false);
     setSelectedImage(null);
   };
+
+  const handleZoomMap = () => {
+    console.log('zoom to map ');
+  };
   console.log('value', value);
 
   const getHealthInformationLabel = (value) => {
@@ -304,6 +308,7 @@ function IconLabelTabs({
                               color="primary"
                               endIcon={<LocationOnIcon />}
                               size="small"
+                              onClick={handleZoomMap}
                               style={{ background: '#555' }}
                             >
                               Show on map

@@ -1,50 +1,61 @@
-import React, { useState } from "react";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Box from "@mui/material/Box";
-import { Button } from "@mui/material";
-import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
+import React, { useState } from 'react';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Box from '@mui/material/Box';
+import { Button } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
+import axios from 'axios'; // Import axios for making HTTP requests
+import { Link } from 'react-router-dom';
 
-import { Link } from "react-router-dom";
-
-import CardMedia from "@mui/material/CardMedia";
-import { Link as MuiLink } from "@mui/material";
-import FeedbackImg from "../images/customer_feedback_amico.svg";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
+import CardMedia from '@mui/material/CardMedia';
+import { Link as MuiLink } from '@mui/material';
+import FeedbackImg from '../images/customer_feedback_amico.svg';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import { BASE_URL } from '../middleware/config';
 {
   /* <a href="https://storyset.com/people">People illustrations by Storyset</a> */
 }
 
 const subjects = [
-  "General Feedback",
-  "Feature Request",
-  "Bug Report",
-  "Technical Support",
-  "Advertising and Sponsorship",
-  "Data Privacy Concerns",
-  "Partnership Opportunities",
-  "Other",
+  'General Feedback',
+  'Feature Request',
+  'Bug Report',
+  'Technical Support',
+  'Advertising and Sponsorship',
+  'Data Privacy Concerns',
+  'Partnership Opportunities',
+  'Other',
 ];
 
 function FeedbackPage() {
-  const creditLink = "https://storyset.com/people";
-  const credit = "People illustrations by Storyset";
+  const creditLink = 'https://storyset.com/people';
+  const credit = 'People illustrations by Storyset';
   const theme = useTheme();
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const [subject, setSubject] = useState("General Feedback");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [subject, setSubject] = useState('General Feedback');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
     console.log({ subject, email, message });
+    // Send form data to backend
+    try {
+      const response = await axios.post(`${BASE_URL}/utilities/send-feedback`, {
+        subject,
+        email,
+        message,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error sending feedback:', error);
+    }
   };
 
   return (
@@ -67,16 +78,16 @@ function FeedbackPage() {
               src={FeedbackImg}
               alt="Helping a partner"
               style={{
-                width: isLargeScreen ? "400px" : "100%",
-                maxHeight: isLargeScreen ? "100%" : "60vh", // Adjust height for large screens
-                objectFit: "cover",
+                width: isLargeScreen ? '400px' : '100%',
+                maxHeight: isLargeScreen ? '100%' : '60vh', // Adjust height for large screens
+                objectFit: 'cover',
               }}
             />
             <Box
               style={{
-                marginTop: "0.5rem",
-                display: "flex",
-                alignItems: "center",
+                marginTop: '0.5rem',
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
               <MuiLink
@@ -84,10 +95,10 @@ function FeedbackPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  fontSize: "0.6rem",
-                  fontStyle: "italic",
-                  color: "#999",
-                  fontWeight: "300",
+                  fontSize: '0.6rem',
+                  fontStyle: 'italic',
+                  color: '#999',
+                  fontWeight: '300',
                 }}
               >
                 {credit}
@@ -137,7 +148,7 @@ function FeedbackPage() {
               <Button
                 type="submit"
                 variant="contained"
-                style={{ backgroundColor: "#ffc107", color: "#000" }}
+                style={{ backgroundColor: '#ffc107', color: '#000' }}
               >
                 Submit
               </Button>
@@ -152,13 +163,7 @@ function FeedbackPage() {
 }
 
 export default FeedbackPage;
-<select
-  class="form-control"
-  style="max-width: 50%"
-  id="country"
-  required=""
-  name="subject"
->
+<select class="form-control" style="max-width: 50%" id="country" required="" name="subject">
   <option value=""></option>
 
   <option value="General Inquiry">General Inquiry</option>
@@ -168,9 +173,7 @@ export default FeedbackPage;
 
   <option value="Account Assistance">Account Assistance</option>
 
-  <option value="Pet Reunification Assistance">
-    Pet Reunification Assistance
-  </option>
+  <option value="Pet Reunification Assistance">Pet Reunification Assistance</option>
 
   <option value="Website/App Navigation">Website/App Navigation</option>
 
@@ -180,9 +183,7 @@ export default FeedbackPage;
 
   <option value="Media Inquiry">Media Inquiry</option>
 
-  <option value="Advertising and Sponsorship">
-    Advertising and Sponsorship
-  </option>
+  <option value="Advertising and Sponsorship">Advertising and Sponsorship</option>
 
   <option value="Other">Other</option>
 </select>;
