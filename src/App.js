@@ -184,7 +184,10 @@ const ShelterDetailsPage = lazy(() => import('./pages/ShelterDetailsPage'));
 const VirtualPetTrainingClasses = lazy(() => import('./pages/VirtualPetTrainingClasses'));
 const PetInfrastructurePage = lazy(() => import('./pages/PetInfrastructurePage'));
 
-// function App() {
+// useEffect(()=> {
+//   OneSignal.init({
+//     appId: '07831676-ef12-409c-895e-3352642c136d'});
+// },[])
 
 const App = () => {
   useEffect(() => {

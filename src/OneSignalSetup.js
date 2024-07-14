@@ -42,7 +42,6 @@ export const initOneSignal = async () => {
   console.log('Initializing OneSignal');
   await OneSignal.init({
     appId: '07831676-ef12-409c-895e-3352642c136d',
-    allowLocalhostAsSecureOrigin: true, // Only for development
   });
   console.log('OneSignal Initialized');
 };
