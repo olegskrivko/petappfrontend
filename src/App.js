@@ -245,7 +245,15 @@ const App = () => {
                   />
                   <Route path="article" element={<ArticleDetailsPage />} />
                   <Route path="create-article" element={<CreateArticleForm />} />
-                  <Route path="add-pet" element={<PrivateRoute element={<CreatePetPage />} />} />
+                  {/* <Route path="add-pet" element={<PrivateRoute element={<CreatePetPage />} />} /> */}
+                  <Route
+                    path="add-pet"
+                    element={
+                      <PrivateRoute>
+                        <CreatePetPage />
+                      </PrivateRoute>
+                    }
+                  />
                   <Route path="user/profile" element={<ProfilePage />} />
                   <Route path="user/profile/posts" element={<ProfilePostsPage />} />
                   <Route path="user/profile/settings" element={<ProfileSettingsPage />} />

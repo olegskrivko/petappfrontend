@@ -8,7 +8,8 @@ const COUNTRY = 'Latvia';
 const CITY = 'Riga';
 const FACEBOOK = 'https://www.facebook.com/profile.php?id=61550040675884';
 const INSTAGRAM = 'https://www.instagram.com/pawclix/';
-const DOMAIN_URL = 'https://pawclix.vercel.app';
+// const DOMAIN_URL = 'https://pawclix.vercel.app';
+const DOMAIN_URL = 'https://pawclix.com';
 
 const TOMTOM_API = 'xFokTxRRN2XWygHA8748GxHUGVAmcx9A';
 
