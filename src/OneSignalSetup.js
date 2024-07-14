@@ -18,21 +18,31 @@
 //   console.log('OneSignal Initialized'); // Add this line
 //   OneSignal.showSlidedownPrompt();
 // };
+// import OneSignal from 'react-onesignal';
+
+// let isOneSignalInitialized = false;
+
+// export const initOneSignal = async () => {
+//   if (isOneSignalInitialized) {
+//     console.log('OneSignal is already initialized');
+//     return;
+//   }
+//   console.log('Initializing OneSignal');
+//   await OneSignal.init({
+//     appId: '07831676-ef12-409c-895e-3352642c136d',
+//     allowLocalhostAsSecureOrigin: true,
+//   });
+//   console.log('OneSignal Initialized');
+//   OneSignal.showSlidedownPrompt();
+//   isOneSignalInitialized = true;
+// };
 import OneSignal from 'react-onesignal';
 
-let isOneSignalInitialized = false;
-
 export const initOneSignal = async () => {
-  if (isOneSignalInitialized) {
-    console.log('OneSignal is already initialized');
-    return;
-  }
   console.log('Initializing OneSignal');
   await OneSignal.init({
     appId: '07831676-ef12-409c-895e-3352642c136d',
-    allowLocalhostAsSecureOrigin: true,
+    allowLocalhostAsSecureOrigin: true, // Only for development
   });
   console.log('OneSignal Initialized');
-  OneSignal.showSlidedownPrompt();
-  isOneSignalInitialized = true;
 };
