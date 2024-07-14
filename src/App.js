@@ -138,7 +138,7 @@ import { AuthProvider } from './middleware/AuthContext';
 import { LanguageProvider } from './middleware/LanguageContext';
 import { DrawerProvider } from './context/DrawerContext';
 import LoadingScreen from './components/LoadingScreen';
-// import OneSignalSetup from './OneSignalSetup';
+import { initOneSignal } from './OneSignalSetup'; // Ensure this path is correct
 
 import './i18n'; // Import the i18n configuration
 
@@ -184,7 +184,13 @@ const ShelterDetailsPage = lazy(() => import('./pages/ShelterDetailsPage'));
 const VirtualPetTrainingClasses = lazy(() => import('./pages/VirtualPetTrainingClasses'));
 const PetInfrastructurePage = lazy(() => import('./pages/PetInfrastructurePage'));
 
-function App() {
+// function App() {
+
+const App = () => {
+  useEffect(() => {
+    initOneSignal();
+  }, []);
+
   return (
     <AuthProvider>
       <LanguageProvider>
@@ -243,6 +249,6 @@ function App() {
       </LanguageProvider>
     </AuthProvider>
   );
-}
+};
 
 export default App;
