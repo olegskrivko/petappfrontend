@@ -138,8 +138,8 @@ import { AuthProvider } from './middleware/AuthContext';
 import { LanguageProvider } from './middleware/LanguageContext';
 import { DrawerProvider } from './context/DrawerContext';
 import LoadingScreen from './components/LoadingScreen';
-import { initOneSignal } from './OneSignalSetup'; // Ensure this path is correct
-
+//import { initOneSignal } from './OneSignalSetup'; // Ensure this path is correct
+import OneSignal from 'react-onesignal';
 import './i18n'; // Import the i18n configuration
 
 // Lazy-loaded components
@@ -191,6 +191,16 @@ const PetInfrastructurePage = lazy(() => import('./pages/PetInfrastructurePage')
 
 const App = () => {
   useEffect(() => {
+    const initOneSignal = async () => {
+      await OneSignal.init({
+        appId: '07831676-ef12-409c-895e-3352642c136d',
+        allowLocalhostAsSecureOrigin: true, // Only for development
+      });
+      console.log('OneSignal initialized');
+      // Show subscription prompt after initialization
+      OneSignal.Slidedown.promptPush();
+    };
+
     initOneSignal();
   }, []);
 
