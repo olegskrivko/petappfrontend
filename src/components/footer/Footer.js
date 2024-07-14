@@ -43,7 +43,7 @@ const Footer = () => {
       component="footer"
       sx={{
         // backgroundColor: "#1976d2",
-        padding: '20px',
+        padding: '20px 0',
         textAlign: 'center',
         marginTop: 'auto',
         width: '100%', // Ensure the footer takes full width

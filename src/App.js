@@ -132,12 +132,13 @@
 // }
 
 // export default App;
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './middleware/AuthContext';
 import { LanguageProvider } from './middleware/LanguageContext';
 import { DrawerProvider } from './context/DrawerContext';
 import LoadingScreen from './components/LoadingScreen';
+// import OneSignalSetup from './OneSignalSetup';
 
 import './i18n'; // Import the i18n configuration
 

@@ -86,7 +86,7 @@ function ShelterDetailsPage() {
           <Card style={{ boxShadow: 'none' }}>
             <CardMedia
               component="img"
-              style={{ height: 'auto', objectFit: 'cover' }}
+              style={{ height: '200px', objectFit: 'contain' }}
               image={shelter.coverPicture}
               title={shelter.name}
             />

@@ -41,7 +41,8 @@ function HomePage() {
               fontSize: isSmallScreen ? '2.2rem' : '3.2rem',
             }}
           >
-            <span style={{ color: '#ffc107' }}>PawClix</span> - Lost Pet Reunions, One Click Away
+            <span style={{ color: '#ffc107' }}>PawClix</span> -{' '}
+            {t('pageTitles.lostPetReunionsOneClickAway')}
           </Typography>
           {/* <div>
             <h1>{t('key1')}</h1>
@@ -64,7 +65,7 @@ function HomePage() {
               marginBottom: '1rem',
             }}
           >
-            Find your furry friend with PawClix.
+            {t('pageTitles.findYourFurryFriend')}
           </Typography>
 
           <Box
