@@ -118,3 +118,27 @@ code {
 .leaflet-popup-close-button {
   display: none !important;
 }
+
+/* .pulsating-circle {
+  width: 100px;
+  height: 100px;
+  background-color: rgba(150, 0, 255, 0.5);
+  border-radius: 50%;
+  box-shadow: 0 0 20px 10px rgba(150, 0, 255, 0.7);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 20px 10px rgba(150, 0, 255, 0.7);
+  }
+  50% {
+    transform: scale(1);
+    box-shadow: 0 0 30px 15px rgba(150, 0, 255, 0.5);
+  }
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 20px 10px rgba(150, 0, 255, 0.7);
+  }
+} */

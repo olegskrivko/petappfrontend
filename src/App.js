@@ -198,6 +198,7 @@ const App = () => {
           <BrowserRouter>
             <Suspense fallback={<LoadingScreen />}>
               <Routes>
+                {/* <Route index element={<HomePage />} /> */}
                 <Route path="/" element={<Layout />}>
                   <Route index element={<HomePage />} />
                   <Route path="about" element={<AboutPage />} />
