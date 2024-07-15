@@ -184,97 +184,9 @@ const ShelterDetailsPage = lazy(() => import('./pages/ShelterDetailsPage'));
 const VirtualPetTrainingClasses = lazy(() => import('./pages/VirtualPetTrainingClasses'));
 const PetInfrastructurePage = lazy(() => import('./pages/PetInfrastructurePage'));
 
-// useEffect(()=> {
-//   OneSignal.init({
-//     appId: '07831676-ef12-409c-895e-3352642c136d'});
-// },[])
-
 const App = () => {
   const [location, setLocation] = useState({ latitude: '', longitude: '' });
   const [distance, setDistance] = useState('');
-  // useEffect(() => {
-  //   const initOneSignal = async () => {
-  //     await OneSignal.init({
-  //       appId: '07831676-ef12-409c-895e-3352642c136d',
-  //     });
-
-  //     // OneSignal.User.addTags({
-  //     //   latitude: '56.946285',
-  //     //   longitude: '24.105078',
-  //     //   distance: '10',
-  //     // });
-
-  //     console.log('OneSignal initialized');
-  //     OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
-  //     console.log('OneSignal.User', OneSignal.User);
-  //   };
-
-  //   initOneSignal();
-  // }, []);
-
-  // // Function to prompt for push notifications
-  // // const promptNotificationSubscription = () => {
-  // //   OneSignal.showSlidedownPrompt();
-  // // };
-  // // Handler to add tags for latitude, longitude, and distance
-  // const addLocationTags = () => {
-  //   OneSignal.User.addTags({
-  //     latitude: '56.946285',
-  //     longitude: '24.105078',
-  //     distance: '10',
-  //   });
-  //   console.log('Tags added successfully');
-  // };
-
-  // useEffect(() => {
-  //   const initOneSignal = async () => {
-  //     await OneSignal.init({
-  //       appId: '07831676-ef12-409c-895e-3352642c136d',
-  //     });
-
-  //     OneSignal.User.addTags({
-  //       latitude: '56.946285',
-  //       longitude: '24.105078',
-  //       distance: '10',
-  //     });
-  //     OneSignal.Slidedown.promptEmail();
-  //     OneSignal.User.addEmail('olegs.krivko@gmail.com');
-  //     OneSignal.User.addSms('+37129771299');
-  //     OneSignal.User.setExternalUserId('12345');
-  //     const tags = OneSignal.User.getTags();
-  //     console.log('tags', tags);
-  //     console.log('OneSignal.User.onesignalId', OneSignal.User.onesignalId);
-  //     // OneSignal.Slidedown.promptPushCategories();
-  //     console.log('OneSignal initialized');
-  //     OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
-  //     console.log('OneSignal.User', OneSignal.User);
-  //   };
-
-  //   initOneSignal();
-  // }, []);
-
-  // promptOptions: {
-  //   slidedown: {
-  //     prompts: [
-  //       {
-  //         type: 'category',
-  //         autoPrompt: true,
-  //         text: {
-  //           actionMessage:
-  //             "We'd like to show you notifications for the latest news and updates.",
-  //           acceptButton: 'Allow',
-  //           cancelButton: 'Cancel',
-  //         },
-  //         categories: [
-  //           {
-  //             tag: 'politics',
-  //             label: 'Politics',
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   },
-  // },
 
   // Function to initialize OneSignal
   const initOneSignal = async () => {
@@ -285,16 +197,6 @@ const App = () => {
     console.log('OneSignal initialized');
     OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
   };
-
-  // Handler to add tags for latitude, longitude, and distance
-  // const addLocationTags = () => {
-  //   OneSignal.User.addTags({
-  //     latitude: '56.946285',
-  //     longitude: '24.105078',
-  //     distance: '10',
-  //   });
-  //   console.log('Tags added successfully');
-  // };
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -315,14 +217,20 @@ const App = () => {
   };
 
   const addLocationTags = () => {
-    const { latitude, longitude, distance } = location;
-    OneSignal.User.addTags({ latitude, longitude, distance });
+    OneSignal.User.addTags({ ...location, distance });
     console.log('Tags added successfully');
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setLocation({ ...location, [name]: value });
+    setLocation((prevLocation) => ({
+      ...prevLocation,
+      [name]: value,
+    }));
+  };
+
+  const handleDistanceChange = (e) => {
+    setDistance(e.target.value);
   };
 
   return (
@@ -388,6 +296,7 @@ const App = () => {
               </Routes>
               <button onClick={initOneSignal}>Subscribe to Notifications</button>
               <div>
+                <button onClick={getLocation}>Get Location</button>
                 <label>
                   Latitude:
                   <input
@@ -411,8 +320,8 @@ const App = () => {
                   <input
                     type="text"
                     name="distance"
-                    value={location.distance}
-                    onChange={handleChange}
+                    value={distance}
+                    onChange={handleDistanceChange}
                   />
                 </label>
                 <button onClick={addLocationTags}>Add Location Tags</button>
@@ -426,3 +335,87 @@ const App = () => {
 };
 
 export default App;
+
+// useEffect(() => {
+//   const initOneSignal = async () => {
+//     await OneSignal.init({
+//       appId: '07831676-ef12-409c-895e-3352642c136d',
+//     });
+
+//     // OneSignal.User.addTags({
+//     //   latitude: '56.946285',
+//     //   longitude: '24.105078',
+//     //   distance: '10',
+//     // });
+
+//     console.log('OneSignal initialized');
+//     OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
+//     console.log('OneSignal.User', OneSignal.User);
+//   };
+
+//   initOneSignal();
+// }, []);
+
+// // Function to prompt for push notifications
+// // const promptNotificationSubscription = () => {
+// //   OneSignal.showSlidedownPrompt();
+// // };
+// // Handler to add tags for latitude, longitude, and distance
+// const addLocationTags = () => {
+//   OneSignal.User.addTags({
+//     latitude: '56.946285',
+//     longitude: '24.105078',
+//     distance: '10',
+//   });
+//   console.log('Tags added successfully');
+// };
+
+// useEffect(() => {
+//   const initOneSignal = async () => {
+//     await OneSignal.init({
+//       appId: '07831676-ef12-409c-895e-3352642c136d',
+//     });
+
+//     OneSignal.User.addTags({
+//       latitude: '56.946285',
+//       longitude: '24.105078',
+//       distance: '10',
+//     });
+//     OneSignal.Slidedown.promptEmail();
+//     OneSignal.User.addEmail('olegs.krivko@gmail.com');
+//     OneSignal.User.addSms('+37129771299');
+//     OneSignal.User.setExternalUserId('12345');
+//     const tags = OneSignal.User.getTags();
+//     console.log('tags', tags);
+//     console.log('OneSignal.User.onesignalId', OneSignal.User.onesignalId);
+//     // OneSignal.Slidedown.promptPushCategories();
+//     console.log('OneSignal initialized');
+//     OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
+//     console.log('OneSignal.User', OneSignal.User);
+//   };
+
+//   initOneSignal();
+// }, []);
+
+// promptOptions: {
+//   slidedown: {
+//     prompts: [
+//       {
+//         type: 'category',
+//         autoPrompt: true,
+//         text: {
+//           actionMessage:
+//             "We'd like to show you notifications for the latest news and updates.",
+//           acceptButton: 'Allow',
+//           cancelButton: 'Cancel',
+//         },
+//         categories: [
+//           {
+//             tag: 'politics',
+//             label: 'Politics',
+//           },
+//         ],
+//       },
+//     ],
+//   },
+// },
