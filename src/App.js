@@ -194,10 +194,31 @@ const App = () => {
     const initOneSignal = async () => {
       await OneSignal.init({
         appId: '07831676-ef12-409c-895e-3352642c136d',
-
+        notifyButton: {
+          enable: true,
+        },
         promptOptions: {
           slidedown: {
             prompts: [
+              {
+                type: 'smsAndEmail',
+                autoPrompt: false,
+                text: {
+                  emailLabel: 'Insert Email Address',
+                  smsLabel: 'Insert Phone Number',
+                  acceptButton: 'Submit',
+                  cancelButton: 'No Thanks',
+                  actionMessage: 'Receive the latest news, updates and offers as they happen.',
+                  updateMessage: 'Update your push notification subscription preferences.',
+                  confirmMessage: 'Thank You!',
+                  positiveUpdateButton: 'Save Preferences',
+                  negativeUpdateButton: 'Cancel',
+                },
+                delay: {
+                  pageViews: 1,
+                  timeDelay: 3,
+                },
+              },
               {
                 type: 'category',
                 autoPrompt: true,
@@ -213,13 +234,25 @@ const App = () => {
                   updateMessage: 'Update your push notification subscription preferences.',
                 },
                 delay: {
-                  pageViews: 1,
+                  pageViews: 2,
                   timeDelay: 3,
                 },
                 categories: [
                   {
                     tag: 'politics',
-                    label: 'politics',
+                    label: 'Politics',
+                  },
+                  {
+                    tag: 'local_news',
+                    label: 'Local News',
+                  },
+                  {
+                    tag: 'world_news',
+                    label: 'World News',
+                  },
+                  {
+                    tag: 'culture',
+                    label: 'Culture',
                   },
                 ],
               },
@@ -253,6 +286,7 @@ const App = () => {
       OneSignal.User.addTags({
         latitude: '56.946285',
         longitude: '24.105078',
+        distance: '10',
       });
       // OneSignal.Slidedown.promptPushCategories();
       console.log('OneSignal initialized');
