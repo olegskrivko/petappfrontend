@@ -24,7 +24,12 @@ const SheltersListPage = () => {
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
+  const colors = ['2474A3', '21ABCD', '31758D', '006980', '476997', '666699', '88AFD2', '8AB9F1'];
+  function getRandomColor() {
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
+  }
+  const fontColor = 'white';
   const [shelters, setShelters] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -96,23 +101,25 @@ const SheltersListPage = () => {
               >
                 <CardMedia
                   component="img"
-                  style={{ backgroundImage: 'cover', height: '300px' }}
-                  image={shelter.coverPicture}
+                  image={`https://placehold.co/600x400/${getRandomColor()}/${fontColor}?text=${
+                    shelter.name
+                  }&font=roboto`}
                   alt={shelter.name}
                 />
               </Link>
               <CardContent style={{ paddingBottom: '1rem' }}>
-                <Typography
+                {/* <Typography
                   variant="h3"
                   style={{
                     fontSize: getTypography('h3').fontSize,
                     fontWeight: getTypography('h3').fontWeight,
+                    marginBottom: '10px',
                   }}
                 >
                   {shelter.name}
-                </Typography>
+                </Typography> */}
 
-                <Typography variant="body2" color="textSecondary" marginTop="10px">
+                <Typography variant="body2" color="textSecondary">
                   {shelter.tags.map((tag) => (
                     <Chip
                       key={tag}

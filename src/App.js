@@ -196,13 +196,22 @@ const App = () => {
         appId: '07831676-ef12-409c-895e-3352642c136d',
         allowLocalhostAsSecureOrigin: true, // Only for development
       });
+
       console.log('OneSignal initialized');
+
       // Show subscription prompt after initialization
       OneSignal.Slidedown.promptPush();
     };
 
     initOneSignal();
   }, []);
+
+  const onHandleTag = (tag) => {
+    console.log('Tagging');
+    OneSignal.sendTag('tech', tag).then(() => {
+      console.log('Tagged');
+    });
+  };
 
   return (
     <AuthProvider>
@@ -265,6 +274,12 @@ const App = () => {
                   <Route path="*" element={<NotFoundPage />} />
                 </Route>
               </Routes>
+              <button className="react" onClick={() => onHandleTag('react')}>
+                Raect Js
+              </button>
+              <button className="angular" onClick={() => onHandleTag('angular')}>
+                Angular Js
+              </button>
             </Suspense>
           </BrowserRouter>
         </DrawerProvider>

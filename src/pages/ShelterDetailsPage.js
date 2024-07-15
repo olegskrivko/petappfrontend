@@ -32,6 +32,13 @@ function ShelterDetailsPage() {
   const { slug } = useParams(); // Retrieve slug from URL params
   const [shelter, setShelter] = useState(null);
 
+  const colors = ['2474A3', '21ABCD', '31758D', '006980', '476997', '666699', '88AFD2', '8AB9F1'];
+  function getRandomColor() {
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
+  }
+  const fontColor = 'white';
+
   useEffect(() => {
     const fetchShelter = async () => {
       try {
@@ -86,8 +93,9 @@ function ShelterDetailsPage() {
           <Card style={{ boxShadow: 'none' }}>
             <CardMedia
               component="img"
-              style={{ height: '200px', objectFit: 'contain' }}
-              image={shelter.coverPicture}
+              image={`https://placehold.co/600x400/${getRandomColor()}/${fontColor}?text=${
+                shelter.name
+              }&font=roboto`}
               title={shelter.name}
             />
           </Card>

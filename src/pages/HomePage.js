@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 // React MUI
@@ -16,6 +16,7 @@ import { useAuth } from '../middleware/AuthContext';
 
 // Import Images
 import BannerImg from '../images/animals_floating_with_balloons_rafiki.svg';
+import OneSignal from 'react-onesignal';
 
 function HomePage() {
   const { t } = useTranslation();
@@ -29,6 +30,28 @@ function HomePage() {
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
+  // useEffect(() => {
+  //   const initOneSignal = async () => {
+  //     await OneSignal.init({
+  //       appId: '07831676-ef12-409c-895e-3352642c136d',
+  //       allowLocalhostAsSecureOrigin: true, // Only for development
+  //     });
+
+  //     console.log('OneSignal initialized');
+
+  //     // Show subscription prompt after initialization
+  //     OneSignal.Slidedown.promptPush();
+  //   };
+
+  //   initOneSignal();
+  // }, []);
+
+  // const onHandleTag = (tag) => {
+  //   console.log('Tagging');
+  //   OneSignal.sendTag('tech', tag).then(() => {
+  //     console.log('Tagged');
+  //   });
+  // };
   return (
     <React.Fragment>
       <Grid container spacing={3}>
@@ -67,7 +90,8 @@ function HomePage() {
           >
             {t('pageTitles.findYourFurryFriend')}
           </Typography>
-
+          {/* <button className='react' onClick={()=>onHandleTag('react')}>Raect Js</button>
+          <button className='angular' onClick={()=>onHandleTag('angular')}>Angular Js</button> */}
           <Box
             position="relative"
             display="flex"
