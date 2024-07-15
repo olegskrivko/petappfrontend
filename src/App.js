@@ -202,8 +202,8 @@ const App = () => {
         distance: '10',
       });
       OneSignal.Slidedown.promptEmail();
-      OneSignal.User.addEmail('customer@company.com');
-      OneSignal.User.addSms('+15558675309');
+      OneSignal.User.addEmail('olegs.krivko@gmail.com');
+      OneSignal.User.addSms('+37129771299');
       OneSignal.User.setExternalUserId('12345');
       const tags = OneSignal.User.getTags();
       console.log('tags', tags);
