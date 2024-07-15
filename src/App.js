@@ -193,7 +193,7 @@ const App = () => {
   useEffect(() => {
     const initOneSignal = async () => {
       await OneSignal.init({
-        appId: 'YOUR_ONESIGNAL_APP_ID',
+        appId: '07831676-ef12-409c-895e-3352642c136d',
         allowLocalhostAsSecureOrigin: true, // Only for development
         promptOptions: {
           slidedown: {
