@@ -275,30 +275,53 @@ const App = () => {
   // },
 
   // Function to initialize OneSignal
+  // const initOneSignal = async () => {
+  //   await OneSignal.init({
+  //     appId: '07831676-ef12-409c-895e-3352642c136d',
+  //   });
+
+  //   console.log('OneSignal initialized');
+  //   OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
+  // };
+
+  // // Handler to add tags for latitude, longitude, and distance
+  // const addLocationTags = () => {
+  //   OneSignal.User.addTags({
+  //     latitude: '56.946285',
+  //     longitude: '24.105078',
+  //     distance: '10',
+  //   });
+  //   console.log('Tags added successfully');
+  // };
   const initOneSignal = async () => {
     await OneSignal.init({
       appId: '07831676-ef12-409c-895e-3352642c136d',
+      promptOptions: {
+        customlink: {
+          enabled: true, // Required to use the Custom Link
+          style: 'button', // Has value of 'button' or 'link'
+          size: 'medium', // One of 'small', 'medium', or 'large'
+          color: {
+            button: '#E12D30', // Color of the button background if style = "button"
+            text: '#FFFFFF', // Color of the prompt's text
+          },
+          text: {
+            subscribe: 'Subscribe to push notifications', // Prompt's text when not subscribed
+            unsubscribe: 'Unsubscribe from push notifications', // Prompt's text when subscribed
+            explanation: 'Get updates from all sorts of things that matter to you', // Optional text appearing before the prompt button
+          },
+          unsubscribeEnabled: true, // Controls whether the prompt is visible after subscription
+        },
+      },
     });
 
     console.log('OneSignal initialized');
-    OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
   };
 
-  // Handler to add tags for latitude, longitude, and distance
-  const addLocationTags = () => {
-    OneSignal.User.addTags({
-      latitude: '56.946285',
-      longitude: '24.105078',
-      distance: '10',
-    });
-    console.log('Tags added successfully');
-  };
-
-  // Function to unsubscribe from push notifications
-  const unsubscribeFromNotifications = () => {
-    OneSignal.setSubscription(false);
-    console.log('User unsubscribed from notifications');
-  };
+  // Initialize OneSignal when the component mounts
+  useEffect(() => {
+    initOneSignal();
+  }, []);
 
   return (
     <AuthProvider>
@@ -370,6 +393,7 @@ const App = () => {
               <button onClick={initOneSignal}>Subscribe to Notifications</button>
               <button onClick={addLocationTags}>Add Location Tags</button>
               <button onClick={unsubscribeFromNotifications}>Unsubscribe from Notifications</button>
+              <div className="onesignal-customlink-container"></div>
             </Suspense>
           </BrowserRouter>
         </DrawerProvider>
