@@ -190,39 +190,39 @@ const PetInfrastructurePage = lazy(() => import('./pages/PetInfrastructurePage')
 // },[])
 
 const App = () => {
-  useEffect(() => {
-    const initOneSignal = async () => {
-      await OneSignal.init({
-        appId: '07831676-ef12-409c-895e-3352642c136d',
-      });
+  // useEffect(() => {
+  //   const initOneSignal = async () => {
+  //     await OneSignal.init({
+  //       appId: '07831676-ef12-409c-895e-3352642c136d',
+  //     });
 
-      // OneSignal.User.addTags({
-      //   latitude: '56.946285',
-      //   longitude: '24.105078',
-      //   distance: '10',
-      // });
+  //     // OneSignal.User.addTags({
+  //     //   latitude: '56.946285',
+  //     //   longitude: '24.105078',
+  //     //   distance: '10',
+  //     // });
 
-      console.log('OneSignal initialized');
-      OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
-      console.log('OneSignal.User', OneSignal.User);
-    };
+  //     console.log('OneSignal initialized');
+  //     OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
+  //     console.log('OneSignal.User', OneSignal.User);
+  //   };
 
-    initOneSignal();
-  }, []);
+  //   initOneSignal();
+  // }, []);
 
-  // Function to prompt for push notifications
-  // const promptNotificationSubscription = () => {
-  //   OneSignal.showSlidedownPrompt();
+  // // Function to prompt for push notifications
+  // // const promptNotificationSubscription = () => {
+  // //   OneSignal.showSlidedownPrompt();
+  // // };
+  // // Handler to add tags for latitude, longitude, and distance
+  // const addLocationTags = () => {
+  //   OneSignal.User.addTags({
+  //     latitude: '56.946285',
+  //     longitude: '24.105078',
+  //     distance: '10',
+  //   });
+  //   console.log('Tags added successfully');
   // };
-  // Handler to add tags for latitude, longitude, and distance
-  const addLocationTags = () => {
-    OneSignal.User.addTags({
-      latitude: '56.946285',
-      longitude: '24.105078',
-      distance: '10',
-    });
-    console.log('Tags added successfully');
-  };
 
   // useEffect(() => {
   //   const initOneSignal = async () => {
@@ -273,6 +273,26 @@ const App = () => {
   //     ],
   //   },
   // },
+
+  // Function to initialize OneSignal
+  const initOneSignal = async () => {
+    await OneSignal.init({
+      appId: '07831676-ef12-409c-895e-3352642c136d',
+    });
+
+    console.log('OneSignal initialized');
+    OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
+  };
+
+  // Handler to add tags for latitude, longitude, and distance
+  const addLocationTags = () => {
+    OneSignal.User.addTags({
+      latitude: '56.946285',
+      longitude: '24.105078',
+      distance: '10',
+    });
+    console.log('Tags added successfully');
+  };
 
   return (
     <AuthProvider>
@@ -341,6 +361,7 @@ const App = () => {
               <button className="angular" onClick={() => onHandleTag('angular')}>
                 Angular Js
               </button> */}
+              <button onClick={initOneSignal}>Subscribe to Notifications</button>
               <button onClick={addLocationTags}>Add Location Tags</button>
             </Suspense>
           </BrowserRouter>
