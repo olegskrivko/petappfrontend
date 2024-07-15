@@ -251,11 +251,10 @@ const App = () => {
       });
 
       OneSignal.User.addTags({
-        KEY_01: 'VALUE_01',
-        KEY_02: 'VALUE_02',
-        KEY_03: 'VALUE_03',
+        latitude: '26.32',
+        longitude: '56.32',
       });
-      OneSignal.Slidedown.promptPushCategories();
+      // OneSignal.Slidedown.promptPushCategories();
       console.log('OneSignal initialized');
       OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
     };
