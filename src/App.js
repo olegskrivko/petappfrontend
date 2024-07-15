@@ -294,6 +294,12 @@ const App = () => {
     console.log('Tags added successfully');
   };
 
+  // Function to unsubscribe from push notifications
+  const unsubscribeFromNotifications = () => {
+    OneSignal.setSubscription(false);
+    console.log('User unsubscribed from notifications');
+  };
+
   return (
     <AuthProvider>
       <LanguageProvider>
@@ -363,6 +369,7 @@ const App = () => {
               </button> */}
               <button onClick={initOneSignal}>Subscribe to Notifications</button>
               <button onClick={addLocationTags}>Add Location Tags</button>
+              <button onClick={unsubscribeFromNotifications}>Unsubscribe from Notifications</button>
             </Suspense>
           </BrowserRouter>
         </DrawerProvider>
