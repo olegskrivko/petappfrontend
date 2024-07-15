@@ -193,28 +193,42 @@ const App = () => {
   useEffect(() => {
     const initOneSignal = async () => {
       await OneSignal.init({
-        appId: '07831676-ef12-409c-895e-3352642c136d',
+        appId: 'YOUR_ONESIGNAL_APP_ID',
         allowLocalhostAsSecureOrigin: true, // Only for development
+        promptOptions: {
+          slidedown: {
+            prompts: [
+              {
+                type: 'category',
+                autoPrompt: true,
+                text: {
+                  actionMessage:
+                    "We'd like to show you notifications for the latest news and updates.",
+                  acceptButton: 'Allow',
+                  cancelButton: 'Cancel',
+                },
+                categories: [
+                  {
+                    tag: 'politics',
+                    label: 'Politics',
+                  },
+                  {
+                    tag: 'local_news',
+                    label: 'Local News',
+                  },
+                ],
+              },
+            ],
+          },
+        },
       });
 
       console.log('OneSignal initialized');
-
-      // Show subscription prompt after initialization
-      OneSignal.Slidedown.promptPush();
+      OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
     };
 
     initOneSignal();
   }, []);
-
-  const onHandleTag = async (tag) => {
-    try {
-      await OneSignal.addTrigger('location_prompt', 'true');
-      await OneSignal.sendTag('interest', tag);
-      console.log('Tagged successfully');
-    } catch (error) {
-      console.error('Error tagging user:', error);
-    }
-  };
 
   return (
     <AuthProvider>
@@ -277,12 +291,12 @@ const App = () => {
                   <Route path="*" element={<NotFoundPage />} />
                 </Route>
               </Routes>
-              <button className="react" onClick={() => onHandleTag('react')}>
+              {/* <button className="react" onClick={() => onHandleTag('react')}>
                 React Js
               </button>
               <button className="angular" onClick={() => onHandleTag('angular')}>
                 Angular Js
-              </button>
+              </button> */}
             </Suspense>
           </BrowserRouter>
         </DrawerProvider>
