@@ -296,25 +296,56 @@ const App = () => {
   const initOneSignal = async () => {
     await OneSignal.init({
       appId: '07831676-ef12-409c-895e-3352642c136d',
-      promptOptions: {
-        customlink: {
-          enabled: true, // Required to use the Custom Link
-          style: 'button', // Has value of 'button' or 'link'
-          size: 'medium', // One of 'small', 'medium', or 'large'
-          color: {
-            button: '#E12D30', // Color of the button background if style = "button"
-            text: '#FFFFFF', // Color of the prompt's text
-          },
-          text: {
-            subscribe: 'Subscribe to push notifications', // Prompt's text when not subscribed
-            unsubscribe: 'Unsubscribe from push notifications', // Prompt's text when subscribed
-            explanation: 'Get updates from all sorts of things that matter to you', // Optional text appearing before the prompt button
-          },
-          unsubscribeEnabled: true, // Controls whether the prompt is visible after subscription
+
+      notifyButton: {
+        enable: true /* Required to use the Subscription Bell */,
+        /* SUBSCRIPTION BELL CUSTOMIZATIONS START HERE */
+        size: 'medium' /* One of 'small', 'medium', or 'large' */,
+        theme: 'default' /* One of 'default' (red-white) or 'inverse" (white-red) */,
+        position: 'bottom-right' /* Either 'bottom-left' or 'bottom-right' */,
+        offset: {
+          bottom: '0px',
+          left: '0px' /* Only applied if bottom-left */,
+          right: '0px' /* Only applied if bottom-right */,
         },
+        showCredit: false /* Hide the OneSignal logo */,
+        text: {
+          'tip.state.unsubscribed': 'Subscribe to notifications',
+          'tip.state.subscribed': "You're subscribed to notifications",
+          'tip.state.blocked': "You've blocked notifications",
+          'message.prenotify': 'Click to subscribe to notifications',
+          'message.action.subscribed': 'Thanks for subscribing!',
+          'message.action.resubscribed': "You're subscribed to notifications",
+          'message.action.unsubscribed': "You won't receive notifications again",
+          'dialog.main.title': 'Manage Site Notifications',
+          'dialog.main.button.subscribe': 'SUBSCRIBE',
+          'dialog.main.button.unsubscribe': 'UNSUBSCRIBE',
+          'dialog.blocked.title': 'Unblock Notifications',
+          'dialog.blocked.message': 'Follow these instructions to allow notifications:',
+        },
+        colors: {
+          // Customize the colors of the main button and dialog popup button
+          'circle.background': 'rgb(84,110,123)',
+          'circle.foreground': 'white',
+          'badge.background': 'rgb(84,110,123)',
+          'badge.foreground': 'white',
+          'badge.bordercolor': 'white',
+          'pulse.color': 'white',
+          'dialog.button.background.hovering': 'rgb(77, 101, 113)',
+          'dialog.button.background.active': 'rgb(70, 92, 103)',
+          'dialog.button.background': 'rgb(84,110,123)',
+          'dialog.button.foreground': 'white',
+        },
+        /* HIDE SUBSCRIPTION BELL WHEN USER SUBSCRIBED */
+        // displayPredicate: function() {
+        //     return OneSignal.isPushNotificationsEnabled()
+        //         .then(function(isPushEnabled) {
+        //             return !isPushEnabled;
+        //         });
+        // }
       },
     });
-
+    OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
     console.log('OneSignal initialized');
   };
 
