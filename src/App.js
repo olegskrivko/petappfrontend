@@ -134,6 +134,7 @@
 // export default App;
 import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Button, TextField, Box, Typography, Grid } from '@mui/material';
 import { AuthProvider } from './middleware/AuthContext';
 import { LanguageProvider } from './middleware/LanguageContext';
 import { DrawerProvider } from './context/DrawerContext';
@@ -185,8 +186,11 @@ const VirtualPetTrainingClasses = lazy(() => import('./pages/VirtualPetTrainingC
 const PetInfrastructurePage = lazy(() => import('./pages/PetInfrastructurePage'));
 
 const App = () => {
-  const [location, setLocation] = useState({ latitude: '', longitude: '' });
-  const [distance, setDistance] = useState('');
+  const [location, setLocation] = useState({
+    latitude: localStorage.getItem('latitude') || '',
+    longitude: localStorage.getItem('longitude') || '',
+  });
+  const [distance, setDistance] = useState(localStorage.getItem('distance') || '');
 
   // Function to initialize OneSignal
   const initOneSignal = async () => {
@@ -202,10 +206,13 @@ const App = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          const { latitude, longitude } = position.coords;
           setLocation({
-            latitude: position.coords.latitude.toString(),
-            longitude: position.coords.longitude.toString(),
+            latitude: latitude.toString(),
+            longitude: longitude.toString(),
           });
+          localStorage.setItem('latitude', latitude.toString());
+          localStorage.setItem('longitude', longitude.toString());
         },
         (error) => {
           console.error('Error getting geolocation: ', error);
@@ -227,11 +234,31 @@ const App = () => {
       ...prevLocation,
       [name]: value,
     }));
+    localStorage.setItem(name, value);
   };
 
   const handleDistanceChange = (e) => {
     setDistance(e.target.value);
+    localStorage.setItem('distance', e.target.value);
   };
+
+  useEffect(() => {
+    // Retrieve location from localStorage on component mount
+    const storedLatitude = localStorage.getItem('latitude');
+    const storedLongitude = localStorage.getItem('longitude');
+    const storedDistance = localStorage.getItem('distance');
+
+    if (storedLatitude && storedLongitude) {
+      setLocation({
+        latitude: storedLatitude,
+        longitude: storedLongitude,
+      });
+    }
+
+    if (storedDistance) {
+      setDistance(storedDistance);
+    }
+  }, []);
 
   return (
     <AuthProvider>
@@ -294,7 +321,7 @@ const App = () => {
                   <Route path="*" element={<NotFoundPage />} />
                 </Route>
               </Routes>
-              <button onClick={initOneSignal}>Subscribe to Notifications</button>
+              {/* <button onClick={initOneSignal}>Subscribe to Notifications</button>
               <div>
                 <button onClick={getLocation}>Get Location</button>
                 <label>
@@ -325,7 +352,62 @@ const App = () => {
                   />
                 </label>
                 <button onClick={addLocationTags}>Add Location Tags</button>
-              </div>
+              </div> */}
+              <Box p={2} bgcolor="lightgray">
+                <Grid container spacing={1} alignItems="center">
+                  <Grid item xs={12} sm={4}>
+                    <Button variant="contained" onClick={initOneSignal} fullWidth>
+                      Subscribe
+                    </Button>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <Button variant="contained" onClick={getLocation} fullWidth>
+                      Get Location
+                    </Button>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <Button variant="contained" onClick={addLocationTags} fullWidth>
+                      Add Tags
+                    </Button>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <TextField
+                      variant="outlined"
+                      type="text"
+                      name="latitude"
+                      value={location.latitude}
+                      onChange={handleChange}
+                      fullWidth
+                      size="small"
+                      label="Latitude"
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <TextField
+                      variant="outlined"
+                      type="text"
+                      name="longitude"
+                      value={location.longitude}
+                      onChange={handleChange}
+                      fullWidth
+                      size="small"
+                      label="Longitude"
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <TextField
+                      variant="outlined"
+                      type="text"
+                      name="distance"
+                      value={distance}
+                      onChange={handleDistanceChange}
+                      fullWidth
+                      size="small"
+                      label="Distance"
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
             </Suspense>
           </BrowserRouter>
         </DrawerProvider>
