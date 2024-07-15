@@ -132,7 +132,7 @@
 // }
 
 // export default App;
-import React, { Suspense, lazy, useEffect } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './middleware/AuthContext';
 import { LanguageProvider } from './middleware/LanguageContext';
@@ -190,6 +190,8 @@ const PetInfrastructurePage = lazy(() => import('./pages/PetInfrastructurePage')
 // },[])
 
 const App = () => {
+  const [location, setLocation] = useState({ latitude: '', longitude: '' });
+  const [distance, setDistance] = useState('');
   // useEffect(() => {
   //   const initOneSignal = async () => {
   //     await OneSignal.init({
@@ -275,16 +277,16 @@ const App = () => {
   // },
 
   // Function to initialize OneSignal
-  // const initOneSignal = async () => {
-  //   await OneSignal.init({
-  //     appId: '07831676-ef12-409c-895e-3352642c136d',
-  //   });
+  const initOneSignal = async () => {
+    await OneSignal.init({
+      appId: '07831676-ef12-409c-895e-3352642c136d',
+    });
 
-  //   console.log('OneSignal initialized');
-  //   OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
-  // };
+    console.log('OneSignal initialized');
+    OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
+  };
 
-  // // Handler to add tags for latitude, longitude, and distance
+  // Handler to add tags for latitude, longitude, and distance
   // const addLocationTags = () => {
   //   OneSignal.User.addTags({
   //     latitude: '56.946285',
@@ -293,66 +295,35 @@ const App = () => {
   //   });
   //   console.log('Tags added successfully');
   // };
-  const initOneSignal = async () => {
-    await OneSignal.init({
-      appId: '07831676-ef12-409c-895e-3352642c136d',
 
-      notifyButton: {
-        enable: true /* Required to use the Subscription Bell */,
-        /* SUBSCRIPTION BELL CUSTOMIZATIONS START HERE */
-        size: 'medium' /* One of 'small', 'medium', or 'large' */,
-        theme: 'default' /* One of 'default' (red-white) or 'inverse" (white-red) */,
-        position: 'bottom-right' /* Either 'bottom-left' or 'bottom-right' */,
-        offset: {
-          bottom: '0px',
-          left: '0px' /* Only applied if bottom-left */,
-          right: '0px' /* Only applied if bottom-right */,
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLocation({
+            latitude: position.coords.latitude.toString(),
+            longitude: position.coords.longitude.toString(),
+          });
         },
-        showCredit: false /* Hide the OneSignal logo */,
-        text: {
-          'tip.state.unsubscribed': 'Subscribe to notifications',
-          'tip.state.subscribed': "You're subscribed to notifications",
-          'tip.state.blocked': "You've blocked notifications",
-          'message.prenotify': 'Click to subscribe to notifications',
-          'message.action.subscribed': 'Thanks for subscribing!',
-          'message.action.resubscribed': "You're subscribed to notifications",
-          'message.action.unsubscribed': "You won't receive notifications again",
-          'dialog.main.title': 'Manage Site Notifications',
-          'dialog.main.button.subscribe': 'SUBSCRIBE',
-          'dialog.main.button.unsubscribe': 'UNSUBSCRIBE',
-          'dialog.blocked.title': 'Unblock Notifications',
-          'dialog.blocked.message': 'Follow these instructions to allow notifications:',
+        (error) => {
+          console.error('Error getting geolocation: ', error);
         },
-        colors: {
-          // Customize the colors of the main button and dialog popup button
-          'circle.background': 'rgb(84,110,123)',
-          'circle.foreground': 'white',
-          'badge.background': 'rgb(84,110,123)',
-          'badge.foreground': 'white',
-          'badge.bordercolor': 'white',
-          'pulse.color': 'white',
-          'dialog.button.background.hovering': 'rgb(77, 101, 113)',
-          'dialog.button.background.active': 'rgb(70, 92, 103)',
-          'dialog.button.background': 'rgb(84,110,123)',
-          'dialog.button.foreground': 'white',
-        },
-        /* HIDE SUBSCRIPTION BELL WHEN USER SUBSCRIBED */
-        // displayPredicate: function() {
-        //     return OneSignal.isPushNotificationsEnabled()
-        //         .then(function(isPushEnabled) {
-        //             return !isPushEnabled;
-        //         });
-        // }
-      },
-    });
-    OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
-    console.log('OneSignal initialized');
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
   };
 
-  // Initialize OneSignal when the component mounts
-  useEffect(() => {
-    initOneSignal();
-  }, []);
+  const addLocationTags = () => {
+    const { latitude, longitude, distance } = location;
+    OneSignal.User.addTags({ latitude, longitude, distance });
+    console.log('Tags added successfully');
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLocation({ ...location, [name]: value });
+  };
 
   return (
     <AuthProvider>
@@ -415,16 +386,37 @@ const App = () => {
                   <Route path="*" element={<NotFoundPage />} />
                 </Route>
               </Routes>
-              {/* <button className="react" onClick={() => onHandleTag('react')}>
-                React Js
-              </button>
-              <button className="angular" onClick={() => onHandleTag('angular')}>
-                Angular Js
-              </button> */}
-              {/* <button onClick={initOneSignal}>Subscribe to Notifications</button>
-              <button onClick={addLocationTags}>Add Location Tags</button>
-              <button onClick={unsubscribeFromNotifications}>Unsubscribe from Notifications</button> */}
-              <div className="onesignal-customlink-container"></div>
+              <button onClick={initOneSignal}>Subscribe to Notifications</button>
+              <div>
+                <label>
+                  Latitude:
+                  <input
+                    type="text"
+                    name="latitude"
+                    value={location.latitude}
+                    onChange={handleChange}
+                  />
+                </label>
+                <label>
+                  Longitude:
+                  <input
+                    type="text"
+                    name="longitude"
+                    value={location.longitude}
+                    onChange={handleChange}
+                  />
+                </label>
+                <label>
+                  Distance:
+                  <input
+                    type="text"
+                    name="distance"
+                    value={location.distance}
+                    onChange={handleChange}
+                  />
+                </label>
+                <button onClick={addLocationTags}>Add Location Tags</button>
+              </div>
             </Suspense>
           </BrowserRouter>
         </DrawerProvider>
