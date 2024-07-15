@@ -208,7 +208,7 @@ const App = () => {
 
   const onHandleTag = (tag) => {
     console.log('Tagging');
-    OneSignal.sendTag('tech', tag).then(() => {
+    OneSignal.addTag('tech', tag).then(() => {
       console.log('Tagged');
     });
   };
