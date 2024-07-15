@@ -194,93 +194,6 @@ const App = () => {
     const initOneSignal = async () => {
       await OneSignal.init({
         appId: '07831676-ef12-409c-895e-3352642c136d',
-        notifyButton: {
-          enable: true,
-        },
-        promptOptions: {
-          slidedown: {
-            prompts: [
-              {
-                type: 'smsAndEmail',
-                autoPrompt: false,
-                text: {
-                  emailLabel: 'Insert Email Address',
-                  smsLabel: 'Insert Phone Number',
-                  acceptButton: 'Submit',
-                  cancelButton: 'No Thanks',
-                  actionMessage: 'Receive the latest news, updates and offers as they happen.',
-                  updateMessage: 'Update your push notification subscription preferences.',
-                  confirmMessage: 'Thank You!',
-                  positiveUpdateButton: 'Save Preferences',
-                  negativeUpdateButton: 'Cancel',
-                },
-                delay: {
-                  pageViews: 1,
-                  timeDelay: 3,
-                },
-              },
-              {
-                type: 'category',
-                autoPrompt: true,
-                text: {
-                  actionMessage:
-                    "We'd like to show you notifications for the latest news and updates.",
-                  acceptButton: 'Allow',
-                  cancelButton: 'Cancel',
-
-                  /* CATEGORY SLIDEDOWN SPECIFIC TEXT */
-                  negativeUpdateButton: 'Cancel',
-                  positiveUpdateButton: 'Save Preferences',
-                  updateMessage: 'Update your push notification subscription preferences.',
-                },
-                delay: {
-                  pageViews: 2,
-                  timeDelay: 3,
-                },
-                categories: [
-                  {
-                    tag: 'politics',
-                    label: 'Politics',
-                  },
-                  {
-                    tag: 'local_news',
-                    label: 'Local News',
-                  },
-                  {
-                    tag: 'world_news',
-                    label: 'World News',
-                  },
-                  {
-                    tag: 'culture',
-                    label: 'Culture',
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        // promptOptions: {
-        //   slidedown: {
-        //     prompts: [
-        //       {
-        //         type: 'category',
-        //         autoPrompt: true,
-        //         text: {
-        //           actionMessage:
-        //             "We'd like to show you notifications for the latest news and updates.",
-        //           acceptButton: 'Allow',
-        //           cancelButton: 'Cancel',
-        //         },
-        //         categories: [
-        //           {
-        //             tag: 'politics',
-        //             label: 'Politics',
-        //           },
-        //         ],
-        //       },
-        //     ],
-        //   },
-        // },
       });
 
       OneSignal.User.addTags({
@@ -288,6 +201,8 @@ const App = () => {
         longitude: '24.105078',
         distance: '10',
       });
+      OneSignal.User.setEmail('pawclix@example.com');
+      OneSignal.User.setExternalUserId('12345');
       // OneSignal.Slidedown.promptPushCategories();
       console.log('OneSignal initialized');
       OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
