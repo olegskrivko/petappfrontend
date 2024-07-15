@@ -390,9 +390,9 @@ const App = () => {
               <button className="angular" onClick={() => onHandleTag('angular')}>
                 Angular Js
               </button> */}
-              <button onClick={initOneSignal}>Subscribe to Notifications</button>
+              {/* <button onClick={initOneSignal}>Subscribe to Notifications</button>
               <button onClick={addLocationTags}>Add Location Tags</button>
-              <button onClick={unsubscribeFromNotifications}>Unsubscribe from Notifications</button>
+              <button onClick={unsubscribeFromNotifications}>Unsubscribe from Notifications</button> */}
               <div className="onesignal-customlink-container"></div>
             </Suspense>
           </BrowserRouter>
