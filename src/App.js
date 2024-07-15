@@ -194,7 +194,7 @@ const App = () => {
     const initOneSignal = async () => {
       await OneSignal.init({
         appId: '07831676-ef12-409c-895e-3352642c136d',
-        allowLocalhostAsSecureOrigin: true, // Only for development
+
         promptOptions: {
           slidedown: {
             prompts: [
@@ -206,19 +206,56 @@ const App = () => {
                     "We'd like to show you notifications for the latest news and updates.",
                   acceptButton: 'Allow',
                   cancelButton: 'Cancel',
+
+                  /* CATEGORY SLIDEDOWN SPECIFIC TEXT */
+                  negativeUpdateButton: 'Cancel',
+                  positiveUpdateButton: 'Save Preferences',
+                  updateMessage: 'Update your push notification subscription preferences.',
+                },
+                delay: {
+                  pageViews: 1,
+                  timeDelay: 3,
                 },
                 categories: [
                   {
                     tag: 'politics',
-                    label: 'Politics',
+                    label: 'politics',
                   },
                 ],
               },
             ],
           },
         },
+        // promptOptions: {
+        //   slidedown: {
+        //     prompts: [
+        //       {
+        //         type: 'category',
+        //         autoPrompt: true,
+        //         text: {
+        //           actionMessage:
+        //             "We'd like to show you notifications for the latest news and updates.",
+        //           acceptButton: 'Allow',
+        //           cancelButton: 'Cancel',
+        //         },
+        //         categories: [
+        //           {
+        //             tag: 'politics',
+        //             label: 'Politics',
+        //           },
+        //         ],
+        //       },
+        //     ],
+        //   },
+        // },
       });
 
+      OneSignal.User.addTags({
+        KEY_01: 'VALUE_01',
+        KEY_02: 'VALUE_02',
+        KEY_03: 'VALUE_03',
+      });
+      OneSignal.Slidedown.promptPushCategories();
       console.log('OneSignal initialized');
       OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
     };
