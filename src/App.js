@@ -201,11 +201,17 @@ const App = () => {
         longitude: '24.105078',
         distance: '10',
       });
-      OneSignal.User.setEmail('pawclix@example.com');
+      OneSignal.Slidedown.promptEmail();
+      OneSignal.User.addEmail('customer@company.com');
+      OneSignal.User.addSms('+15558675309');
       OneSignal.User.setExternalUserId('12345');
+      const tags = OneSignal.User.getTags();
+      console.log('tags', tags);
+      console.log('OneSignal.User.onesignalId', OneSignal.User.onesignalId);
       // OneSignal.Slidedown.promptPushCategories();
       console.log('OneSignal initialized');
       OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
+      console.log('OneSignal.User', OneSignal.User);
     };
 
     initOneSignal();
