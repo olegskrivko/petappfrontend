@@ -212,10 +212,6 @@ const App = () => {
                     tag: 'politics',
                     label: 'Politics',
                   },
-                  {
-                    tag: 'local_news',
-                    label: 'Local News',
-                  },
                 ],
               },
             ],
