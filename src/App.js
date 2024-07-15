@@ -196,19 +196,12 @@ const App = () => {
         appId: '07831676-ef12-409c-895e-3352642c136d',
       });
 
-      OneSignal.User.addTags({
-        latitude: '56.946285',
-        longitude: '24.105078',
-        distance: '10',
-      });
-      OneSignal.Slidedown.promptEmail();
-      OneSignal.User.addEmail('olegs.krivko@gmail.com');
-      OneSignal.User.addSms('+37129771299');
-      OneSignal.User.setExternalUserId('12345');
-      const tags = OneSignal.User.getTags();
-      console.log('tags', tags);
-      console.log('OneSignal.User.onesignalId', OneSignal.User.onesignalId);
-      // OneSignal.Slidedown.promptPushCategories();
+      // OneSignal.User.addTags({
+      //   latitude: '56.946285',
+      //   longitude: '24.105078',
+      //   distance: '10',
+      // });
+
       console.log('OneSignal initialized');
       OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
       console.log('OneSignal.User', OneSignal.User);
@@ -216,6 +209,70 @@ const App = () => {
 
     initOneSignal();
   }, []);
+
+  // Function to prompt for push notifications
+  // const promptNotificationSubscription = () => {
+  //   OneSignal.showSlidedownPrompt();
+  // };
+  // Handler to add tags for latitude, longitude, and distance
+  const addLocationTags = () => {
+    OneSignal.User.addTags({
+      latitude: '56.946285',
+      longitude: '24.105078',
+      distance: '10',
+    });
+    console.log('Tags added successfully');
+  };
+
+  // useEffect(() => {
+  //   const initOneSignal = async () => {
+  //     await OneSignal.init({
+  //       appId: '07831676-ef12-409c-895e-3352642c136d',
+  //     });
+
+  //     OneSignal.User.addTags({
+  //       latitude: '56.946285',
+  //       longitude: '24.105078',
+  //       distance: '10',
+  //     });
+  //     OneSignal.Slidedown.promptEmail();
+  //     OneSignal.User.addEmail('olegs.krivko@gmail.com');
+  //     OneSignal.User.addSms('+37129771299');
+  //     OneSignal.User.setExternalUserId('12345');
+  //     const tags = OneSignal.User.getTags();
+  //     console.log('tags', tags);
+  //     console.log('OneSignal.User.onesignalId', OneSignal.User.onesignalId);
+  //     // OneSignal.Slidedown.promptPushCategories();
+  //     console.log('OneSignal initialized');
+  //     OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
+  //     console.log('OneSignal.User', OneSignal.User);
+  //   };
+
+  //   initOneSignal();
+  // }, []);
+
+  // promptOptions: {
+  //   slidedown: {
+  //     prompts: [
+  //       {
+  //         type: 'category',
+  //         autoPrompt: true,
+  //         text: {
+  //           actionMessage:
+  //             "We'd like to show you notifications for the latest news and updates.",
+  //           acceptButton: 'Allow',
+  //           cancelButton: 'Cancel',
+  //         },
+  //         categories: [
+  //           {
+  //             tag: 'politics',
+  //             label: 'Politics',
+  //           },
+  //         ],
+  //       },
+  //     ],
+  //   },
+  // },
 
   return (
     <AuthProvider>
@@ -284,6 +341,7 @@ const App = () => {
               <button className="angular" onClick={() => onHandleTag('angular')}>
                 Angular Js
               </button> */}
+              <button onClick={addLocationTags}>Add Location Tags</button>
             </Suspense>
           </BrowserRouter>
         </DrawerProvider>
