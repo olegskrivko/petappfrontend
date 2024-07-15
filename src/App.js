@@ -251,8 +251,8 @@ const App = () => {
       });
 
       OneSignal.User.addTags({
-        latitude: '26.32',
-        longitude: '56.32',
+        latitude: '56.946285',
+        longitude: '24.105078',
       });
       // OneSignal.Slidedown.promptPushCategories();
       console.log('OneSignal initialized');
