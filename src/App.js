@@ -208,6 +208,7 @@ const App = () => {
 
   const onHandleTag = async (tag) => {
     try {
+      await OneSignal.addTrigger('location_prompt', 'true');
       await OneSignal.sendTag('interest', tag);
       console.log('Tagged successfully');
     } catch (error) {
