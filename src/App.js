@@ -206,11 +206,13 @@ const App = () => {
     initOneSignal();
   }, []);
 
-  const onHandleTag = (tag) => {
-    console.log('Tagging');
-    OneSignal.addTag('tech', tag).then(() => {
-      console.log('Tagged');
-    });
+  const onHandleTag = async (tag) => {
+    try {
+      await OneSignal.sendTag('interest', tag);
+      console.log('Tagged successfully');
+    } catch (error) {
+      console.error('Error tagging user:', error);
+    }
   };
 
   return (
@@ -275,7 +277,7 @@ const App = () => {
                 </Route>
               </Routes>
               <button className="react" onClick={() => onHandleTag('react')}>
-                Raect Js
+                React Js
               </button>
               <button className="angular" onClick={() => onHandleTag('angular')}>
                 Angular Js
