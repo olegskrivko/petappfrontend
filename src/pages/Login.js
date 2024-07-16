@@ -85,43 +85,50 @@
 // };
 
 // export default Login;
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
-import { BASE_URL } from "../middleware/config";
-import { Container, Typography, TextField, Button, Box } from "@mui/material";
-import { useAuth } from "../middleware/AuthContext"; // Import the useAuth hook
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
+import { BASE_URL } from '../middleware/config';
+import { Container, Typography, TextField, Button, Box } from '@mui/material';
+import { useAuth } from '../middleware/AuthContext'; // Import the useAuth hook
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const { setUser } = useAuth(); // Access the setUser function from the AuthContext
-
+  const { login } = useAuth(); // Use the login function from AuthContext
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!email || !password) {
-      setError("Please enter both email and password");
+      setError('Please enter both email and password');
       return;
     }
     try {
-      console.log("Attempting login...");
-      const response = await axios.post(`${BASE_URL}/auth/login`, {
-        email,
-        password,
-      });
-      console.log("user email", response.data);
-      console.log("Login successful:", response.data);
-      // Set the user state with the user data from the response
-      setUser(response.data.user);
-      // Store the authentication token in local storage
-      localStorage.setItem("token", response.data.token);
-      // Redirect to the home page after successful login
-      navigate("/");
+      // console.log("Attempting login...");
+      // const response = await axios.post(`${BASE_URL}/auth/login`, {
+      //   email,
+      //   password,
+      // });
+      // console.log("user email", response.data);
+      // console.log("Login successful:", response.data);
+      // // Set the user state with the user data from the response
+      // setUser(response.data.user);
+      // // Store the authentication token in local storage
+      // localStorage.setItem("token", response.data.token);
+      // // Redirect to the home page after successful login
+      // navigate("/");
+      const success = await login(email, password);
+      if (success) {
+        // Redirect to the home page after successful login
+        navigate('/');
+      } else {
+        setError('Invalid email or password');
+      }
     } catch (err) {
-      console.error("Error logging in:", err);
-      setError("Invalid email or password");
+      console.error('Error logging in:', err);
+      setError('Invalid email or password');
     }
   };
 
@@ -130,9 +137,9 @@ const Login = () => {
       <Box
         sx={{
           marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
         <Typography component="h1" variant="h5">
@@ -168,12 +175,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
             Login
           </Button>
           <Typography variant="body2">
