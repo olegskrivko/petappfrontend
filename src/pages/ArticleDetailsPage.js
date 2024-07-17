@@ -245,7 +245,11 @@ import {
 import avatarImg from '../images/paw.png';
 import { Link as ScrollLink, Element } from 'react-scroll';
 import { BASE_URL } from '../middleware/config';
+
+// Import Custom hook
+import useFontSizes from '../utils/getFontSize';
 const ArticleDetailsPage = () => {
+  const { getTypography } = useFontSizes();
   const { slug } = useParams();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -294,9 +298,19 @@ const ArticleDetailsPage = () => {
       <Grid item xs={12} sm={8} order={{ xs: 2, sm: 1 }}>
         <Box>
           <Box sx={{ marginBottom: 4 }}>
-            <Typography variant="h4" component="h1" gutterBottom>
+            <Typography
+              variant="h1"
+              textAlign="center"
+              sx={{ mb: 3 }}
+              gutterBottom
+              style={{
+                fontSize: getTypography('h1').fontSize,
+                fontWeight: getTypography('h1').fontWeight,
+              }}
+            >
               {article.title}
             </Typography>
+
             <Typography variant="body1" color="textSecondary" paragraph>
               {article.content}
             </Typography>
@@ -329,7 +343,20 @@ const ArticleDetailsPage = () => {
                       title={section.title}
                     />
                     <CardContent>
-                      <Typography variant="h5" component="h2" gutterBottom>
+                      {/* <Typography variant="h5" component="h2" gutterBottom>
+                        {section.number}. {section.title}
+                      </Typography> */}
+
+                      <Typography
+                        variant="h2"
+                        textAlign="left"
+                        sx={{ mb: 3 }}
+                        gutterBottom
+                        style={{
+                          fontSize: getTypography('h2').fontSize,
+                          fontWeight: getTypography('h2').fontWeight,
+                        }}
+                      >
                         {section.number}. {section.title}
                       </Typography>
                       {section.paragraphs?.map((paragraph, i) => (
@@ -346,7 +373,7 @@ const ArticleDetailsPage = () => {
         </Box>
       </Grid>
       <Grid item xs={12} sm={4} order={{ xs: 1, sm: 2 }}>
-        <Box
+        {/* <Box
           display="flex"
           alignItems="center"
           mb={2}
@@ -362,8 +389,20 @@ const ArticleDetailsPage = () => {
               Source: <a href={article.source || '#'}>{article.source || 'Unknown Source'}</a>
             </Typography>
           </Box>
-        </Box>
-        <Typography variant="h5">Quick Navigation</Typography>
+        </Box> */}
+
+        <Typography
+          variant="h2"
+          textAlign="left"
+          sx={{ mb: 3 }}
+          gutterBottom
+          style={{
+            fontSize: getTypography('h2').fontSize,
+            fontWeight: getTypography('h2').fontWeight,
+          }}
+        >
+          Quick Navigation
+        </Typography>
         {article.sections.map((section, index) => (
           <Grid item xs={12} key={index}>
             <List>
@@ -377,7 +416,19 @@ const ArticleDetailsPage = () => {
                 }}
               >
                 <ListItem style={{ padding: '0', margin: '0' }}>
-                  <Typography variant="body1" style={{ fontWeight: 'bold' }}>
+                  {/* <Typography variant="body1" style={{ fontWeight: 'bold' }}>
+                    {section.number}. {section.title}
+                  </Typography> */}
+                  <Typography
+                    variant="h3"
+                    textAlign="left"
+                    sx={{ mb: 3 }}
+                    gutterBottom
+                    style={{
+                      fontSize: getTypography('h3').fontSize,
+                      fontWeight: getTypography('h3').fontWeight,
+                    }}
+                  >
                     {section.number}. {section.title}
                   </Typography>
                 </ListItem>
