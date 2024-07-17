@@ -238,8 +238,15 @@ function CreatePetPage() {
     }));
   };
 
-  const handleMainColorChange = (colorName) => {
-    handleChange('mainColor', colorName);
+  // const handleMainColorChange = (colorName) => {
+  //   handleChange('mainColor', colorName);
+  //   setMainColorDialogOpen(false);
+  // };
+  const handleMainColorChange = (color) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      mainColor: color, // Update with both hex and label
+    }));
     setMainColorDialogOpen(false);
   };
 
@@ -373,6 +380,9 @@ function CreatePetPage() {
           formData.append('location[lat]', formState.location.lat);
           formData.append('location[lng]', formState.location.lng);
           formData.append('author', user.id);
+        } else if (key === 'mainColor' && formState[key]) {
+          formData.append(`${key}[hex]`, formState[key].hex);
+          formData.append(`${key}[label]`, formState[key].label);
         } else if (Array.isArray(formState[key])) {
           formState[key].forEach((item, index) => {
             if (typeof item === 'object' && item !== null) {
@@ -881,13 +891,17 @@ function CreatePetPage() {
                         width: '30px',
                         height: '30px',
                         borderRadius: '50%',
-                        backgroundColor: t('selectOptions.colorOptions', {
-                          returnObjects: true,
-                        }).find((color) => color.value === formState.mainColor.hex).value,
+                        backgroundColor: formState.mainColor.hex, // Use the stored hex value directly
                         marginRight: '10px',
                       }}
                     />
                   ) : null}
+                  {/* <Typography variant="body1">
+                    {formState.mainColor.label
+                      ? formState.mainColor.label // Use the stored label directly
+                      : 'Click to choose one color'}
+                  </Typography> */}
+
                   <Typography variant="body1">
                     {formState.mainColor.label
                       ? t('selectOptions.colorOptions', {

@@ -1070,7 +1070,12 @@ const ProfilePage = () => {
         <Avatar
           alt={user.username}
           src={user.avatar}
-          sx={{ width: 150, height: 150, margin: 'auto', border: '2px solid lightgray' }}
+          sx={{
+            width: 150,
+            height: 150,
+            margin: 'auto',
+            border: '2px solid lightgray',
+          }}
         />
 
         <Typography variant="body1" color="primary">

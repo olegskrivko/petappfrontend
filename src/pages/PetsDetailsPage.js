@@ -44,6 +44,13 @@ const PetsDetailsPage = () => {
   const [markerPosition, setMarkerPosition] = useState(null);
   const mapRef = useRef();
 
+  // Function to handle marker position change
+  const handleMarkerPositionChange = (position) => {
+    console.log('Marker position changed:', position); // Log the coordinates
+    setMarkerPosition(position);
+    // You can perform additional actions here if needed
+  };
+
   // State for handling image upload
   const [image, setImage] = useState(null); // Uploaded image file
   // const [imagePreview, setImagePreview] = useState(null); // Image preview URL
@@ -608,7 +615,7 @@ const PetsDetailsPage = () => {
                     }}
                   >
                     <ColorLensIcon /> <b>{t('formLabels.mainColor')}:</b>{' '}
-                    {getMainColorLabel(pet.mainColor)}
+                    {getMainColorLabel(pet.mainColor.hex)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
@@ -636,7 +643,19 @@ const PetsDetailsPage = () => {
                     }}
                   >
                     <ColorLensIcon /> <b>{t('formLabels.markingColors')}:</b>{' '}
-                    {pet.markingColors.join(', ') ? pet.markingColors.join(', ') : 'N/A'}
+                    {/* {pet.markingColors && pet.markingColors.length > 0
+                      ? pet.markingColors.map((color, index) => (
+                          <span key={index}>{getMainColorLabel(color.hex)}</span>
+                        ))
+                      : 'N/A'} */}
+                    {pet.markingColors && pet.markingColors.length > 0
+                      ? pet.markingColors.map((color, index) => (
+                          <React.Fragment key={index}>
+                            <span>{getMainColorLabel(color.hex)}</span>
+                            {index !== pet.markingColors.length - 1 && ', '}
+                          </React.Fragment>
+                        ))
+                      : 'N/A'}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
@@ -690,6 +709,7 @@ const PetsDetailsPage = () => {
               onAddLocation={handleAddLocation}
               onRemoveLocation={handleRemoveLocation}
               onMapLoad={(map) => (mapRef.current = map)}
+              setMarkerPosition={handleMarkerPositionChange}
             />
           </Grid>
 

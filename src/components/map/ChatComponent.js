@@ -350,6 +350,7 @@ const ChatComponent = ({
 }) => {
   const [message, setMessage] = useState('');
   const [file, setFile] = useState(null); // State to hold the selected file
+  const [locationAdded, setLocationAdded] = useState(false); // State to track location existence
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -361,6 +362,7 @@ const ChatComponent = ({
   const handleAddLocation = () => {
     console.log('Adding location');
     onAddLocation();
+    setLocationAdded(true); // Update state to indicate location is added
   };
 
   const handleFileInputChange = (event) => {
@@ -375,6 +377,7 @@ const ChatComponent = ({
   const handleRemoveLocation = () => {
     console.log('Removing location');
     onRemoveLocation();
+    setLocationAdded(false); // Update state to indicate location is removed
   };
 
   const handleSendMessage = () => {
@@ -387,7 +390,7 @@ const ChatComponent = ({
   return (
     <Grid item xs={12} sm={12} md={12} lg={12} style={{ paddingLeft: '0', marginBottom: '1rem' }}>
       <Card style={{ width: '100%', paddingRight: '0 !important' }}>
-        <CardContent>
+        <CardContent style={{ paddingBottom: '1rem' }}>
           <Box display="flex" alignItems="center" marginBottom="1rem">
             <Avatar alt={user.username} src={user.avatar}></Avatar>
             <Box ml={2}>
@@ -411,7 +414,7 @@ const ChatComponent = ({
               onChange={handleMessageChange}
             />
           </Box>
-          <Box display="flex" justifyContent="space-between">
+          {/* <Box display="flex" justifyContent="space-between">
             <Box>
               {isSmallScreen ? (
                 <IconButton
@@ -482,6 +485,85 @@ const ChatComponent = ({
               >
                 Send
               </Button>
+            </Box>
+          </Box> */}
+          <Box display="flex" justifyContent="space-between">
+            <Box>
+              {!locationAdded && ( // Show Add Location button if location is not added
+                <IconButton
+                  variant="contained"
+                  onClick={handleAddLocation}
+                  style={{ backgroundColor: '#555', color: '#fff' }}
+                >
+                  <AddLocationAltIcon />
+                </IconButton>
+              )}
+
+              {/* Conditionally render Remove Location button */}
+              {locationAdded && ( // Only show if location is added
+                <IconButton
+                  variant="contained"
+                  onClick={handleRemoveLocation}
+                  style={{ backgroundColor: '#555', color: '#fff' }}
+                >
+                  <WrongLocationIcon />
+                </IconButton>
+              )}
+
+              {/* <label htmlFor="photo-upload-input" style={{ marginLeft: '1rem' }}>
+                <Button
+                  variant="contained"
+                  component="span"
+                  endIcon={<AddPhotoAlternateIcon />}
+                  size="small"
+                  style={{ background: '#555' }}
+                >
+                  Add Photo
+                </Button>
+              </label>
+              <input
+                accept="image/*"
+                id="photo-upload-input"
+                type="file"
+                onChange={handleFileInputChange}
+                style={{ display: 'none' }}
+              /> */}
+              <label htmlFor="photo-upload-input" style={{ marginLeft: '1rem' }}>
+                <IconButton
+                  variant="contained"
+                  style={{ backgroundColor: '#555', color: '#fff' }}
+                  onClick={() => document.getElementById('photo-upload-input').click()} // Open file input on button click
+                >
+                  <AddPhotoAlternateIcon />
+                </IconButton>
+              </label>
+              <input
+                accept="image/*"
+                id="photo-upload-input"
+                type="file"
+                onChange={handleFileInputChange}
+                style={{ display: 'none' }}
+              />
+            </Box>
+
+            <Box>
+              {/* <Button
+                variant="contained"
+                color="primary"
+                onClick={handleSendMessage}
+                endIcon={<SendIcon />}
+                size="small"
+                style={{ background: '#555' }}
+              >
+                Send
+              </Button> */}
+              <IconButton
+                variant="contained"
+                onClick={handleSendMessage}
+                style={{ backgroundColor: '#555', color: '#fff' }}
+              >
+                <SendIcon />
+              </IconButton>
             </Box>
           </Box>
         </CardContent>
