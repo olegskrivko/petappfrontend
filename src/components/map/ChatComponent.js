@@ -330,6 +330,7 @@ import {
   Typography,
   Box,
   TextField,
+  Tooltip,
   Button,
   IconButton,
 } from '@mui/material';
@@ -394,8 +395,8 @@ const ChatComponent = ({
           <Box display="flex" alignItems="center" marginBottom="1rem">
             <Avatar alt={user.username} src={user.avatar}></Avatar>
             <Box ml={2}>
-              <Typography variant="body1" style={{ fontWeight: 'bold' }}>
-                @{user.username}
+              <Typography variant="body2" style={{ fontWeight: 'bold' }}>
+                {user.username}
               </Typography>
               <Typography variant="body2" color="textSecondary">
                 Online
@@ -490,24 +491,28 @@ const ChatComponent = ({
           <Box display="flex" justifyContent="space-between">
             <Box>
               {!locationAdded && ( // Show Add Location button if location is not added
-                <IconButton
-                  variant="contained"
-                  onClick={handleAddLocation}
-                  style={{ backgroundColor: '#555', color: '#fff' }}
-                >
-                  <AddLocationAltIcon />
-                </IconButton>
+                <Tooltip title="Add location marker">
+                  <IconButton
+                    variant="contained"
+                    onClick={handleAddLocation}
+                    style={{ backgroundColor: '#555', color: '#fff' }}
+                  >
+                    <AddLocationAltIcon />
+                  </IconButton>
+                </Tooltip>
               )}
 
               {/* Conditionally render Remove Location button */}
               {locationAdded && ( // Only show if location is added
-                <IconButton
-                  variant="contained"
-                  onClick={handleRemoveLocation}
-                  style={{ backgroundColor: '#555', color: '#fff' }}
-                >
-                  <WrongLocationIcon />
-                </IconButton>
+                <Tooltip title="Remove location marker">
+                  <IconButton
+                    variant="contained"
+                    onClick={handleRemoveLocation}
+                    style={{ backgroundColor: '#555', color: '#fff' }}
+                  >
+                    <WrongLocationIcon />
+                  </IconButton>
+                </Tooltip>
               )}
 
               {/* <label htmlFor="photo-upload-input" style={{ marginLeft: '1rem' }}>
@@ -528,22 +533,24 @@ const ChatComponent = ({
                 onChange={handleFileInputChange}
                 style={{ display: 'none' }}
               /> */}
-              <label htmlFor="photo-upload-input" style={{ marginLeft: '1rem' }}>
-                <IconButton
-                  variant="contained"
-                  style={{ backgroundColor: '#555', color: '#fff' }}
-                  onClick={() => document.getElementById('photo-upload-input').click()} // Open file input on button click
-                >
-                  <AddPhotoAlternateIcon />
-                </IconButton>
-              </label>
-              <input
-                accept="image/*"
-                id="photo-upload-input"
-                type="file"
-                onChange={handleFileInputChange}
-                style={{ display: 'none' }}
-              />
+              <Tooltip title="Upload image">
+                <label htmlFor="photo-upload-input" style={{ marginLeft: '1rem' }}>
+                  <IconButton
+                    variant="contained"
+                    style={{ backgroundColor: '#555', color: '#fff' }}
+                    onClick={() => document.getElementById('photo-upload-input').click()} // Open file input on button click
+                  >
+                    <AddPhotoAlternateIcon />
+                  </IconButton>
+                </label>
+                <input
+                  accept="image/*"
+                  id="photo-upload-input"
+                  type="file"
+                  onChange={handleFileInputChange}
+                  style={{ display: 'none' }}
+                />
+              </Tooltip>
             </Box>
 
             <Box>
@@ -557,13 +564,15 @@ const ChatComponent = ({
               >
                 Send
               </Button> */}
-              <IconButton
-                variant="contained"
-                onClick={handleSendMessage}
-                style={{ backgroundColor: '#555', color: '#fff' }}
-              >
-                <SendIcon />
-              </IconButton>
+              <Tooltip title="Send message">
+                <IconButton
+                  variant="contained"
+                  onClick={handleSendMessage}
+                  style={{ backgroundColor: '#555', color: '#fff' }}
+                >
+                  <SendIcon />
+                </IconButton>
+              </Tooltip>
             </Box>
           </Box>
         </CardContent>

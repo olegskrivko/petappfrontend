@@ -6,10 +6,13 @@
       { "value": "3", "label": "Увиден" }
     ],
     "categoryOptions": [
-      { "value": "1", "label": "Собака" },
-      { "value": "2", "label": "Кошка" },
-      { "value": "3", "label": "Корова" },
-      { "value": "4", "label": "Лошадь" }
+      { "value": "1", "label": "Пёс" },
+      { "value": "2", "label": "Кот" },
+      { "value": "3", "label": "Птица" },
+      { "value": "4", "label": "Грызун" },
+      { "value": "5", "label": "Рептилия" },
+      { "value": "6", "label": "с/х животное" },
+      { "value": "7", "label": "Прочее" }
     ],
     "sizeOptions": [
       { "value": "0", "label": "Н/Д" },
@@ -33,30 +36,44 @@
       "1": [
         { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Щенок" },
-        { "value": "2", "label": "Подросток" },
-        { "value": "3", "label": "Взрослый" },
-        { "value": "4", "label": "Пожилой" }
+        { "value": "2", "label": "Взрослый" },
+        { "value": "3", "label": "Пожилой" }
       ],
       "2": [
         { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Котенок" },
-        { "value": "2", "label": "Подросток" },
-        { "value": "3", "label": "Взрослый" },
-        { "value": "4", "label": "Пожилой" }
+        { "value": "2", "label": "Взрослый" },
+        { "value": "3", "label": "Пожилой" }
       ],
       "3": [
         { "value": "0", "label": "Н/Д" },
-        { "value": "1", "label": "Телятко" },
-        { "value": "2", "label": "Подросток" },
-        { "value": "3", "label": "Взрослое животное" },
-        { "value": "4", "label": "Пожилое животное" }
+        { "value": "1", "label": "Цыпленок" },
+        { "value": "2", "label": "Взрослый" },
+        { "value": "3", "label": "Пожилой" }
       ],
       "4": [
         { "value": "0", "label": "Н/Д" },
-        { "value": "1", "label": "Жеребенок" },
-        { "value": "2", "label": "Подросток" },
-        { "value": "3", "label": "Взрослая лошадь" },
-        { "value": "4", "label": "Пожилая лошадь" }
+        { "value": "1", "label": "Детеныш" },
+        { "value": "2", "label": "Взрослый" },
+        { "value": "3", "label": "Пожилой" }
+      ],
+      "5": [
+        { "value": "0", "label": "Н/Д" },
+        { "value": "1", "label": "Детеныш" },
+        { "value": "2", "label": "Взрослый" },
+        { "value": "3", "label": "Пожилой" }
+      ],
+      "6": [
+        { "value": "0", "label": "Н/Д" },
+        { "value": "1", "label": "Детеныш" },
+        { "value": "2", "label": "Взрослый" },
+        { "value": "3", "label": "Пожилой" }
+      ],
+      "7": [
+        { "value": "0", "label": "Н/Д" },
+        { "value": "1", "label": "Детеныш" },
+        { "value": "2", "label": "Взрослый" },
+        { "value": "3", "label": "Пожилой" }
       ]
     },
     "breedOptions": {
@@ -120,29 +137,47 @@
       ],
       "3": [
         { "value": "0", "label": "Н/Д" },
-        { "value": "1", "label": "Голштинская" },
-        { "value": "2", "label": "Ангус" },
-        { "value": "3", "label": "Герефорд" },
-        { "value": "4", "label": "Джерсей" },
-        { "value": "5", "label": "Шароле" },
-        { "value": "6", "label": "Симментальская" },
-        { "value": "7", "label": "Лимузинская" },
-        { "value": "8", "label": "Браман" },
-        { "value": "9", "label": "Техасский длиннорогий" },
-        { "value": "10", "label": "Гернсийская" }
+        { "value": "1", "label": "Попугай" },
+        { "value": "2", "label": "Канарейка" },
+        { "value": "3", "label": "Волнистый попугай" },
+        { "value": "4", "label": "Прочее" }
       ],
       "4": [
         { "value": "0", "label": "Н/Д" },
-        { "value": "1", "label": "Арабская" },
-        { "value": "2", "label": "Торо" },
-        { "value": "3", "label": "Квартал" },
-        { "value": "4", "label": "Клайдсдейл" },
-        { "value": "5", "label": "Фризский" },
-        { "value": "6", "label": "Аппалуза" },
-        { "value": "7", "label": "Краска" },
-        { "value": "8", "label": "Шире" },
-        { "value": "9", "label": "Мустанг" },
-        { "value": "10", "label": "Андалусийский" }
+        { "value": "1", "label": "Хомяк" },
+        { "value": "2", "label": "Морская свинка" },
+        { "value": "3", "label": "Кролик" },
+        { "value": "4", "label": "Мышь" },
+        { "value": "5", "label": "Крыса" },
+        { "value": "6", "label": "Хорёк" },
+        { "value": "7", "label": "Еж" },
+        { "value": "8", "label": "Прочее" }
+      ],
+      "5": [
+        { "value": "0", "label": "Н/Д" },
+        { "value": "1", "label": "Змея" },
+        { "value": "2", "label": "Геккон" },
+        { "value": "3", "label": "Ящерица" },
+        { "value": "4", "label": "Черепаха" },
+        { "value": "5", "label": "Сухопутная черепаха" },
+        { "value": "6", "label": "Прочее" }
+      ],
+      "6": [
+        { "value": "0", "label": "Нет информации" },
+        { "value": "1", "label": "Крупный рогатый скот" },
+        { "value": "2", "label": "Свинья" },
+        { "value": "3", "label": "Овца" },
+        { "value": "4", "label": "Коза" },
+        { "value": "5", "label": "Курица" },
+        { "value": "6", "label": "Индейка" },
+        { "value": "7", "label": "Утка" },
+        { "value": "8", "label": "Лошадь" },
+        { "value": "9", "label": "Осел" },
+        { "value": "10", "label": "Прочее" }
+      ],
+      "7": [
+        { "value": "0", "label": "Нет информации" },
+        { "value": "1", "label": "Прочее" }
       ]
     },
     "healthInformationOptions": [

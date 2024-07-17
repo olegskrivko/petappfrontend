@@ -8,8 +8,11 @@
     "categoryOptions": [
       { "value": "1", "label": "Suns" },
       { "value": "2", "label": "Kaķis" },
-      { "value": "3", "label": "Govs" },
-      { "value": "4", "label": "Zirgs" }
+      { "value": "3", "label": "Putns" },
+      { "value": "4", "label": "Grauzējs" },
+      { "value": "5", "label": "Rāpulis" },
+      { "value": "6", "label": "Mājlops" },
+      { "value": "7", "label": "Cits" }
     ],
     "sizeOptions": [
       { "value": "0", "label": "N/D" },
@@ -33,30 +36,44 @@
       "1": [
         { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Kucēns" },
-        { "value": "2", "label": "Pusaudzis" },
-        { "value": "3", "label": "Pieaugušais" },
-        { "value": "4", "label": "Seniors" }
+        { "value": "2", "label": "Pieaugušais" },
+        { "value": "3", "label": "Seniors" }
       ],
       "2": [
         { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Kaķēns" },
-        { "value": "2", "label": "Pusaudzis" },
-        { "value": "3", "label": "Pieaugušais" },
-        { "value": "4", "label": "Seniors" }
+        { "value": "2", "label": "Pieaugušais" },
+        { "value": "3", "label": "Seniors" }
       ],
       "3": [
         { "value": "0", "label": "N/D" },
-        { "value": "1", "label": "Teļš" },
-        { "value": "2", "label": "Pusaudzis" },
-        { "value": "3", "label": "Pieaugušais" },
-        { "value": "4", "label": "Seniors" }
+        { "value": "1", "label": "Cālis" },
+        { "value": "2", "label": "Pieaugušais" },
+        { "value": "3", "label": "Seniors" }
       ],
       "4": [
         { "value": "0", "label": "N/D" },
-        { "value": "1", "label": "Kumeļš" },
-        { "value": "2", "label": "Pusaudzis" },
-        { "value": "3", "label": "Pieaugušais" },
-        { "value": "4", "label": "Seniors" }
+        { "value": "1", "label": "Mazulis" },
+        { "value": "2", "label": "Pieaugušais" },
+        { "value": "3", "label": "Seniors" }
+      ],
+      "5": [
+        { "value": "0", "label": "N/D" },
+        { "value": "1", "label": "Mazulis" },
+        { "value": "2", "label": "Pieaugušais" },
+        { "value": "3", "label": "Seniors" }
+      ],
+      "6": [
+        { "value": "0", "label": "N/D" },
+        { "value": "1", "label": "Mazulis" },
+        { "value": "2", "label": "Pieaugušais" },
+        { "value": "3", "label": "Seniors" }
+      ],
+      "7": [
+        { "value": "0", "label": "N/D" },
+        { "value": "1", "label": "Mazulis" },
+        { "value": "2", "label": "Pieaugušais" },
+        { "value": "3", "label": "Seniors" }
       ]
     },
     "breedOptions": {
@@ -120,29 +137,47 @@
       ],
       "3": [
         { "value": "0", "label": "N/D" },
-        { "value": "1", "label": "Holšteins" },
-        { "value": "2", "label": "Anguss" },
-        { "value": "3", "label": "Hērfords" },
-        { "value": "4", "label": "Džersijs" },
-        { "value": "5", "label": "Šarolē" },
-        { "value": "6", "label": "Simmentāls" },
-        { "value": "7", "label": "Limuzīns" },
-        { "value": "8", "label": "Brahmans" },
-        { "value": "9", "label": "Teikas gara rags" },
-        { "value": "10", "label": "Gērnsi" }
+        { "value": "1", "label": "Papagailis" },
+        { "value": "2", "label": "Kanārijputniņš" },
+        { "value": "3", "label": "Viļņotais papagailis" },
+        { "value": "4", "label": "Cits" }
       ],
       "4": [
         { "value": "0", "label": "N/D" },
-        { "value": "1", "label": "Arābiets" },
-        { "value": "2", "label": "Pilnšķirnes" },
-        { "value": "3", "label": "Ceturtdaļas zirgs" },
-        { "value": "4", "label": "Klaidsals" },
-        { "value": "5", "label": "Frīzija" },
-        { "value": "6", "label": "Appaloosa" },
-        { "value": "7", "label": "Paint" },
-        { "value": "8", "label": "Shire" },
-        { "value": "9", "label": "Mustanga" },
-        { "value": "10", "label": "Andalūzieši" }
+        { "value": "1", "label": "Kāmis" },
+        { "value": "2", "label": "Jūrascūciņa" },
+        { "value": "3", "label": "Trusis" },
+        { "value": "4", "label": "Pele" },
+        { "value": "5", "label": "Žurka" },
+        { "value": "6", "label": "Sesks" },
+        { "value": "7", "label": "Ezis" },
+        { "value": "8", "label": "Cits" }
+      ],
+      "5": [
+        { "value": "0", "label": "N/D" },
+        { "value": "1", "label": "Čūska" },
+        { "value": "2", "label": "Gekons" },
+        { "value": "3", "label": "Ķirzaka" },
+        { "value": "4", "label": "Bruņurupucis" },
+        { "value": "5", "label": "Sauszemes bruņurupucis" },
+        { "value": "6", "label": "Cits" }
+      ],
+      "6": [
+        { "value": "0", "label": "Nav informācijas" },
+        { "value": "1", "label": "Liellops" },
+        { "value": "2", "label": "Cūka" },
+        { "value": "3", "label": "Aita" },
+        { "value": "4", "label": "Kaza" },
+        { "value": "5", "label": "Vista" },
+        { "value": "6", "label": "Tītars" },
+        { "value": "7", "label": "Pīle" },
+        { "value": "8", "label": "Zirgs" },
+        { "value": "9", "label": "Ēzelis" },
+        { "value": "10", "label": "Cits" }
+      ],
+      "7": [
+        { "value": "0", "label": "N/A" },
+        { "value": "1", "label": "Cits" }
       ]
     },
     "healthInformationOptions": [

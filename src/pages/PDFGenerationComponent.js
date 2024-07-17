@@ -298,9 +298,9 @@ const PDFGenerationComponent = ({ pet }) => {
                 }}
               >
                 <ColorLensIcon /> <b>Main Color:</b>{' '}
-                <span style={{ textTransform: 'capitalize' }}>
+                {/* <span style={{ textTransform: 'capitalize' }}>
                   {pet.mainColor ? pet.mainColor : 'N/A'}
-                </span>
+                </span> */}
               </Box>
             </Grid>
             <Grid item xs={12} sm={12} mb={2}>
@@ -328,9 +328,9 @@ const PDFGenerationComponent = ({ pet }) => {
                 }}
               >
                 <ColorLensIcon /> <b>Marking Colors:</b>{' '}
-                <span style={{ textTransform: 'capitalize' }}>
+                {/* <span style={{ textTransform: 'capitalize' }}>
                   {pet.markingColors.join(', ') ? pet.markingColors.join(', ') : 'N/A'}
-                </span>
+                </span> */}
               </Box>
             </Grid>
             <Grid item xs={12} sm={12} mb={2}>

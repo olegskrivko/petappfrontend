@@ -230,10 +230,10 @@ const DisplayComponent = ({ pet }) => {
                 }}
               >
                 <ColorLensIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-                <b>Main Color:</b>{' '}
+                {/* <b>Main Color:</b>{' '}
                 <span style={{ textTransform: 'capitalize' }}>
                   {pet.mainColor ? pet.mainColor : 'N/A'}
-                </span>
+                </span> */}
               </Box>
             </Grid>
             <Grid item xs={12} sm={12} mb={2}>
@@ -264,10 +264,10 @@ const DisplayComponent = ({ pet }) => {
                 }}
               >
                 <ColorLensIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-                <b>Marking Colors:</b>{' '}
+                {/* <b>Marking Colors:</b>{' '}
                 <span style={{ textTransform: 'capitalize' }}>
                   {pet.markingColors.join(', ') ? pet.markingColors.join(', ') : 'N/A'}
-                </span>
+                </span> */}
               </Box>
             </Grid>
             <Grid item xs={12} sm={12} mb={2}>

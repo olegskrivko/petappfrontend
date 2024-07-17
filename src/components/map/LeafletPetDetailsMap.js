@@ -61,7 +61,7 @@ function LeafletPetDetailsMap({
     <MapContainer
       style={{ height: '500px', position: 'relative' }}
       center={[pet.location.coordinates[1], pet.location.coordinates[0]]}
-      zoom={7}
+      zoom={14}
       scrollWheelZoom={true}
     >
       <TileLayer

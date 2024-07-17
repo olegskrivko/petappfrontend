@@ -684,7 +684,7 @@ const PetsDetailsPage = () => {
                     <b>{t('formLabels.time')}:</b> {pet.time}
                   </Box>
                 </Grid>
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                   <Card style={{ border: 'none', boxShadow: 'none' }}>
                     <CardContent style={{ padding: '0' }}>
                       <Box style={{ display: 'flex' }}>
@@ -696,7 +696,7 @@ const PetsDetailsPage = () => {
                       </Box>
                     </CardContent>
                   </Card>
-                </Grid>
+                </Grid> */}
               </Grid>
             </Box>
           </Grid>

@@ -303,7 +303,7 @@ function IconLabelTabs({
                       <Grid item xs={12}>
                         <Box display="flex" justifyContent="space-between">
                           <Tooltip title="Show on map">
-                            <Button
+                            {/* <Button
                               variant="contained"
                               color="primary"
                               endIcon={<LocationOnIcon />}
@@ -312,11 +312,18 @@ function IconLabelTabs({
                               style={{ background: '#555' }}
                             >
                               Show on map
-                            </Button>
+                            </Button> */}
+                            <IconButton
+                              variant="contained"
+                              onClick={handleZoomMap}
+                              style={{ backgroundColor: '#555', color: '#fff' }}
+                            >
+                              <LocationOnIcon />
+                            </IconButton>
                           </Tooltip>
                           {user && user.id === comment.author?._id && (
                             <Tooltip title="Delete message">
-                              <Button
+                              {/* <Button
                                 variant="contained"
                                 color="secondary"
                                 endIcon={<DeleteIcon />}
@@ -325,7 +332,15 @@ function IconLabelTabs({
                                 onClick={() => handleDelete(comment._id)} // Add this line
                               >
                                 Delete
-                              </Button>
+                              </Button> */}
+
+                              <IconButton
+                                variant="contained"
+                                onClick={() => handleDelete(comment._id)}
+                                style={{ backgroundColor: '#d32f2f', color: '#fff' }}
+                              >
+                                <DeleteIcon />
+                              </IconButton>
                             </Tooltip>
                           )}
                         </Box>
@@ -466,9 +481,7 @@ function IconLabelTabs({
                       src={pet.author?.avatar}
                     />
 
-                    <Typography variant="body1">
-                      <b>Username:</b> @{pet.author?.username}
-                    </Typography>
+                    <Typography variant="body2">{pet.author?.username}</Typography>
                     {/* <FiberManualRecordIcon
                         style={{
                           weight: "0.5rem",
@@ -497,8 +510,7 @@ function IconLabelTabs({
                       <PhoneIcon />
                     </Avatar>
                     <Typography variant="body1">
-                      <b>Phone:</b> {pet.phoneCode ? pet.phoneCode : ''}{' '}
-                      {pet.phone ? pet.phone : 'N/A'}
+                      {pet.phoneCode ? pet.phoneCode : ''} {pet.phone ? pet.phone : 'N/A'}
                     </Typography>
                   </Box>
 
@@ -507,9 +519,7 @@ function IconLabelTabs({
                     <Avatar style={{ background: '#555' }}>
                       <EmailIcon />
                     </Avatar>
-                    <Typography variant="body1">
-                      <b>Email:</b> {pet.email ? pet.email : 'N/A'}
-                    </Typography>
+                    <Typography variant="body1">{pet.email ? pet.email : 'N/A'}</Typography>
                   </Box>
                 </CardContent>
               </Card>

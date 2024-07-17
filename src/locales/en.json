@@ -8,8 +8,11 @@
     "categoryOptions": [
       { "value": "1", "label": "Dog" },
       { "value": "2", "label": "Cat" },
-      { "value": "3", "label": "Cow" },
-      { "value": "4", "label": "Horse" }
+      { "value": "3", "label": "Bird" },
+      { "value": "4", "label": "Rodent" },
+      { "value": "5", "label": "Reptile" },
+      { "value": "6", "label": "Livestock" },
+      { "value": "7", "label": "Other" }
     ],
     "sizeOptions": [
       { "value": "0", "label": "N/A" },
@@ -33,30 +36,44 @@
       "1": [
         { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Puppy" },
-        { "value": "2", "label": "Adolescent" },
-        { "value": "3", "label": "Adult" },
-        { "value": "4", "label": "Senior" }
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
       ],
       "2": [
         { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Kitten" },
-        { "value": "2", "label": "Adolescent" },
-        { "value": "3", "label": "Adult" },
-        { "value": "4", "label": "Senior" }
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
       ],
       "3": [
         { "value": "0", "label": "N/A" },
-        { "value": "1", "label": "Calf" },
-        { "value": "2", "label": "Adolescent" },
-        { "value": "3", "label": "Adult" },
-        { "value": "4", "label": "Senior" }
+        { "value": "1", "label": "Chick" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
       ],
       "4": [
         { "value": "0", "label": "N/A" },
-        { "value": "1", "label": "Foal" },
-        { "value": "2", "label": "Adolescent" },
-        { "value": "3", "label": "Adult" },
-        { "value": "4", "label": "Senior" }
+        { "value": "1", "label": "Pup" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "5": [
+        { "value": "0", "label": "N/A" },
+        { "value": "1", "label": "Hatchling" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "6": [
+        { "value": "0", "label": "N/A" },
+        { "value": "1", "label": "Juvenile" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "7": [
+        { "value": "0", "label": "N/A" },
+        { "value": "1", "label": "Baby" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
       ]
     },
     "breedOptions": {
@@ -120,29 +137,47 @@
       ],
       "3": [
         { "value": "0", "label": "N/A" },
-        { "value": "1", "label": "Holstein" },
-        { "value": "2", "label": "Angus" },
-        { "value": "3", "label": "Hereford" },
-        { "value": "4", "label": "Jersey" },
-        { "value": "5", "label": "Charolais" },
-        { "value": "6", "label": "Simmental" },
-        { "value": "7", "label": "Limousin" },
-        { "value": "8", "label": "Brahman" },
-        { "value": "9", "label": "Texas Longhorn" },
-        { "value": "10", "label": "Guernsey" }
+        { "value": "1", "label": "Parrot" },
+        { "value": "2", "label": "Canary" },
+        { "value": "3", "label": "Budgerigar" },
+        { "value": "4", "label": "Other" }
       ],
       "4": [
         { "value": "0", "label": "N/A" },
-        { "value": "1", "label": "Arabian" },
-        { "value": "2", "label": "Thoroughbred" },
-        { "value": "3", "label": "Quarter Horse" },
-        { "value": "4", "label": "Clydesdale" },
-        { "value": "5", "label": "Friesian" },
-        { "value": "6", "label": "Appaloosa" },
-        { "value": "7", "label": "Paint" },
-        { "value": "8", "label": "Shire" },
-        { "value": "9", "label": "Mustang" },
-        { "value": "10", "label": "Andalusian" }
+        { "value": "1", "label": "Hamster" },
+        { "value": "2", "label": "Guinea Pig" },
+        { "value": "3", "label": "Rabbit" },
+        { "value": "4", "label": "Mouse" },
+        { "value": "5", "label": "Rat" },
+        { "value": "6", "label": "Ferret" },
+        { "value": "7", "label": "Hedgehog" },
+        { "value": "8", "label": "Other" }
+      ],
+      "5": [
+        { "value": "0", "label": "N/A" },
+        { "value": "1", "label": "Snake" },
+        { "value": "2", "label": "Gecko" },
+        { "value": "3", "label": "Lizard" },
+        { "value": "4", "label": "Turtle" },
+        { "value": "5", "label": "Tortoise" },
+        { "value": "6", "label": "Other" }
+      ],
+      "6": [
+        { "value": "0", "label": "N/A" },
+        { "value": "1", "label": "Cattle" },
+        { "value": "2", "label": "Pig" },
+        { "value": "3", "label": "Sheep" },
+        { "value": "4", "label": "Goat" },
+        { "value": "5", "label": "Chicken" },
+        { "value": "6", "label": "Turkey" },
+        { "value": "7", "label": "Duck" },
+        { "value": "8", "label": "Horse" },
+        { "value": "9", "label": "Donkey" },
+        { "value": "10", "label": "Other" }
+      ],
+      "7": [
+        { "value": "0", "label": "N/A" },
+        { "value": "1", "label": "Other" }
       ]
     },
     "healthInformationOptions": [
