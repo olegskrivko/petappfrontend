@@ -1261,7 +1261,7 @@ function CreatePetPage() {
                 {/* <InputLabel htmlFor="notes">Notes</InputLabel> */}
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid item xs={12} style={{ display: 'none' }}>
                 <Typography
                   variant="body1"
                   style={{ fontWeight: '500' }}
@@ -1272,7 +1272,7 @@ function CreatePetPage() {
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} sm={12} md={12} lg={12}>
+              <Grid item xs={12} sm={12} md={12} lg={12} style={{ display: 'none' }}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="updatedStatus-label" shrink>
                     {t('formLabels.updatedStatus')}
@@ -1300,7 +1300,7 @@ function CreatePetPage() {
                 </FormControl>
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid item xs={12} style={{ display: 'none' }}>
                 <TextField
                   id="updatedStatusDescription"
                   name="updatedStatusDescription"

@@ -186,79 +186,79 @@ const VirtualPetTrainingClasses = lazy(() => import('./pages/VirtualPetTrainingC
 const PetInfrastructurePage = lazy(() => import('./pages/PetInfrastructurePage'));
 
 const App = () => {
-  const [location, setLocation] = useState({
-    latitude: localStorage.getItem('latitude') || '',
-    longitude: localStorage.getItem('longitude') || '',
-  });
-  const [distance, setDistance] = useState(localStorage.getItem('distance') || '');
+  // const [location, setLocation] = useState({
+  //   latitude: localStorage.getItem('latitude') || '',
+  //   longitude: localStorage.getItem('longitude') || '',
+  // });
+  // const [distance, setDistance] = useState(localStorage.getItem('distance') || '');
 
-  // Function to initialize OneSignal
-  const initOneSignal = async () => {
-    await OneSignal.init({
-      appId: '07831676-ef12-409c-895e-3352642c136d',
-    });
+  // // Function to initialize OneSignal
+  // const initOneSignal = async () => {
+  //   await OneSignal.init({
+  //     appId: '07831676-ef12-409c-895e-3352642c136d',
+  //   });
 
-    console.log('OneSignal initialized');
-    OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
-  };
+  //   console.log('OneSignal initialized');
+  //   OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
+  // };
 
-  const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setLocation({
-            latitude: latitude.toString(),
-            longitude: longitude.toString(),
-          });
-          localStorage.setItem('latitude', latitude.toString());
-          localStorage.setItem('longitude', longitude.toString());
-        },
-        (error) => {
-          console.error('Error getting geolocation: ', error);
-        },
-      );
-    } else {
-      console.error('Geolocation is not supported by this browser.');
-    }
-  };
+  // const getLocation = () => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         const { latitude, longitude } = position.coords;
+  //         setLocation({
+  //           latitude: latitude.toString(),
+  //           longitude: longitude.toString(),
+  //         });
+  //         localStorage.setItem('latitude', latitude.toString());
+  //         localStorage.setItem('longitude', longitude.toString());
+  //       },
+  //       (error) => {
+  //         console.error('Error getting geolocation: ', error);
+  //       },
+  //     );
+  //   } else {
+  //     console.error('Geolocation is not supported by this browser.');
+  //   }
+  // };
 
-  const addLocationTags = () => {
-    OneSignal.User.addTags({ ...location, distance });
-    console.log('Tags added successfully');
-  };
+  // const addLocationTags = () => {
+  //   OneSignal.User.addTags({ ...location, distance });
+  //   console.log('Tags added successfully');
+  // };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setLocation((prevLocation) => ({
-      ...prevLocation,
-      [name]: value,
-    }));
-    localStorage.setItem(name, value);
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setLocation((prevLocation) => ({
+  //     ...prevLocation,
+  //     [name]: value,
+  //   }));
+  //   localStorage.setItem(name, value);
+  // };
 
-  const handleDistanceChange = (e) => {
-    setDistance(e.target.value);
-    localStorage.setItem('distance', e.target.value);
-  };
+  // const handleDistanceChange = (e) => {
+  //   setDistance(e.target.value);
+  //   localStorage.setItem('distance', e.target.value);
+  // };
 
-  useEffect(() => {
-    // Retrieve location from localStorage on component mount
-    const storedLatitude = localStorage.getItem('latitude');
-    const storedLongitude = localStorage.getItem('longitude');
-    const storedDistance = localStorage.getItem('distance');
+  // useEffect(() => {
+  //   // Retrieve location from localStorage on component mount
+  //   const storedLatitude = localStorage.getItem('latitude');
+  //   const storedLongitude = localStorage.getItem('longitude');
+  //   const storedDistance = localStorage.getItem('distance');
 
-    if (storedLatitude && storedLongitude) {
-      setLocation({
-        latitude: storedLatitude,
-        longitude: storedLongitude,
-      });
-    }
+  //   if (storedLatitude && storedLongitude) {
+  //     setLocation({
+  //       latitude: storedLatitude,
+  //       longitude: storedLongitude,
+  //     });
+  //   }
 
-    if (storedDistance) {
-      setDistance(storedDistance);
-    }
-  }, []);
+  //   if (storedDistance) {
+  //     setDistance(storedDistance);
+  //   }
+  // }, []);
 
   return (
     <AuthProvider>
@@ -310,11 +310,51 @@ const App = () => {
                       </PrivateRoute>
                     }
                   />
-                  <Route path="user/profile" element={<ProfilePage />} />
-                  <Route path="user/profile/posts" element={<ProfilePostsPage />} />
-                  <Route path="user/profile/settings" element={<ProfileSettingsPage />} />
-                  <Route path="user/profile/services" element={<ProfileServicesPage />} />
-                  <Route path="user/profile/pets" element={<ProfilePetsPage />} />
+                  <Route
+                    path="user/profile"
+                    element={
+                      <PrivateRoute>
+                        <ProfilePage />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="user/profile/posts"
+                    element={
+                      <PrivateRoute>
+                        <ProfilePostsPage />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="user/profile/settings"
+                    element={
+                      <PrivateRoute>
+                        <ProfileSettingsPage />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="user/profile/services"
+                    element={
+                      <PrivateRoute>
+                        <ProfileServicesPage />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="user/profile/pets"
+                    element={
+                      <PrivateRoute>
+                        <ProfilePetsPage />
+                      </PrivateRoute>
+                    }
+                  />
+                  {/* <Route path="user/profile" element={<ProfilePage />} /> */}
+                  {/* <Route path="user/profile/posts" element={<ProfilePostsPage />} /> */}
+                  {/* <Route path="user/profile/settings" element={<ProfileSettingsPage />} /> */}
+                  {/* <Route path="user/profile/services" element={<ProfileServicesPage />} /> */}
+                  {/* <Route path="user/profile/pets" element={<ProfilePetsPage />} /> */}
                   <Route path="services" element={<ServicesListPage />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
@@ -353,7 +393,7 @@ const App = () => {
                 </label>
                 <button onClick={addLocationTags}>Add Location Tags</button>
               </div> */}
-              <Box p={2} bgcolor="lightgray">
+              {/* <Box p={2} bgcolor="lightgray">
                 <Grid container spacing={1} alignItems="center">
                   <Grid item xs={12} sm={4}>
                     <Button variant="contained" onClick={initOneSignal} fullWidth>
@@ -407,7 +447,7 @@ const App = () => {
                     />
                   </Grid>
                 </Grid>
-              </Box>
+              </Box> */}
             </Suspense>
           </BrowserRouter>
         </DrawerProvider>

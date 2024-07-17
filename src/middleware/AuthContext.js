@@ -54,7 +54,9 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       setUser(response.data.user);
+      console.log('Login', response.data.user);
       localStorage.setItem('token', response.data.token);
+      await fetchUser(); // Fetch the user data after setting the token
       return true;
     } catch (error) {
       console.error('Login error:', error);

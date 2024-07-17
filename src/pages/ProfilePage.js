@@ -963,16 +963,89 @@
 // }
 
 // export default ProfilePage;
-import React, { useContext } from 'react';
-import { Grid, Box, Typography, Avatar, Paper, Button } from '@mui/material';
+import React, { useContext, useState, useEffect } from 'react';
+import { Grid, Box, Typography, Avatar, TextField, Paper, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../middleware/AuthContext';
 import SettingsIcon from '@mui/icons-material/Settings';
 import TryIcon from '@mui/icons-material/Try';
 import AvatarImg from '../images/beaver.avif'; // Use a valid image
-
+import OneSignal from 'react-onesignal';
 const ProfilePage = () => {
   const { user, logout } = useContext(AuthContext);
+  const [location, setLocation] = useState({
+    latitude: localStorage.getItem('latitude') || '',
+    longitude: localStorage.getItem('longitude') || '',
+  });
+  const [distance, setDistance] = useState(localStorage.getItem('distance') || '');
+
+  // Function to initialize OneSignal
+  const initOneSignal = async () => {
+    await OneSignal.init({
+      appId: '07831676-ef12-409c-895e-3352642c136d',
+    });
+
+    console.log('OneSignal initialized');
+    OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
+  };
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setLocation({
+            latitude: latitude.toString(),
+            longitude: longitude.toString(),
+          });
+          localStorage.setItem('latitude', latitude.toString());
+          localStorage.setItem('longitude', longitude.toString());
+        },
+        (error) => {
+          console.error('Error getting geolocation: ', error);
+        },
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
+  };
+
+  const addLocationTags = () => {
+    OneSignal.User.addTags({ ...location, distance });
+    console.log('Tags added successfully');
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLocation((prevLocation) => ({
+      ...prevLocation,
+      [name]: value,
+    }));
+    localStorage.setItem(name, value);
+  };
+
+  const handleDistanceChange = (e) => {
+    setDistance(e.target.value);
+    localStorage.setItem('distance', e.target.value);
+  };
+
+  useEffect(() => {
+    // Retrieve location from localStorage on component mount
+    const storedLatitude = localStorage.getItem('latitude');
+    const storedLongitude = localStorage.getItem('longitude');
+    const storedDistance = localStorage.getItem('distance');
+
+    if (storedLatitude && storedLongitude) {
+      setLocation({
+        latitude: storedLatitude,
+        longitude: storedLongitude,
+      });
+    }
+
+    if (storedDistance) {
+      setDistance(storedDistance);
+    }
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -1022,7 +1095,65 @@ const ProfilePage = () => {
             </Link>
           </Grid>
         </Grid>
-
+        <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
+          <Grid item xs={12}>
+            <Box p={2} bgcolor="lightgray">
+              <Grid container spacing={1} alignItems="center">
+                <Grid item xs={12} sm={4}>
+                  <Button variant="contained" onClick={initOneSignal} fullWidth>
+                    Subscribe
+                  </Button>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <Button variant="contained" onClick={getLocation} fullWidth>
+                    Get Location
+                  </Button>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <Button variant="contained" onClick={addLocationTags} fullWidth>
+                    Add Tags
+                  </Button>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    variant="outlined"
+                    type="text"
+                    name="latitude"
+                    value={location.latitude}
+                    onChange={handleChange}
+                    fullWidth
+                    size="small"
+                    label="Latitude"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    variant="outlined"
+                    type="text"
+                    name="longitude"
+                    value={location.longitude}
+                    onChange={handleChange}
+                    fullWidth
+                    size="small"
+                    label="Longitude"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    variant="outlined"
+                    type="text"
+                    name="distance"
+                    value={distance}
+                    onChange={handleDistanceChange}
+                    fullWidth
+                    size="small"
+                    label="Distance"
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+          </Grid>
+        </Grid>
         <Link to="/">
           <Button onClick={handleLogout} variant="contained" sx={{ fontWeight: '400' }}>
             Logout
