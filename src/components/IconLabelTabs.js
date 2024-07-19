@@ -167,7 +167,13 @@ function IconLabelTabs({
     <div sx={{ margin: '0', padding: '0' }}>
       {/* {user.id === pet.author ? <p>pet author</p> : <p>not pet author</p>} */}
       <div style={{ margin: '2rem 0' }}>
-        <Tabs value={value} centered onChange={handleChange} aria-label="basic tabs example">
+        <Tabs
+          value={value}
+          centered
+          onChange={handleChange}
+          variant="fullWidth"
+          aria-label="basic tabs example"
+        >
           <Tab
             icon={<MessageIcon />}
             label="MESSAGES"
@@ -227,7 +233,7 @@ function IconLabelTabs({
                           ></Avatar>
                           <Box ml={2}>
                             <Typography variant="body1" style={{ fontWeight: 'bold' }}>
-                              @{comment.author?.username}
+                              {comment.author?.username}
                             </Typography>
                             <Box display="flex" alignItems="center">
                               {comment.author && comment.author.isVerified && (
