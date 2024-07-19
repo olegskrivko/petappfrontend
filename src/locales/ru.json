@@ -284,6 +284,12 @@
     "uploadFile": "Загрузить файл",
     "currentStatus": "Текущий статус"
   },
+  "tabTitles": {
+    "messages": "СООБЩЕНИЯ",
+    "history": "ИСТОРИЯ",
+    "notes": "ЗАПИСКИ",
+    "contacts": "КОНТАКТЫ"
+  },
   "sectionTitles": {
     "ownerDetails": "Owner Details",
     "emergencyContacts": "Emergency Contacts",

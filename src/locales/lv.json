@@ -296,6 +296,12 @@
     "success": "Success",
     "failure": "Failure"
   },
+  "tabTitles": {
+    "messages": "ZIŅAS",
+    "history": "VĒSTURE",
+    "notes": "PIEZĪMES",
+    "contacts": "KONTAKTI"
+  },
   "notificationTitles": {
     "newMessage": "New Message",
     "systemAlert": "System Alert",

@@ -176,21 +176,26 @@ function IconLabelTabs({
         >
           <Tab
             icon={<MessageIcon />}
-            label="MESSAGES"
+            label={t('tabTitles.messages')}
             sx={{ fontSize: '0.7rem' }}
             {...a11yProps(2)}
           />
           <Tab
             icon={<AirlineStopsIcon />}
-            label="HISTORY"
+            label={t('tabTitles.history')}
             sx={{ fontSize: '0.7rem' }}
             {...a11yProps(3)}
           />
-          <Tab icon={<NotesIcon />} label="NOTES" sx={{ fontSize: '0.7rem' }} {...a11yProps(0)} />
+          <Tab
+            icon={<NotesIcon />}
+            label={t('tabTitles.notes')}
+            sx={{ fontSize: '0.7rem' }}
+            {...a11yProps(0)}
+          />
 
           <Tab
             icon={<ContactPageIcon />}
-            label="CONTACTS"
+            label={t('tabTitles.contacts')}
             sx={{ fontSize: '0.7rem' }}
             {...a11yProps(3)}
           />

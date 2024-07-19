@@ -295,6 +295,12 @@
     "success": "Success",
     "failure": "Failure"
   },
+  "tabTitles": {
+    "messages": "MESSAGES",
+    "history": "HISTORY",
+    "notes": "NOTES",
+    "contacts": "CONTACTS"
+  },
   "notificationTitles": {
     "newMessage": "New Message",
     "systemAlert": "System Alert",
