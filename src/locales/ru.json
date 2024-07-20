@@ -290,6 +290,12 @@
     "notes": "ЗАПИСКИ",
     "contacts": "КОНТАКТЫ"
   },
+  "historyTab": {
+    "pet": "Питомец был",
+    "post": "Сообщение создано",
+    "addedBy": "Добавлено",
+    "updates": "Обновлений нет"
+  },
   "sectionTitles": {
     "ownerDetails": "Owner Details",
     "emergencyContacts": "Emergency Contacts",
@@ -342,6 +348,14 @@
     "updateSuccess": "Update Successful",
     "error": "Error",
     "info": "Information"
+  },
+  "petCardLabels": {
+    "views": "просмотров",
+    "report": "Сообщить"
+  },
+  "iconLabelTabs": {
+    "contactPerson": "Контактное лицо",
+    "locationAdded": "Местоположение добавлено"
   },
   "buttons": {
     "submit": "Submit",

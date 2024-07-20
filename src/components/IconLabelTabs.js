@@ -122,6 +122,8 @@ TabPanel.propTypes = {
 function IconLabelTabs({
   onAddLocation,
   onDeleteMessage,
+  onZoomMap,
+  handleZoomMap,
   onRemoveLocation,
   messages,
   location,
@@ -129,6 +131,7 @@ function IconLabelTabs({
   pet,
   comments,
 }) {
+  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
   const { user } = useContext(AuthContext);
   const [value, setValue] = useState(0);
   const { t } = useTranslation();
@@ -138,6 +141,27 @@ function IconLabelTabs({
   const handleDelete = (commentId) => {
     onDeleteMessage(commentId);
   };
+
+  const handleZoom = (coordinates) => {
+    onZoomMap(coordinates);
+    console.log(coordinates, 'zoom to map');
+  };
+
+  useEffect(() => {
+    async function loadLocale() {
+      if (selectedLanguage === 'ru') {
+        await import('moment/locale/ru');
+        moment.locale('ru');
+      } else if (selectedLanguage === 'lv') {
+        await import('moment/locale/lv');
+        moment.locale('lv');
+      } else {
+        moment.locale('en'); // Default to English if no match
+      }
+    }
+
+    loadLocale();
+  }, [selectedLanguage]);
 
   const [open, setOpen] = useState(false); // State for controlling the image modal
   const [selectedImage, setSelectedImage] = useState(null); // State to track selected image for modal
@@ -151,11 +175,6 @@ function IconLabelTabs({
     setOpen(false);
     setSelectedImage(null);
   };
-
-  const handleZoomMap = () => {
-    console.log('zoom to map ');
-  };
-  console.log('value', value);
 
   const getHealthInformationLabel = (value) => {
     const options = t('selectOptions.healthInformationOptions', { returnObjects: true });
@@ -326,7 +345,7 @@ function IconLabelTabs({
                             </Button> */}
                             <IconButton
                               variant="contained"
-                              onClick={handleZoomMap}
+                              onClick={() => handleZoom(comment.location.coordinates)}
                               style={{ backgroundColor: '#555', color: '#fff' }}
                             >
                               <LocationOnIcon />
@@ -393,7 +412,8 @@ function IconLabelTabs({
               <Box display="flex" alignItems="center" mb={1}>
                 <LocalHospitalIcon />
                 <Typography variant="h6" style={{ fontSize: '1rem' }} ml={1} fontWeight="bold">
-                  Health Details
+                  {/* Health Details */}
+                  {t('formLabels.healthInformation')}
                 </Typography>
               </Box>
               <Card elevation={3}>
@@ -458,7 +478,8 @@ function IconLabelTabs({
                 {/* <InfoIcon /> */}
                 <FeedIcon />
                 <Typography variant="h6" ml={1} style={{ fontSize: '1rem' }} fontWeight="bold">
-                  Additional Information
+                  {/* Additional Information */}
+                  {t('formLabels.additionalHealthDetails')}
                 </Typography>
               </Box>
               <Card elevation={3}>
@@ -480,7 +501,7 @@ function IconLabelTabs({
                 {/* <PersonIcon /> */}
                 <AccountBoxIcon />
                 <Typography variant="h6" style={{ fontSize: '1rem' }} ml={1} fontWeight="bold">
-                  Contact Person
+                  {t('iconLabelTabs.contactPerson')}
                 </Typography>
               </Box>
               <Card style={{ width: '100%' }}>
@@ -492,7 +513,7 @@ function IconLabelTabs({
                       src={pet.author?.avatar}
                     />
 
-                    <Typography variant="body2">{pet.author?.username}</Typography>
+                    <Typography variant="body1">{pet.author?.username}</Typography>
                     {/* <FiberManualRecordIcon
                         style={{
                           weight: "0.5rem",

@@ -42,6 +42,7 @@ import ChatComponent from '../components/map/ChatComponent';
 
 const PetsDetailsPage = () => {
   const [markerPosition, setMarkerPosition] = useState(null);
+  const [zoomPosition, setZoomPosition] = useState(null);
   const mapRef = useRef();
 
   // Function to handle marker position change
@@ -49,6 +50,11 @@ const PetsDetailsPage = () => {
     console.log('Marker position changed:', position); // Log the coordinates
     setMarkerPosition(position);
     // You can perform additional actions here if needed
+  };
+
+  const handleZoomMap = (coordinates) => {
+    console.log('pet details coords', coordinates);
+    setZoomPosition({ coordinates, timestamp: Date.now() });
   };
 
   // State for handling image upload
@@ -510,13 +516,13 @@ const PetsDetailsPage = () => {
                 <Box display="flex" alignItems="center" p={2}>
                   <VisibilityIcon color="action" />
                   <Typography variant="body2" color="textSecondary" ml={1}>
-                    {pet.views} views
+                    {pet.views} {t('petCardLabels.views')}
                   </Typography>
                 </Box>
                 <Box display="flex" alignItems="center" p={2}>
                   <FlagIcon color="action" />
                   <Typography variant="body2" color="textSecondary" ml={1}>
-                    Report
+                    {t('petCardLabels.report')}
                   </Typography>
                 </Box>
               </Box>
@@ -710,6 +716,8 @@ const PetsDetailsPage = () => {
               onRemoveLocation={handleRemoveLocation}
               onMapLoad={(map) => (mapRef.current = map)}
               setMarkerPosition={handleMarkerPositionChange}
+              onZoomMap={handleZoomMap}
+              zoomPosition={zoomPosition}
             />
           </Grid>
 
@@ -734,6 +742,7 @@ const PetsDetailsPage = () => {
               // messages={messages}
               // onSendMessage={sendMessage}
               onDeleteMessage={handleDeleteMessage}
+              onZoomMap={handleZoomMap}
               //onAddLocation={handleAddLocation} // Make sure this prop is passed correctly
               onRemoveLocation={handleRemoveLocation} // And this one too
               // markerPosition={markerPosition}

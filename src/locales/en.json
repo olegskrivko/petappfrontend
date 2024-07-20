@@ -301,6 +301,12 @@
     "notes": "NOTES",
     "contacts": "CONTACTS"
   },
+  "historyTab": {
+    "pet": "Pet was",
+    "post": "Post created",
+    "addedBy": "Added by",
+    "updates": "No updates available"
+  },
   "notificationTitles": {
     "newMessage": "New Message",
     "systemAlert": "System Alert",
@@ -341,6 +347,14 @@
     "updateSuccess": "Update Successful",
     "error": "Error",
     "info": "Information"
+  },
+  "petCardLabels": {
+    "views": "views",
+    "report": "Ziņot"
+  },
+  "iconLabelTabs": {
+    "contactPerson": "Contact Person",
+    "locationAdded": "Location added"
   },
 
   "buttons": {

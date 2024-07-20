@@ -21,7 +21,7 @@ const useFontSizes = () => {
       case 'h3':
         return {
           fontSize: isLargeScreen ? '1.1rem' : isSmallScreen ? '1rem' : '1.1rem', // Subsection Title
-          fontWeight: isLargeScreen ? 500 : 400, // Example of adjusting fontWeight
+          fontWeight: isLargeScreen ? 500 : 500, // Example of adjusting fontWeight
         };
       case 'h4':
         return {

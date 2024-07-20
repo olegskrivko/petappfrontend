@@ -302,6 +302,12 @@
     "notes": "PIEZĪMES",
     "contacts": "KONTAKTI"
   },
+  "historyTab": {
+    "pet": "Mājdzīvnieks bija",
+    "post": "Ziņa izveidota",
+    "addedBy": "Pievienoja",
+    "updates": "Atjauninājumu nav"
+  },
   "notificationTitles": {
     "newMessage": "New Message",
     "systemAlert": "System Alert",
@@ -342,6 +348,14 @@
     "updateSuccess": "Update Successful",
     "error": "Error",
     "info": "Information"
+  },
+  "petCardLabels": {
+    "views": "skatījumi",
+    "report": "Report"
+  },
+  "iconLabelTabs": {
+    "contactPerson": "Kontaktpersona",
+    "locationAdded": "Atrašanās vieta pievienota"
   },
 
   "buttons": {
