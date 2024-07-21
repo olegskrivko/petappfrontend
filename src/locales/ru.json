@@ -296,6 +296,9 @@
     "addedBy": "Добавлено",
     "updates": "Обновлений нет"
   },
+  "mapIconLabel": {
+    "added": "Добавлено"
+  },
   "sectionTitles": {
     "ownerDetails": "Owner Details",
     "emergencyContacts": "Emergency Contacts",

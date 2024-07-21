@@ -351,6 +351,7 @@ const ChatComponent = ({
 }) => {
   const [message, setMessage] = useState('');
   const [file, setFile] = useState(null); // State to hold the selected file
+  const [filePreview, setFilePreview] = useState(null); // State to hold the file preview URL or name
   const [locationAdded, setLocationAdded] = useState(false); // State to track location existence
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
@@ -371,6 +372,7 @@ const ChatComponent = ({
     console.log('file', file);
     if (file) {
       setFile(file);
+      setFilePreview(URL.createObjectURL(file)); // Generate preview URL
       onUploadImage(file); // Pass the file to the parent component
     }
   };
@@ -386,6 +388,8 @@ const ChatComponent = ({
     onSendMessage(message);
     // Clear the message input field after sending
     setMessage('');
+    setFile(null);
+    setFilePreview(null);
   };
 
   return (
@@ -403,6 +407,7 @@ const ChatComponent = ({
               </Typography>
             </Box>
           </Box>
+
           <Box mb={2}>
             <TextField
               id="message-input"
@@ -415,6 +420,12 @@ const ChatComponent = ({
               onChange={handleMessageChange}
             />
           </Box>
+          {filePreview && (
+            <Box mb={2}>
+              <img src={filePreview} alt="Preview" style={{ maxWidth: '100%' }} />
+            </Box>
+          )}
+
           {/* <Box display="flex" justifyContent="space-between">
             <Box>
               {isSmallScreen ? (

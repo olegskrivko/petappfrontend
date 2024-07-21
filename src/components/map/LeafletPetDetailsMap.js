@@ -150,6 +150,8 @@ import PropTypes from 'prop-types';
 import PetsIcon from '@mui/icons-material/Pets';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import moment from 'moment';
+
+import { useTranslation } from 'react-i18next';
 const createCustomIcon = (color) =>
   new L.DivIcon({
     html: renderToStaticMarkup(<LocationOnIcon style={{ fontSize: 40, color }} />),
@@ -206,7 +208,7 @@ function LeafletPetDetailsMap({
       onMapLoad(mapInstance);
     }
   };
-
+  const { t } = useTranslation();
   useEffect(() => {
     if (mapRef.current && zoomPosition && zoomPosition.coordinates) {
       mapRef.current.setView([zoomPosition.coordinates[1], zoomPosition.coordinates[0]], 14);
@@ -282,8 +284,7 @@ function LeafletPetDetailsMap({
                   fontWeight: '500',
                 }}
               >
-                {moment(location.date).fromNow()}
-
+                {t('mapIconLabel.added')} {moment(location.date).fromNow()}
                 {/* <img
                   src={pet.comments.image}
                   alt={pet.comments._id}

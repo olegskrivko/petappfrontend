@@ -307,6 +307,9 @@
     "addedBy": "Added by",
     "updates": "No updates available"
   },
+  "mapIconLabel": {
+    "added": "Added"
+  },
   "notificationTitles": {
     "newMessage": "New Message",
     "systemAlert": "System Alert",

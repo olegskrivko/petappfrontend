@@ -308,6 +308,9 @@
     "addedBy": "Pievienoja",
     "updates": "Atjauninājumu nav"
   },
+  "mapIconLabel": {
+    "added": "Pievienots"
+  },
   "notificationTitles": {
     "newMessage": "New Message",
     "systemAlert": "System Alert",
