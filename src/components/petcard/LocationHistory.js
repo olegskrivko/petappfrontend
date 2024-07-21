@@ -188,10 +188,7 @@ const LocationHistory = ({ pet }) => {
                   <Typography variant="body1">
                     {getUpdatedStatusOptions(pet.updatedStatus)}
                   </Typography>
-                  <ListItemText
-                    // primary={`He was hiding in the city park.`}
-                    secondary={`${moment(pet.updatedAt).format('MMMM Do YYYY, h:mm a')}`}
-                  />
+                  {/* <ListItemText secondary={`${moment(pet.locationHistory?.createdAt).fromNow()}`} /> */}
                 </Box>
               </Box>
               <Box>
@@ -199,7 +196,6 @@ const LocationHistory = ({ pet }) => {
                   <TextField
                     id="petLastStatusDescription"
                     name="petLastStatusDescription"
-                    label="Comment"
                     fullWidth
                     value={pet.updatedStatusDescription}
                     // multiline

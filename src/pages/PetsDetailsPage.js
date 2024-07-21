@@ -435,7 +435,7 @@ const PetsDetailsPage = () => {
               <span style={{ textTransform: 'capitalize' }}>
                 {getInitialStatusLabel(pet.initialStatus)}
               </span>{' '}
-              <span style={{ textTransform: 'capitalize' }}>{getCategoryLabel(pet.category)}</span>
+              <span style={{ textTransform: 'lowercase' }}>{getCategoryLabel(pet.category)}</span>
             </Typography>
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6}>
