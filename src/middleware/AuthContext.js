@@ -33,10 +33,9 @@ export const AuthProvider = ({ children }) => {
     fetchUser();
   }, []);
 
-  const register = async (name, email, password) => {
+  const register = async (email, password) => {
     try {
       const response = await axios.post(`${BASE_URL}/auth/register`, {
-        name,
         email,
         password,
       });

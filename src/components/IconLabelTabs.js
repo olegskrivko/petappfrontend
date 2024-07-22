@@ -166,6 +166,30 @@ function IconLabelTabs({
   const [open, setOpen] = useState(false); // State for controlling the image modal
   const [selectedImage, setSelectedImage] = useState(null); // State to track selected image for modal
 
+  const colorNameToHex = (colorName) => {
+    const colors = {
+      Verdigris: '#43BFC1',
+      Coral: '#FF7F50',
+      Mango: '#F5A300',
+      Orchid: '#DA70D6',
+      Salmon: '#FA8072',
+      Thistle: '#D8BFD8',
+      Lavender: '#E6E6FA',
+      Puce: '#CC8899',
+      Pearl: '#F0EAD6',
+      Brass: '#B5A642',
+      Pistachio: '#93C572',
+      Peridot: '#E6E26A',
+      Alabaster: '#FAFAFA',
+      Pink: '#FFC0CB',
+      Eucalyptus: '#4A6A6A',
+      Pewter: '#8A8D8F',
+    };
+    return colors[colorName] || '#FFFFFF'; // Default to white if color not found
+  };
+
+  const color = colorNameToHex(user.color);
+
   const handleOpen = (image) => {
     setSelectedImage(image);
     setOpen(true);
@@ -252,8 +276,13 @@ function IconLabelTabs({
                       <Grid item xs={12} md={8}>
                         <Box display="flex" alignItems="flex-start">
                           <Avatar
+                            style={{
+                              background: comment.author?.color,
+                              width: '64px',
+                              height: '64px',
+                            }}
                             alt={comment.author?.avatar}
-                            src={comment.author?.avatar}
+                            src={comment.author?.avatar + '.svg'}
                           ></Avatar>
                           <Box ml={2}>
                             <Typography variant="body1" style={{ fontWeight: 'bold' }}>
@@ -399,6 +428,16 @@ function IconLabelTabs({
             </Grid>
           )}
         </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          lg={12}
+          style={{ paddingLeft: '0', textAlign: 'center' }}
+        >
+          <Button>Show More</Button>
+        </Grid>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Grid container>
@@ -508,9 +547,9 @@ function IconLabelTabs({
                 <CardContent>
                   <Box display="flex" alignItems="center" gap={2} mb={2}>
                     <Avatar
-                      style={{ background: '#555' }}
+                      style={{ background: pet.author.color }}
                       alt={pet.author?.username}
-                      src={pet.author?.avatar}
+                      src={pet.author?.avatar + '.svg'}
                     />
 
                     <Typography variant="body1">{pet.author?.username}</Typography>

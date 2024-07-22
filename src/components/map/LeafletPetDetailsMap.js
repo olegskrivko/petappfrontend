@@ -284,7 +284,7 @@ function LeafletPetDetailsMap({
                   fontWeight: '500',
                 }}
               >
-                {t('mapIconLabel.added')} {moment(location.date).fromNow()}
+                {t('mapIconLabel.added')} {moment(location.createdAt).fromNow()}
                 {/* <img
                   src={pet.comments.image}
                   alt={pet.comments._id}

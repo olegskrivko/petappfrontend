@@ -397,7 +397,11 @@ const ChatComponent = ({
       <Card style={{ width: '100%', paddingRight: '0 !important' }}>
         <CardContent style={{ paddingBottom: '1rem' }}>
           <Box display="flex" alignItems="center" marginBottom="1rem">
-            <Avatar alt={user.username} src={user.avatar}></Avatar>
+            <Avatar
+              alt={user.username}
+              src={user.avatar + '.svg'}
+              style={{ background: user.color }}
+            ></Avatar>
             <Box ml={2}>
               <Typography variant="body2" style={{ fontWeight: 'bold' }}>
                 {user.username}

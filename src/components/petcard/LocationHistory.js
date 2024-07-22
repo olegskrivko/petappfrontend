@@ -137,7 +137,7 @@ const LocationHistory = ({ pet }) => {
                     <ListItemText
                       primary={`${loc.userId?.username}`}
                       secondary={`${t(`iconLabelTabs.locationAdded`)} ${moment(
-                        loc.date,
+                        loc.createdAt,
                       ).fromNow()}`}
                     />
                   </ListItem>
@@ -188,7 +188,7 @@ const LocationHistory = ({ pet }) => {
                   <Typography variant="body1">
                     {getUpdatedStatusOptions(pet.updatedStatus)}
                   </Typography>
-                  {/* <ListItemText secondary={`${moment(pet.locationHistory?.createdAt).fromNow()}`} /> */}
+                  {/* <ListItemText secondary={`${moment(pet.locationHistory.createdAt).fromNow()}`} /> */}
                 </Box>
               </Box>
               <Box>

@@ -1,31 +1,31 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
-import { BASE_URL } from "../middleware/config";
-import { Container, Typography, TextField, Button, Box } from "@mui/material";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
+import { BASE_URL } from '../middleware/config';
+import { Container, Typography, TextField, Button, Box } from '@mui/material';
 
 const Register = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  // const [username, setUsername] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       await axios.post(`${BASE_URL}/auth/register`, {
-        username,
+        // username,
         email,
         password,
       });
-      setSuccess("User registered successfully");
-      setError("");
-      navigate("/login");
+      setSuccess('User registered successfully');
+      setError('');
+      navigate('/login');
     } catch (err) {
-      setError("Error registering user");
-      setSuccess("");
+      setError('Error registering user');
+      setSuccess('');
     }
   };
 
@@ -34,9 +34,9 @@ const Register = () => {
       <Box
         sx={{
           marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
         <Typography component="h1" variant="h5">
@@ -52,13 +52,8 @@ const Register = () => {
             {success}
           </Typography>
         )}
-        <Box
-          component="form"
-          onSubmit={handleRegister}
-          noValidate
-          sx={{ mt: 1 }}
-        >
-          <TextField
+        <Box component="form" onSubmit={handleRegister} noValidate sx={{ mt: 1 }}>
+          {/* <TextField
             margin="normal"
             required
             fullWidth
@@ -69,7 +64,7 @@ const Register = () => {
             autoFocus
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-          />
+          /> */}
           <TextField
             margin="normal"
             required
@@ -93,12 +88,7 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
             Register
           </Button>
           <Typography variant="body2">

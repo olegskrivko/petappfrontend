@@ -973,6 +973,7 @@ import AvatarImg from '../images/beaver.avif'; // Use a valid image
 import OneSignal from 'react-onesignal';
 const ProfilePage = () => {
   const { user, logout } = useContext(AuthContext);
+  console.log('user', user);
   const [location, setLocation] = useState({
     latitude: localStorage.getItem('latitude') || '',
     longitude: localStorage.getItem('longitude') || '',
@@ -1069,17 +1070,19 @@ const ProfilePage = () => {
 
         <Avatar
           alt={user.username}
-          src={user.avatar}
+          src={user.avatar + '.svg'}
           sx={{
-            width: 150,
-            height: 150,
+            width: '200px',
+            height: '200px',
+            // padding: '1rem 1rem',
+            backgroundColor: user.color,
             margin: 'auto',
             border: '2px solid lightgray',
           }}
         />
 
-        <Typography variant="body1" color="primary">
-          @{user.username}
+        <Typography variant="body1" color="primary" mt={1} style={{ fontWeight: 'bold' }}>
+          {user.username}
         </Typography>
 
         <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
