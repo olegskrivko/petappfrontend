@@ -26,14 +26,6 @@ const TomTomMap = ({ onLocationChange }) => {
 
     map.current.addControl(new tt.NavigationControl());
 
-    // Create a custom marker icon
-    // const iconElement = document.createElement("div");
-    // iconElement.className = "custom-marker";
-    // iconElement.style.backgroundColor = "red";
-    // iconElement.style.width = "30px";
-    // iconElement.style.height = "30px";
-    // iconElement.style.borderRadius = "50%";
-    // Create a custom marker icon using a Material-UI icon
     const iconElement = document.createElement('div');
     const iconMarkup = renderToStaticMarkup(
       <LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />,
@@ -48,51 +40,6 @@ const TomTomMap = ({ onLocationChange }) => {
       .setLngLat([24.105078, 56.946285])
       .addTo(map.current);
 
-    // Get user's current position
-    // navigator.geolocation.getCurrentPosition(
-    //   (position) => {
-    //     const { latitude, longitude } = position.coords;
-    //     marker.current.setLngLat([longitude, latitude]);
-    //     map.current.setCenter([longitude, latitude]);
-    //   },
-    //   (error) => {
-    //     switch (error.code) {
-    //       case error.PERMISSION_DENIED:
-    //         setErrorMessage("Geolocation Permission Denied");
-    //         setSolutionMessage(
-    //           "Please enable GPS and allow location access in your browser settings."
-    //         );
-    //         break;
-    //       case error.POSITION_UNAVAILABLE:
-    //         setErrorMessage("Location Information Unavailable");
-    //         setSolutionMessage(
-    //           "Please check your device's location settings or try again later."
-    //         );
-    //         break;
-    //       case error.TIMEOUT:
-    //         setErrorMessage("Geolocation Request Timed Out");
-    //         setSolutionMessage(
-    //           "Please ensure your device has a stable connection and try again."
-    //         );
-    //         break;
-    //       case error.UNKNOWN_ERROR:
-    //         setErrorMessage("Unknown Error Occurred");
-    //         setSolutionMessage(
-    //           "An unknown error occurred while retrieving your location. Please try again."
-    //         );
-    //         break;
-    //       default:
-    //         setErrorMessage("An Error Occurred");
-    //         setSolutionMessage(
-    //           "An unexpected error occurred. Please try again."
-    //         );
-    //     }
-    //     // Fallback to hardcoded initial value
-    //     const initialLngLat = [24.105078, 56.946285];
-    //     marker.current.setLngLat(initialLngLat);
-    //     map.current.setCenter(initialLngLat);
-    //   }
-    // );
     // Get user's current position
     navigator.geolocation.getCurrentPosition(
       (position) => {

@@ -26,8 +26,9 @@ import FormLabel from '@mui/material/FormLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 import { BASE_URL } from '../middleware/config';
-import TomTomMap from '../components/map/TomTomMap';
-import '@tomtom-international/web-sdk-maps/dist/maps.css';
+// import TomTomMap from '../components/map/TomTomMap';
+// import '@tomtom-international/web-sdk-maps/dist/maps.css';
+import LeafletAddPetMap from '../components/map/LeafletAddPetMap';
 import { AuthContext } from '../middleware/AuthContext';
 import { LanguageContext } from '../middleware/LanguageContext';
 import { useTranslation } from 'react-i18next';
@@ -81,7 +82,7 @@ function CreatePetPage() {
   const [formErrors, setFormErrors] = useState({});
   const [mainColorDialogOpen, setMainColorDialogOpen] = useState(false);
   const [markingColorDialogOpen, setMarkingColorDialogOpen] = useState(false);
-
+  const [imagePreview, setImagePreview] = useState(null);
   const [initialStatusLabel, setInitialStatusLabel] = useState([]);
   const [initialStatusOptions, setInitialStatusOptions] = useState([]);
 
@@ -253,7 +254,10 @@ function CreatePetPage() {
   const handleLocationChange = (coords) => {
     setFormState((prevState) => ({
       ...prevState,
-      location: coords,
+      location: {
+        lat: coords.lat,
+        lng: coords.lng,
+      },
     }));
   };
 
@@ -293,9 +297,30 @@ function CreatePetPage() {
     }
   };
 
+  // const handleImageUpload = (file) => {
+  //   handleChange('image', file);
+  // };
+
+  // Handler for image upload
   const handleImageUpload = (file) => {
-    handleChange('image', file);
+    setFormState((prevState) => ({
+      ...prevState,
+      image: file,
+    }));
+
+    // Create a URL for the image and set it as preview
+    const previewUrl = URL.createObjectURL(file);
+    setImagePreview(previewUrl);
   };
+
+  // Cleanup image URL when component unmounts
+  useEffect(() => {
+    return () => {
+      if (imagePreview) {
+        URL.revokeObjectURL(imagePreview);
+      }
+    };
+  }, [imagePreview]);
 
   // const handleSubmit = async (event) => {
   //   event.preventDefault();
@@ -588,27 +613,6 @@ function CreatePetPage() {
                   )} */}
                 </FormControl>
               </Grid>
-              <Grid item xs={12} sm={12} md={6} lg={6}>
-                {/* Input field for uploading image */}
-                <input
-                  accept="image/*"
-                  id="image"
-                  type="file"
-                  onChange={(e) => handleImageUpload(e.target.files[0])}
-                  style={{ display: 'none' }}
-                />
-                <label htmlFor="image">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    component="span"
-                    fullWidth
-                    style={{ marginTop: '20px' }}
-                  >
-                    Upload Image
-                  </Button>
-                </label>
-              </Grid>
 
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
@@ -810,7 +814,13 @@ function CreatePetPage() {
                 </Typography>
               </Grid>
               <Grid item xs={12}>
-                <TomTomMap onLocationChange={handleLocationChange} />
+                <LeafletAddPetMap onLocationChange={handleLocationChange} />
+                <div>
+                  <h2>Current Location:</h2>
+                  <p>Latitude: {formState.location.lat}</p>
+                  <p>Longitude: {formState.location.lng}</p>
+                </div>
+                {/* <TomTomMap onLocationChange={handleLocationChange} /> */}
               </Grid>
 
               <Grid item xs={12}>
@@ -1170,7 +1180,28 @@ function CreatePetPage() {
                 />
               </Grid>
             </Grid>
-            <Grid container spacing={2}>
+            {/* <Grid item xs={12} sm={12} md={6} lg={6}>
+         
+              <input
+                accept="image/*"
+                id="image"
+                type="file"
+                onChange={(e) => handleImageUpload(e.target.files[0])}
+                style={{ display: 'none' }}
+              />
+              <label htmlFor="image">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  component="span"
+                  fullWidth
+                  style={{ marginTop: '20px' }}
+                >
+                  Upload Image
+                </Button>
+              </label>
+            </Grid> */}
+            {/* <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Typography
                   variant="body1"
@@ -1180,7 +1211,62 @@ function CreatePetPage() {
                 >
                   {t('formTitles.uploadFile')}
                 </Typography>
+                <input
+                  accept="image/*"
+                  id="image"
+                  type="file"
+                  onChange={(e) => handleImageUpload(e.target.files[0])}
+                  style={{ display: 'none' }}
+                />
+                <label htmlFor="image">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    component="span"
+                    fullWidth
+                    style={{ marginTop: '20px' }}
+                  >
+                    Upload Image
+                  </Button>
+                </label>
               </Grid>
+            </Grid> */}
+            <Grid item xs={12}>
+              <Typography
+                variant="body1"
+                style={{ fontWeight: '500' }}
+                gutterBottom
+                textAlign="left"
+              >
+                {t('formTitles.uploadFile')}
+              </Typography>
+              <input
+                accept="image/*"
+                id="image"
+                type="file"
+                onChange={(e) => handleImageUpload(e.target.files[0])}
+                style={{ display: 'none' }}
+              />
+              <label htmlFor="image">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  component="span"
+                  fullWidth
+                  style={{ marginTop: '20px' }}
+                >
+                  Upload Image
+                </Button>
+              </label>
+              {imagePreview && (
+                <div style={{ marginTop: '20px' }}>
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    style={{ maxWidth: '100%', height: 'auto' }}
+                  />
+                </div>
+              )}
             </Grid>
             <Grid item xs={12}>
               {/* <ImageUploader /> */}
@@ -1377,72 +1463,3 @@ function CreatePetPage() {
 }
 
 export default CreatePetPage;
-
-// Basic Information:
-
-// Pet Name
-// Pet Species (e.g., Dog, Cat, Bird, Rabbit)
-// Pet Breed
-// Pet Color
-// Pet Gender
-// Pet Age
-// Pet Size (e.g., Small, Medium, Large)
-// Pet Weight
-// Unique Identifiers (e.g., Microchip ID, Collar ID)
-// Appearance Details:
-
-// Coat Pattern
-// Markings
-// Eye Color
-// Fur Length
-// Tail Type
-// Ear Shape
-// Health Information:
-
-// Health Condition (e.g., Healthy, Injured, Sick)
-// Medical Conditions
-// Required Medications
-// Allergies
-// Vaccination Status
-// Microchip Status
-// Dietary Needs
-// Lost/Found Details:
-
-// Date and Time Lost/Found
-// Location Lost/Found
-// Last Seen Location
-// Circumstances of Loss/Discovery
-// Area Description (e.g., Urban, Rural, Wooded)
-// Contact Information:
-
-// Owner's Name
-// Owner's Contact Information (Phone, Email)
-// Finder's Contact Information (if found)
-// Additional Information:
-
-// Reward Offered
-// Behavior Traits
-// Pet's Likes and Dislikes
-// Personality Description
-// Any Identifying Features
-// Collar Description
-// Photos of the Pet
-// Videos of the Pet
-// Legal Information (if applicable):
-
-// Pet License Information
-// Proof of Ownership
-// Police Report Details (for theft cases)
-// Follow-Up Actions:
-
-// Update on Pet's Status (e.g., Reunited, Adopted)
-// Feedback on Services Provided
-// Social Media Integration:
-
-// Share Buttons for Social Media Platforms
-// Links to Share Lost/Found Pet Information
-// Emergency Contacts:
-
-// Local Animal Shelters
-// Veterinary Clinics
-// Animal Control Agencies
