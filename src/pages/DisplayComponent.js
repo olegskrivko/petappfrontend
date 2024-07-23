@@ -76,301 +76,80 @@ const DisplayComponent = ({ pet }) => {
     const option = options.find((option) => option.value === value);
     return option ? option.label : '';
   };
+
+  const getSizeLabel = (value) => {
+    const options = t('selectOptions.sizeOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getGenderLabel = (value) => {
+    const options = t('selectOptions.genderOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getBehaviorLabel = (value) => {
+    const options = t('selectOptions.behaviorOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getAgeLabel = (value) => {
+    const options = t(`selectOptions.ageOptions.${pet.category}`, { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getBreedLabel = (value) => {
+    const options = t(`selectOptions.breedOptions.${pet.category}`, { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getMainColorLabel = (value) => {
+    const options = t('selectOptions.colorOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
+
+  const getMarkingLabel = (value) => {
+    const options = t('selectOptions.markingOptions', { returnObjects: true });
+    const option = options.find((option) => option.value === value);
+    return option ? option.label : '';
+  };
   return (
-    <Box
+    <Grid
+      container
       id="page"
       sx={{
-        padding: 4,
-        border: '1px solid #ccc',
-        borderRadius: '8px',
-        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+        padding: 3,
+        // border: '1px solid #ccc',
+        // borderRadius: '8px',
+        // boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
         backgroundColor: '#fff',
       }}
     >
-      <Grid container>
-        <Grid item xs={12} mb={2}>
-          <Box
-            style={{
-              width: '100%',
-              background: 'darkred',
-              padding: '1rem 0',
-              marginBottom: '1rem',
-            }}
-          >
-            <Typography
-              variant="h1"
-              textAlign="center"
-              style={{
-                textTransform: 'uppercase',
-                fontWeight: '700',
-                color: '#fff',
-                fontSize: isSmallScreen ? '1rem' : '3rem',
-              }}
-            >
-              {getInitialStatusLabel(pet.initialStatus)} {getCategoryLabel(pet.category)}
-            </Typography>
-            <Typography
-              variant="h6"
-              textAlign="center"
-              style={{
-                color: '#fff',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                fontSize: isSmallScreen ? '0.8rem' : '1rem',
-              }}
-            >
-              Have you seen this {getCategoryLabel(pet.category)}?
-            </Typography>
-          </Box>
-        </Grid>
-
-        <Grid container spacing={3}>
-          <Grid item xs={5} sm={5} md={5} lg={5}>
-            <Grid item xs={12} sm={12} mb={2}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
-                }}
-              >
-                <TagIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-                <b>Name or ID:</b>{' '}
-                <span style={{ textTransform: 'capitalize' }}>
-                  {pet.identifier ? pet.identifier : 'N/A'}
-                </span>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} mb={2}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
-                }}
-              >
-                <MaleIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} /> <b>Gender:</b>{' '}
-                <span style={{ textTransform: 'capitalize' }}>
-                  {pet.gender ? pet.gender : 'N/A'}
-                </span>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} mb={2}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
-                }}
-              >
-                <HeightIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} /> <b>Size:</b>{' '}
-                <span style={{ textTransform: 'capitalize' }}>{pet.size ? pet.size : 'N/A'}</span>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} mb={2}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
-                }}
-              >
-                <MoodIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-                <b>Behavior:</b>{' '}
-                <span style={{ textTransform: 'capitalize' }}>
-                  {pet.behavior ? pet.behavior : 'N/A'}
-                </span>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} mb={2}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
-                }}
-              >
-                <CakeIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} /> <b>Age:</b>{' '}
-                <span style={{ textTransform: 'capitalize' }}>{pet.age ? pet.age : 'N/A'}</span>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} mb={2}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
-                }}
-              >
-                <MergeTypeIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-                <b>Breed:</b>{' '}
-                <span style={{ textTransform: 'capitalize' }}>{pet.breed ? pet.breed : 'N/A'}</span>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} mb={2}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
-                }}
-              >
-                <ColorLensIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-                {/* <b>Main Color:</b>{' '}
-                <span style={{ textTransform: 'capitalize' }}>
-                  {pet.mainColor ? pet.mainColor : 'N/A'}
-                </span> */}
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} mb={2}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
-                }}
-              >
-                <TextureIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-                <b>Marking Pattern:</b>{' '}
-                <span style={{ textTransform: 'capitalize' }}>
-                  {pet.markingPattern ? pet.markingPattern : 'N/A'}
-                </span>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} mb={2}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
-                }}
-              >
-                <ColorLensIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-                {/* <b>Marking Colors:</b>{' '}
-                <span style={{ textTransform: 'capitalize' }}>
-                  {pet.markingColors.join(', ') ? pet.markingColors.join(', ') : 'N/A'}
-                </span> */}
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} mb={2}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
-                }}
-              >
-                <EventIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-                <span style={{ textTransform: 'capitalize' }}>
-                  <b>{pet.initialStatus}</b>
-                </span>
-                <b>Date:</b> {pet.date}
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} mb={2}>
-              <Box
-                gap={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'start',
-                  alignItems: 'center',
-                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
-                }}
-              >
-                <WatchLaterIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />
-                <span style={{ textTransform: 'capitalize' }}>
-                  <b>{pet.initialStatus}</b>
-                </span>
-                <b>Time:</b> {pet.time}
-              </Box>
-            </Grid>
-          </Grid>
-          <Grid item xs={7} sm={7} md={7} lg={7}>
-            <Grid item xs={12} sm={12}>
-              {/* <Grid item xs={12}> */}
-              {pet.mainImage && (
-                <Grid
-                  item
-                  xs={12}
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    // marginBottom: "1rem",
-                  }}
-                >
-                  {/* <img
-                src={pet.mainImage}
-                alt={pet.name}
-                style={{ maxWidth: "100%", height: "auto", marginTop: "20px" }}
-              /> */}
-                  <img
-                    src={pet.mainImage}
-                    alt={pet.name}
-                    style={{
-                      maxWidth: '100%',
-                      height: 'auto',
-                      // marginTop: "20px",
-                    }}
-                  />
-                </Grid>
-              )}
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid container spacing={3}>
-          <Grid item xs={12} mb={1}>
-            <Box>
-              <Box display="flex" alignItems="center" mb={1}>
-                <FeedIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />
-                <Typography
-                  variant="h6"
-                  ml={1}
-                  style={{ fontSize: isSmallScreen ? '0.8rem' : '1rem' }}
-                  fontWeight="bold"
-                >
-                  Additional Information:
-                </Typography>
-              </Box>
-
-              <Typography variant="body2" style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }}>
-                {pet.notes ? pet.notes : 'No additional information given.'}
-              </Typography>
-            </Box>
-          </Grid>
-        </Grid>
-
-        <Box style={{ background: 'darkred', padding: '1rem 0', width: '100%' }}>
+      <Grid item xs={12} mb={2} style={{ padding: '0 !important' }}>
+        <Box
+          style={{
+            width: '100%',
+            background: 'darkred',
+            padding: '1rem 0',
+            marginBottom: '1rem',
+          }}
+        >
           <Typography
-            variant="h6"
+            variant="h1"
             textAlign="center"
             style={{
               textTransform: 'uppercase',
               fontWeight: '700',
               color: '#fff',
-              fontSize: isSmallScreen ? '0.7rem' : '1rem',
+              fontSize: isSmallScreen ? '1rem' : '3rem',
             }}
           >
-            If you have any information please contact
+            {getInitialStatusLabel(pet.initialStatus)} {getCategoryLabel(pet.category)}
           </Typography>
           <Typography
             variant="h6"
@@ -379,135 +158,399 @@ const DisplayComponent = ({ pet }) => {
               color: '#fff',
               textTransform: 'uppercase',
               letterSpacing: '1px',
-              fontSize: isSmallScreen ? '0.6rem' : '1rem',
+              fontSize: isSmallScreen ? '0.8rem' : '1rem',
             }}
           >
-            {pet.phoneCode} {pet.phone}
+            {t(`posterTitles.haveYouSeen`)}?
           </Typography>
         </Box>
-        <Box
-          id="page"
-          // sx={{
-          //   padding: 4,
-          //   border: "1px solid #ccc",
-          //   borderRadius: "8px",
-          //   boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-          //   backgroundColor: "#fff",
-          // }}
+      </Grid>
+
+      <Grid container spacing={3}>
+        <Grid item xs={5} sm={5} md={5} lg={5}>
+          <Grid item xs={12} sm={12} mb={2}>
+            <Box
+              gap={1}
+              style={{
+                display: 'flex',
+                justifyContent: 'start',
+                alignItems: 'center',
+                fontSize: isSmallScreen ? '0.6rem' : '1rem',
+              }}
+            >
+              <TagIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />
+              <b> {t(`formLabels.identifier`)}:</b>{' '}
+              <span style={{ textTransform: 'capitalize' }}>
+                {pet.identifier ? pet.identifier : 'N/A'}
+              </span>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={12} mb={2}>
+            <Box
+              gap={1}
+              style={{
+                display: 'flex',
+                justifyContent: 'start',
+                alignItems: 'center',
+                fontSize: isSmallScreen ? '0.6rem' : '1rem',
+              }}
+            >
+              <MaleIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+              <b>{t(`formLabels.gender`)}:</b>{' '}
+              <span style={{ textTransform: 'capitalize' }}>{getGenderLabel(pet.gender)}</span>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={12} mb={2}>
+            <Box
+              gap={1}
+              style={{
+                display: 'flex',
+                justifyContent: 'start',
+                alignItems: 'center',
+                fontSize: isSmallScreen ? '0.6rem' : '1rem',
+              }}
+            >
+              <HeightIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+              <b>{t(`formLabels.size`)}:</b>{' '}
+              <span style={{ textTransform: 'capitalize' }}>{getSizeLabel(pet.size)}</span>
+            </Box>
+          </Grid>
+          {/* <Grid item xs={12} sm={12} mb={2}>
+            <Box
+              gap={1}
+              style={{
+                display: 'flex',
+                justifyContent: 'start',
+                alignItems: 'center',
+                fontSize: isSmallScreen ? '0.6rem' : '1rem',
+              }}
+            >
+              <MoodIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+              <b> {t(`formLabels.behavior`)}:</b>{' '}
+              <span style={{ textTransform: 'capitalize' }}>
+                {pet.behavior ? pet.behavior : 'N/A'}
+              </span>
+            </Box>
+          </Grid> */}
+          <Grid item xs={12} sm={12} mb={2}>
+            <Box
+              gap={1}
+              style={{
+                display: 'flex',
+                justifyContent: 'start',
+                alignItems: 'center',
+                fontSize: isSmallScreen ? '0.6rem' : '1rem',
+              }}
+            >
+              <CakeIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+              <b>{t(`formLabels.age`)}:</b>{' '}
+              <span style={{ textTransform: 'capitalize' }}>{getAgeLabel(pet.age)}</span>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={12} mb={2}>
+            <Box
+              gap={1}
+              style={{
+                display: 'flex',
+                justifyContent: 'start',
+                alignItems: 'center',
+                fontSize: isSmallScreen ? '0.6rem' : '1rem',
+              }}
+            >
+              <MergeTypeIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+              <b>{t(`formLabels.breed`)}:</b>{' '}
+              <span style={{ textTransform: 'capitalize' }}>{getBreedLabel(pet.breed)}</span>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={12} mb={2}>
+            <Box
+              gap={1}
+              style={{
+                display: 'flex',
+                justifyContent: 'start',
+                alignItems: 'center',
+                fontSize: isSmallScreen ? '0.6rem' : '1rem',
+              }}
+            >
+              <ColorLensIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+              <b>{t(`formLabels.mainColor`)}:</b>{' '}
+              <span style={{ textTransform: 'capitalize' }}>
+                {getMainColorLabel(pet.mainColor.hex)}
+              </span>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={12} mb={2}>
+            <Box
+              gap={1}
+              style={{
+                display: 'flex',
+                justifyContent: 'start',
+                alignItems: 'center',
+                fontSize: isSmallScreen ? '0.6rem' : '1rem',
+              }}
+            >
+              <TextureIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+              <b>{t(`formLabels.markings`)}:</b>{' '}
+              <span style={{ textTransform: 'capitalize' }}>
+                {getMarkingLabel(pet.markingPattern)}
+              </span>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={12} mb={2}>
+            <Box
+              gap={1}
+              style={{
+                display: 'flex',
+                justifyContent: 'start',
+                alignItems: 'center',
+                fontSize: isSmallScreen ? '0.6rem' : '1rem',
+              }}
+            >
+              <ColorLensIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+              <b>{t('formLabels.markingColors')}:</b>{' '}
+              <span style={{ textTransform: 'capitalize' }}>
+                {pet.markingColors && pet.markingColors.length > 0
+                  ? pet.markingColors.map((color, index) => (
+                      <React.Fragment key={index}>
+                        <span>{getMainColorLabel(color.hex)}</span>
+                        {index !== pet.markingColors.length - 1 && ', '}
+                      </React.Fragment>
+                    ))
+                  : 'N/A'}
+              </span>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={12} mb={2}>
+            <Box
+              gap={1}
+              style={{
+                display: 'flex',
+                justifyContent: 'start',
+                alignItems: 'center',
+                fontSize: isSmallScreen ? '0.6rem' : '1rem',
+              }}
+            >
+              <EventIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+              <b>{t(`formLabels.date`)}:</b> {pet.date}
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={12} mb={2}>
+            <Box
+              gap={1}
+              style={{
+                display: 'flex',
+                justifyContent: 'start',
+                alignItems: 'center',
+                fontSize: isSmallScreen ? '0.6rem' : '1rem',
+              }}
+            >
+              <WatchLaterIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />
+              <b>{t(`formLabels.time`)}:</b> {pet.time}
+            </Box>
+          </Grid>
+        </Grid>
+        <Grid item xs={7} sm={7} md={7} lg={7}>
+          <Grid item xs={12} sm={12}>
+            {/* <Grid item xs={12}> */}
+            {pet.mainImage && (
+              <Grid
+                item
+                xs={12}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  // marginBottom: "1rem",
+                }}
+              >
+                {/* <img
+                src={pet.mainImage}
+                alt={pet.name}
+                style={{ maxWidth: "100%", height: "auto", marginTop: "20px" }}
+              /> */}
+                <img
+                  src={pet.mainImage}
+                  alt={pet.name}
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                    // marginTop: "20px",
+                  }}
+                />
+              </Grid>
+            )}
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12} mb={1}>
+          <Box>
+            <Box display="flex" alignItems="center" mb={1}>
+              <FeedIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />
+              <Typography
+                variant="h6"
+                ml={1}
+                style={{ fontSize: isSmallScreen ? '0.8rem' : '1rem' }}
+                fontWeight="bold"
+              >
+                {t(`posterLabels.additionalInfo`)}:
+              </Typography>
+            </Box>
+
+            <Typography variant="body2" style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }}>
+              {pet.notes ? pet.notes : 'No additional information given.'}
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
+
+      <Box style={{ background: 'darkred', padding: '1rem 0', width: '100%' }}>
+        <Typography
+          variant="h6"
+          textAlign="center"
+          style={{
+            textTransform: 'uppercase',
+            fontWeight: '700',
+            color: '#fff',
+            fontSize: isSmallScreen ? '0.7rem' : '1rem',
+          }}
         >
-          {/* Your existing poster content */}
-          {/* QR code section */}
+          {t(`posterTitles.contact`)}
+        </Typography>
+        <Typography
+          variant="h6"
+          textAlign="center"
+          style={{
+            color: '#fff',
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            fontSize: isSmallScreen ? '0.6rem' : '1rem',
+          }}
+        >
+          {pet.phoneCode} {pet.phone}
+        </Typography>
+      </Box>
+      <Box
+        id="page"
+        // sx={{
+        //   padding: 4,
+        //   border: "1px solid #ccc",
+        //   borderRadius: "8px",
+        //   boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+        //   backgroundColor: "#fff",
+        // }}
+      >
+        {/* Your existing poster content */}
+        {/* QR code section */}
+        <Box
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginBottom: '1rem',
+          }}
+        >
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+            style={{
+              marginRight: '1rem',
+            }}
+            mt={2}
+          >
+            {/* <Typography variant="h5" gutterBottom>
+                Scan to view details and follow up on the pet
+              </Typography> */}
+            {/* Generate QR code with pet ID or any relevant information */}
+            <QRCode
+              value={`${DOMAIN_URL}/pets/${pet._id}`} // Change URL to your endpoint or pet details page
+              style={{ width: isSmallScreen ? 100 : 200, height: isSmallScreen ? 100 : 200 }}
+            />
+          </Box>
+
           <Box
             style={{
               display: 'flex',
-              flexDirection: 'row',
+              flexDirection: 'column',
               justifyContent: 'center',
-              alignItems: 'center',
-              marginBottom: '1rem',
+              alignItems: 'start',
+              marginLeft: '1rem',
             }}
           >
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              flexDirection="column"
-              style={{
-                marginRight: '1rem',
-              }}
-              mt={2}
-            >
-              {/* <Typography variant="h5" gutterBottom>
-                Scan to view details and follow up on the pet
-              </Typography> */}
-              {/* Generate QR code with pet ID or any relevant information */}
-              <QRCode
-                value={`${DOMAIN_URL}/pets/${pet._id}`} // Change URL to your endpoint or pet details page
-                style={{ width: isSmallScreen ? 80 : 200, height: isSmallScreen ? 80 : 200 }}
-              />
-            </Box>
-
-            <Box
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'start',
-                marginLeft: '1rem',
-              }}
-            >
-              <Typography
-                variant="body1"
-                textAlign="start"
-                sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
-              >
-                1. Open camera on your smartphone
-              </Typography>
-              <Typography
-                variant="body1"
-                textAlign="start"
-                sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
-              >
-                2. Point the camera at the QR code
-              </Typography>
-              <Typography
-                variant="body1"
-                textAlign="start"
-                sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
-              >
-                3. Click on the link that appears
-              </Typography>
-              <Typography
-                variant="body1"
-                textAlign="start"
-                sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
-              >
-                4. Follow up on the pet
-              </Typography>
-              <Typography
-                variant="body1"
-                textAlign="start"
-                sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
-              >
-                5. Share the link with others
-              </Typography>
-              <Typography
-                variant="body1"
-                textAlign="start"
-                sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
-              >
-                6. Help reunite the pet with its owner and save a life
-              </Typography>
-            </Box>
-          </Box>
-        </Box>
-        <Grid item xs={12}>
-          <Box style={{ background: 'darkred', padding: '1rem 1rem', width: '100%' }}>
             <Typography
               variant="body1"
-              textAlign="center"
-              style={{
-                color: '#fff',
-                fontWeight: 'bold',
-                fontSize: isSmallScreen ? '0.7rem' : '1rem',
-              }}
-              gutterBottom
+              textAlign="start"
+              sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
             >
-              Scan to view map, details and track updates on the pet's status.
+              {t(`posterSteps.stepOne`)}
             </Typography>
-            {/* <Typography
+            <Typography
+              variant="body1"
+              textAlign="start"
+              sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
+            >
+              {t(`posterSteps.stepTwo`)}
+            </Typography>
+            <Typography
+              variant="body1"
+              textAlign="start"
+              sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
+            >
+              {t(`posterSteps.stepThree`)}
+            </Typography>
+            <Typography
+              variant="body1"
+              textAlign="start"
+              sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
+            >
+              {t(`posterSteps.stepFour`)}
+            </Typography>
+            <Typography
+              variant="body1"
+              textAlign="start"
+              sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
+            >
+              {t(`posterSteps.stepFive`)}
+            </Typography>
+            <Typography
+              variant="body1"
+              textAlign="start"
+              sx={{ mt: 1, fontWeight: 'bold', fontSize: isSmallScreen ? '0.6rem' : '1rem' }}
+            >
+              {t(`posterSteps.stepSix`)}
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+      <Grid item xs={12}>
+        <Box style={{ background: 'darkred', padding: '1rem 1rem', width: '100%' }}>
+          <Typography
+            variant="body1"
+            textAlign="center"
+            style={{
+              color: '#fff',
+              fontWeight: 'bold',
+              fontSize: isSmallScreen ? '0.7rem' : '1rem',
+            }}
+            gutterBottom
+          >
+            {t(`posterTitles.scanQRCode`)}
+          </Typography>
+          {/* <Typography
             variant="body1"
             textAlign="center"
             style={{ mt: 2, color: "#fff" }}
           >
             Poster generated by www.pawclix.com
           </Typography> */}
-          </Box>
-        </Grid>
-        <Typography variant="caption" textAlign="center" sx={{ mt: 1 }}>
-          Poster generated by PawClix
-        </Typography>
+        </Box>
       </Grid>
-    </Box>
+      <Typography variant="caption" textAlign="center" sx={{ mt: 1 }}>
+        {t(`posterTitles.posterGeneratedBy`)}
+      </Typography>
+    </Grid>
   );
 };
 

@@ -611,15 +611,20 @@ const Poster = ({ pet }) => {
   return (
     <Box>
       {/* Display Component for screen view */}
-      <Box id="display-component">
+      <Box
+        id="display-component"
+        style={{
+          border: '1px solid #ccc',
+          // borderRadius: '8px',
+          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+        }}
+      >
         <DisplayComponent pet={pet} />
       </Box>
-
       {/* PDFGenerationComponent for generating PDF */}
       <Box id="pdf-generation-component" style={{ display: 'none' }}>
         <PDFGenerationComponent pet={pet} />
       </Box>
-
       {/* Button to trigger PDF generation */}
       <Box mt={4} textAlign="center">
         {isGenerating ? (
@@ -636,7 +641,7 @@ const Poster = ({ pet }) => {
             onClick={() => {
               setIsGenerating(true);
               // Show PDFGenerationComponent before generating PDF
-              document.getElementById('display-component').style.display = 'none';
+              document.getElementById('display-component').style.display = 'block';
               document.getElementById('pdf-generation-component').style.display = 'none';
               generatePDF();
             }}

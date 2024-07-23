@@ -162,13 +162,15 @@ const PDFGenerationComponent = ({ pet }) => {
     <Box>
       <Box
         id="page"
-        sx={{
-          padding: 4,
-          border: '1px solid #ccc',
-          borderRadius: '8px',
-          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-          backgroundColor: '#fff',
-        }}
+        sx={
+          {
+            // padding: 4,
+            // border: '1px solid #ccc',
+            // borderRadius: '8px',
+            // boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+            // backgroundColor: '#fff',
+          }
+        }
       >
         <Box
           style={{

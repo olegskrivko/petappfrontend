@@ -301,8 +301,27 @@
     "pet": "Mājdzīvnieks bija",
     "post": "Ziņa izveidota",
     "addedBy": "Pievienoja",
-    "updates": "Atjauninājumu nav"
+    "updates": "Atjauninājumu nav",
+    "noLocationHistory": "Atrašanās vietas vēsture nav pieejama"
   },
+  "posterSteps": {
+    "stepOne": "1. Atveriet kameru savā viedtālrunī",
+    "stepTwo": "2. Novietojiet kameru uz QR koda",
+    "stepThree": "3. Noklikšķiniet uz parādītās saites",
+    "stepFour": "4. Sekojiet līdzi dzīvniekam",
+    "stepFive": "5. Dalieties ar saiti ar citiem",
+    "stepSix": "6. Palīdziet atgriezt dzīvnieku īpašniekam un izglābt dzīvību"
+  },
+  "posterTitles": {
+    "haveYouSeen": "VAI ESAT REDZĒJUŠI ŠO MĀJDZĪVNIEKU",
+    "contact": "JA JUMS IR KĀDA INFORMĀCIJA, LŪDZU, SAIETIET AR",
+    "scanQRCode": "Noklikšķiniet, lai skatītu karti, detaļas un izsekotu atjauninājumus par mājdzīvnieka statusu.",
+    "posterGeneratedBy": "Plakāts izveidots ar PawClix"
+  },
+  "posterLabels": {
+    "additionalInfo": "Papildus Informācija"
+  },
+
   "mapIconLabel": {
     "added": "Pievienots"
   },

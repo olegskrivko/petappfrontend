@@ -161,7 +161,7 @@ const LocationHistory = ({ pet }) => {
                 <Avatar style={{ background: '#555' }}>
                   <LocationOffIcon />
                 </Avatar>
-                <Typography variant="body1">No location history available</Typography>
+                <Typography variant="body1">{t(`historyTab.noLocationHistory`)}</Typography>
               </Box>
             </CardContent>
           </Card>

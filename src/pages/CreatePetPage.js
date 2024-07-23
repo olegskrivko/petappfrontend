@@ -9,6 +9,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import FormGroup from '@mui/material/FormGroup';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Dialog from '@mui/material/Dialog';
@@ -283,16 +285,78 @@ function CreatePetPage() {
   //   handleChange('image', file);
   // };
 
-  // Handler for image upload
-  const handleImageUpload = (file) => {
-    setFormState((prevState) => ({
-      ...prevState,
-      image: file,
-    }));
+  // Utility function to resize image
+  // Utility function to resize and crop image
+  const resizeAndCropImage = (file, callback) => {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const img = new Image();
+      img.onload = function () {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
 
-    // Create a URL for the image and set it as preview
-    const previewUrl = URL.createObjectURL(file);
-    setImagePreview(previewUrl);
+        // Set target dimensions for the canvas
+        const targetAspectRatio = 4 / 3;
+        const targetWidth = 800;
+        const targetHeight = targetWidth / targetAspectRatio;
+
+        // Calculate the source dimensions
+        let srcX = 0,
+          srcY = 0,
+          srcWidth = img.width,
+          srcHeight = img.height;
+
+        if (img.width / img.height > targetAspectRatio) {
+          // Source is wider than target aspect ratio
+          srcWidth = img.height * targetAspectRatio;
+          srcX = (img.width - srcWidth) / 2;
+        } else {
+          // Source is taller than target aspect ratio
+          srcHeight = img.width / targetAspectRatio;
+          srcY = (img.height - srcHeight) / 2;
+        }
+
+        // Set canvas dimensions
+        canvas.width = targetWidth;
+        canvas.height = targetHeight;
+
+        // Draw image on canvas with cropping
+        ctx.drawImage(img, srcX, srcY, srcWidth, srcHeight, 0, 0, targetWidth, targetHeight);
+
+        // Convert canvas to Blob
+        canvas.toBlob(
+          (blob) => {
+            callback(blob);
+          },
+          'image/jpeg',
+          0.7,
+        ); // Adjust quality as needed
+      };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // Handler for image upload
+  // const handleImageUpload = (file) => {
+  //   setFormState((prevState) => ({
+  //     ...prevState,
+  //     image: file,
+  //   }));
+
+  //   // Create a URL for the image and set it as preview
+  //   const previewUrl = URL.createObjectURL(file);
+  //   setImagePreview(previewUrl);
+  // };
+  const handleImageUpload = (file) => {
+    resizeAndCropImage(file, (resizedImage) => {
+      setFormState((prevState) => ({
+        ...prevState,
+        image: resizedImage,
+      }));
+      const previewUrl = URL.createObjectURL(resizedImage);
+      setImagePreview(previewUrl);
+    });
   };
 
   // Cleanup image URL when component unmounts
@@ -1207,13 +1271,16 @@ function CreatePetPage() {
                 </Button>
               </label>
               {imagePreview && (
-                <div style={{ marginTop: '20px' }}>
-                  <img
-                    src={imagePreview}
-                    alt="Preview"
-                    style={{ maxWidth: '100%', height: 'auto' }}
-                  />
-                </div>
+                // <div style={{ marginTop: '20px' }}>
+                //   <img
+                //     src={imagePreview}
+                //     alt="Preview"
+                //     style={{ maxWidth: '100%', height: 'auto' }}
+                //   />
+                // </div>
+                <Box mb={2} style={{ width: '100%', marginTop: '20px' }}>
+                  <img src={imagePreview} alt="Preview" style={{ width: '100%', height: 'auto' }} />
+                </Box>
               )}
             </Grid>
             <Grid item xs={12}>

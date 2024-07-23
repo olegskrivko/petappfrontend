@@ -126,13 +126,7 @@ const PetsPosterPage = () => {
   if (!pet) {
     return <div>No pet found</div>;
   }
-  return (
-    <Grid container spacing={3} padding={2}>
-      <Grid item xs={12} sm={12} md={12} lg={12}>
-        <Poster pet={pet} />
-      </Grid>
-    </Grid>
-  );
+  return <Poster pet={pet} />;
 };
 
 export default PetsPosterPage;

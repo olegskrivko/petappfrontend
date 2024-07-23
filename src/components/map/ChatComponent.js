@@ -366,14 +366,73 @@ const ChatComponent = ({
     onAddLocation();
     setLocationAdded(true); // Update state to indicate location is added
   };
+  const resizeAndCropImage = (file, callback) => {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const img = new Image();
+      img.onload = function () {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
 
+        // Set target dimensions for the canvas
+        const targetAspectRatio = 4 / 3;
+        const targetWidth = 800;
+        const targetHeight = targetWidth / targetAspectRatio;
+
+        // Calculate the source dimensions
+        let srcX = 0,
+          srcY = 0,
+          srcWidth = img.width,
+          srcHeight = img.height;
+
+        if (img.width / img.height > targetAspectRatio) {
+          // Source is wider than target aspect ratio
+          srcWidth = img.height * targetAspectRatio;
+          srcX = (img.width - srcWidth) / 2;
+        } else {
+          // Source is taller than target aspect ratio
+          srcHeight = img.width / targetAspectRatio;
+          srcY = (img.height - srcHeight) / 2;
+        }
+
+        // Set canvas dimensions
+        canvas.width = targetWidth;
+        canvas.height = targetHeight;
+
+        // Draw image on canvas with cropping
+        ctx.drawImage(img, srcX, srcY, srcWidth, srcHeight, 0, 0, targetWidth, targetHeight);
+
+        // Convert canvas to Blob
+        canvas.toBlob(
+          (blob) => {
+            callback(blob);
+          },
+          'image/jpeg',
+          0.7,
+        ); // Adjust quality as needed
+      };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
+  // const handleFileInputChange = (event) => {
+  //   const file = event.target.files[0];
+  //   console.log('file', file);
+  //   if (file) {
+  //     setFile(file);
+  //     setFilePreview(URL.createObjectURL(file)); // Generate preview URL
+  //     onUploadImage(file); // Pass the file to the parent component
+  //   }
+  // };
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
     console.log('file', file);
     if (file) {
-      setFile(file);
-      setFilePreview(URL.createObjectURL(file)); // Generate preview URL
-      onUploadImage(file); // Pass the file to the parent component
+      resizeAndCropImage(file, (resizedImage) => {
+        setFile(resizedImage);
+        setFilePreview(URL.createObjectURL(resizedImage)); // Generate preview URL
+        onUploadImage(resizedImage); // Pass the resized file to the parent component
+      });
     }
   };
 
@@ -425,84 +484,14 @@ const ChatComponent = ({
             />
           </Box>
           {filePreview && (
-            <Box mb={2}>
-              <img src={filePreview} alt="Preview" style={{ maxWidth: '100%' }} />
+            // <Box mb={2}>
+            //   <img src={filePreview} alt="Preview" style={{ maxWidth: '100%' }} />
+            // </Box>
+            <Box mb={2} style={{ width: '100%' }}>
+              <img src={filePreview} alt="Preview" style={{ width: '100%', height: 'auto' }} />
             </Box>
           )}
 
-          {/* <Box display="flex" justifyContent="space-between">
-            <Box>
-              {isSmallScreen ? (
-                <IconButton
-                  variant="contained"
-                  onClick={handleAddLocation}
-                  style={{ backgroundColor: '#555', color: '#fff' }}
-                >
-                  <AddLocationAltIcon />
-                </IconButton>
-              ) : (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleAddLocation}
-                  endIcon={<AddLocationAltIcon />}
-                  style={{ backgroundColor: '#555' }}
-                >
-                  Add Location
-                </Button>
-              )}
-              {isSmallScreen ? (
-                <IconButton
-                  variant="contained"
-                  onClick={handleRemoveLocation}
-                  style={{ backgroundColor: '#555', color: '#fff', marginLeft: '1rem' }}
-                >
-                  <WrongLocationIcon />
-                </IconButton>
-              ) : (
-                <Button
-                  variant="contained"
-                  onClick={handleRemoveLocation}
-                  endIcon={<WrongLocationIcon />}
-                  size="small"
-                  style={{ background: '#555', marginLeft: '1rem' }}
-                >
-                  Remove Location
-                </Button>
-              )}
-              <label htmlFor="photo-upload-input" style={{ marginLeft: '1rem' }}>
-                <Button
-                  variant="contained"
-                  component="span"
-                  endIcon={<AddPhotoAlternateIcon />}
-                  size="small"
-                  style={{ background: '#555' }}
-                >
-                  Add Photo
-                </Button>
-              </label>
-              <input
-                accept="image/*"
-                id="photo-upload-input"
-                type="file"
-                onChange={handleFileInputChange}
-                style={{ display: 'none' }}
-              />
-            </Box>
-
-            <Box>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleSendMessage}
-                endIcon={<SendIcon />}
-                size="small"
-                style={{ background: '#555' }}
-              >
-                Send
-              </Button>
-            </Box>
-          </Box> */}
           <Box display="flex" justifyContent="space-between">
             <Box>
               {!locationAdded && ( // Show Add Location button if location is not added
@@ -530,24 +519,6 @@ const ChatComponent = ({
                 </Tooltip>
               )}
 
-              {/* <label htmlFor="photo-upload-input" style={{ marginLeft: '1rem' }}>
-                <Button
-                  variant="contained"
-                  component="span"
-                  endIcon={<AddPhotoAlternateIcon />}
-                  size="small"
-                  style={{ background: '#555' }}
-                >
-                  Add Photo
-                </Button>
-              </label>
-              <input
-                accept="image/*"
-                id="photo-upload-input"
-                type="file"
-                onChange={handleFileInputChange}
-                style={{ display: 'none' }}
-              /> */}
               <Tooltip title="Upload image">
                 <label htmlFor="photo-upload-input" style={{ marginLeft: '1rem' }}>
                   <IconButton
@@ -569,16 +540,6 @@ const ChatComponent = ({
             </Box>
 
             <Box>
-              {/* <Button
-                variant="contained"
-                color="primary"
-                onClick={handleSendMessage}
-                endIcon={<SendIcon />}
-                size="small"
-                style={{ background: '#555' }}
-              >
-                Send
-              </Button> */}
               <Tooltip title="Send message">
                 <IconButton
                   variant="contained"
