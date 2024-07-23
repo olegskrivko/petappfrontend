@@ -15,18 +15,15 @@
       { "value": "7", "label": "Cits" }
     ],
     "sizeOptions": [
-      { "value": "0", "label": "N/D" },
       { "value": "1", "label": "Mazs" },
       { "value": "2", "label": "Vidējs" },
       { "value": "3", "label": "Liels" }
     ],
     "genderOptions": [
-      { "value": "0", "label": "N/D" },
       { "value": "1", "label": "Vīriešu" },
       { "value": "2", "label": "Sieviešu" }
     ],
     "behaviorOptions": [
-      { "value": "0", "label": "N/D" },
       { "value": "1", "label": "Draudzīgs" },
       { "value": "2", "label": "Agresīvs" },
       { "value": "3", "label": "Mierīgs" },
@@ -34,43 +31,36 @@
     ],
     "ageOptions": {
       "1": [
-        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Kucēns" },
         { "value": "2", "label": "Pieaugušais" },
         { "value": "3", "label": "Seniors" }
       ],
       "2": [
-        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Kaķēns" },
         { "value": "2", "label": "Pieaugušais" },
         { "value": "3", "label": "Seniors" }
       ],
       "3": [
-        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Cālis" },
         { "value": "2", "label": "Pieaugušais" },
         { "value": "3", "label": "Seniors" }
       ],
       "4": [
-        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Mazulis" },
         { "value": "2", "label": "Pieaugušais" },
         { "value": "3", "label": "Seniors" }
       ],
       "5": [
-        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Mazulis" },
         { "value": "2", "label": "Pieaugušais" },
         { "value": "3", "label": "Seniors" }
       ],
       "6": [
-        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Mazulis" },
         { "value": "2", "label": "Pieaugušais" },
         { "value": "3", "label": "Seniors" }
       ],
       "7": [
-        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Mazulis" },
         { "value": "2", "label": "Pieaugušais" },
         { "value": "3", "label": "Seniors" }
@@ -78,7 +68,6 @@
     },
     "breedOptions": {
       "1": [
-        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Labradors" },
         { "value": "2", "label": "Buldogs" },
         { "value": "3", "label": "Putna" },
@@ -113,7 +102,6 @@
         { "value": "32", "label": "Havanas" }
       ],
       "2": [
-        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Siamiešu" },
         { "value": "2", "label": "Persiešu" },
         { "value": "3", "label": "Maine kūns" },
@@ -136,14 +124,12 @@
         { "value": "20", "label": "Šārtrū" }
       ],
       "3": [
-        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Papagailis" },
         { "value": "2", "label": "Kanārijputniņš" },
         { "value": "3", "label": "Viļņotais papagailis" },
         { "value": "4", "label": "Cits" }
       ],
       "4": [
-        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Kāmis" },
         { "value": "2", "label": "Jūrascūciņa" },
         { "value": "3", "label": "Trusis" },
@@ -154,7 +140,6 @@
         { "value": "8", "label": "Cits" }
       ],
       "5": [
-        { "value": "0", "label": "N/D" },
         { "value": "1", "label": "Čūska" },
         { "value": "2", "label": "Gekons" },
         { "value": "3", "label": "Ķirzaka" },
@@ -163,7 +148,6 @@
         { "value": "6", "label": "Cits" }
       ],
       "6": [
-        { "value": "0", "label": "Nav informācijas" },
         { "value": "1", "label": "Liellops" },
         { "value": "2", "label": "Cūka" },
         { "value": "3", "label": "Aita" },
@@ -175,10 +159,7 @@
         { "value": "9", "label": "Ēzelis" },
         { "value": "10", "label": "Cits" }
       ],
-      "7": [
-        { "value": "0", "label": "N/A" },
-        { "value": "1", "label": "Cits" }
-      ]
+      "7": [{ "value": "1", "label": "Cits" }]
     },
     "healthInformationOptions": [
       { "value": "1", "label": "Vesels" },
@@ -216,7 +197,6 @@
       { "value": "#954535", "label": "Kaštanbrūns" }
     ],
     "phoneCodeOptions": [
-      { "value": "0", "label": "N/A" },
       { "value": "+371", "label": "+371" },
       { "value": "+372", "label": "+372" },
       { "value": "+370", "label": "+370" }
@@ -283,6 +263,21 @@
     "datetime": "Datums un laiks",
     "uploadFile": "Augšupielādēt failu",
     "currentStatus": "Pašreizējais statuss"
+  },
+  "sidebarLabels": {
+    "status": "Statuss",
+    "category": "Kategorija",
+    "gender": "Dzimums",
+    "size": "Izmērs",
+    "identifierOrName": "Identifikators vai Vārds",
+    "date": "Datums",
+    "distance": "Attālums",
+    "pattern": "Raksts",
+    "color": "Krāsa"
+  },
+  "sidebarButtons": {
+    "applyFilters": "Lietot filtrus",
+    "resetFilters": "Atiestatīt filtrus"
   },
   "sectionTitles": {
     "ownerDetails": "Owner Details",

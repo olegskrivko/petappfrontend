@@ -15,18 +15,15 @@
       { "value": "7", "label": "Other" }
     ],
     "sizeOptions": [
-      { "value": "0", "label": "N/A" },
       { "value": "1", "label": "Small" },
       { "value": "2", "label": "Medium" },
       { "value": "3", "label": "Large" }
     ],
     "genderOptions": [
-      { "value": "0", "label": "N/A" },
       { "value": "1", "label": "Male" },
       { "value": "2", "label": "Female" }
     ],
     "behaviorOptions": [
-      { "value": "0", "label": "N/A" },
       { "value": "1", "label": "Friendly" },
       { "value": "2", "label": "Aggressive" },
       { "value": "3", "label": "Calm" },
@@ -34,43 +31,36 @@
     ],
     "ageOptions": {
       "1": [
-        { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Puppy" },
         { "value": "2", "label": "Adult" },
         { "value": "3", "label": "Senior" }
       ],
       "2": [
-        { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Kitten" },
         { "value": "2", "label": "Adult" },
         { "value": "3", "label": "Senior" }
       ],
       "3": [
-        { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Chick" },
         { "value": "2", "label": "Adult" },
         { "value": "3", "label": "Senior" }
       ],
       "4": [
-        { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Pup" },
         { "value": "2", "label": "Adult" },
         { "value": "3", "label": "Senior" }
       ],
       "5": [
-        { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Hatchling" },
         { "value": "2", "label": "Adult" },
         { "value": "3", "label": "Senior" }
       ],
       "6": [
-        { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Juvenile" },
         { "value": "2", "label": "Adult" },
         { "value": "3", "label": "Senior" }
       ],
       "7": [
-        { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Baby" },
         { "value": "2", "label": "Adult" },
         { "value": "3", "label": "Senior" }
@@ -78,7 +68,6 @@
     },
     "breedOptions": {
       "1": [
-        { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Labrador" },
         { "value": "2", "label": "Bulldog" },
         { "value": "3", "label": "Poodle" },
@@ -113,7 +102,6 @@
         { "value": "32", "label": "Hound" }
       ],
       "2": [
-        { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Siamese" },
         { "value": "2", "label": "Persian" },
         { "value": "3", "label": "Maine Coon" },
@@ -136,14 +124,12 @@
         { "value": "20", "label": "Chartreux" }
       ],
       "3": [
-        { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Parrot" },
         { "value": "2", "label": "Canary" },
         { "value": "3", "label": "Budgerigar" },
         { "value": "4", "label": "Other" }
       ],
       "4": [
-        { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Hamster" },
         { "value": "2", "label": "Guinea Pig" },
         { "value": "3", "label": "Rabbit" },
@@ -154,7 +140,6 @@
         { "value": "8", "label": "Other" }
       ],
       "5": [
-        { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Snake" },
         { "value": "2", "label": "Gecko" },
         { "value": "3", "label": "Lizard" },
@@ -163,7 +148,6 @@
         { "value": "6", "label": "Other" }
       ],
       "6": [
-        { "value": "0", "label": "N/A" },
         { "value": "1", "label": "Cattle" },
         { "value": "2", "label": "Pig" },
         { "value": "3", "label": "Sheep" },
@@ -175,10 +159,7 @@
         { "value": "9", "label": "Donkey" },
         { "value": "10", "label": "Other" }
       ],
-      "7": [
-        { "value": "0", "label": "N/A" },
-        { "value": "1", "label": "Other" }
-      ]
+      "7": [{ "value": "1", "label": "Other" }]
     },
     "healthInformationOptions": [
       { "value": "1", "label": "Healthy" },
@@ -216,7 +197,6 @@
       { "value": "#954535", "label": "Chestnut" }
     ],
     "phoneCodeOptions": [
-      { "value": "0", "label": "N/A" },
       { "value": "+371", "label": "+371" },
       { "value": "+372", "label": "+372" },
       { "value": "+370", "label": "+370" }
@@ -283,6 +263,21 @@
     "datetime": "Date and Time",
     "uploadFile": "Upload File",
     "currentStatus": "Current Status"
+  },
+  "sidebarLabels": {
+    "status": "Status",
+    "category": "Category",
+    "gender": "Gender",
+    "size": "Size",
+    "identifierOrName": "Identifier or Name",
+    "date": "Date",
+    "distance": "Distance",
+    "Ppttern": "Pattern",
+    "color": "Color"
+  },
+  "sidebarButtons": {
+    "applyFilters": "Apply Filters",
+    "resetFilters": "Reset Filters"
   },
   "sectionTitles": {
     "ownerDetails": "Owner Details",

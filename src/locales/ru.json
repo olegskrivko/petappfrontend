@@ -15,18 +15,15 @@
       { "value": "7", "label": "Прочее" }
     ],
     "sizeOptions": [
-      { "value": "0", "label": "Н/Д" },
       { "value": "1", "label": "Маленький" },
       { "value": "2", "label": "Средний" },
       { "value": "3", "label": "Большой" }
     ],
     "genderOptions": [
-      { "value": "0", "label": "Н/Д" },
       { "value": "1", "label": "Мужской" },
       { "value": "2", "label": "Женский" }
     ],
     "behaviorOptions": [
-      { "value": "0", "label": "Н/Д" },
       { "value": "1", "label": "Дружелюбный" },
       { "value": "2", "label": "Агрессивный" },
       { "value": "3", "label": "Спокойный" },
@@ -34,43 +31,36 @@
     ],
     "ageOptions": {
       "1": [
-        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Щенок" },
         { "value": "2", "label": "Взрослый" },
         { "value": "3", "label": "Пожилой" }
       ],
       "2": [
-        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Котенок" },
         { "value": "2", "label": "Взрослый" },
         { "value": "3", "label": "Пожилой" }
       ],
       "3": [
-        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Цыпленок" },
         { "value": "2", "label": "Взрослый" },
         { "value": "3", "label": "Пожилой" }
       ],
       "4": [
-        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Детеныш" },
         { "value": "2", "label": "Взрослый" },
         { "value": "3", "label": "Пожилой" }
       ],
       "5": [
-        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Детеныш" },
         { "value": "2", "label": "Взрослый" },
         { "value": "3", "label": "Пожилой" }
       ],
       "6": [
-        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Детеныш" },
         { "value": "2", "label": "Взрослый" },
         { "value": "3", "label": "Пожилой" }
       ],
       "7": [
-        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Детеныш" },
         { "value": "2", "label": "Взрослый" },
         { "value": "3", "label": "Пожилой" }
@@ -78,7 +68,6 @@
     },
     "breedOptions": {
       "1": [
-        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Лабрадор" },
         { "value": "2", "label": "Бульдог" },
         { "value": "3", "label": "Пудель" },
@@ -113,7 +102,6 @@
         { "value": "32", "label": "Гончая" }
       ],
       "2": [
-        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Сиамская" },
         { "value": "2", "label": "Персидская" },
         { "value": "3", "label": "Мейн-кун" },
@@ -136,14 +124,12 @@
         { "value": "20", "label": "Шартрез" }
       ],
       "3": [
-        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Попугай" },
         { "value": "2", "label": "Канарейка" },
         { "value": "3", "label": "Волнистый попугай" },
         { "value": "4", "label": "Прочее" }
       ],
       "4": [
-        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Хомяк" },
         { "value": "2", "label": "Морская свинка" },
         { "value": "3", "label": "Кролик" },
@@ -154,7 +140,6 @@
         { "value": "8", "label": "Прочее" }
       ],
       "5": [
-        { "value": "0", "label": "Н/Д" },
         { "value": "1", "label": "Змея" },
         { "value": "2", "label": "Геккон" },
         { "value": "3", "label": "Ящерица" },
@@ -163,7 +148,6 @@
         { "value": "6", "label": "Прочее" }
       ],
       "6": [
-        { "value": "0", "label": "Нет информации" },
         { "value": "1", "label": "Крупный рогатый скот" },
         { "value": "2", "label": "Свинья" },
         { "value": "3", "label": "Овца" },
@@ -175,10 +159,7 @@
         { "value": "9", "label": "Осел" },
         { "value": "10", "label": "Прочее" }
       ],
-      "7": [
-        { "value": "0", "label": "Нет информации" },
-        { "value": "1", "label": "Прочее" }
-      ]
+      "7": [{ "value": "1", "label": "Прочее" }]
     },
     "healthInformationOptions": [
       { "value": "1", "label": "Здоровый" },
@@ -216,7 +197,6 @@
       { "value": "#954535", "label": "Каштановый" }
     ],
     "phoneCodeOptions": [
-      { "value": "0", "label": "N/A" },
       { "value": "+371", "label": "+371" },
       { "value": "+372", "label": "+372" },
       { "value": "+370", "label": "+370" }
@@ -283,6 +263,21 @@
     "datetime": "Дата и время",
     "uploadFile": "Загрузить файл",
     "currentStatus": "Текущий статус"
+  },
+  "sidebarLabels": {
+    "status": "Статус",
+    "category": "Категория",
+    "gender": "Пол",
+    "size": "Размер",
+    "identifierOrName": "Идентификатор или Имя",
+    "date": "Дата",
+    "distance": "Расстояние",
+    "pattern": "Узор",
+    "color": "Цвет"
+  },
+  "sidebarButtons": {
+    "applyFilters": "Применить фильтры",
+    "resetFilters": "Сбросить фильтры"
   },
   "tabTitles": {
     "messages": "СООБЩЕНИЯ",

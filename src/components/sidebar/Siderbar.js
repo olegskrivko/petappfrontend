@@ -492,7 +492,9 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
         {/* Filter by Initial Status */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box>
-            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Status</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>
+              {t('sidebarLabels.status')}
+            </InputLabel>
             {Array.isArray(statuses) &&
               statuses.map((status) => (
                 <Chip
@@ -510,7 +512,9 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
         {/* Filter by category */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box>
-            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Category</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>
+              {t('sidebarLabels.category')}
+            </InputLabel>
             {Array.isArray(categories) &&
               categories.map((category) => (
                 <Chip
@@ -528,7 +532,9 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
         {/* Filter by gender */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box>
-            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Gender</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>
+              {t('sidebarLabels.gender')}
+            </InputLabel>
             {Array.isArray(genders) &&
               genders.map((gender) => (
                 <Chip
@@ -546,7 +552,9 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
         {/* Filter by Size */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box>
-            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Size</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>
+              {t('sidebarLabels.size')}
+            </InputLabel>
             {Array.isArray(sizes) &&
               sizes.map((size) => (
                 <Chip
@@ -564,7 +572,9 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
         {/* Search by pet Identifier or Name */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box sx={{ width: '100%' }}>
-            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Identifier or Name</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>
+              {t('sidebarLabels.identifierOrName')}
+            </InputLabel>
             <TextField
               size="small"
               label=""
@@ -579,7 +589,9 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
 
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box sx={{ width: '100%' }}>
-            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Date</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>
+              {t('sidebarLabels.date')}
+            </InputLabel>
             <TextField
               label=""
               type="date"
@@ -628,7 +640,7 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box sx={{ width: '100%' }}>
             <InputLabel sx={{ fontWeight: '500', color: '#000' }}>
-              Distance {'<'} {distance && distance < 100 ? distance : '100'}km
+              {t('sidebarLabels.distance')} {'<'} {distance && distance < 100 ? distance : '100'}km
             </InputLabel>
             <Slider
               sx={{ height: '8px', color: '#ff6600' }}
@@ -690,7 +702,10 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
         {/* Filter by Pattern */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box>
-            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Pattern</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>
+              {' '}
+              {t('sidebarLabels.pattern')}
+            </InputLabel>
             {Array.isArray(patterns) &&
               patterns.map((pattern) => (
                 <Chip
@@ -708,7 +723,9 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
         {/* Filter by Color */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box>
-            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Color</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>
+              {t('sidebarLabels.color')}
+            </InputLabel>
             {Array.isArray(colors) &&
               colors.map((color) => (
                 <Chip
@@ -737,7 +754,7 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
       {/* Apply Filters Button */}
       <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
         <Button type="submit" variant="contained" sx={{ width: '100%' }} color="warning">
-          Apply Filters
+          {t('sidebarButtons.applyFilters')}
         </Button>
       </ListItem>
       <ListItem
@@ -753,7 +770,7 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
           sx={{ width: '100%' }}
           color="warning"
         >
-          Reset Filters
+          {t('sidebarButtons.resetFilters')}
         </Button>
       </ListItem>
     </form>

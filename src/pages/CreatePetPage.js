@@ -61,7 +61,6 @@ function CreatePetPage() {
     health: [],
     healthDetails: '',
     location: { lat: null, lng: null },
-    // mainColor: '',
     mainColor: { hex: '', label: '' },
     markingPattern: '1',
     markingColors: [],
@@ -162,23 +161,6 @@ function CreatePetPage() {
 
     fetchUpdatedStatusOptions();
   }, [formState.initialStatus, t]);
-
-  // useEffect(() => {
-  //   const fetchColorOptions = () => {
-  //     const options = t(`selectOptions.colorOptions`, { returnObjects: true }) || [];
-
-  //     //Ensure options is an array before setting state
-  //     if (Array.isArray(options)) {
-  //       console.log('Fetched xxx breed options:', options);
-  //       setColorsListOptions(options);
-  //     } else {
-  //       console.error('Invalid breed YYY options structure:', options);
-  //       setColorsListOptions([]);
-  //     }
-  //   };
-
-  //   fetchColorOptions();
-  // }, [formState.markingPattern, t]);
 
   // const fetchTranslations = async () => {
   //   try {
@@ -322,75 +304,6 @@ function CreatePetPage() {
     };
   }, [imagePreview]);
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     // await axios.post(`${BASE_URL}/pets`, { ...formState, author: user.id });
-  //     const token = localStorage.getItem('token'); // assuming the token is stored in local storage
-
-  //     // Create a FormData object to send the form data and the file
-  //     const formData = new FormData();
-  //     Object.keys(formState).forEach((key) => {
-  //       if (key === 'image' && formState[key]) {
-  //         formData.append(key, formState[key]); // Append the image file
-  //       } else if (key === 'location') {
-  //         formData.append('location[lat]', formState.location.lat);
-  //         formData.append('location[lng]', formState.location.lng);
-  //       } else if (Array.isArray(formState[key])) {
-  //         formState[key].forEach((item, index) => {
-  //           if (typeof item === 'object' && item !== null) {
-  //             Object.keys(item).forEach((nestedKey) => {
-  //               formData.append(`${key}[${index}][${nestedKey}]`, item[nestedKey]);
-  //             });
-  //           } else {
-  //             formData.append(`${key}[]`, item);
-  //           }
-  //         });
-  //       } else {
-  //         formData.append(key, formState[key]);
-  //       }
-  //     });
-
-  //     console.log('FormData:', formData); // Log FormData before making the request
-
-  //     const response = await axios.post(
-  //       `${BASE_URL}/pets`,
-  //       { ...formState, author: user.id },
-  //       {
-  //         headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${token}` },
-  //       },
-  //     );
-  //     console.log('Pet details sent successfully to the backend.');
-  //   } catch (error) {
-  //     //   console.log("Error response from the backend:", error.response); // Add this log statement
-  //     //   if (error.response && error.response.data && error.response.data.errors) {
-  //     //     // If backend returns errors, update formErrors state with received errors
-  //     //     setFormErrors(error.response.data.errors);
-  //     //   } else {
-  //     //     console.error("Failed to send pet details to the backend:", error);
-  //     //   }
-  //     // }
-  //     console.log('Error response from the backend:', error.response);
-
-  //     if (
-  //       error.response &&
-  //       error.response.data &&
-  //       error.response.data.errors &&
-  //       Array.isArray(error.response.data.errors)
-  //     ) {
-  //       // If backend returns errors, update formErrors state with received errors
-  //       const receivedErrors = error.response.data.errors;
-  //       const newFormErrors = {};
-  //       receivedErrors.forEach((error) => {
-  //         newFormErrors[error.path] = error.msg;
-  //       });
-  //       setFormErrors(newFormErrors);
-  //       console.log('Form errors:', formErrors); // Add this log statement
-  //     } else {
-  //       console.error('Failed to send pet details to the backend:', error);
-  //     }
-  //   }
-  // };
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -463,100 +376,29 @@ function CreatePetPage() {
     }
   };
 
+  // Handle removal of the selected option
+  //  const handleSizeRemove = () => {
+  //   setFormState({
+  //     ...formState,
+  //     size: '', // Reset the size value
+  //   });
+  // };
+
+  const handleClearSelect = (field) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      [field]: '', // Reset the specified field
+    }));
+  };
+
+  // const handleClearSelect = () => {
+  //   handleChange('size', ''); // Clear the select value
+  // };
+
   // Function to get error message for a specific field
   const getErrorMessage = (field) => {
     return formErrors[field] ? formErrors[field].msg : '';
   };
-
-  // const getUpdatedStatusOptions = () => {
-  //   const updatedStatusOptionsMap = {
-  //     missing: [
-  //       { value: '', label: 'None' },
-  //       { value: 'activelySearching', label: 'Actively Searching' },
-  //       { value: 'stillMissing', label: 'Still Missing' },
-  //       { value: 'reunited', label: 'Reunited' },
-  //       { value: 'deceased', label: 'Deceased' },
-  //       { value: 'other', label: 'Other' },
-  //     ],
-  //     found: [
-  //       { value: '', label: 'None' },
-  //       { value: 'awaitingOwner', label: 'Awaiting Owner' },
-  //       { value: 'adopted', label: 'Adopted' },
-  //       { value: 'takenToShelter', label: 'Taken to Shelter' },
-  //       {
-  //         value: 'takenToVeterinaryClinic',
-  //         label: 'Taken to Veterinary Clinic',
-  //       },
-  //       { value: 'deceased', label: 'Deceased' },
-  //       { value: 'other', label: 'Other' },
-  //     ],
-  //     seen: [
-  //       { value: '', label: 'None' },
-  //       { value: 'reportedToAuthorities', label: 'Reported to Authorities' },
-  //       { value: 'freeRoaming', label: 'Free Roaming' },
-  //       { value: 'deceased', label: 'Deceased' },
-  //       { value: 'other', label: 'Other' },
-  //     ],
-  //   };
-  //   return updatedStatusOptionsMap[formState.initialStatus] || [];
-  // };
-
-  // const getBreedOptions = () => {
-  //   const breedOptionsMap = {
-  //     dog: [
-  //       { value: '', label: 'None' },
-  //       { value: 'labradorRetriever', label: 'Labrador Retriever' },
-  //       { value: 'germanShepherd', label: 'German Shepherd' },
-  //       { value: 'goldenRetriever', label: 'Golden Retriever' },
-  //       { value: 'bulldog', label: 'Bulldog' },
-  //       { value: 'beagle', label: 'Beagle' },
-  //       { value: 'poodle', label: 'Poodle' },
-  //       { value: 'rottweiler', label: 'Rottweiler' },
-  //       { value: 'yorkshireTerrier', label: 'Yorkshire Terrier' },
-  //       { value: 'boxer', label: 'Boxer' },
-  //       { value: 'dachshund', label: 'Dachshund' },
-  //     ],
-  //     cat: [
-  //       { value: '', label: 'None' },
-  //       { value: 'Persian', label: 'Persian' },
-  //       { value: 'maineCoon', label: 'Maine Coon' },
-  //       { value: 'ragdoll', label: 'Ragdoll' },
-  //       { value: 'siamese', label: 'Siamese' },
-  //       { value: 'scottishFold', label: 'Scottish Fold' },
-  //       { value: 'sphynx', label: 'Sphynx' },
-  //       { value: 'bengal', label: 'Bengal' },
-  //       { value: 'birman', label: 'Birman' },
-  //       { value: 'americanShorthair', label: 'American Shorthair' },
-  //     ],
-  //     cow: [
-  //       { value: '', label: 'None' },
-  //       { value: 'holstein', label: 'Holstein' },
-  //       { value: 'jersey', label: 'Jersey' },
-  //       { value: 'guernsey', label: 'Guernsey' },
-  //       { value: 'brownSwiss', label: 'Brown Swiss' },
-  //       { value: 'ayrshire', label: 'Ayrshire' },
-  //       { value: 'hereford', label: 'Hereford' },
-  //       { value: 'angus', label: 'Angus' },
-  //       { value: 'brahman', label: 'Brahman' },
-  //       { value: 'simmental', label: 'Simmental' },
-  //       { value: 'charolais', label: 'Charolais' },
-  //     ],
-  //     horse: [
-  //       { value: '', label: 'None' },
-  //       { value: 'arabian', label: 'Arabian' },
-  //       { value: 'thoroughbred', label: 'Thoroughbred' },
-  //       { value: 'quarterHorse', label: 'Quarter Horse' },
-  //       { value: 'clydesdale', label: 'Clydesdale' },
-  //       { value: 'friesian', label: 'Friesian' },
-  //       { value: 'appaloosa', label: 'Appaloosa' },
-  //       { value: 'shetlandPony', label: 'Shetland Pony' },
-  //       { value: 'americanPaintHorse', label: 'American Paint Horse' },
-  //       { value: 'morgan', label: 'Morgan' },
-  //       { value: 'tennesseeWalkingHorse', label: 'Tennessee Walking Horse' },
-  //     ],
-  //   };
-  //   return breedOptionsMap[formState.category] || [];
-  // };
 
   return (
     <React.Fragment>
@@ -696,6 +538,27 @@ function CreatePetPage() {
                       </MenuItem>
                     ))}
                   </Select>
+                  {formState.size && (
+                    <IconButton
+                      size="small"
+                      onClick={() => handleClearSelect('size')} // Pass the field name here
+                      sx={{
+                        position: 'absolute',
+                        right: 8, // Adjust as needed
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        zIndex: 1, // Ensure it is on top of the select
+                        backgroundColor: '#f5f5f5', // Light gray background
+                        '&:hover': {
+                          backgroundColor: '#e0e0e0', // Slightly darker on hover
+                        },
+                        borderRadius: '50%', // Round button
+                        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)', // Subtle shadow
+                      }}
+                    >
+                      <CloseIcon fontSize="small" sx={{ color: '#616161' }} />
+                    </IconButton>
+                  )}
                 </FormControl>
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
@@ -717,6 +580,27 @@ function CreatePetPage() {
                       </MenuItem>
                     ))}
                   </Select>
+                  {formState.gender && (
+                    <IconButton
+                      size="small"
+                      onClick={() => handleClearSelect('gender')} // Pass the field name here
+                      sx={{
+                        position: 'absolute',
+                        right: 8, // Adjust as needed
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        zIndex: 1, // Ensure it is on top of the select
+                        backgroundColor: '#f5f5f5', // Light gray background
+                        '&:hover': {
+                          backgroundColor: '#e0e0e0', // Slightly darker on hover
+                        },
+                        borderRadius: '50%', // Round button
+                        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)', // Subtle shadow
+                      }}
+                    >
+                      <CloseIcon fontSize="small" sx={{ color: '#616161' }} />
+                    </IconButton>
+                  )}
                 </FormControl>
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
@@ -738,6 +622,27 @@ function CreatePetPage() {
                       </MenuItem>
                     ))}
                   </Select>
+                  {formState.behavior && (
+                    <IconButton
+                      size="small"
+                      onClick={() => handleClearSelect('behavior')} // Pass the field name here
+                      sx={{
+                        position: 'absolute',
+                        right: 8, // Adjust as needed
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        zIndex: 1, // Ensure it is on top of the select
+                        backgroundColor: '#f5f5f5', // Light gray background
+                        '&:hover': {
+                          backgroundColor: '#e0e0e0', // Slightly darker on hover
+                        },
+                        borderRadius: '50%', // Round button
+                        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)', // Subtle shadow
+                      }}
+                    >
+                      <CloseIcon fontSize="small" sx={{ color: '#616161' }} />
+                    </IconButton>
+                  )}
                 </FormControl>
               </Grid>
 
@@ -765,6 +670,27 @@ function CreatePetPage() {
                       </MenuItem>
                     ))}
                   </Select>
+                  {formState.age && (
+                    <IconButton
+                      size="small"
+                      onClick={() => handleClearSelect('age')} // Pass the field name here
+                      sx={{
+                        position: 'absolute',
+                        right: 8, // Adjust as needed
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        zIndex: 1, // Ensure it is on top of the select
+                        backgroundColor: '#f5f5f5', // Light gray background
+                        '&:hover': {
+                          backgroundColor: '#e0e0e0', // Slightly darker on hover
+                        },
+                        borderRadius: '50%', // Round button
+                        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)', // Subtle shadow
+                      }}
+                    >
+                      <CloseIcon fontSize="small" sx={{ color: '#616161' }} />
+                    </IconButton>
+                  )}
                 </FormControl>
               </Grid>
 
@@ -797,6 +723,27 @@ function CreatePetPage() {
                       </MenuItem>
                     ))}
                   </Select>
+                  {formState.breed && (
+                    <IconButton
+                      size="small"
+                      onClick={() => handleClearSelect('breed')} // Pass the field name here
+                      sx={{
+                        position: 'absolute',
+                        right: 8, // Adjust as needed
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        zIndex: 1, // Ensure it is on top of the select
+                        backgroundColor: '#f5f5f5', // Light gray background
+                        '&:hover': {
+                          backgroundColor: '#e0e0e0', // Slightly darker on hover
+                        },
+                        borderRadius: '50%', // Round button
+                        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)', // Subtle shadow
+                      }}
+                    >
+                      <CloseIcon fontSize="small" sx={{ color: '#616161' }} />
+                    </IconButton>
+                  )}
                 </FormControl>
               </Grid>
               {/* {translations.formTitles && translations.formTitles.petDetails} */}
@@ -906,6 +853,7 @@ function CreatePetPage() {
                       }}
                     />
                   ) : null}
+
                   {/* <Typography variant="body1">
                     {formState.mainColor.label
                       ? formState.mainColor.label // Use the stored label directly
@@ -1308,6 +1256,27 @@ function CreatePetPage() {
                       </MenuItem>
                     ))}
                   </Select>
+                  {formState.phoneCode && (
+                    <IconButton
+                      size="small"
+                      onClick={() => handleClearSelect('phoneCode')} // Pass the field name here
+                      sx={{
+                        position: 'absolute',
+                        right: 8, // Adjust as needed
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        zIndex: 1, // Ensure it is on top of the select
+                        backgroundColor: '#f5f5f5', // Light gray background
+                        '&:hover': {
+                          backgroundColor: '#e0e0e0', // Slightly darker on hover
+                        },
+                        borderRadius: '50%', // Round button
+                        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)', // Subtle shadow
+                      }}
+                    >
+                      <CloseIcon fontSize="small" sx={{ color: '#616161' }} />
+                    </IconButton>
+                  )}
                 </FormControl>
               </Grid>
               <Grid item xs={9} sm={9} md={4} lg={4}>
