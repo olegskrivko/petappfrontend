@@ -108,7 +108,7 @@ const ArticlesListPage = () => {
   }
 
   return (
-    <Container style={{ marginTop: '20px' }}>
+    <>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={12} md={12} lg={12}>
           <Typography
@@ -121,7 +121,7 @@ const ArticlesListPage = () => {
               fontWeight: getTypography('h1').fontWeight,
             }}
           >
-            Pet Care Tips and Advice
+            Pet Care Tips
           </Typography>
         </Grid>
       </Grid>
@@ -168,7 +168,7 @@ const ArticlesListPage = () => {
           ))
         )}
       </Grid>
-    </Container>
+    </>
   );
 };
 
