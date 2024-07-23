@@ -757,7 +757,7 @@ function ProfilePostsPage() {
   );
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4 }}>
+    <>
       <Typography variant="h4" gutterBottom align="center">
         Pet Posts
       </Typography>
@@ -767,7 +767,7 @@ function ProfilePostsPage() {
       </Tabs>
       {tabIndex === 0 && renderOwnedPets(ownedPets)}
       {tabIndex === 1 && renderFollowedPets(favoritedPets)}
-    </Container>
+    </>
   );
 }
 
