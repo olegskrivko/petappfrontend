@@ -278,14 +278,15 @@ function IconLabelTabs({
                           <Avatar
                             style={{
                               background: comment.author?.color,
-                              width: '64px',
-                              height: '64px',
+                              // width: '64px',
+                              // height: '64px',
                             }}
                             alt={comment.author?.avatar}
                             src={comment.author?.avatar + '.svg'}
                           ></Avatar>
+
                           <Box ml={2}>
-                            <Typography variant="body1" style={{ fontWeight: 'bold' }}>
+                            <Typography variant="body2" style={{ fontWeight: 'bold' }}>
                               {comment.author?.username}
                             </Typography>
                             <Box display="flex" alignItems="center">
