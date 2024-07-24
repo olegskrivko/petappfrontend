@@ -447,6 +447,12 @@ const customIcon = new L.Icon({
   iconSize: new L.Point(40, 47),
 });
 
+// Icon for the user's location
+const userLocationIcon = new L.Icon({
+  iconUrl: require('./userlocation.svg').default, // Replace with your icon path
+  iconSize: new L.Point(44, 44),
+});
+
 // Function to create custom cluster icons
 const createClusterCustomIcon = function (cluster) {
   return new L.DivIcon({
@@ -470,6 +476,20 @@ const MapUpdater = ({ centerCoords }) => {
 };
 
 function LeafletClusterMap({ pets, centerCoords }) {
+  const [userLocation, setUserLocation] = useState(null);
+
+  useEffect(() => {
+    // Get the user's current location
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setUserLocation([latitude, longitude]);
+      },
+      (error) => {
+        console.error('Error getting location:', error);
+      },
+    );
+  }, []);
   return (
     <div>
       <MapContainer
@@ -515,6 +535,24 @@ function LeafletClusterMap({ pets, centerCoords }) {
             </Marker>
           ))}
         </MarkerClusterGroup>
+        {userLocation && (
+          <Marker position={userLocation} icon={userLocationIcon}>
+            <Popup offset={[0, 5]}>
+              <div
+                style={{
+                  textAlign: 'center',
+                  backgroundColor: 'slategray',
+                  padding: '0.4rem 0.6rem',
+                  borderRadius: '1rem',
+                  color: 'white',
+                  fontWeight: '500',
+                }}
+              >
+                Your current location
+              </div>
+            </Popup>
+          </Marker>
+        )}
       </MapContainer>
     </div>
   );

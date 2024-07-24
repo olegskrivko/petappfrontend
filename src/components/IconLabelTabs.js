@@ -45,6 +45,9 @@ import {
   Print as PrintIcon,
 } from '@mui/icons-material';
 
+import CloseIcon from '@mui/icons-material/Close'; // Import the Close icon
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import CakeIcon from '@mui/icons-material/Cake';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
@@ -165,30 +168,32 @@ function IconLabelTabs({
 
   const [open, setOpen] = useState(false); // State for controlling the image modal
   const [selectedImage, setSelectedImage] = useState(null); // State to track selected image for modal
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const colorNameToHex = (colorName) => {
-    const colors = {
-      Verdigris: '#43BFC1',
-      Coral: '#FF7F50',
-      Mango: '#F5A300',
-      Orchid: '#DA70D6',
-      Salmon: '#FA8072',
-      Thistle: '#D8BFD8',
-      Lavender: '#E6E6FA',
-      Puce: '#CC8899',
-      Pearl: '#F0EAD6',
-      Brass: '#B5A642',
-      Pistachio: '#93C572',
-      Peridot: '#E6E26A',
-      Alabaster: '#FAFAFA',
-      Pink: '#FFC0CB',
-      Eucalyptus: '#4A6A6A',
-      Pewter: '#8A8D8F',
-    };
-    return colors[colorName] || '#FFFFFF'; // Default to white if color not found
-  };
+  // const colorNameToHex = (colorName) => {
+  //   const colors = {
+  //     Verdigris: '#43BFC1',
+  //     Coral: '#FF7F50',
+  //     Mango: '#F5A300',
+  //     Orchid: '#DA70D6',
+  //     Salmon: '#FA8072',
+  //     Thistle: '#D8BFD8',
+  //     Lavender: '#E6E6FA',
+  //     Puce: '#CC8899',
+  //     Pearl: '#F0EAD6',
+  //     Brass: '#B5A642',
+  //     Pistachio: '#93C572',
+  //     Peridot: '#E6E26A',
+  //     Alabaster: '#FAFAFA',
+  //     Pink: '#FFC0CB',
+  //     Eucalyptus: '#4A6A6A',
+  //     Pewter: '#8A8D8F',
+  //   };
+  //   return colors[colorName] || '#FFFFFF'; // Default to white if color not found
+  // };
 
-  const color = colorNameToHex(user.color);
+  // const color = colorNameToHex(user.color);
 
   const handleOpen = (image) => {
     setSelectedImage(image);
@@ -315,17 +320,34 @@ function IconLabelTabs({
                       {/* Right section (image and buttons) */}
                       <Grid item xs={12} md={4}>
                         <Box position="relative">
-                          <CardMedia
-                            component="img"
-                            style={{
-                              borderRadius: '8px',
-                              cursor: 'pointer',
-                              maxWidth: '100%',
-                              height: 'auto',
-                            }}
-                            image={comment.image || '/default_pet_image.jpg'}
-                            onClick={() => handleOpen(comment.image || '/default_pet_image.jpg')} // Open modal with clicked image
-                          />
+                          {comment.image ? (
+                            <CardMedia
+                              component="img"
+                              style={{
+                                borderRadius: '8px',
+                                cursor: 'pointer',
+                                maxWidth: '100%',
+                                height: 'auto',
+                              }}
+                              image={comment.image}
+                              onClick={() => handleOpen(comment.image)}
+                            />
+                          ) : (
+                            <Box
+                              sx={{
+                                borderRadius: '8px',
+                                backgroundColor: '#f0f0f0',
+                                height: '100px',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                              }}
+                            >
+                              <Typography variant="body2" color="textSecondary">
+                                No image provided
+                              </Typography>
+                            </Box>
+                          )}
                           {/* Show image modal */}
                           <Modal
                             open={open}
@@ -340,19 +362,62 @@ function IconLabelTabs({
                               <Box
                                 sx={{
                                   position: 'absolute',
-                                  top: '50%',
+                                  top: isSmallScreen ? '0' : '50%',
                                   left: '50%',
-                                  transform: 'translate(-50%, -50%)',
-                                  maxWidth: '90vw',
-                                  maxHeight: '90vh',
+                                  transform: isSmallScreen
+                                    ? 'translate(-50%, 0)'
+                                    : 'translate(-50%, -50%)',
+                                  width: isSmallScreen ? '100%' : 'auto',
+                                  height: isSmallScreen ? '100%' : 'auto',
+                                  maxWidth: isSmallScreen ? '100%' : '90vw',
+                                  maxHeight: isSmallScreen ? '100%' : '90vh',
                                   outline: 'none',
+                                  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+
+                                  borderRadius: isSmallScreen ? '0' : '8px',
+                                  display: 'flex',
+                                  justifyContent: 'center',
+                                  alignItems: 'center',
                                 }}
                               >
-                                <img
-                                  src={selectedImage || '/default_pet_image.jpg'}
-                                  alt="Modal"
-                                  style={{ borderRadius: '8px', width: '100%', height: 'auto' }}
-                                />
+                                {/* Close button for small screens */}
+                                {isSmallScreen && (
+                                  <IconButton
+                                    aria-label="close"
+                                    onClick={handleClose}
+                                    sx={{
+                                      position: 'absolute',
+                                      top: '10px',
+                                      right: '10px',
+                                      color: '#fff',
+                                    }}
+                                  >
+                                    <CloseIcon />
+                                  </IconButton>
+                                )}
+                                {selectedImage ? (
+                                  <img
+                                    src={selectedImage}
+                                    alt="Modal"
+                                    style={{
+                                      borderRadius: isSmallScreen ? '0' : '8px',
+                                      width: '100%',
+                                      height: 'auto',
+                                    }}
+                                  />
+                                ) : (
+                                  <Box
+                                    sx={{
+                                      display: 'flex',
+                                      justifyContent: 'center',
+                                      alignItems: 'center',
+                                      height: '100%',
+                                      color: '#888',
+                                    }}
+                                  >
+                                    <Typography variant="body2">No image to display</Typography>
+                                  </Box>
+                                )}
                               </Box>
                             </Fade>
                           </Modal>
@@ -362,17 +427,7 @@ function IconLabelTabs({
                       {/* Buttons section */}
                       <Grid item xs={12}>
                         <Box display="flex" justifyContent="space-between">
-                          <Tooltip title="Show on map">
-                            {/* <Button
-                              variant="contained"
-                              color="primary"
-                              endIcon={<LocationOnIcon />}
-                              size="small"
-                              onClick={handleZoomMap}
-                              style={{ background: '#555' }}
-                            >
-                              Show on map
-                            </Button> */}
+                          {/* <Tooltip title="Show on map">
                             <IconButton
                               variant="contained"
                               onClick={() => handleZoom(comment.location.coordinates)}
@@ -380,7 +435,31 @@ function IconLabelTabs({
                             >
                               <LocationOnIcon />
                             </IconButton>
+                          </Tooltip> */}
+                          <Tooltip title="Show on map">
+                            <IconButton
+                              variant="contained"
+                              onClick={() => handleZoom(comment.location.coordinates)}
+                              style={{
+                                backgroundColor:
+                                  !comment.location || !comment.location.coordinates
+                                    ? '#ccc'
+                                    : '#555',
+                                color:
+                                  !comment.location || !comment.location.coordinates
+                                    ? '#888'
+                                    : '#fff',
+                              }}
+                              disabled={!comment.location || !comment.location.coordinates}
+                            >
+                              {comment.location && comment.location.coordinates ? (
+                                <LocationOnIcon />
+                              ) : (
+                                <LocationOffIcon />
+                              )}
+                            </IconButton>
                           </Tooltip>
+
                           {user && user.id === comment.author?._id && (
                             <Tooltip title="Delete message">
                               {/* <Button
@@ -429,7 +508,7 @@ function IconLabelTabs({
             </Grid>
           )}
         </Grid>
-        <Grid
+        {/* <Grid
           item
           xs={12}
           sm={12}
@@ -438,7 +517,7 @@ function IconLabelTabs({
           style={{ paddingLeft: '0', textAlign: 'center' }}
         >
           <Button>Show More</Button>
-        </Grid>
+        </Grid> */}
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Grid container>

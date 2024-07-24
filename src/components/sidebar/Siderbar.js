@@ -15,10 +15,6 @@ import {
   Grid,
   Checkbox,
   FormControlLabel,
-  Typography,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
 } from '@mui/material';
 import { BASE_URL } from '../../middleware/config';
 // MUI
@@ -29,7 +25,10 @@ import { AuthContext } from '../../middleware/AuthContext';
 import { LanguageContext } from '../../middleware/LanguageContext';
 import { useTranslation } from 'react-i18next';
 import { LocationOn } from '@mui/icons-material';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LocationOffIcon from '@mui/icons-material/LocationOff';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
+
 import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
 const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
   const { t } = useTranslation();
@@ -46,11 +45,11 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
   const [sizes, setSizes] = useState([]);
   const [identifier, setIdentifier] = useState('');
   const [date, setDate] = useState('');
-  const [distance, setDistance] = useState(5);
+  const [distance, setDistance] = useState(25);
   const [colors, setColors] = useState([]);
   const [patterns, setPatterns] = useState([]);
   const [userCurrentLocation, setUserCurrentLocation] = useState('');
-
+  const [isLocationEnabled, setIsLocationEnabled] = useState(true); // State for location toggle
   const initialCategories = (queryParams.getAll('categories') || []).flatMap((category) =>
     category.split(','),
   );
@@ -84,24 +83,6 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
   const [selectedColors, setSelectedColors] = useState(initialColors);
   const [selectedPatterns, setSelectedPatterns] = useState(initialPatterns);
 
-  //const [selectedIndentifer, setSelectedIndentifer] = useState(initialIdentifier);
-
-  // useEffect(() => {
-  //   // Fetch tastes when the component mounts
-  //   const fetchCategories = async () => {
-  //     try {
-  //       const response = await fetch(`${BASE_URL}/categories`);
-  //       const data = await response.json();
-  //       setCategories(data); // Assuming the data structure is an array of tastes
-  //       //console.log("ddatadata", data);
-  //     } catch (error) {
-  //       console.error('Error fetching tastes:', error);
-  //     }
-  //   };
-
-  //   fetchCategories();
-  // }, [location.search]); // Empty dependency array ensures the effect runs only once when the component mounts
-
   // new down
   useEffect(() => {
     const fetchOptions = async () => {
@@ -124,112 +105,10 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
   }, [t, selectedLanguage]);
   // new up
 
-  // useEffect(() => {
-  //   const fetchCategoryOptions = () => {
-  //     const category = t(`selectOptions.categoryOptions`, { returnObjects: true }) || [];
-
-  //     //Ensure options is an array before setting state
-  //     if (Array.isArray(category)) {
-  //       console.log('Fetched xxx category options:', category);
-  //       setCategories(category);
-  //     } else {
-  //       console.error('Invalid breed YYY options structure:', category);
-  //       setCategories([]);
-  //     }
-  //   };
-
-  //   fetchCategoryOptions();
-  // }, [categories, t]);
-
-  // useEffect(() => {
-  //   const fetchGenderOptions = () => {
-  //     const gender = t(`selectOptions.genderOptions`, { returnObjects: true }) || [];
-
-  //     //Ensure options is an array before setting state
-  //     if (Array.isArray(gender)) {
-  //       console.log('Fetched xxx gender options:', gender);
-  //       setGenders(gender);
-  //     } else {
-  //       console.error('Invalid gender YYY options structure:', gender);
-  //       setGenders([]);
-  //     }
-  //   };
-
-  //   fetchGenderOptions();
-  // }, [genders, t]);
-
-  // useEffect(() => {
-  //   const fetchInitialStatusOptions = () => {
-  //     const initialStatus = t(`selectOptions.initialStatusOptions`, { returnObjects: true }) || [];
-
-  //     //Ensure options is an array before setting state
-  //     if (Array.isArray(initialStatus)) {
-  //       console.log('Fetched xxx gender options:', initialStatus);
-  //       setStatuses(initialStatus);
-  //     } else {
-  //       console.error('Invalid gender YYY options structure:', initialStatus);
-  //       setStatuses([]);
-  //     }
-  //   };
-
-  //   fetchInitialStatusOptions();
-  // }, [statuses, t]);
-
-  // useEffect(() => {
-  //   const fetchSizesOptions = () => {
-  //     const size = t(`selectOptions.sizeOptions`, { returnObjects: true }) || [];
-
-  //     //Ensure options is an array before setting state
-  //     if (Array.isArray(size)) {
-  //       console.log('Fetched xxx size options:', size);
-  //       setSizes(size);
-  //     } else {
-  //       console.error('Invalid size YYY options structure:', size);
-  //       setSizes([]);
-  //     }
-  //   };
-
-  //   fetchSizesOptions();
-  // }, [sizes, t]);
-
-  // useEffect(() => {
-  //   const fetchColorOptions = () => {
-  //     const color = t(`selectOptions.colorOptions`, { returnObjects: true }) || [];
-
-  //     //Ensure options is an array before setting state
-  //     if (Array.isArray(color)) {
-  //       console.log('Fetched xxx color options:', color);
-  //       setColors(color);
-  //     } else {
-  //       console.error('Invalid color YYY options structure:', color);
-  //       setColors([]);
-  //     }
-  //   };
-
-  //   fetchColorOptions();
-  // }, [colors, t]);
-
-  // useEffect(() => {
-  //   const fetchPatternsOptions = () => {
-  //     const pattern = t(`selectOptions.markingOptions`, { returnObjects: true }) || [];
-
-  //     //Ensure options is an array before setting state
-  //     if (Array.isArray(pattern)) {
-  //       console.log('Fetched xxx size options:', pattern);
-  //       setPatterns(pattern);
-  //     } else {
-  //       console.error('Invalid size YYY options structure:', pattern);
-  //       setPatterns([]);
-  //     }
-  //   };
-
-  //   fetchPatternsOptions();
-  // }, [patterns, t]);
-
   useEffect(() => {
     setIdentifier(queryParams.get('identifier') || '');
     setDate(queryParams.get('date') || '');
-    setDistance(parseInt(queryParams.get('distance')) || 5);
+    setDistance(parseInt(queryParams.get('distance')) || 25);
 
     // Check if userLocation is defined and update userCurrentLocation if necessary
     // if (userLocation && userLocation.latitude && userLocation.longitude) {
@@ -246,19 +125,6 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
       setUserCurrentLocation(`${userLocation.latitude},${userLocation.longitude}`);
     }
   }, [userLocation]);
-
-  // useEffect(() => {
-
-  //   setCategories(queryParams.getAll('categories') || []);
-  //   setGenders(queryParams.getAll('genders') || []);
-  //   setStatuses(queryParams.getAll('statuses') || []);
-  //   setSizes(queryParams.getAll('sizes') || []);
-  //   setIdentifier(queryParams.get('identifier') || '');
-  //   setDate(queryParams.get('date') || '');
-  //   setDistance(parseInt(queryParams.get('distance')) || 5);
-  //   setColors(queryParams.getAll('colors') || []);
-  //   setPatterns(queryParams.getAll('patterns') || []);
-  // }, [location.search]);
 
   const handleApplyFilters = (e) => {
     e.preventDefault();
@@ -335,11 +201,18 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
     }
 
     // Append userLocation as latitude,longitude if available
-    if (userCurrentLocation && userCurrentLocation.latitude && userCurrentLocation.longitude) {
-      const locationString = `${userCurrentLocation.latitude},${userCurrentLocation.longitude}`;
-      console.log('User Location:', locationString);
-      newQueryParams.append('userCurrentLocation', locationString);
+    // if (userCurrentLocation && userCurrentLocation.latitude && userCurrentLocation.longitude) {
+    //   const locationString = `${userCurrentLocation.latitude},${userCurrentLocation.longitude}`;
+    //   console.log('User Location:', locationString);
+    //   newQueryParams.append('userCurrentLocation', locationString);
+    // }
+    // Append userLocation to query parameters
+    if (userCurrentLocation) {
+      newQueryParams.set('userCurrentLocation', userCurrentLocation);
+    } else {
+      newQueryParams.delete('userCurrentLocation');
     }
+
     // Update the URL with the new query parameters
     navigate(`${location.pathname}?${newQueryParams}`);
 
@@ -367,11 +240,13 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
     setSelectedSizes([]);
     setIdentifier('');
     setDate('');
-    setDistance(5); // Reset distance to initial value
+    setDistance(25); // Reset distance to initial value
     setColors([]);
     setPatterns([]);
-    setUserCurrentLocation(''); // Reset userCurrentLocation to null or default
+    setUserCurrentLocation('');
+    setIsLocationEnabled(false); // Reset userCurrentLocation to null or default
     // Reset the URL to remove query parameters
+    updateURLParameters('');
     navigate(location.pathname);
   };
 
@@ -479,6 +354,93 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
     setDistance(newValue);
   };
 
+  // const handleLocationToggle = () => {
+  //   setIsLocationEnabled((prev) => !prev);
+  //   if (!isLocationEnabled) {
+  //     setUserCurrentLocation('');
+  //   }
+  // };
+
+  useEffect(() => {
+    // Extract coordinates from URL search params
+    const coords = queryParams.get('userCurrentLocation');
+    if (coords) {
+      setUserCurrentLocation(coords);
+      setIsLocationEnabled(true);
+    } else {
+      setUserCurrentLocation('');
+      setIsLocationEnabled(false);
+    }
+  }, [location.search]);
+
+  // const handleLocationToggle = () => {
+  //   if (navigator.geolocation) {
+  //     if (isLocationEnabled) {
+  //       // Disable location tracking
+  //       console.log('Disabling location tracking');
+  //       setIsLocationEnabled(false);
+  //       setUserCurrentLocation('');
+  //       // Note: Geolocation API doesn’t have a direct way to stop tracking
+  //       // It’s a one-time request, so there’s no ongoing tracking to stop
+  //     } else {
+  //       // Enable location tracking
+  //       console.log('Enabling location tracking');
+  //       navigator.geolocation.getCurrentPosition(
+  //         (position) => {
+  //           const { latitude, longitude } = position.coords;
+  //           setUserCurrentLocation(`${latitude},${longitude}`);
+  //           setIsLocationEnabled(true);
+  //         },
+  //         (error) => {
+  //           console.error('Error getting location: ', error);
+  //           // Handle errors or permissions denied gracefully
+  //           setIsLocationEnabled(false);
+  //         },
+  //       );
+  //     }
+  //   } else {
+  //     console.error('Geolocation is not supported by this browser.');
+  //     setIsLocationEnabled(false);
+  //   }
+  // };
+  const handleLocationToggle = () => {
+    if (isLocationEnabled) {
+      // Disable location tracking
+      setIsLocationEnabled(false);
+      setUserCurrentLocation('');
+      updateURLParameters('');
+    } else {
+      // Enable location tracking
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            const coords = `${latitude},${longitude}`;
+            setUserCurrentLocation(coords);
+            setIsLocationEnabled(true);
+            updateURLParameters(coords);
+          },
+          (error) => {
+            console.error('Error getting location: ', error);
+            setIsLocationEnabled(false);
+          },
+        );
+      } else {
+        console.error('Geolocation is not supported by this browser.');
+        setIsLocationEnabled(false);
+      }
+    }
+  };
+
+  const updateURLParameters = (coords) => {
+    const newQueryParams = new URLSearchParams(location.search);
+    if (coords) {
+      newQueryParams.set('userCurrentLocation', coords);
+    } else {
+      newQueryParams.delete('userCurrentLocation');
+    }
+    navigate(`${location.pathname}?${newQueryParams}`);
+  };
   const [breed, setBreed] = useState('');
 
   const handleBreedChange = (event) => {
@@ -605,48 +567,41 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
           </Box>
         </ListItem>
 
-        {/* <ListItem
-            sx={{ padding: "0 !important", paddingTop: "0.8rem !important" }}
-          >
-            <Box>
-              <InputLabel sx={{ fontWeight: "500", color: "#000" }}>
-                Country
-              </InputLabel>
-              <Chip sx={{ marginRight: "5px" }} size="small" label="Latvia" />
-              <Chip
-                sx={{ marginRight: "5px" }}
-                size="small"
-                label="Lithuania"
+        <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
+          {/* <FormControlLabel
+            control={
+              <Checkbox
+                checked={isLocationEnabled}
+                onChange={handleLocationToggle}
+                icon={<LocationOffIcon />}
+                checkedIcon={<LocationOnIcon />}
+                color="warning"
               />
-              <Chip sx={{ marginRight: "5px" }} size="small" label="Estonia" />
-            </Box>
-          </ListItem> */}
-
-        {/* <Box sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
-            <InputLabel>Minimum Score {distance}</InputLabel>
-            <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Distance {}</InputLabel>
-            <Slider
-              sx={{ height: '8px', color: '#ff6600' }}
-              value={2}
-              valueLabelDisplay="auto"
-              step={1}
-              marks={[{ value: 0, label: 0 }, { value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5, label: 5 }]}
-              min={0}
-              max={5}
-            />
-          </Box> */}
-
+            }
+            label={isLocationEnabled ? 'Use Current Location On' : 'Use Current Location Off'}
+          /> */}
+          <Chip
+            sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+            onClick={handleLocationToggle}
+            icon={isLocationEnabled ? <LocationOnIcon /> : <LocationOffIcon />}
+            label={isLocationEnabled ? 'Current Location Enabled' : 'Current Location Disabled'}
+            color={isLocationEnabled ? 'warning' : 'default'}
+          />
+        </ListItem>
         {/* Slider for Distance */}
+        {/* <Box display={isLocationEnabled ? 'block' : 'none'}> */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box sx={{ width: '100%' }}>
             <InputLabel sx={{ fontWeight: '500', color: '#000' }}>
-              {t('sidebarLabels.distance')} {'<'} {distance && distance < 100 ? distance : '100'}km
+              {t('sidebarLabels.distance')} {'<'} {distance && distance < 100 ? distance : '100'}
+              km
             </InputLabel>
             <Slider
               sx={{ height: '8px', color: '#ff6600' }}
               value={distance}
               onChange={handleSliderChange}
               step={5}
+              disabled={!isLocationEnabled}
               // disabled={
               //   userCurrentLocation === '' ||
               //   userCurrentLocation === null ||
@@ -675,13 +630,12 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
             </Box> */}
           </Box>
         </ListItem>
+        {/* </Box> */}
 
-        <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
+        {/* <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box sx={{ width: '100%' }}>
             {userLocation ? (
-              // <InputLabel sx={{ fontWeight: '500', color: '#000', backgroundColor: 'red' }}>
-              //   User Location Is On
-              // </InputLabel>
+      
               <Chip
                 sx={{ marginRight: '5px', marginBottom: '5px' }}
                 size="small"
@@ -697,7 +651,7 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
               />
             )}
           </Box>
-        </ListItem>
+        </ListItem> */}
 
         {/* Filter by Pattern */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
