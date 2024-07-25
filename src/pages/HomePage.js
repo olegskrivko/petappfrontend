@@ -13,7 +13,7 @@ import CardMedia from '@mui/material/CardMedia';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { useAuth } from '../middleware/AuthContext';
-
+import { useParams } from 'react-router-dom';
 // Import Images
 import BannerImg from '../images/animals_floating_with_balloons_rafiki.svg';
 import OneSignal from 'react-onesignal';
@@ -21,6 +21,16 @@ import OneSignal from 'react-onesignal';
 function HomePage() {
   const { t } = useTranslation();
   const { user } = useAuth();
+
+  // const { t, i18n } = useTranslation();
+  // const { lang } = useParams();
+
+  // useEffect(() => {
+  //   if (lang && lang !== i18n.language) {
+  //     i18n.changeLanguage(lang);
+  //   }
+  // }, [lang, i18n]);
+
   // Check if user is logged in
   const isLoggedIn = !!user;
   console.log('isLoggedIn', isLoggedIn);
@@ -158,7 +168,7 @@ function HomePage() {
                     color: 'rgba(0, 0, 0, 0.87)',
                   }}
                 >
-                  Search for a Pet
+                  {t('buttons.searchPet')}
                 </Button>
               ) : (
                 <Button
@@ -174,7 +184,7 @@ function HomePage() {
                     color: 'rgba(0, 0, 0, 0.87)',
                   }}
                 >
-                  Search for a Pet
+                  {t('buttons.searchPet')}
                 </Button>
               )}
             </Link>
@@ -199,7 +209,7 @@ function HomePage() {
                     },
                   }}
                 >
-                  Report a Pet
+                  {t('buttons.reportPet')}
                 </Button>
               ) : (
                 <Button
@@ -221,7 +231,7 @@ function HomePage() {
                     },
                   }}
                 >
-                  Report a Pet
+                  {t('buttons.reportPet')}
                 </Button>
               )}
             </Link>

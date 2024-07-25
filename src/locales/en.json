@@ -376,6 +376,8 @@
   },
 
   "buttons": {
+    "searchPet": "Search for a pet",
+    "reportPet": "Report a pet",
     "submit": "Submit",
     "cancel": "Cancel",
     "save": "Save",

@@ -376,6 +376,8 @@
   },
 
   "buttons": {
+    "searchPet": "Meklēt mājdzīvnieku",
+    "reportPet": "Ziņot par mājdzīvnieku",
     "submit": "Submit",
     "cancel": "Cancel",
     "save": "Save",
