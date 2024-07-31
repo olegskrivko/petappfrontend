@@ -184,7 +184,12 @@ const CreateShelterForm = lazy(() => import('./pages/CreateShelterForm'));
 const ShelterDetailsPage = lazy(() => import('./pages/ShelterDetailsPage'));
 const VirtualPetTrainingClasses = lazy(() => import('./pages/VirtualPetTrainingClasses'));
 const PetInfrastructurePage = lazy(() => import('./pages/PetInfrastructurePage'));
-
+const CreateServicePage = lazy(() => import('./pages/CreateServicePage'));
+const CreateBusinessPage = lazy(() => import('./pages/CreateBusinessPage'));
+const BusinessesPage = lazy(() => import('./pages/BusinessesPage'));
+const BusinessDetailsPage = lazy(() => import('./pages/BusinessDetailsPage'));
+const CreateServiceCategoryPage = lazy(() => import('./pages/CreateServiceCategoryPage'));
+const ServiceCategoriesListPage = lazy(() => import('./pages/ServiceCategoriesListPage'));
 const App = () => {
   // const [location, setLocation] = useState({
   //   latitude: localStorage.getItem('latitude') || '',
@@ -299,8 +304,21 @@ const App = () => {
                     path="sponsors-and-partners"
                     element={<SponsorshipsAndPartnershipsPage />}
                   />
+
+                  <Route path="add-service-category" element={<CreateServiceCategoryPage />} />
+                  <Route path="service-categories" element={<ServiceCategoriesListPage />} />
+
                   <Route path="article" element={<ArticleDetailsPage />} />
                   <Route path="create-article" element={<CreateArticleForm />} />
+                  <Route path="create-service" element={<CreateServicePage />} />
+                  <Route path="create-business" element={<CreateBusinessPage />} />
+
+                  {/* New Route for Businesses by Service */}
+                  {/* <Route path="businesses" element={<BusinessesPage />} /> */}
+                  {/* <Route path="businesses/:serviceId" element={<BusinessesPage />} /> */}
+                  <Route path="businesses/services/:serviceId" element={<BusinessesPage />} />
+
+                  <Route path="businesses/:id" element={<BusinessDetailsPage />} />
                   {/* <Route path="add-pet" element={<PrivateRoute element={<CreatePetPage />} />} /> */}
                   <Route
                     path="add-pet"
@@ -356,6 +374,7 @@ const App = () => {
                   {/* <Route path="user/profile/services" element={<ProfileServicesPage />} /> */}
                   {/* <Route path="user/profile/pets" element={<ProfilePetsPage />} /> */}
                   <Route path="services" element={<ServicesListPage />} />
+                  <Route path="businesses" element={<BusinessesPage />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="*" element={<NotFoundPage />} />
@@ -457,87 +476,3 @@ const App = () => {
 };
 
 export default App;
-
-// useEffect(() => {
-//   const initOneSignal = async () => {
-//     await OneSignal.init({
-//       appId: '07831676-ef12-409c-895e-3352642c136d',
-//     });
-
-//     // OneSignal.User.addTags({
-//     //   latitude: '56.946285',
-//     //   longitude: '24.105078',
-//     //   distance: '10',
-//     // });
-
-//     console.log('OneSignal initialized');
-//     OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
-//     console.log('OneSignal.User', OneSignal.User);
-//   };
-
-//   initOneSignal();
-// }, []);
-
-// // Function to prompt for push notifications
-// // const promptNotificationSubscription = () => {
-// //   OneSignal.showSlidedownPrompt();
-// // };
-// // Handler to add tags for latitude, longitude, and distance
-// const addLocationTags = () => {
-//   OneSignal.User.addTags({
-//     latitude: '56.946285',
-//     longitude: '24.105078',
-//     distance: '10',
-//   });
-//   console.log('Tags added successfully');
-// };
-
-// useEffect(() => {
-//   const initOneSignal = async () => {
-//     await OneSignal.init({
-//       appId: '07831676-ef12-409c-895e-3352642c136d',
-//     });
-
-//     OneSignal.User.addTags({
-//       latitude: '56.946285',
-//       longitude: '24.105078',
-//       distance: '10',
-//     });
-//     OneSignal.Slidedown.promptEmail();
-//     OneSignal.User.addEmail('olegs.krivko@gmail.com');
-//     OneSignal.User.addSms('+37129771299');
-//     OneSignal.User.setExternalUserId('12345');
-//     const tags = OneSignal.User.getTags();
-//     console.log('tags', tags);
-//     console.log('OneSignal.User.onesignalId', OneSignal.User.onesignalId);
-//     // OneSignal.Slidedown.promptPushCategories();
-//     console.log('OneSignal initialized');
-//     OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
-//     console.log('OneSignal.User', OneSignal.User);
-//   };
-
-//   initOneSignal();
-// }, []);
-
-// promptOptions: {
-//   slidedown: {
-//     prompts: [
-//       {
-//         type: 'category',
-//         autoPrompt: true,
-//         text: {
-//           actionMessage:
-//             "We'd like to show you notifications for the latest news and updates.",
-//           acceptButton: 'Allow',
-//           cancelButton: 'Cancel',
-//         },
-//         categories: [
-//           {
-//             tag: 'politics',
-//             label: 'Politics',
-//           },
-//         ],
-//       },
-//     ],
-//   },
-// },

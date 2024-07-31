@@ -1,84 +1,63 @@
-import React, { useEffect, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import React, { useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { renderToStaticMarkup } from 'react-dom/server';
-import WaterIcon from '@mui/icons-material/Water';
-import WaterDropIcon from '@mui/icons-material/WaterDrop';
-import ForestIcon from '@mui/icons-material/Forest';
+import ParkIcon from '@mui/icons-material/Park';
+import LocalCafeIcon from '@mui/icons-material/LocalCafe';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+import HotelIcon from '@mui/icons-material/Hotel';
 
-// Sample data for demonstration
-const parksData = [
-  { id: 1, name: 'City Park', coordinates: [56.946285, 24.008] },
-  { id: 2, name: 'Central Park', coordinates: [56.9471, 24.1444] },
-  { id: 3, name: 'Forest Park', coordinates: [56.962, 24.108] },
-];
+// Define icons mapping
+const iconMap = {
+  'Pet Park': <ParkIcon style={{ fontSize: 40, color: 'green' }} />,
+  'Pet-Friendly Cafe': <LocalCafeIcon style={{ fontSize: 40, color: 'brown' }} />,
+  'Veterinary Clinic': <LocalHospitalIcon style={{ fontSize: 40, color: 'red' }} />,
+  'Pet Store': <ShoppingCartIcon style={{ fontSize: 40, color: 'blue' }} />,
+  'Dog Beach': <BeachAccessIcon style={{ fontSize: 40, color: 'orange' }} />,
+  'Pet Hotel': <HotelIcon style={{ fontSize: 40, color: 'purple' }} />,
+};
 
-const publicWaterData = [
-  { id: 1, name: 'Lake One', coordinates: [56.946, 24.105] },
-  { id: 2, name: 'River Two', coordinates: [56.918, 24.115] },
-  { id: 3, name: 'Pond Three', coordinates: [56.983, 24.085] },
-];
+// Default icon
+const defaultIcon = <ParkIcon style={{ fontSize: 40, color: 'grey' }} />;
 
-const drinkingPlacesData = [
-  { id: 1, name: 'Dog Cafe', coordinates: [56.9465, 24.1055] },
-  { id: 2, name: 'Pet Friendly Bar', coordinates: [56.9485, 24.2155] },
-  { id: 3, name: 'Water Station', coordinates: [56.9515, 24.1895] },
-];
-
-const createCustomIconForest = (color) =>
+const createCustomIcon = (icon) =>
   new L.DivIcon({
-    html: renderToStaticMarkup(<ForestIcon style={{ fontSize: 40, color }} />),
-    className: 'custom-div-icon1',
+    html: renderToStaticMarkup(icon),
+    className: 'custom-div-icon',
     iconSize: [40, 47],
     iconAnchor: [20, 47],
     popupAnchor: [0, -47],
   });
 
-const createCustomIconPublicWater = (color) =>
-  new L.DivIcon({
-    html: renderToStaticMarkup(<WaterIcon style={{ fontSize: 40, color }} />),
-    className: 'custom-div-icon2',
-    iconSize: [40, 47],
-    iconAnchor: [20, 47],
-    popupAnchor: [0, -47],
-  });
-
-const createCustomIconDrinkingPlace = (color) =>
-  new L.DivIcon({
-    html: renderToStaticMarkup(<WaterDropIcon style={{ fontSize: 40, color }} />),
-    className: 'custom-div-icon3',
-    iconSize: [40, 47],
-    iconAnchor: [20, 47],
-    popupAnchor: [0, -47],
-  });
-
-function Markers() {
+function Markers({ infrastructures }) {
   const map = useMap();
 
   useEffect(() => {
     if (!map) return;
 
     // Function to create markers and add them to the map
-    const addMarkersToMap = (data, customIcon) => {
+    const addMarkersToMap = (data) => {
       data.forEach((item) => {
-        const { coordinates, name } = item;
-        const marker = L.marker(coordinates, { icon: customIcon }).addTo(map);
-        marker.bindPopup(name);
-        console.log(`Added marker: ${name} at ${coordinates}`);
+        const { location, name, category } = item;
+        // Use the category's icon if available, otherwise use the default icon
+        const icon = iconMap[category.name] || defaultIcon;
+        const markerIcon = createCustomIcon(icon);
+
+        L.marker(location.coordinates, { icon: markerIcon }).addTo(map).bindPopup(name);
       });
     };
 
-    // Add markers to the map with custom icons
-    addMarkersToMap(parksData, createCustomIconForest('green'));
-    addMarkersToMap(publicWaterData, createCustomIconPublicWater('blue'));
-    addMarkersToMap(drinkingPlacesData, createCustomIconDrinkingPlace('orange'));
-  }, [map]);
+    // Add markers to the map
+    addMarkersToMap(infrastructures);
+  }, [map, infrastructures]);
 
   return null;
 }
 
-function LeafletPetInfrastructureMap() {
+function LeafletPetInfrastructureMap({ categories, infrastructures }) {
   return (
     <MapContainer
       center={[56.946285, 24.105078]} // Example initial center
@@ -86,12 +65,107 @@ function LeafletPetInfrastructureMap() {
       style={{ width: '100%', height: '400px' }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      <Markers />
+      <Markers infrastructures={infrastructures} />
     </MapContainer>
   );
 }
 
 export default LeafletPetInfrastructureMap;
+
+// import React, { useEffect, useRef } from 'react';
+// import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+// import L from 'leaflet';
+// import 'leaflet/dist/leaflet.css';
+// import { renderToStaticMarkup } from 'react-dom/server';
+// import WaterIcon from '@mui/icons-material/Water';
+// import WaterDropIcon from '@mui/icons-material/WaterDrop';
+// import ForestIcon from '@mui/icons-material/Forest';
+
+// // Sample data for demonstration
+// const parksData = [
+//   { id: 1, name: 'City Park', coordinates: [56.946285, 24.008] },
+//   { id: 2, name: 'Central Park', coordinates: [56.9471, 24.1444] },
+//   { id: 3, name: 'Forest Park', coordinates: [56.962, 24.108] },
+// ];
+
+// const publicWaterData = [
+//   { id: 1, name: 'Lake One', coordinates: [56.946, 24.105] },
+//   { id: 2, name: 'River Two', coordinates: [56.918, 24.115] },
+//   { id: 3, name: 'Pond Three', coordinates: [56.983, 24.085] },
+// ];
+
+// const drinkingPlacesData = [
+//   { id: 1, name: 'Dog Cafe', coordinates: [56.9465, 24.1055] },
+//   { id: 2, name: 'Pet Friendly Bar', coordinates: [56.9485, 24.2155] },
+//   { id: 3, name: 'Water Station', coordinates: [56.9515, 24.1895] },
+// ];
+
+// const createCustomIconForest = (color) =>
+//   new L.DivIcon({
+//     html: renderToStaticMarkup(<ForestIcon style={{ fontSize: 40, color }} />),
+//     className: 'custom-div-icon1',
+//     iconSize: [40, 47],
+//     iconAnchor: [20, 47],
+//     popupAnchor: [0, -47],
+//   });
+
+// const createCustomIconPublicWater = (color) =>
+//   new L.DivIcon({
+//     html: renderToStaticMarkup(<WaterIcon style={{ fontSize: 40, color }} />),
+//     className: 'custom-div-icon2',
+//     iconSize: [40, 47],
+//     iconAnchor: [20, 47],
+//     popupAnchor: [0, -47],
+//   });
+
+// const createCustomIconDrinkingPlace = (color) =>
+//   new L.DivIcon({
+//     html: renderToStaticMarkup(<WaterDropIcon style={{ fontSize: 40, color }} />),
+//     className: 'custom-div-icon3',
+//     iconSize: [40, 47],
+//     iconAnchor: [20, 47],
+//     popupAnchor: [0, -47],
+//   });
+
+// function Markers() {
+//   const map = useMap();
+
+//   useEffect(() => {
+//     if (!map) return;
+
+//     // Function to create markers and add them to the map
+//     const addMarkersToMap = (data, customIcon) => {
+//       data.forEach((item) => {
+//         const { coordinates, name } = item;
+//         const marker = L.marker(coordinates, { icon: customIcon }).addTo(map);
+//         marker.bindPopup(name);
+//         console.log(`Added marker: ${name} at ${coordinates}`);
+//       });
+//     };
+
+//     // Add markers to the map with custom icons
+//     addMarkersToMap(parksData, createCustomIconForest('green'));
+//     addMarkersToMap(publicWaterData, createCustomIconPublicWater('blue'));
+//     addMarkersToMap(drinkingPlacesData, createCustomIconDrinkingPlace('orange'));
+//   }, [map]);
+
+//   return null;
+// }
+
+// function LeafletPetInfrastructureMap() {
+//   return (
+//     <MapContainer
+//       center={[56.946285, 24.105078]} // Example initial center
+//       zoom={12} // Example initial zoom level
+//       style={{ width: '100%', height: '400px' }}
+//     >
+//       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+//       <Markers />
+//     </MapContainer>
+//   );
+// }
+
+// export default LeafletPetInfrastructureMap;
 
 // import React, { useEffect, useRef } from 'react';
 // import { MapContainer, TileLayer, LayerGroup, Marker, Popup, LayersControl } from 'react-leaflet';

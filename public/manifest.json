@@ -1,5 +1,6 @@
 {
-  "short_name": "React App",
+  "short_name": "PawClix",
+  "description": "PawClix - Reunite with your beloved pet and explore a variety of pet-related services all in one place.",
   "name": "Create React App Sample",
   "icons": [
     {

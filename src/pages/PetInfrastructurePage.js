@@ -1,24 +1,75 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { Grid, Typography, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import LeafletPetInfrastructureMap from '../components/map/LeafletPetInfrastructureMap';
-
 import ParkIcon from '@mui/icons-material/Park';
 import LocalCafeIcon from '@mui/icons-material/LocalCafe';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import HotelIcon from '@mui/icons-material/Hotel';
-
+import { BASE_URL } from '../middleware/config';
 // Import Custom hook
 import useFontSizes from '../utils/getFontSize';
 
 function PetInfrastructurePage() {
   const { getTypography } = useFontSizes();
+  const [categories, setCategories] = useState([]);
+  const [infrastructures, setInfrastructures] = useState([]);
+
+  useEffect(() => {
+    // Fetch categories
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/categories`); // Update with your API endpoint
+        const data = await response.json();
+        setCategories(data);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    // Fetch infrastructures
+    const fetchInfrastructures = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/infrastructures`); // Update with your API endpoint
+        const data = await response.json();
+        setInfrastructures(data);
+      } catch (error) {
+        console.error('Error fetching infrastructures:', error);
+      }
+    };
+
+    fetchCategories();
+    fetchInfrastructures();
+  }, []);
+
+  // Render categories as a legend
+  const renderCategoryIcons = () => {
+    const icons = {
+      'Pet Park': <ParkIcon />,
+      'Pet-Friendly Cafe': <LocalCafeIcon />,
+      'Veterinary Clinic': <LocalHospitalIcon />,
+      'Pet Store': <ShoppingCartIcon />,
+      'Dog Beach': <BeachAccessIcon />,
+      'Pet Hotel': <HotelIcon />,
+    };
+
+    return (
+      <List>
+        {categories.map((category) => (
+          <ListItem key={category._id}>
+            <ListItemIcon>{icons[category.name] || <ParkIcon />}</ListItemIcon>
+            <ListItemText primary={category.name} secondary={category.description} />
+          </ListItem>
+        ))}
+      </List>
+    );
+  };
+
   return (
     <React.Fragment>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={12} md={12} lg={12}>
+        <Grid item xs={12}>
           <Typography
             variant="h1"
             textAlign="center"
@@ -34,12 +85,10 @@ function PetInfrastructurePage() {
         </Grid>
       </Grid>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={12} md={12} lg={12}>
-          <LeafletPetInfrastructureMap />
+        <Grid item xs={12} sm={6}>
+          <LeafletPetInfrastructureMap categories={categories} infrastructures={infrastructures} />
         </Grid>
-      </Grid>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={12} md={12} lg={12}>
+        <Grid item xs={12} sm={6}>
           <Typography
             variant="h2"
             textAlign="left"
@@ -52,63 +101,7 @@ function PetInfrastructurePage() {
           >
             Pet-Friendly Infrastructure
           </Typography>
-
-          <List>
-            <ListItem>
-              <ListItemIcon>
-                <ParkIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Pet Park"
-                secondary="A designated area for pets to socialize and play."
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <LocalCafeIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Pet-Friendly Cafe"
-                secondary="Cafes welcoming pets with outdoor seating areas."
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <LocalHospitalIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Veterinary Clinic"
-                secondary="Medical care and services for pets."
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <ShoppingCartIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Pet Store"
-                secondary="Shops offering pet supplies, food, and accessories."
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <BeachAccessIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Dog Beach"
-                secondary="Beach areas where dogs can swim and play."
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <HotelIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Pet Hotel"
-                secondary="Accommodations providing boarding and pet care services."
-              />
-            </ListItem>
-          </List>
+          {renderCategoryIcons()}
         </Grid>
       </Grid>
     </React.Fragment>
@@ -116,6 +109,125 @@ function PetInfrastructurePage() {
 }
 
 export default PetInfrastructurePage;
+
+// import React from 'react';
+
+// import { Grid, Typography, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+// import LeafletPetInfrastructureMap from '../components/map/LeafletPetInfrastructureMap';
+
+// import ParkIcon from '@mui/icons-material/Park';
+// import LocalCafeIcon from '@mui/icons-material/LocalCafe';
+// import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+// import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+// import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+// import HotelIcon from '@mui/icons-material/Hotel';
+
+// // Import Custom hook
+// import useFontSizes from '../utils/getFontSize';
+
+// function PetInfrastructurePage() {
+//   const { getTypography } = useFontSizes();
+//   return (
+//     <React.Fragment>
+//       <Grid container spacing={3}>
+//         <Grid item xs={12} sm={12} md={12} lg={12}>
+//           <Typography
+//             variant="h1"
+//             textAlign="center"
+//             sx={{ mb: 3 }}
+//             gutterBottom
+//             style={{
+//               fontSize: getTypography('h1').fontSize,
+//               fontWeight: getTypography('h1').fontWeight,
+//             }}
+//           >
+//             Pet Infrastructure
+//           </Typography>
+//         </Grid>
+//       </Grid>
+//       <Grid container spacing={3}>
+//         <Grid item xs={12} sm={12} md={12} lg={12}>
+//           <LeafletPetInfrastructureMap />
+//         </Grid>
+//       </Grid>
+//       <Grid container spacing={3}>
+//         <Grid item xs={12} sm={12} md={12} lg={12}>
+//           <Typography
+//             variant="h2"
+//             textAlign="left"
+//             sx={{ mt: 3 }}
+//             gutterBottom
+//             style={{
+//               fontSize: getTypography('h2').fontSize,
+//               fontWeight: getTypography('h2').fontWeight,
+//             }}
+//           >
+//             Pet-Friendly Infrastructure
+//           </Typography>
+
+//           <List>
+//             <ListItem>
+//               <ListItemIcon>
+//                 <ParkIcon />
+//               </ListItemIcon>
+//               <ListItemText
+//                 primary="Pet Park"
+//                 secondary="A designated area for pets to socialize and play."
+//               />
+//             </ListItem>
+//             <ListItem>
+//               <ListItemIcon>
+//                 <LocalCafeIcon />
+//               </ListItemIcon>
+//               <ListItemText
+//                 primary="Pet-Friendly Cafe"
+//                 secondary="Cafes welcoming pets with outdoor seating areas."
+//               />
+//             </ListItem>
+//             <ListItem>
+//               <ListItemIcon>
+//                 <LocalHospitalIcon />
+//               </ListItemIcon>
+//               <ListItemText
+//                 primary="Veterinary Clinic"
+//                 secondary="Medical care and services for pets."
+//               />
+//             </ListItem>
+//             <ListItem>
+//               <ListItemIcon>
+//                 <ShoppingCartIcon />
+//               </ListItemIcon>
+//               <ListItemText
+//                 primary="Pet Store"
+//                 secondary="Shops offering pet supplies, food, and accessories."
+//               />
+//             </ListItem>
+//             <ListItem>
+//               <ListItemIcon>
+//                 <BeachAccessIcon />
+//               </ListItemIcon>
+//               <ListItemText
+//                 primary="Dog Beach"
+//                 secondary="Beach areas where dogs can swim and play."
+//               />
+//             </ListItem>
+//             <ListItem>
+//               <ListItemIcon>
+//                 <HotelIcon />
+//               </ListItemIcon>
+//               <ListItemText
+//                 primary="Pet Hotel"
+//                 secondary="Accommodations providing boarding and pet care services."
+//               />
+//             </ListItem>
+//           </List>
+//         </Grid>
+//       </Grid>
+//     </React.Fragment>
+//   );
+// }
+
+// export default PetInfrastructurePage;
 // Parks: Various types including dog parks, playgrounds, and recreational parks.
 // Pet-friendly cafes and restaurants: Establishments that allow pets in outdoor seating areas.
 // Veterinary clinics: Medical facilities for pets.
