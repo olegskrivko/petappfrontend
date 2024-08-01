@@ -1161,6 +1161,13 @@ const ProfilePage = () => {
               </Grid>
             </Box>
           </Grid>
+          <Grid item xs={12}>
+            <Link to="/create-business">
+              <Button variant="outlined" color="secondary" sx={{ fontWeight: '400' }}>
+                Add Your Business
+              </Button>
+            </Link>
+          </Grid>
         </Grid>
         <Link to="/">
           <Button onClick={handleLogout} variant="contained" sx={{ fontWeight: '400' }}>

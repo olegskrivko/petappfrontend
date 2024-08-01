@@ -8,6 +8,8 @@ import {
   Card,
   CardContent,
   CardMedia,
+  Box,
+  Chip,
   CircularProgress,
 } from '@mui/material';
 import { BASE_URL } from '../middleware/config';
@@ -78,7 +80,7 @@ function BusinessesPage() {
               <Card>
                 <CardMedia
                   component="img"
-                  height="140"
+                  height="auto"
                   image={business.image || 'https://placehold.co/600x400'} // Default image if not provided
                   alt={business.name}
                 />
@@ -91,6 +93,21 @@ function BusinessesPage() {
                       {business.name}
                     </Link>
                   </Typography>
+                  <Box mt={1}>
+                    {business.tags &&
+                      business.tags.map((tag, index) => (
+                        <Chip
+                          key={index}
+                          size="small"
+                          label={tag}
+                          style={{
+                            marginRight: '4px',
+                            marginTop: '4px',
+                            backgroundColor: 'lightgray',
+                          }}
+                        />
+                      ))}
+                  </Box>
                   {/* <Typography variant="body2" color="textSecondary">
                     {business.description}
                   </Typography> */}

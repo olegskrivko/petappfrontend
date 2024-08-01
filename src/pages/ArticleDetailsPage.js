@@ -422,7 +422,7 @@ const ArticleDetailsPage = () => {
                   <Typography
                     variant="h3"
                     textAlign="left"
-                    sx={{ mb: 3 }}
+                    sx={{ mb: 1 }}
                     gutterBottom
                     style={{
                       fontSize: getTypography('h3').fontSize,
