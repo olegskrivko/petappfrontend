@@ -34,13 +34,14 @@ const drawerWidth = 240;
 
 const navItems = {
   // "/": "Home",
-  '/pets': 'Pets',
+  '/pets': 'navigation.pets',
   // "/about": "About",
   // '/services': 'Services',
-  '/shelters': 'Shelters',
-  '/articles': 'Articles',
+  '/shelters': 'navigation.shelters',
+  '/articles': 'navigation.articles',
   // '/add-service-category': 'Add service category',
-  '/service-categories': 'Services',
+  '/service-categories': 'navigation.services',
+
   // '/create-service': 'Add Service',
   // '/create-business': 'Add Business',
   // '/create-article': 'Create Article',
@@ -103,7 +104,7 @@ function DrawerAppBar(props) {
           <ListItem key={path} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
               <Link to={path} style={{ textDecoration: 'none', width: '100%' }}>
-                <ListItemText primary={itemName} />
+                <ListItemText primary={t(itemName)} />
               </Link>
             </ListItemButton>
           </ListItem>
@@ -123,7 +124,7 @@ function DrawerAppBar(props) {
                 },
               }}
             >
-              Profile
+              {t('navigation.profile')}
             </Button>
           </Link>
         ) : (
@@ -140,7 +141,7 @@ function DrawerAppBar(props) {
                 },
               }}
             >
-              Login
+              {t('navigation.login')}
             </Button>
           </Link>
         )}
@@ -206,7 +207,7 @@ function DrawerAppBar(props) {
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
               {Object.entries(navItems).map(([path, itemName]) => (
                 <Link key={path} to={path}>
-                  <Button sx={{ color: '#fff', fontWeight: '400' }}>{itemName}</Button>
+                  <Button sx={{ color: '#fff', fontWeight: '400' }}>{t(itemName)}</Button>
                 </Link>
               ))}
               {user ? (
@@ -224,7 +225,7 @@ function DrawerAppBar(props) {
                       },
                     }}
                   >
-                    Profile
+                    {t('navigation.profile')}
                   </Button>
                 </Link>
               ) : (
@@ -241,7 +242,7 @@ function DrawerAppBar(props) {
                       },
                     }}
                   >
-                    Login
+                    {t('navigation.login')}
                   </Button>
                 </Link>
               )}

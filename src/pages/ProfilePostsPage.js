@@ -562,6 +562,217 @@
 // }
 
 // export default ProfilePostsPage;
+// import React, { useState, useEffect, useContext } from 'react';
+// import {
+//   Container,
+//   Typography,
+//   Card,
+//   Chip,
+//   CardContent,
+//   Avatar,
+//   Grid,
+//   Box,
+//   Link,
+//   IconButton,
+//   Tabs,
+//   Tab,
+// } from '@mui/material';
+// import { AuthContext } from '../middleware/AuthContext';
+// import { BASE_URL } from '../middleware/config';
+// import { useTranslation } from 'react-i18next';
+// import { useNavigate } from 'react-router-dom';
+// import DeleteIcon from '@mui/icons-material/Delete';
+// import EditIcon from '@mui/icons-material/Edit';
+
+// function ProfilePostsPage() {
+//   const { user } = useContext(AuthContext);
+//   const [ownedPets, setOwnedPets] = useState([]);
+//   const [favoritedPets, setFavoritedPets] = useState([]);
+//   const [tabIndex, setTabIndex] = useState(0);
+//   const { t } = useTranslation();
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const fetchUserPets = async () => {
+//       const token = localStorage.getItem('token');
+//       try {
+//         const [ownedResponse, followedResponse] = await Promise.all([
+//           fetch(`${BASE_URL}/users/${user.id}/ownedPets`, {
+//             headers: { Authorization: `Bearer ${token}` },
+//           }),
+//           fetch(`${BASE_URL}/users/${user.id}/favorites`, {
+//             headers: { Authorization: `Bearer ${token}` },
+//           }),
+//         ]);
+
+//         if (!ownedResponse.ok || !followedResponse.ok) {
+//           throw new Error('Failed to fetch pets data');
+//         }
+
+//         const ownedData = await ownedResponse.json();
+//         const followedData = await followedResponse.json();
+
+//         setOwnedPets(ownedData);
+//         setFavoritedPets(followedData);
+//       } catch (error) {
+//         console.error('Error fetching pets data:', error);
+//       }
+//     };
+
+//     if (user && user.id) {
+//       fetchUserPets();
+//     }
+//   }, [user]);
+
+//   const handleRemoveFavorite = async (petId) => {
+//     const token = localStorage.getItem('token');
+//     try {
+//       const response = await fetch(`${BASE_URL}/users/${user.id}/favorites/${petId}/remove`, {
+//         method: 'PUT',
+//         headers: { Authorization: `Bearer ${token}` },
+//       });
+//       if (!response.ok) {
+//         throw new Error('Failed to remove favorite pet');
+//       }
+//       setFavoritedPets((prevPets) => prevPets.filter((pet) => pet._id !== petId));
+//     } catch (error) {
+//       console.error('Error removing favorite pet:', error);
+//     }
+//   };
+
+//   const handleEditPet = (petId) => {
+//     navigate(`/edit-pet/${petId}`);
+//   };
+
+//   const getInitialStatusLabel = (value) => {
+//     const options = t('selectOptions.initialStatusOptions', { returnObjects: true });
+//     const option = options.find((option) => option.value === value);
+//     return option ? option.label : '';
+//   };
+
+//   const getCategoryLabel = (value) => {
+//     const options = t('selectOptions.categoryOptions', { returnObjects: true });
+//     const option = options.find((option) => option.value === value);
+//     return option ? option.label : '';
+//   };
+
+//   const handleTabChange = (event, newValue) => {
+//     setTabIndex(newValue);
+//   };
+
+//   const renderOwnedPets = (pets) => (
+//     <Grid container spacing={2}>
+//       {pets.map((pet) => (
+//         <Grid item xs={12} key={pet._id}>
+//           <Card>
+//             <CardContent>
+//               <Box display="flex" alignItems="center">
+//                 <Avatar
+//                   src={pet.mainImage}
+//                   alt={pet.category}
+//                   sx={{ width: 64, height: 64, marginRight: 2 }}
+//                 />
+//                 <Box flexGrow={1}>
+//                   <Typography variant="h6">
+//                     <Link href={`/pets/${pet._id}`} underline="none">
+//                       <Chip
+//                         label={getCategoryLabel(pet.category)}
+//                         size="small"
+//                         variant="contained"
+//                       />
+//                     </Link>
+//                   </Typography>
+//                   <Typography variant="body1" color="textSecondary">
+//                     {getInitialStatusLabel(pet.initialStatus)}
+//                   </Typography>
+//                 </Box>
+//                 <IconButton
+//                   edge="end"
+//                   color="primary"
+//                   style={{ marginLeft: '0.5rem' }}
+//                   aria-label="edit"
+//                   onClick={() => handleEditPet(pet._id)}
+//                 >
+//                   <EditIcon />
+//                 </IconButton>
+//                 <IconButton
+//                   edge="end"
+//                   color="secondary"
+//                   style={{ marginLeft: '0.5rem' }}
+//                   aria-label="remove"
+//                   onClick={() => handleRemoveFavorite(pet._id)}
+//                 >
+//                   <DeleteIcon />
+//                 </IconButton>
+//               </Box>
+//             </CardContent>
+//           </Card>
+//         </Grid>
+//       ))}
+//     </Grid>
+//   );
+
+//   const renderFollowedPets = (pets) => (
+//     <Grid container spacing={2}>
+//       {pets.map((pet) => (
+//         <Grid item xs={12} key={pet._id}>
+//           <Card>
+//             <CardContent>
+//               <Box display="flex" alignItems="center">
+//                 <Avatar
+//                   src={pet.mainImage}
+//                   alt={pet.category}
+//                   sx={{ width: 64, height: 64, marginRight: 2 }}
+//                 />
+//                 <Box flexGrow={1}>
+//                   <Typography variant="h6">
+//                     <Link href={`/pets/${pet._id}`} underline="none">
+//                       <Chip
+//                         label={getCategoryLabel(pet.category)}
+//                         size="small"
+//                         variant="contained"
+//                         sx={{ backgroundColor: 'orange' }}
+//                       />
+//                     </Link>
+//                   </Typography>
+//                   <Typography variant="body1" color="textSecondary">
+//                     {getInitialStatusLabel(pet.initialStatus)}
+//                   </Typography>
+//                 </Box>
+//                 <IconButton
+//                   edge="end"
+//                   color="secondary"
+//                   style={{ marginLeft: '0.5rem' }}
+//                   aria-label="remove"
+//                   onClick={() => handleRemoveFavorite(pet._id)}
+//                 >
+//                   <DeleteIcon />
+//                 </IconButton>
+//               </Box>
+//             </CardContent>
+//           </Card>
+//         </Grid>
+//       ))}
+//     </Grid>
+//   );
+
+//   return (
+//     <>
+//       <Typography variant="h4" gutterBottom align="center">
+//         Pet Posts
+//       </Typography>
+//       <Tabs value={tabIndex} onChange={handleTabChange} centered>
+//         <Tab label="My Pets" />
+//         <Tab label="Followed Pets" />
+//       </Tabs>
+//       {tabIndex === 0 && renderOwnedPets(ownedPets)}
+//       {tabIndex === 1 && renderFollowedPets(favoritedPets)}
+//     </>
+//   );
+// }
+
+// export default ProfilePostsPage;
+
 import React, { useState, useEffect, useContext } from 'react';
 import {
   Container,
@@ -640,6 +851,22 @@ function ProfilePostsPage() {
     }
   };
 
+  const handleDeletePet = async (petId) => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(`${BASE_URL}/users/${user.id}/ownedPets/${petId}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to delete pet');
+      }
+      setOwnedPets((prevPets) => prevPets.filter((pet) => pet._id !== petId));
+    } catch (error) {
+      console.error('Error deleting pet:', error);
+    }
+  };
+
   const handleEditPet = (petId) => {
     navigate(`/edit-pet/${petId}`);
   };
@@ -699,8 +926,8 @@ function ProfilePostsPage() {
                   edge="end"
                   color="secondary"
                   style={{ marginLeft: '0.5rem' }}
-                  aria-label="remove"
-                  onClick={() => handleRemoveFavorite(pet._id)}
+                  aria-label="delete"
+                  onClick={() => handleDeletePet(pet._id)}
                 >
                   <DeleteIcon />
                 </IconButton>

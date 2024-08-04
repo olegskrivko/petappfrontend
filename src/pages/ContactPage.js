@@ -29,13 +29,13 @@ import feedbackImg from '../images/customer_feedback_amico.svg';
 
 // Import Custom hook
 import useFontSizes from '../utils/getFontSize';
-
+import { useTranslation } from 'react-i18next';
 // Import Variables
 import { EMAIL, PHONE, COUNTRY, CITY, FACEBOOK, INSTAGRAM } from '../middleware/config';
 
 const ContactPage = () => {
   const { getTypography } = useFontSizes();
-
+  const { t } = useTranslation(); // Initialize translation hook
   const handleLocationClick = () => {
     const locationQuery = `${COUNTRY}, ${CITY}`;
     const encodedLocationQuery = encodeURIComponent(locationQuery);
@@ -57,7 +57,7 @@ const ContactPage = () => {
               fontWeight: getTypography('h1').fontWeight,
             }}
           >
-            Contact Us
+            {t('contactPage.title')}
           </Typography>
         </Grid>
       </Grid>
@@ -73,17 +73,15 @@ const ContactPage = () => {
               fontWeight: getTypography('h2').fontWeight,
             }}
           >
-            Partner With Us
+            {t('contactPage.partner.title')}
           </Typography>
 
           <Typography variant="body1" paragraph style={{ textAlign: 'left' }}>
-            Are you passionate about pets? Whether you're a vet, animal lover, or just want to share
-            your knowledge, we're here for you!
+            {t('contactPage.partner.description1')}
           </Typography>
 
           <Typography variant="body1" paragraph style={{ textAlign: 'left' }}>
-            Join us in our mission to reunite lost pets with their families and provide valuable
-            resources to pet owners in need. Let's make a positive impact together!
+            {t('contactPage.partner.description2')}
           </Typography>
         </Grid>
 
@@ -182,12 +180,11 @@ const ContactPage = () => {
               fontWeight: getTypography('h2').fontWeight,
             }}
           >
-            Further Collaboration Opportunities
+            {t('contactPage.partner.title')}
           </Typography>
 
           <Typography variant="body1" style={{ textAlign: 'right' }}>
-            Additionally, we're open to exploring other collaboration opportunities including
-            visionary branding, development partnerships, and more.
+            {t('contactPage.partner.description1')}
           </Typography>
         </Grid>
       </Grid>
@@ -204,18 +201,14 @@ const ContactPage = () => {
               fontWeight: getTypography('h2').fontWeight,
             }}
           >
-            Get In Touch
+            {t('contactPage.getInTouch.title')}
           </Typography>
 
           <Typography variant="body1" style={{ textAlign: 'left' }}>
-            We value your feedback, inquiries, and suggestions. Whether you have a question about
-            our services, want to provide feedback, or simply want to say hello, we’d love to hear
-            from you.
+            {t('contactPage.getInTouch.description1')}
           </Typography>
           <Typography variant="body1" sx={{ mt: 2 }} style={{ textAlign: 'left' }}>
-            Additionally, if you encounter any mistakes or errors on our platform or have concerns
-            regarding the source of data or intellectual property rights, please feel free to
-            contact us. If you have any other questions or feedback, we're here to assist you.
+            {t('contactPage.getInTouch.description2')}
           </Typography>
           <Grid item mt={2} xs={12} sm={12} md={12} lg={12} textAlign="center">
             <Link to="/feedback">
@@ -225,7 +218,7 @@ const ContactPage = () => {
                 variant="contained"
                 style={{ backgroundColor: '#ffc107', color: '#000' }}
               >
-                Get In Touch
+                {t('contactPage.getInTouch.button')}
               </Button>
             </Link>
           </Grid>
@@ -285,12 +278,10 @@ const ContactPage = () => {
             }}
             gutterBottom
           >
-            Policies & Community Guidelines
+            {t('contactPage.policies.title')}
           </Typography>
           <Typography variant="body1" gutterBottom sx={{ textAlign: 'center' }}>
-            Explore our policies and community guidelines to learn about how we collect and protect
-            your data, community rules, and more. For detailed information, please refer to our
-            links down below.
+            {t('contactPage.policies.description1')}
           </Typography>
         </Grid>
       </Grid>
@@ -310,7 +301,7 @@ const ContactPage = () => {
                     fontWeight: getTypography('h3').fontWeight,
                   }}
                 >
-                  Privacy Policy
+                  {t('contactPage.policies.list.listItem1')}
                 </Typography>
               </Link>
             </ListItem>
@@ -327,7 +318,7 @@ const ContactPage = () => {
                     fontWeight: getTypography('h3').fontWeight,
                   }}
                 >
-                  Terms of Service
+                  {t('contactPage.policies.list.listItem2')}
                 </Typography>
               </Link>
             </ListItem>
@@ -344,7 +335,7 @@ const ContactPage = () => {
                     fontWeight: getTypography('h3').fontWeight,
                   }}
                 >
-                  Cookie Policy
+                  {t('contactPage.policies.list.listItem3')}
                 </Typography>
               </Link>
             </ListItem>
@@ -362,7 +353,7 @@ const ContactPage = () => {
                     fontWeight: getTypography('h3').fontWeight,
                   }}
                 >
-                  Data Protection Policy
+                  {t('contactPage.policies.list.listItem4')}
                 </Typography>
               </Link>
             </ListItem>
@@ -380,7 +371,7 @@ const ContactPage = () => {
                     fontWeight: getTypography('h3').fontWeight,
                   }}
                 >
-                  Disclaimer
+                  {t('contactPage.policies.list.listItem5')}
                 </Typography>
               </Link>
             </ListItem>
@@ -399,7 +390,7 @@ const ContactPage = () => {
                     fontWeight: getTypography('h3').fontWeight,
                   }}
                 >
-                  Community Guidelines
+                  {t('contactPage.policies.list.listItem6')}
                 </Typography>
               </Link>
             </ListItem>
@@ -416,7 +407,7 @@ const ContactPage = () => {
             fontWeight: getTypography('h2').fontWeight,
           }}
         >
-          Social Media
+          {t('contactPage.socialMedia.title')}
         </Typography>
 
         <Grid container spacing={2} justifyContent="center">
@@ -444,7 +435,7 @@ const ContactPage = () => {
             fontWeight: getTypography('h2').fontWeight,
           }}
         >
-          Contact Information
+          {t('contactPage.contactInformation.title')}
         </Typography>
 
         <Grid container spacing={2} sx={{ mb: 5 }} justifyContent="center">
@@ -454,7 +445,7 @@ const ContactPage = () => {
               <Box>
                 <MuiLink href={`mailto:${EMAIL}`}>
                   <Typography variant="body1" sx={{ display: 'inline-block', color: 'black' }}>
-                    Email: <strong>{EMAIL}</strong>
+                    <strong>{EMAIL}</strong>
                   </Typography>
                 </MuiLink>
               </Box>
@@ -466,7 +457,7 @@ const ContactPage = () => {
               <Box>
                 <MuiLink href={`tel:${PHONE}`}>
                   <Typography variant="body1" sx={{ display: 'inline-block', color: 'black' }}>
-                    Phone: <strong>{PHONE}</strong>
+                    <strong>{PHONE}</strong>
                   </Typography>
                 </MuiLink>
               </Box>
@@ -478,7 +469,6 @@ const ContactPage = () => {
               <Box>
                 <MuiLink onClick={handleLocationClick} style={{ cursor: 'pointer' }}>
                   <Typography variant="body1" sx={{ display: 'inline-block', color: 'black' }}>
-                    Location:{' '}
                     <strong>
                       {COUNTRY}, {CITY}
                     </strong>

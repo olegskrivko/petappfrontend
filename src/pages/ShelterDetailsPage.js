@@ -26,8 +26,9 @@ import PublicIcon from '@mui/icons-material/Public';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 // Import Custom hook
 import useFontSizes from '../utils/getFontSize';
-
+import { useTranslation } from 'react-i18next';
 function ShelterDetailsPage() {
+  const { t } = useTranslation(); // Initialize translation hook
   const { getTypography } = useFontSizes();
   const { slug } = useParams(); // Retrieve slug from URL params
   const [shelter, setShelter] = useState(null);
@@ -107,7 +108,8 @@ function ShelterDetailsPage() {
                 <strong>Author:</strong> {shelter.author}
               </Typography> */}
               <Typography variant="body1">
-                <strong>Description:</strong> {shelter.description}
+                <strong>{t('sheltersDetailsPage.labels.description')}: </strong>
+                {shelter.description}
               </Typography>
               {/* <Typography variant="body1">
                 <strong>Website:</strong>{' '}
@@ -121,7 +123,7 @@ function ShelterDetailsPage() {
                 </a>
               </Typography> */}
               <Typography variant="body1">
-                <strong>Website:</strong>
+                <strong>{t('sheltersDetailsPage.labels.website')}:</strong>
               </Typography>
               <List>
                 <ListItem>
@@ -141,7 +143,7 @@ function ShelterDetailsPage() {
                 </ListItem>
               </List>
               <Typography variant="body1">
-                <strong>Address:</strong>
+                <strong>{t('sheltersDetailsPage.labels.address')}:</strong>
               </Typography>
               <List>
                 <ListItem>
@@ -177,7 +179,7 @@ function ShelterDetailsPage() {
                 Longitude: {shelter.location.coordinates[0]}
               </Typography> */}
               <Typography variant="body1">
-                <strong>Contact:</strong>
+                <strong>{t('sheltersDetailsPage.labels.contact')}:</strong>
               </Typography>
               <List>
                 <ListItem>
@@ -194,7 +196,7 @@ function ShelterDetailsPage() {
                 </ListItem>
               </List>
               <Typography variant="body1">
-                <strong>Social Media:</strong>
+                <strong>{t('sheltersDetailsPage.labels.socialMedia')}:</strong>
               </Typography>
               <List>
                 <ListItem>
@@ -245,10 +247,18 @@ function ShelterDetailsPage() {
                 </ListItem>
               </List>
               <Typography variant="body1" gutterBottom>
-                <strong>Services:</strong> {shelter.services.join(', ')}
+                <strong>{t('sheltersDetailsPage.labels.services')}:</strong>
+                {/* {shelter.services.join(', ')} */}
               </Typography>
+              <List>
+                {shelter.services.map((service, index) => (
+                  <ListItem key={index}>
+                    <ListItemText primary={service} />
+                  </ListItem>
+                ))}
+              </List>
               <Typography variant="body1">
-                <strong>Tags:</strong>{' '}
+                <strong>{t('sheltersDetailsPage.labels.tags')}:</strong>{' '}
                 {shelter.tags.map((tag) => (
                   <Chip
                     key={tag}

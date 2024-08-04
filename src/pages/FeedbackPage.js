@@ -12,19 +12,21 @@ import 'react-toastify/dist/ReactToastify.css';
 import FeedbackImg from '../images/customer_feedback_amico.svg';
 import { BASE_URL } from '../middleware/config';
 import useFontSizes from '../utils/getFontSize';
-
-const subjects = [
-  'General Feedback',
-  'Feature Request',
-  'Bug Report',
-  'Technical Support',
-  'Advertising and Sponsorship',
-  'Data Privacy Concerns',
-  'Partnership Opportunities',
-  'Other',
-];
+import { useTranslation } from 'react-i18next';
 
 function FeedbackPage() {
+  const { t } = useTranslation(); // Initialize translation hook
+  const subjects = [
+    { value: '1', label: t('subjectsOptions.subjects.0') },
+    { value: '2', label: t('subjectsOptions.subjects.1') },
+    { value: '3', label: t('subjectsOptions.subjects.2') },
+    { value: '4', label: t('subjectsOptions.subjects.3') },
+    { value: '5', label: t('subjectsOptions.subjects.4') },
+    { value: '6', label: t('subjectsOptions.subjects.5') },
+    { value: '7', label: t('subjectsOptions.subjects.6') },
+    { value: '8', label: t('subjectsOptions.subjects.7') },
+  ];
+
   const { getTypography } = useFontSizes();
   const creditLink = 'https://storyset.com/people';
   const credit = 'People illustrations by Storyset';
@@ -32,7 +34,7 @@ function FeedbackPage() {
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const [subject, setSubject] = useState('General Feedback');
+  const [subject, setSubject] = useState('1');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -93,7 +95,7 @@ function FeedbackPage() {
               fontWeight: getTypography('h1').fontWeight,
             }}
           >
-            Leave Your Feedback
+            {t('feedbackPage.title')}
           </Typography>
         </Grid>
       </Grid>
@@ -145,21 +147,27 @@ function FeedbackPage() {
             <Box mb={2}>
               <TextField
                 select
-                label="Subject"
+                label={t('feedbackPage.labels.subject')}
                 fullWidth
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
               >
-                {subjects.map((option) => (
+                {/* {subjects.map((option) => (
                   <MenuItem key={option} value={option}>
                     {option}
+                  </MenuItem>
+                ))} */}
+
+                {t('selectOptions.subjectsOptions', { returnObjects: true }).map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
                   </MenuItem>
                 ))}
               </TextField>
             </Box>
             <Box mb={2}>
               <TextField
-                label="Email"
+                label={t('feedbackPage.labels.email')}
                 type="email"
                 fullWidth
                 value={email}
@@ -170,7 +178,7 @@ function FeedbackPage() {
             </Box>
             <Box mb={2}>
               <TextField
-                label="Message"
+                label={t('feedbackPage.labels.message')}
                 multiline
                 fullWidth
                 rows={4}
@@ -188,7 +196,7 @@ function FeedbackPage() {
                 style={{ backgroundColor: '#ffc107', color: '#000' }}
                 disabled={loading}
               >
-                {loading ? 'Submitting...' : 'Submit'}
+                {loading ? 'Submitting...' : t('feedbackPage.button')}
               </Button>
             </Grid>
           </form>

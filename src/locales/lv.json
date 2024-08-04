@@ -223,7 +223,17 @@
         { "value": "3", "label": "Miris" },
         { "value": "4", "label": "Cits" }
       ]
-    }
+    },
+    "subjectsOptions": [
+      { "value": "1", "label": "Vispārējā atsauksme" },
+      { "value": "2", "label": "Funkciju pieprasījums" },
+      { "value": "3", "label": "Kļūdu ziņojums" },
+      { "value": "4", "label": "Tehniskais atbalsts" },
+      { "value": "5", "label": "Reklāma un sponsori" },
+      { "value": "6", "label": "Datu privātuma problēmas" },
+      { "value": "7", "label": "Partnerības iespējas" },
+      { "value": "8", "label": "Cits" }
+    ]
   },
   "serviceCategories": [
     {
@@ -531,6 +541,126 @@
     "disclaimer": "Disclaimer",
     "communityGuidelines": "Community Guidelines"
   },
+
+  "homePage": {
+    "title": "Sākumlapa",
+    "description": "PawClix ir jūsu galīgais risinājums pazudušu mājdzīvnieku meklēšanai. Neatkarīgi no tā, vai esat pazaudējis suni, kaķi vai jebkuru citu dzīvnieku, mūsu lietotne palīdzēs jums ātri brīdināt kopienu un atrast jūsu pūkainā drauga. Ar reāllaika paziņojumiem, visaptverošu pazudušo un atrasto dzīvnieku datu bāzi un viegli lietojamu saskarni, PawClix padara atkalredzēšanos ar jūsu pazudušo mājdzīvnieku ātru un efektīvu. Pievienojieties mūsu tīklam, lai nodrošinātu sava mājdzīvnieka drošību un palielinātu iespējas uz laimīgu atkalredzēšanos.",
+    "keywords": "pazuduši mājdzīvnieki, mājdzīvnieku atgūšana, atrast pazudušos mājdzīvniekus, pazudušā suņa lietotne, pazudušā kaķa lietotne, mājdzīvnieku atkalredzēšanās, mājdzīvnieku meklēšana, mājdzīvnieku izsekošana, mājdzīvnieku atradējs, PawClix, pazudušā mājdzīvnieka brīdinājums, mājdzīvnieku pazušana un atradšana, mājdzīvnieku lokators, dzīvnieku glābšana, mājdzīvnieku identifikācija, mājdzīvnieku drošība"
+  },
+  "aboutPage": {
+    "goal": {
+      "title": "Mūsu mērķis",
+      "description1": "Mūsu lietotne izmanto modernās tehnoloģijas, lai atvieglotu pazudušu mājdzīvnieku atkalredzēšanos ar viņu īpašniekiem. Mēs piedāvājam platformu pazudušo mājdzīvnieku sludinājumu publicēšanai un aktīvi strādājam, lai savienotu īpašniekus ar cilvēkiem, kas tos ir atraduši.",
+      "description2": "Papildus tam mūsu lietotne savieno jūs ar plašu mājdzīvnieku saistītu pakalpojumu klāstu, ieskaitot veterinārās klīnikas, frizierus, trenerus un citus. Mēs nodrošinām, ka jums ir piekļuve pareizajiem resursiem, lai apmierinātu jūsu mājdzīvnieka specifiskās vajadzības."
+    },
+    "features": {
+      "title": "Funkcijas",
+      "title1": "Pazuduša vai atrasta mājdzīvnieka ziņojums",
+      "description1": "Ātri iesniedziet informāciju par savu pazudušo vai atrasto mājdzīvnieku mūsu kopienai un palieliniet atkalredzēšanās iespējas.",
+      "title2": "Ziņot par pēdējo redzēto atrašanās vietu",
+      "description2": "Ļaujiet lietotājiem ziņot par pēdējo redzēto atrašanās vietu pazudušā mājdzīvnieka kartē, palīdzot citiem kopienas lietotājiem atrast un atkalredzēt mājdzīvniekus.",
+      "title3": "Pazudušo un atrasto mājdzīvnieku karte",
+      "description3": "Funkcija, kas attēlo karti ar pazudušajiem un atrastajiem mājdzīvniekiem apkārtnē, ļaujot lietotājiem viegli atrast un identificēt pazudušos mājdzīvniekus.",
+      "title4": "Mobilajām ierīcēm optimizēta platforma",
+      "description4": "Mūsu mobilajām ierīcēm draudzīgā lietotne izmanto jaunākās tehnoloģijas, lai piedāvātu inovāciju platformu mājdzīvnieku atkalredzēšanai ar viņu īpašniekiem.",
+      "title5": "Mājdzīvnieku veselības ieskati",
+      "description5": "Atklājiet svarīgus ieskatus par mājdzīvnieku veselību, ieskaitot vakcinācijas grafikus un atgādinājumus, lai jūsu mājdzīvnieks paliktu veselīgs un laimīgs.",
+      "title6": "Push paziņojumi",
+      "description6": "Saņemiet tūlītējus brīdinājumus, kad jūsu tuvumā tiek ziņots par pazudušu vai atrastu mājdzīvnieku. Esiet pirmais, kas palīdzēs atkalredzēt pūkainos draugus ar viņu īpašniekiem.",
+      "title7": "Padomi un resursi",
+      "description7": "Piekļūstiet resursiem mājdzīvnieku īpašniekiem, kas piedāvā vadlīnijas, kā novērst mājdzīvnieku pazušanu un ko darīt, ja jūsu mājdzīvnieks ir pazudis.",
+      "title8": "Sociālo mediju integrācija",
+      "description8": "Integrācija ar sociālajiem medijiem, lai palīdzētu izplatīt informāciju par pazudušiem mājdzīvniekiem un veicinātu saziņu starp lietotājiem.",
+      "title9": "Meklēšanas filtri",
+      "description9": "Ļaujiet lietotājiem filtrēt pazudušo un atrasto mājdzīvnieku sludinājumus pēc atrašanās vietas, sugas, šķirnes, krāsas un citiem kritērijiem.",
+      "title10": "Pazudušu mājdzīvnieku plakāti",
+      "description10": "Funkcija, kas ļauj lietotājiem viegli izveidot un drukāt plakātus par pazudušiem mājdzīvniekiem, lai izplatītu tos vietējā kopienā.",
+      "title11": "Mājdzīvnieku pakalpojumu katalogs",
+      "description11": "Atklājiet plašu mājdzīvnieku pakalpojumu klāstu, ieskaitot veterinārārstus, patversmes, frizierus, trenerus un citus.",
+      "title12": "Kopienas iesaiste",
+      "description12": "Veidojiet atbalstošu kopienu, kur lietotāji var dalīties ar padomiem, ieteikumiem un stāstiem par pazudušiem un atrastiem mājdzīvniekiem."
+    },
+    "support": {
+      "title": "Atbalstiet mūsu projektu",
+      "description": "Jūsu atbalsts palīdzēs mums turpināt mūsu misiju apvienot pazudušos mājdzīvniekus ar viņu ģimenēm. Jūs varat arī atbalstīt mūs, daloties ar saiti sociālajos tīklos vai pastāstot draugiem par mūsu tīmekļa lietotni. Katrs ieguldījums, liels vai mazs, ir svarīgs, un mēs patiesi novērtējam jūsu atbalstu!",
+      "button": "ATBALSTĪT"
+    },
+    "feedback": {
+      "title": "Dalieties ar savu viedokli",
+      "description": "Jūsu atsauksmes ir svarīgas, jo mēs cenšamies uzlabot mūsu lietotni un sniegt labāko pakalpojumu mājdzīvnieku īpašniekiem. Lūdzu, dalieties ar saviem komentāriem, ieteikumiem vai kritiku, lai palīdzētu mums padarīt lietotni vēl labāku.",
+      "button": "ATSTĀT ATSAUKSMI"
+    }
+  },
+  "supportPage": {
+    "title": "Atbalstiet mūsu projektu",
+    "description1": "Mēs esam pateicīgi par jebkādu atbalstu vai sponsora palīdzību, kas var palīdzēt mums atklāt pilnu mūsu tīmekļa lietotnes potenciālu. Ja jūs dalāties mūsu redzējumā un vēlētos ieguldīt premium līmeņu un pakalpojumu izmantošanas izmaksās, lūdzu, sazinieties ar mums.",
+    "description2": "Jūsu atbalsts ļaus mums uzlabot mūsu lietotni un sniegt vēl labāku pieredzi mūsu lietotājiem.",
+    "description3": "Jūs arī varat atbalstīt mūsu projektu, vienkārši daloties ar mūsu tīmekļa lietotni ar draugiem un citiem mājdzīvnieku īpašniekiem. Izplatiet ziņu sociālajos medijos vai pastāstiet par to saviem draugiem. Tas ir bezmaksas veids, kā palīdzēt mums augt un sasniegt vairāk cilvēku, kuri varētu gūt labumu no mūsu pakalpojuma.",
+    "button": "ZIEDO",
+    "label": "Dalieties ar šo saiti ar citiem:"
+  },
+  "feedbackPage": {
+    "title": "Atstājiet savu atsauksmi",
+    "labels": {
+      "subject": "Temats",
+      "email": "E-pasts",
+      "message": "Ziņa"
+    },
+    "button": "IESNIEGT"
+  },
+  "sheltersPage": {
+    "title": "Adoptē, nepērc!",
+    "description1": "Ja esat pazaudējis savu mājdzīvnieku vai apsverat iespēju iegūt jaunu pūkainu draugu, mēs iesakām sākt meklēšanu šajos vietējos patversmēs. Tie sniedz mīlošu aprūpi un atbalstu dzīvniekiem, kuriem nepieciešama palīdzība, un jūs varat būtiski ietekmēt, adoptējot, nevis pērkot dzīvnieku.",
+    "description2": "Katrs zemāk norādītais patversme piedāvā unikālu iespēju atrast kompanjonu, kurš piepildīs jūsu māju ar prieku. Noklikšķiniet uz viņu nosaukumiem, lai uzzinātu vairāk par viņu darbu un kā jūs varat atbalstīt viņu misiju."
+  },
+  "sheltersDetailsPage": {
+    "labels": {
+      "description": "Apraksts",
+      "website": "Vietne",
+      "address": "Adrese",
+      "contact": "Kontakts",
+      "socialMedia": "Sociālie mediji",
+      "services": "Pakalpojumi",
+      "tags": "Tagi"
+    }
+  },
+  "contactPage": {
+    "title": "Sazinieties ar mums",
+    "partner": {
+      "title": "Piedāvājiet sadarbību",
+      "description1": "Vai jums ir aizraušanās ar mājdzīvniekiem? Neatkarīgi no tā, vai esat veterinārārsts, dzīvnieku mīļotājs vai vienkārši vēlaties dalīties ar savām zināšanām, mēs esam šeit jums!",
+      "description2": "Pievienojieties mums mūsu misijā apvienot pazaudētus mājdzīvniekus ar viņu ģimenēm un sniegt vērtīgus resursus mājdzīvnieku īpašniekiem. Kopā radīsim pozitīvu ietekmi!"
+    },
+    "collaboration": {
+      "title": "Papildu sadarbības iespējas",
+      "description1": "Papildus mēs esam atvērti izpētīt citas sadarbības iespējas, tostarp radošo zīmolu veidošanu, izstrādes partnerības un daudz ko citu."
+    },
+    "getInTouch": {
+      "title": "Sazinieties ar mums",
+      "description1": "Mēs novērtējam jūsu atsauksmes, jautājumus un priekšlikumus. Ja jums ir jautājumi par mūsu pakalpojumiem, vēlaties sniegt atsauksmes vai vienkārši teikt sveiki, mēs labprāt dzirdētu no jums.",
+      "description2": "Papildus, ja jūs sastopaties ar kļūdām vai neprecizitātēm mūsu platformā vai jums ir jautājumi par datu avotiem vai intelektuālā īpašuma tiesībām, lūdzu, sazinieties ar mums. Ja jums ir citi jautājumi vai atsauksmes, mēs esam šeit, lai palīdzētu.",
+      "button": "SAZINIETIES"
+    },
+    "policies": {
+      "title": "Politika un kopienas vadlīnijas",
+      "description1": "Izpētiet mūsu politiku un kopienas vadlīnijas, lai uzzinātu, kā mēs vācam un aizsargājam jūsu datus, kopienas noteikumus un daudz ko citu. Lai iegūtu detalizētu informāciju, lūdzu, skatiet mūsu saites zemāk.",
+      "list": {
+        "listItem1": "Privātuma politika",
+        "listItem2": "Pakalpojumu noteikumi",
+        "listItem3": "Sīkdatņu politika",
+        "listItem4": "Datu aizsardzības politika",
+        "listItem5": "Atruna",
+        "listItem6": "Kopienas vadlīnijas"
+      }
+    },
+
+    "socialMedia": {
+      "title": "Sociālie mediji"
+    },
+    "contactInformation": {
+      "title": "Kontaktinformācija"
+    }
+  },
   "modalTitles": {
     "deleteConfirmation": "Delete Confirmation",
     "updateSuccess": "Update Successful",
@@ -600,11 +730,12 @@
     "petImage": "Pet Image"
   },
   "navigation": {
-    "home": "Home",
-    "aboutUs": "About Us",
-    "services": "Services",
-    "petSearch": "Pet Search",
-    "myProfile": "My Profile"
+    "pets": "Mājdzīvnieki",
+    "shelters": "Patversmes",
+    "articles": "Raksti",
+    "services": "Pakalpojumi",
+    "login": "Pieteikties",
+    "profile": "Profils"
   },
   "validationMessages": {
     "required": "This field is required.",

@@ -223,7 +223,17 @@
         { "value": "3", "label": "Deceased" },
         { "value": "4", "label": "Other" }
       ]
-    }
+    },
+    "subjectsOptions": [
+      { "value": "1", "label": "General Feedback" },
+      { "value": "2", "label": "Feature Request" },
+      { "value": "3", "label": "Bug Report" },
+      { "value": "4", "label": "Technical Support" },
+      { "value": "5", "label": "Advertising and Sponsorship" },
+      { "value": "6", "label": "Data Privacy Concerns" },
+      { "value": "7", "label": "Partnership Opportunities" },
+      { "value": "8", "label": "Other" }
+    ]
   },
   "serviceCategories": [
     {
@@ -531,6 +541,124 @@
     "disclaimer": "Disclaimer",
     "communityGuidelines": "Community Guidelines"
   },
+  "homePage": {
+    "title": "Home Page",
+    "description": "PawClix is your ultimate solution for finding lost pets. Whether you’ve lost a dog, cat, or any other animal, our app helps you quickly alert the community and track down your furry friend. With real-time notifications, a comprehensive lost and found database, and an easy-to-use interface, PawClix makes reunification with your lost pet fast and efficient. Join our network to ensure your pet’s safety and increase the chances of a happy reunion.",
+    "keywords": "lost pets, pet recovery, find lost pets, lost dog app, lost cat app, pet reunification, pet search, pet tracking, pet finder, PawClix, lost pet alert, pet lost and found, pet locator, animal rescue, pet identification, pet safety"
+  },
+  "aboutPage": {
+    "goal": {
+      "title": "Our Goal",
+      "description1": "Our app utilizes advanced technology to facilitate the reunification of lost pets with their owners. We provide a platform for posting lost pet listings and actively work to connect owners with individuals who have found them.",
+      "description2": "Additionally, our app connects you with a wide range of pet-related services, including veterinary clinics, groomers, trainers, and more. We ensure that you have access to the right resources for your pet's specific needs."
+    },
+    "features": {
+      "title": "Features",
+      "title1": "Lost and Found Pet Report",
+      "description1": "Quickly submit details about your lost or found pet to our community and increase the chances of a reunion.",
+      "title2": "Report Last Seen Location",
+      "description2": "Enable users to report the last seen location of a lost pet on the map, helping other users in the community locate and reunite pets..",
+      "title3": "Lost and Found Pet Map",
+      "description3": "A feature that displays a map of lost and found pets in the area, allowing users to easily locate and identify lost pets.",
+      "title4": "Mobile-Optimized Platform",
+      "description4": "Our mobile-friendly app uses the latest technologies to provide an innovative platform for reuniting lost pets with their owners.",
+      "title5": "Pet Health Insights",
+      "description5": "Discover vital insights on pet health, including vaccination schedules and reminders, ensuring your pet remains healthy and happy.",
+      "title6": "Push Notification",
+      "description6": "Receive immediate alerts when a lost or found pet is reported in your vicinity. Be the first to help reunite furry friends with their owners.",
+      "title7": "Tips and Resources",
+      "description7": "Access resources for pet owners, offering guidance on preventing pet loss and what to do if their pet goes missing.",
+      "title8": "Social Media Integration",
+      "description8": "Integration with social media platforms to help spread the word about lost pets and facilitate communication among users.",
+      "title9": "Search Filters",
+      "description9": "Enable users to filter lost and found pet listings by location, species, breed, color, and other criteria.",
+      "title10": "Lost Pet Flyers",
+      "description10": "A feature that allows users to easily create and print lost pet flyers to distribute in their local community.",
+      "title11": "Pet Services Directory",
+      "description11": "Discover a wide range of pet services, including veterinarians, shelters, groomers, trainers, and more.",
+      "title12": "Community Engagement",
+      "description12": "Foster a supportive community where users can share tips, advice, and stories about lost and found pets."
+    },
+    "support": {
+      "title": "Support Our Project",
+      "description": "Your contribution can help us continue our mission to reunite lost pets with their families. You can also support us by sharing a link on social media or telling friends about our web app. Every effort, big or small, helps, and we truly appreciate your support!",
+      "button": "SUPPORT"
+    },
+    "feedback": {
+      "title": "Share Your Thoughts",
+      "description": "Your feedback is valuable to us as we strive to improve our app and provide the best service to pet owners. Please share any comments, suggestions, or criticisms to help us make our app even better.",
+      "button": "LEAVE FEEDBACK"
+    }
+  },
+  "supportPage": {
+    "title": "Support Our Page",
+    "description1": "We are grateful for any support or sponsorship that can help us unlock the full potential of our web application. If you share our vision and would like to contribute towards the cost of utilizing premium tiers and services, please reach out to us.",
+    "description2": "Your support will enable us to enhance our app and provide an even better experience for our users.",
+    "description3": "You can also support our project by simply sharing our web app with friends and fellow pet owners. Spread the word on social media or tell your friends about it. It’s a cost-free way to help us grow and reach more people who could benefit from our service.",
+    "button": "DONATE",
+    "label": "Share this link with others:"
+  },
+  "feedbackPage": {
+    "title": "Leave Your Feedback",
+    "labels": {
+      "subject": "Subject",
+      "email": "Email",
+      "message": "Message"
+    },
+    "button": "SUBMIT"
+  },
+  "sheltersPage": {
+    "title": "Adopt, Don't Shop!",
+    "description1": "If you've lost a pet or are considering bringing a new furry friend into your life, we encourage you to start your search at these local shelters. They provide loving care and support to animals in need, and you can make a real difference by adopting rather than buying.",
+    "description2": "Each shelter listed below offers a unique opportunity to find a companion who will bring joy to your home. Click on their names to learn more about their work and how you can support their mission."
+  },
+  "contactPage": {
+    "title": "Contact Us",
+    "partner": {
+      "title": "Partner With Us",
+      "description1": "Are you passionate about pets? Whether you're a vet, animal lover, or just want to share your knowledge, we're here for you!",
+      "description2": "Join us in our mission to reunite lost pets with their families and provide valuable resources to pet owners in need. Let's make a positive impact together!"
+    },
+    "collaboration": {
+      "title": "Further Collaboration Opportunities",
+      "description1": "Additionally, we're open to exploring other collaboration opportunities including visionary branding, development partnerships, and more."
+    },
+    "getInTouch": {
+      "title": "Get In Touch",
+      "description1": "We value your feedback, inquiries, and suggestions. Whether you have a question about our services, want to provide feedback, or simply want to say hello, we’d love to hear from you.",
+      "description2": "Additionally, if you encounter any mistakes or errors on our platform or have concerns regarding the source of data or intellectual property rights, please feel free to contact us. If you have any other questions or feedback, we're here to assist you.",
+      "button": "GET IN TOUCH"
+    },
+    "policies": {
+      "title": "Policies & Community Guidelines",
+      "description1": "Explore our policies and community guidelines to learn about how we collect and protect your data, community rules, and more. For detailed information, please refer to our links down below.",
+      "list": {
+        "listItem1": "Privacy Policy",
+        "listItem2": "Terms of Service",
+        "listItem3": "Cookie Policy",
+        "listItem4": "Data Protection Policy",
+        "listItem5": "Disclaimer",
+        "listItem6": "Community Guidelines"
+      }
+    },
+    "socialMedia": {
+      "title": "Social Media"
+    },
+    "contactInformation": {
+      "title": "Contact Information"
+    }
+  },
+  "sheltersDetailsPage": {
+    "labels": {
+      "description": "Description",
+      "website": "Website",
+      "address": "Address",
+      "contact": "Contact",
+      "socialMedia": "Social Media",
+      "services": "Services",
+      "tags": "Tags"
+    }
+  },
   "modalTitles": {
     "deleteConfirmation": "Delete Confirmation",
     "updateSuccess": "Update Successful",
@@ -601,11 +729,12 @@
     "petImage": "Pet Image"
   },
   "navigation": {
-    "home": "Home",
-    "aboutUs": "About Us",
+    "pets": "Pets",
+    "shelters": "Shelters",
+    "articles": "Articles",
     "services": "Services",
-    "petSearch": "Pet Search",
-    "myProfile": "My Profile"
+    "login": "Login",
+    "profile": "profile"
   },
   "validationMessages": {
     "required": "This field is required.",

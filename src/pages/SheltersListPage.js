@@ -15,11 +15,13 @@ import { useTheme } from '@mui/material/styles';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { BASE_URL } from '../middleware/config';
+import { useTranslation } from 'react-i18next';
 
 // Import Custom hook
 import useFontSizes from '../utils/getFontSize';
 
 const SheltersListPage = () => {
+  const { t } = useTranslation(); // Initialize translation hook
   const { getTypography } = useFontSizes();
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
@@ -70,23 +72,14 @@ const SheltersListPage = () => {
               fontWeight: getTypography('h1').fontWeight,
             }}
           >
-            Adopt, Don't Shop!
+            {t('sheltersPage.title')}
           </Typography>
         </Grid>
       </Grid>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <Typography paragraph>
-            If you've lost a pet or are considering bringing a new furry friend into your life, we
-            encourage you to start your search at these local shelters. They provide loving care and
-            support to animals in need, and you can make a real difference by adopting rather than
-            buying.
-          </Typography>
-          <Typography paragraph>
-            Each shelter listed below offers a unique opportunity to find a companion who will bring
-            joy to your home. Click on their names to learn more about their work and how you can
-            support their mission.
-          </Typography>
+          <Typography paragraph>{t('sheltersPage.description1')}</Typography>
+          <Typography paragraph>{t('sheltersPage.description2')}</Typography>
         </Grid>
       </Grid>
       <Grid container spacing={3}>
