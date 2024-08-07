@@ -346,30 +346,30 @@ const ProfileNotificationsPage = () => {
     localStorage.setItem('distance', newValue);
   };
 
-  //   const handleSubscribe = () => {
-  //     // 1st step
-  //     // can you add here initOneSignal(), but after its done, you can continue with next steps, so they should be in sync,
+  const handleSubscribe = () => {
+    // 1st step
+    // can you add here initOneSignal(), but after its done, you can continue with next steps, so they should be in sync,
 
-  // // 2nd step
-  //     OneSignal.User.addTags({ ...location, distance: distance.toString() });
-  //     setOpenSnackbar(true); // Show success message
-  //   };
-
-  const handleSubscribe = async () => {
-    try {
-      // 1st step: Initialize OneSignal
-      await initOneSignal();
-
-      // 2nd step: Add tags for notifications
-      OneSignal.User.addTags({ ...location, distance: distance.toString() });
-
-      // 3rd step: Show success message
-      setOpenSnackbar(true);
-    } catch (error) {
-      console.error('Subscription failed:', error);
-      // Optionally, handle errors here (e.g., show an error message)
-    }
+    // 2nd step
+    OneSignal.User.addTags({ ...location, distance: distance.toString() });
+    setOpenSnackbar(true); // Show success message
   };
+
+  //   const handleSubscribe = async () => {
+  //     try {
+  //       // 1st step: Initialize OneSignal
+  //       await initOneSignal();
+
+  //       // 2nd step: Add tags for notifications
+  //       OneSignal.User.addTags({ ...location, distance: distance.toString() });
+
+  //       // 3rd step: Show success message
+  //       setOpenSnackbar(true);
+  //     } catch (error) {
+  //       console.error('Subscription failed:', error);
+  //       // Optionally, handle errors here (e.g., show an error message)
+  //     }
+  //   };
 
   return (
     <React.Fragment>
@@ -395,7 +395,7 @@ const ProfileNotificationsPage = () => {
             {t('profileNotificationsPage.title')}
           </Typography>
         </Grid> */}
-        {/* <Grid item xs={12}>
+        <Grid item xs={12}>
           <Typography variant="body1" paragraph>
             {t('profileNotificationsPage.step1')}
           </Typography>
@@ -408,7 +408,7 @@ const ProfileNotificationsPage = () => {
               </Grid>
             </Grid>
           </Box>
-        </Grid> */}
+        </Grid>
         <Grid item xs={12}>
           <Typography variant="body1" paragraph>
             {t('profileNotificationsPage.step2')}

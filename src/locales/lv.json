@@ -626,7 +626,7 @@
   },
   "profileNotificationsPage": {
     "title": "Profilu paziņojumi",
-    "step1": "1. Noklikšķiniet uz pogas 'Abonēt', lai uzsāktu paziņojumu iestatīšanu.",
+    "step1": "1. Noklikšķiniet uz pogas 'Abonēt', lai atļautu saņemt paziņojumus.",
     "step2": "2. Noklikšķiniet uz 'Saņemt pašreizējo atrašanās vietu', lai automātiski izmantotu jūsu pašreizējo atrašanās vietu paziņojumiem, vai arī noklikšķiniet uz kartes, lai izvēlētos citu vietu.",
     "step3": "3. Iestatiet paziņojumu rādiusu. Pa noklusējumu jūs saņemsiet paziņojumus 20 km rādiusā, bet šo rādiusu var samazināt līdz 1 km.",
     "step4": "4. Noklikšķiniet uz 'Saglabāt', lai piemērotu savus paziņojumu iestatījumus.",
@@ -636,7 +636,8 @@
     "setRadius": "Iestatiet paziņojumu rādiusu",
     "save": "Saglabāt",
     "info": "Ja vairs nevēlaties saņemt paziņojumus, lūdzu, dodieties uz sava pārlūkprogrammas iestatījumiem un dzēsiet saglabātās iestatījumus šim tīmekļa lietojumam.",
-    "successMessage": "Jūs esat veiksmīgi abonējis paziņojumus!"
+    "successMessage": "Jūs esat veiksmīgi abonējis paziņojumus!",
+    "subscribe": "Abonēt paziņojumus!"
   },
   "contactPage": {
     "title": "Sazinieties ar mums",

@@ -661,7 +661,7 @@
   },
   "profileNotificationsPage": {
     "title": "Profile Notifications",
-    "step1": "1. Click the 'Subscribe' button to begin the notification setup process.",
+    "step1": "1. Click the 'Subscribe' button to allow receive notifications.",
     "step2": "2. Click 'Get Current Location' to automatically use your current location for notifications, or click on the map to select a different location.",
     "step3": "3. Set the radius for notifications. By default, you will receive notifications within a 20 km radius, but you can adjust this to as low as 1 km.",
     "step4": "4. Click 'Save' to apply your notification settings.",
@@ -671,7 +671,8 @@
     "setRadius": "Set Notification Radius",
     "save": "Save",
     "info": "If you no longer wish to receive notifications, please go to your browser settings and delete saved settings for this web app.",
-    "successMessage": "You have successfully subscribed to notifications!"
+    "successMessage": "You have successfully subscribed to notifications!",
+    "subscribe": "Subscribe!"
   },
   "modalTitles": {
     "deleteConfirmation": "Delete Confirmation",
