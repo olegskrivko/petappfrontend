@@ -168,53 +168,59 @@ const DisplayComponent = ({ pet }) => {
 
       <Grid container spacing={3}>
         <Grid item xs={5} sm={5} md={5} lg={5}>
-          <Grid item xs={12} sm={12} mb={2}>
-            <Box
-              gap={1}
-              style={{
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-                fontSize: isSmallScreen ? '0.6rem' : '1rem',
-              }}
-            >
-              <TagIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />
-              <b> {t(`formLabels.identifier`)}:</b>{' '}
-              <span style={{ textTransform: 'capitalize' }}>
-                {pet.identifier ? pet.identifier : 'N/A'}
-              </span>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={12} mb={2}>
-            <Box
-              gap={1}
-              style={{
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-                fontSize: isSmallScreen ? '0.6rem' : '1rem',
-              }}
-            >
-              <MaleIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-              <b>{t(`formLabels.gender`)}:</b>{' '}
-              <span style={{ textTransform: 'capitalize' }}>{getGenderLabel(pet.gender)}</span>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={12} mb={2}>
-            <Box
-              gap={1}
-              style={{
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-                fontSize: isSmallScreen ? '0.6rem' : '1rem',
-              }}
-            >
-              <HeightIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-              <b>{t(`formLabels.size`)}:</b>{' '}
-              <span style={{ textTransform: 'capitalize' }}>{getSizeLabel(pet.size)}</span>
-            </Box>
-          </Grid>
+          {pet.identifier && (
+            <Grid item xs={12} sm={12} mb={2}>
+              <Box
+                gap={1}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
+                }}
+              >
+                <TagIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />
+                <b> {t(`formLabels.identifier`)}:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>
+                  {pet.identifier ? pet.identifier : 'N/A'}
+                </span>
+              </Box>
+            </Grid>
+          )}
+          {pet.gender && (
+            <Grid item xs={12} sm={12} mb={2}>
+              <Box
+                gap={1}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
+                }}
+              >
+                <MaleIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+                <b>{t(`formLabels.gender`)}:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>{getGenderLabel(pet.gender)}</span>
+              </Box>
+            </Grid>
+          )}
+          {pet.size && (
+            <Grid item xs={12} sm={12} mb={2}>
+              <Box
+                gap={1}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
+                }}
+              >
+                <HeightIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+                <b>{t(`formLabels.size`)}:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>{getSizeLabel(pet.size)}</span>
+              </Box>
+            </Grid>
+          )}
           {/* <Grid item xs={12} sm={12} mb={2}>
             <Box
               gap={1}
@@ -232,122 +238,136 @@ const DisplayComponent = ({ pet }) => {
               </span>
             </Box>
           </Grid> */}
-          <Grid item xs={12} sm={12} mb={2}>
-            <Box
-              gap={1}
-              style={{
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-                fontSize: isSmallScreen ? '0.6rem' : '1rem',
-              }}
-            >
-              <CakeIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-              <b>{t(`formLabels.age`)}:</b>{' '}
-              <span style={{ textTransform: 'capitalize' }}>{getAgeLabel(pet.age)}</span>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={12} mb={2}>
-            <Box
-              gap={1}
-              style={{
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-                fontSize: isSmallScreen ? '0.6rem' : '1rem',
-              }}
-            >
-              <MergeTypeIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-              <b>{t(`formLabels.breed`)}:</b>{' '}
-              <span style={{ textTransform: 'capitalize' }}>{getBreedLabel(pet.breed)}</span>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={12} mb={2}>
-            <Box
-              gap={1}
-              style={{
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-                fontSize: isSmallScreen ? '0.6rem' : '1rem',
-              }}
-            >
-              <ColorLensIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-              <b>{t(`formLabels.mainColor`)}:</b>{' '}
-              <span style={{ textTransform: 'capitalize' }}>
-                {getMainColorLabel(pet.mainColor.hex)}
-              </span>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={12} mb={2}>
-            <Box
-              gap={1}
-              style={{
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-                fontSize: isSmallScreen ? '0.6rem' : '1rem',
-              }}
-            >
-              <TextureIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-              <b>{t(`formLabels.markings`)}:</b>{' '}
-              <span style={{ textTransform: 'capitalize' }}>
-                {getMarkingLabel(pet.markingPattern)}
-              </span>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={12} mb={2}>
-            <Box
-              gap={1}
-              style={{
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-                fontSize: isSmallScreen ? '0.6rem' : '1rem',
-              }}
-            >
-              <ColorLensIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-              <b>{t('formLabels.markingColors')}:</b>{' '}
-              <span style={{ textTransform: 'capitalize' }}>
-                {pet.markingColors && pet.markingColors.length > 0
-                  ? pet.markingColors.map((color, index) => (
-                      <React.Fragment key={index}>
-                        <span>{getMainColorLabel(color.hex)}</span>
-                        {index !== pet.markingColors.length - 1 && ', '}
-                      </React.Fragment>
-                    ))
-                  : 'N/A'}
-              </span>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={12} mb={2}>
-            <Box
-              gap={1}
-              style={{
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-                fontSize: isSmallScreen ? '0.6rem' : '1rem',
-              }}
-            >
-              <EventIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-              <b>{t(`formLabels.date`)}:</b> {pet.date}
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={12} mb={2}>
-            <Box
-              gap={1}
-              style={{
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-                fontSize: isSmallScreen ? '0.6rem' : '1rem',
-              }}
-            >
-              <WatchLaterIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />
-              <b>{t(`formLabels.time`)}:</b> {pet.time}
-            </Box>
-          </Grid>
+          {pet.age && (
+            <Grid item xs={12} sm={12} mb={2}>
+              <Box
+                gap={1}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
+                }}
+              >
+                <CakeIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+                <b>{t(`formLabels.age`)}:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>{getAgeLabel(pet.age)}</span>
+              </Box>
+            </Grid>
+          )}
+          {pet.breed && (
+            <Grid item xs={12} sm={12} mb={2}>
+              <Box
+                gap={1}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
+                }}
+              >
+                <MergeTypeIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+                <b>{t(`formLabels.breed`)}:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>{getBreedLabel(pet.breed)}</span>
+              </Box>
+            </Grid>
+          )}
+          {pet.mainColor.hex && (
+            <Grid item xs={12} sm={12} mb={2}>
+              <Box
+                gap={1}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
+                }}
+              >
+                <ColorLensIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+                <b>{t(`formLabels.mainColor`)}:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>
+                  {getMainColorLabel(pet.mainColor.hex)}
+                </span>
+              </Box>
+            </Grid>
+          )}
+          {pet.markingPattern && (
+            <Grid item xs={12} sm={12} mb={2}>
+              <Box
+                gap={1}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
+                }}
+              >
+                <TextureIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+                <b>{t(`formLabels.markings`)}:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>
+                  {getMarkingLabel(pet.markingPattern)}
+                </span>
+              </Box>
+            </Grid>
+          )}
+          {pet.markingColors.length > 0 && (
+            <Grid item xs={12} sm={12} mb={2}>
+              <Box
+                gap={1}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
+                }}
+              >
+                <ColorLensIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+                <b>{t('formLabels.markingColors')}:</b>{' '}
+                <span style={{ textTransform: 'capitalize' }}>
+                  {pet.markingColors && pet.markingColors.length > 0
+                    ? pet.markingColors.map((color, index) => (
+                        <React.Fragment key={index}>
+                          <span>{getMainColorLabel(color.hex)}</span>
+                          {index !== pet.markingColors.length - 1 && ', '}
+                        </React.Fragment>
+                      ))
+                    : 'N/A'}
+                </span>
+              </Box>
+            </Grid>
+          )}
+          {pet.date && (
+            <Grid item xs={12} sm={12} mb={2}>
+              <Box
+                gap={1}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
+                }}
+              >
+                <EventIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
+                <b>{t(`formLabels.date`)}:</b> {pet.date}
+              </Box>
+            </Grid>
+          )}
+          {pet.time && (
+            <Grid item xs={12} sm={12} mb={2}>
+              <Box
+                gap={1}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                  fontSize: isSmallScreen ? '0.6rem' : '1rem',
+                }}
+              >
+                <WatchLaterIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />
+                <b>{t(`formLabels.time`)}:</b> {pet.time}
+              </Box>
+            </Grid>
+          )}
         </Grid>
         <Grid item xs={7} sm={7} md={7} lg={7}>
           <Grid item xs={12} sm={12}>
@@ -381,25 +401,28 @@ const DisplayComponent = ({ pet }) => {
           </Grid>
         </Grid>
       </Grid>
+
       <Grid container spacing={3}>
         <Grid item xs={12} mb={1}>
-          <Box>
-            <Box display="flex" alignItems="center" mb={1}>
-              <FeedIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />
-              <Typography
-                variant="h6"
-                ml={1}
-                style={{ fontSize: isSmallScreen ? '0.8rem' : '1rem' }}
-                fontWeight="bold"
-              >
-                {t(`posterLabels.additionalInfo`)}:
+          {pet.notes && (
+            <Box>
+              <Box display="flex" alignItems="center" mb={1}>
+                <FeedIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />
+                <Typography
+                  variant="h6"
+                  ml={1}
+                  style={{ fontSize: isSmallScreen ? '0.8rem' : '1rem' }}
+                  fontWeight="bold"
+                >
+                  {t(`posterLabels.additionalInfo`)}:
+                </Typography>
+              </Box>
+
+              <Typography variant="body2" style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }}>
+                {pet.notes ? pet.notes : 'No additional information given.'}
               </Typography>
             </Box>
-
-            <Typography variant="body2" style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }}>
-              {pet.notes ? pet.notes : 'No additional information given.'}
-            </Typography>
-          </Box>
+          )}
         </Grid>
       </Grid>
 

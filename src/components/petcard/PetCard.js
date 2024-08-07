@@ -38,7 +38,28 @@ import CardActions from '@mui/material/CardActions';
 import Card from '@mui/material/Card';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { useTranslation } from 'react-i18next';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+// Define a CSS class for blurring
+const blurStyle = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  background: 'rgba(255, 255, 255, 0.7)',
+  backdropFilter: 'blur(10px)',
+  zIndex: 1,
+};
 
+const warningStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  textAlign: 'center',
+  color: '#D30A0A',
+  zIndex: 2,
+};
 const PetCard = ({ pet, onPanToLocation }) => {
   const [userCoords, setUserCoords] = useState(null);
   const [distance, setDistance] = useState(null);
@@ -105,34 +126,36 @@ const PetCard = ({ pet, onPanToLocation }) => {
     <Card>
       <Link to={`/pets/${pet._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
         <Box position="relative">
-          <CardMedia component="img" src={pet.mainImage} alt="" />
+          <CardMedia
+            component="img"
+            src={pet.mainImage}
+            alt=""
+            sx={{ width: '100%', height: 'auto' }}
+          />
+          {pet.health.includes('8') && (
+            <>
+              <Box sx={blurStyle} />
+              <Box sx={warningStyle}>
+                <VisibilityOffIcon fontSize="large" />
+                <Typography variant="body2" mt={1}>
+                  This image contains sensitive content
+                </Typography>
+              </Box>
+            </>
+          )}
           <Chip
             label={getInitialStatusLabel(pet.initialStatus)}
             size="small"
             variant="contained"
             sx={{
-              // backgroundColor: 'orange',
-              // fontWeight: 'bold',
               backgroundColor: 'rgba(0, 0, 0, 0.6)',
               color: 'white',
               position: 'absolute',
               top: '8px',
               right: '8px',
+              zIndex: 3,
             }}
           />
-          {/* <Box
-            position="absolute"
-            top={8}
-            right={8}
-            bgcolor="rgba(0, 0, 0, 0.6)"
-            color="white"
-            px={1}
-            py={0.5}
-            borderRadius={1}
-          >
-            <Typography variant="body2"> {getInitialStatusLabel(pet.initialStatus)}</Typography>
-
-          </Box> */}
         </Box>
       </Link>
       <CardActions disableSpacing style={{ justifyContent: 'start', padding: '8px' }}>
