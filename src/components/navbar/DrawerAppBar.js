@@ -37,10 +37,10 @@ const navItems = {
   '/pets': 'navigation.pets',
   // "/about": "About",
   // '/services': 'Services',
-  '/shelters': 'navigation.shelters',
-  '/articles': 'navigation.articles',
+  // '/shelters': 'navigation.shelters',
+  // '/articles': 'navigation.articles',
   // '/add-service-category': 'Add service category',
-  '/service-categories': 'navigation.services',
+  // '/service-categories': 'navigation.services',
 
   // '/create-service': 'Add Service',
   // '/create-business': 'Add Business',

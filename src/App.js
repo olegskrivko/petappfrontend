@@ -172,6 +172,8 @@ const SponsorshipsAndPartnershipsPage = lazy(() =>
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const ProfilePetsPage = lazy(() => import('./pages/ProfilePetsPage'));
 const ProfileSettingsPage = lazy(() => import('./pages/ProfileSettingsPage'));
+const ProfileNotificationsPage = lazy(() => import('./pages/ProfileNotificationsPage'));
+
 const ProfileServicesPage = lazy(() => import('./pages/ProfileServicesPage'));
 const ProfilePostsPage = lazy(() => import('./pages/ProfilePostsPage'));
 const PetsPosterPage = lazy(() => import('./pages/PetsPosterPage'));
@@ -190,6 +192,7 @@ const BusinessesPage = lazy(() => import('./pages/BusinessesPage'));
 const BusinessDetailsPage = lazy(() => import('./pages/BusinessDetailsPage'));
 const CreateServiceCategoryPage = lazy(() => import('./pages/CreateServiceCategoryPage'));
 const ServiceCategoriesListPage = lazy(() => import('./pages/ServiceCategoriesListPage'));
+
 const App = () => {
   // const [location, setLocation] = useState({
   //   latitude: localStorage.getItem('latitude') || '',
@@ -352,6 +355,15 @@ const App = () => {
                       </PrivateRoute>
                     }
                   />
+                  <Route
+                    path="user/profile/notifications"
+                    element={
+                      <PrivateRoute>
+                        <ProfileNotificationsPage />
+                      </PrivateRoute>
+                    }
+                  />
+
                   <Route
                     path="user/profile/services"
                     element={

@@ -180,11 +180,11 @@ const ContactPage = () => {
               fontWeight: getTypography('h2').fontWeight,
             }}
           >
-            {t('contactPage.partner.title')}
+            {t('contactPage.collaboration.title')}
           </Typography>
 
           <Typography variant="body1" style={{ textAlign: 'right' }}>
-            {t('contactPage.partner.description1')}
+            {t('contactPage.collaboration.description1')}
           </Typography>
         </Grid>
       </Grid>
@@ -451,7 +451,7 @@ const ContactPage = () => {
               </Box>
             </Paper>
           </Grid>
-          <Grid item xs={12} md={4}>
+          {/* <Grid item xs={12} md={4}>
             <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
               <PhoneIcon fontSize="large" sx={{ color: '#ffc107' }} />
               <Box>
@@ -462,7 +462,7 @@ const ContactPage = () => {
                 </MuiLink>
               </Box>
             </Paper>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} md={4}>
             <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
               <LocationOnIcon fontSize="large" sx={{ color: '#ffc107' }} />

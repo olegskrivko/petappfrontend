@@ -153,6 +153,8 @@
 // export default SupportPage;
 import React from 'react';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { Button, IconButton, TextField } from '@mui/material';
@@ -263,7 +265,19 @@ function SupportPage() {
           <Typography variant="body1" paragraph>
             {t('supportPage.description2')}
           </Typography>
-          <Grid item xs={12} sm={12} md={12} lg={12} textAlign="center" my={3}>
+          <Grid item mt={2} xs={12} sm={12} md={12} lg={12} textAlign="center" my={3}>
+            <Link to="/feedback">
+              <Button
+                type="submit"
+                size="small"
+                variant="contained"
+                style={{ backgroundColor: '#ffc107', color: '#000' }}
+              >
+                {t('contactPage.getInTouch.button')}
+              </Button>
+            </Link>
+          </Grid>
+          {/* <Grid item xs={12} sm={12} md={12} lg={12} textAlign="center" my={3}>
             <Button
               style={{ backgroundColor: '#ffc107', color: '#000' }}
               onClick={() =>
@@ -273,7 +287,7 @@ function SupportPage() {
             >
               {t('supportPage.button')}
             </Button>
-          </Grid>
+          </Grid> */}
           <Typography variant="body1" paragraph>
             {t('supportPage.description3')}
           </Typography>

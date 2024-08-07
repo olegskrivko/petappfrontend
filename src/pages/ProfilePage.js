@@ -276,7 +276,7 @@
 //   Divider,
 //   IconButton,
 // } from '@mui/material';
-// import NotificationsIcon from '@mui/icons-material/Notifications';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 // import { FormControl, FormGroup, Select, MenuItem } from '@mui/material';
 // import MuiLink from '@mui/material/Link';
 // import Input from '@mui/material/Input';
@@ -1102,8 +1102,17 @@ const ProfilePage = () => {
               </Paper>
             </Link>
           </Grid>
+          <Grid item xs={6} md={4}>
+            <Link to="/user/profile/notifications" style={{ textDecoration: 'none' }}>
+              <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
+                <NotificationsIcon fontSize="large" sx={{ color: '#ff6600' }} />
+                <Typography variant="body1">Notifications {user?.recipesReviewed}</Typography>
+              </Paper>
+            </Link>
+          </Grid>
         </Grid>
-        <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
+
+        {/* <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
           <Grid item xs={12}>
             <Box p={2} bgcolor="lightgray">
               <Grid container spacing={1} alignItems="center">
@@ -1168,7 +1177,7 @@ const ProfilePage = () => {
               </Button>
             </Link>
           </Grid>
-        </Grid>
+        </Grid> */}
         <Link to="/">
           <Button onClick={handleLogout} variant="contained" sx={{ fontWeight: '400' }}>
             Logout

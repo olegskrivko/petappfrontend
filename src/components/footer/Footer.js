@@ -85,19 +85,19 @@ const Footer = () => {
                 {t('footerLinks.petServices')}
               </Link>
             </Typography> */}
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+            {/* <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/virtual-pet-training-classes"
                 style={{ color: '#fff', textDecoration: 'none' }}
               >
-                {/* Virtual Pet Training Classes */} {t('footerLinks.virtualPetTrainingClasses')}
+                {t('footerLinks.virtualPetTrainingClasses')}
               </Link>
-            </Typography>
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+            </Typography> */}
+            {/* <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link to="/pet-infrastructure" style={{ color: '#fff', textDecoration: 'none' }}>
-                {/* Community Forums */} {t('footerLinks.petInfrastructure')}
+                {t('footerLinks.petInfrastructure')}
               </Link>
-            </Typography>
+            </Typography> */}
 
             {/* <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
@@ -113,31 +113,39 @@ const Footer = () => {
               {t('footerTitles.explore')}
             </Typography>
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+              <Link
+                to="/virtual-pet-training-classes"
+                style={{ color: '#fff', textDecoration: 'none' }}
+              >
+                {t('footerLinks.virtualPetTrainingClasses')}
+              </Link>
+            </Typography>
+            {/* <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link to="/shelters" style={{ color: '#fff', textDecoration: 'none' }}>
-                {/* Guide to Retrieving Lost Pets */} {t('footerLinks.adoptDoNotShop')}
+                {t('footerLinks.adoptDoNotShop')}
               </Link>
-            </Typography>
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+            </Typography> */}
+            {/* <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link to="/articles" style={{ color: '#fff', textDecoration: 'none' }}>
-                {/* petCareTips */} {t('footerLinks.petCareTips')}
+                {t('footerLinks.petCareTips')}
               </Link>
-            </Typography>
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+            </Typography> */}
+            {/* <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/articles/how-to-find-a-lost-cat"
                 style={{ color: '#fff', textDecoration: 'none' }}
               >
-                {/* Pet Compatibility Quiz */} {t('footerLinks.howToFindALostCat')}
+                {t('footerLinks.howToFindALostCat')}
               </Link>
-            </Typography>
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+            </Typography> */}
+            {/* <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/articles/how-to-find-a-lost-dog"
                 style={{ color: '#fff', textDecoration: 'none' }}
               >
-                {/* Lost Pet Prevention Tips */} {t('footerLinks.howToFindALostDog')}
+                {t('footerLinks.howToFindALostDog')}
               </Link>
-            </Typography>
+            </Typography> */}
           </Grid>
           <Grid item xs={12} sm={3} textAlign="left">
             <Typography variant="h6" color="#ffc107" style={{ fontWeight: '500' }}>
@@ -193,31 +201,31 @@ const Footer = () => {
                 {/* Support */} {t('footerLinks.support')}
               </Link>
             </Typography>
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+            {/* <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/sponsors-and-partners#partners"
                 style={{ color: '#fff', textDecoration: 'none' }}
               >
-                {/* Partners */} {t('footerLinks.partners')}
+                {t('footerLinks.partners')}
               </Link>
-            </Typography>
+            </Typography> */}
             <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link to="/contact" style={{ color: '#fff', textDecoration: 'none' }}>
                 {/* Social Media */} {t('footerLinks.socialMedia')}
               </Link>
             </Typography>
-            <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
+            {/* <Typography variant="body1" color="#fff" style={{ fontWeight: '300' }}>
               <Link
                 to="/sponsors-and-partners#sponsors"
                 style={{ color: '#fff', textDecoration: 'none' }}
               >
-                {/* Sponsors */} {t('footerLinks.sponsors')}
+               {t('footerLinks.sponsors')}
               </Link>
-            </Typography>
+            </Typography> */}
           </Grid>
         </Grid>
       </Container>
-      <Typography gutterBottom variant="body2" color="#adb5bd" style={{ fontSize: '0.8rem' }}>
+      {/* <Typography gutterBottom variant="body2" color="#adb5bd" style={{ fontSize: '0.8rem' }}>
         {t('footerNote.supportText')} -{' '}
         <Link
           to="/support"
@@ -230,7 +238,7 @@ const Footer = () => {
         >
           {t('footerLinks.support')}
         </Link>
-      </Typography>
+      </Typography> */}
 
       <Typography variant="body2" color="#fff">
         &copy; 2024 Pawclix. {t('footerNote.allRightsReserved')}
