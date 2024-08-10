@@ -414,16 +414,16 @@
     "gender": "Gender",
     "behavior": "Behavior",
     "age": "Age",
-    "breed": "Breed",
+    "subcategory": "Subcategory",
     "healthInformation": "Health Information",
     "additionalHealthDetails": "Additional Health Details",
     "petLocation": "Pet Location",
     "markings": "Pet Markings",
     "mainColor": "Main Color",
     "markingColors": "Marking Colors",
-    "datetime": "Date and Time",
     "date": "Date",
     "time": "Time",
+    "datetime": "Date and time",
     "uploadFile": "Upload file",
     "phoneCode": "Code",
     "phoneNumber": "Phone number",
@@ -685,7 +685,7 @@
     "report": "Ziņot"
   },
   "iconLabelTabs": {
-    "contactPerson": "Contact Person",
+    "contactPerson": "Contact person",
     "locationAdded": "Location added"
   },
 

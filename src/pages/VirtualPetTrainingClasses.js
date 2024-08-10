@@ -230,6 +230,7 @@ function VirtualPetTrainingClasses() {
                       style={{
                         fontSize: getTypography('h3').fontSize,
                         fontWeight: getTypography('h3').fontWeight,
+                        color: '#22badf',
                       }}
                     >
                       {tip.title}

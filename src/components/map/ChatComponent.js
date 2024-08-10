@@ -453,7 +453,7 @@ const ChatComponent = ({
 
   return (
     <Grid item xs={12} sm={12} md={12} lg={12} style={{ paddingLeft: '0', marginBottom: '1rem' }}>
-      <Card style={{ width: '100%', paddingRight: '0 !important' }}>
+      <Card style={{ width: '100%', paddingRight: '0 !important', backgroundColor: '#f7f9fd' }}>
         <CardContent style={{ paddingBottom: '1rem' }}>
           <Box display="flex" alignItems="center" marginBottom="1rem">
             <Avatar

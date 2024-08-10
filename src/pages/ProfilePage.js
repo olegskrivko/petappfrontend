@@ -1088,24 +1088,24 @@ const ProfilePage = () => {
         <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
           <Grid item xs={6} md={4}>
             <Link to="/user/profile/posts" style={{ textDecoration: 'none' }}>
-              <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
-                <TryIcon fontSize="large" sx={{ color: '#ff6600' }} />
+              <Paper sx={{ padding: '2rem 0', backgroundColor: '#f7f9fd' }}>
+                <TryIcon fontSize="large" sx={{ color: '#22badf' }} />
                 <Typography variant="body1">Posts {user.recipesPrepared}</Typography>
               </Paper>
             </Link>
           </Grid>
           <Grid item xs={6} md={4}>
             <Link to="/user/profile/settings" style={{ textDecoration: 'none' }}>
-              <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
-                <SettingsIcon fontSize="large" sx={{ color: '#ff6600' }} />
+              <Paper sx={{ padding: '2rem 0', backgroundColor: '#f7f9fd' }}>
+                <SettingsIcon fontSize="large" sx={{ color: '#22badf' }} />
                 <Typography variant="body1">Settings {user.recipesReviewed}</Typography>
               </Paper>
             </Link>
           </Grid>
           <Grid item xs={6} md={4}>
             <Link to="/user/profile/notifications" style={{ textDecoration: 'none' }}>
-              <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
-                <NotificationsIcon fontSize="large" sx={{ color: '#ff6600' }} />
+              <Paper sx={{ padding: '2rem 0', backgroundColor: '#f7f9fd' }}>
+                <NotificationsIcon fontSize="large" sx={{ color: '#22badf' }} />
                 <Typography variant="body1">Notifications {user?.recipesReviewed}</Typography>
               </Paper>
             </Link>

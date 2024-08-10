@@ -761,7 +761,7 @@ function CreatePetPage() {
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="breed-label" shrink>
-                    {t('formLabels.breed')}
+                    {t('formLabels.subcategory')}
                   </InputLabel>
                   <Select
                     labelId="breed-label"
@@ -773,7 +773,7 @@ function CreatePetPage() {
                       formState.category === undefined
                     }
                     onChange={(e) => handleChange('breed', e.target.value)}
-                    label={t('formLabels.breed')}
+                    label={t('formLabels.subcategory')}
                     notched
                   >
                     {/* {getBreedOptions().map((breed) => (

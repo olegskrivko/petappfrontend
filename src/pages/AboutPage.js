@@ -38,73 +38,119 @@ function AboutPage() {
       id: 1,
       title: 'aboutPage.features.title1',
       description: 'aboutPage.features.description1',
-      icon: <PostAddIcon style={{ width: '40px', height: '40px', marginRight: '1rem' }} />,
+      icon: (
+        <PostAddIcon
+          style={{ width: '40px', height: '40px', marginRight: '1rem', color: '#22badf' }}
+        />
+      ),
     },
     {
       id: 2,
       title: 'aboutPage.features.title2',
       description: 'aboutPage.features.description2',
-      icon: <PushPinIcon style={{ width: '40px', height: '40px', marginRight: '1rem' }} />,
+      icon: (
+        <PushPinIcon
+          style={{ width: '40px', height: '40px', marginRight: '1rem', color: '#22badf' }}
+        />
+      ),
     },
     {
       id: 3,
       title: 'aboutPage.features.title3',
       description: 'aboutPage.features.description3',
-      icon: <MapIcon style={{ width: '40px', height: '40px', marginRight: '1rem' }} />,
+      icon: (
+        <MapIcon style={{ width: '40px', height: '40px', marginRight: '1rem', color: '#22badf' }} />
+      ),
     },
     {
       id: 4,
       title: 'aboutPage.features.title4',
       description: 'aboutPage.features.description4',
-      icon: <AppShortcutIcon style={{ width: '40px', height: '40px', marginRight: '1rem' }} />,
+      icon: (
+        <AppShortcutIcon
+          style={{ width: '40px', height: '40px', marginRight: '1rem', color: '#22badf' }}
+        />
+      ),
     },
     {
       id: 5,
       title: 'aboutPage.features.title5',
       description: 'aboutPage.features.description5',
-      icon: <HealthAndSafetyIcon style={{ width: '40px', height: '40px', marginRight: '1rem' }} />,
+      icon: (
+        <HealthAndSafetyIcon
+          style={{ width: '40px', height: '40px', marginRight: '1rem', color: '#22badf' }}
+        />
+      ),
     },
     {
       id: 6,
       title: 'aboutPage.features.title6',
       description: 'aboutPage.features.description6',
-      icon: <NotificationsIcon style={{ width: '40px', height: '40px', marginRight: '1rem' }} />,
+      icon: (
+        <NotificationsIcon
+          style={{ width: '40px', height: '40px', marginRight: '1rem', color: '#22badf' }}
+        />
+      ),
     },
     {
       id: 7,
       title: 'aboutPage.features.title7',
       description: 'aboutPage.features.description7',
-      icon: <TipsAndUpdatesIcon style={{ width: '40px', height: '40px', marginRight: '1rem' }} />,
+      icon: (
+        <TipsAndUpdatesIcon
+          style={{ width: '40px', height: '40px', marginRight: '1rem', color: '#22badf' }}
+        />
+      ),
     },
     {
       id: 8,
       title: 'aboutPage.features.title8',
       description: 'aboutPage.features.description8',
-      icon: <ShareIcon style={{ width: '40px', height: '40px', marginRight: '1rem' }} />,
+      icon: (
+        <ShareIcon
+          style={{ width: '40px', height: '40px', marginRight: '1rem', color: '#22badf' }}
+        />
+      ),
     },
     {
       id: 9,
       title: 'aboutPage.features.title9',
       description: 'aboutPage.features.description9',
-      icon: <TuneIcon style={{ width: '40px', height: '40px', marginRight: '1rem' }} />,
+      icon: (
+        <TuneIcon
+          style={{ width: '40px', height: '40px', marginRight: '1rem', color: '#22badf' }}
+        />
+      ),
     },
     {
       id: 10,
       title: 'aboutPage.features.title10',
       description: 'aboutPage.features.description10',
-      icon: <PrintIcon style={{ width: '40px', height: '40px', marginRight: '1rem' }} />,
+      icon: (
+        <PrintIcon
+          style={{ width: '40px', height: '40px', marginRight: '1rem', color: '#22badf' }}
+        />
+      ),
     },
     {
       id: 11,
       title: 'aboutPage.features.title11',
       description: 'aboutPage.features.description11',
-      icon: <WorkIcon style={{ width: '40px', height: '40px', marginRight: '1rem' }} />,
+      icon: (
+        <WorkIcon
+          style={{ width: '40px', height: '40px', marginRight: '1rem', color: '#22badf' }}
+        />
+      ),
     },
     {
       id: 12,
       title: 'aboutPage.features.title12',
       description: 'aboutPage.features.description12',
-      icon: <GroupsIcon style={{ width: '40px', height: '40px', marginRight: '1rem' }} />,
+      icon: (
+        <GroupsIcon
+          style={{ width: '40px', height: '40px', marginRight: '1rem', color: '#22badf' }}
+        />
+      ),
     },
   ];
   // const features = [
@@ -270,7 +316,7 @@ function AboutPage() {
       </Grid>
       <Grid container spacing={3} style={{ marginTop: '1rem' }}>
         <Grid item xs={12} sm={6} md={6} lg={6} textAlign="center">
-          <Card style={{ backgroundColor: '#1D1D1D', color: '#fff' }}>
+          <Card style={{ backgroundColor: '#f7f9fd' }}>
             <CardContent>
               <Typography
                 variant="h2"
@@ -286,9 +332,9 @@ function AboutPage() {
               <Typography variant="body1">{t('aboutPage.support.description')}</Typography>
               <Link to="/support" style={{ textDecoration: 'none' }}>
                 <Button
+                  variant="contained"
+                  color="primary"
                   style={{
-                    backgroundColor: '#ffc107',
-                    color: '#000',
                     marginTop: '1rem',
                   }}
                 >
@@ -299,7 +345,7 @@ function AboutPage() {
           </Card>
         </Grid>
         <Grid item xs={12} sm={6} md={6} lg={6} textAlign="center">
-          <Card style={{ backgroundColor: '#f8f9fa', color: '#000' }}>
+          <Card style={{ backgroundColor: '#f7f9fd' }}>
             <CardContent>
               <Typography
                 variant="h2"
@@ -315,9 +361,9 @@ function AboutPage() {
               <Typography variant="body1">{t('aboutPage.feedback.description')}</Typography>
               <Link to="/feedback" style={{ textDecoration: 'none' }}>
                 <Button
+                  variant="contained"
+                  color="primary"
                   style={{
-                    backgroundColor: '#6c757d',
-                    color: '#fff',
                     marginTop: '1rem',
                   }}
                 >

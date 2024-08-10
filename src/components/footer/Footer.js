@@ -48,7 +48,7 @@ const Footer = () => {
         marginTop: 'auto',
         width: '100%', // Ensure the footer takes full width
         margin: 0, // Reset margin to remove any default spacing
-        background: '#1D1D1D !important',
+        background: '#22badf !important',
       }}
     >
       <Container

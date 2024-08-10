@@ -906,6 +906,7 @@ function ProfilePostsPage() {
                         label={getCategoryLabel(pet.category)}
                         size="small"
                         variant="contained"
+                        style={{ backgroundColor: '#22badf', color: '#fff' }}
                       />
                     </Link>
                   </Typography>

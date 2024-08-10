@@ -335,7 +335,8 @@ import 'leaflet/dist/leaflet.css';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { renderToStaticMarkup } from 'react-dom/server';
 import CustomAlert from '../alert/CustomAlert';
-
+import { Grid, Box, Typography, Avatar, TextField, Paper, Button } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 // Custom hook to handle map events and marker placement
 const LocationMarker = ({ position, onLocationChange }) => {
   //   const map = useMapEvents({
@@ -382,6 +383,7 @@ const LocationMarker = ({ position, onLocationChange }) => {
 };
 
 const LeafletAddPetMap = ({ onLocationChange }) => {
+  const { t } = useTranslation();
   const [position, setPosition] = useState([56.946285, 24.105078]);
   const [errorMessage, setErrorMessage] = useState(null);
   const [solutionMessage, setSolutionMessage] = useState(null);
@@ -441,7 +443,14 @@ const LeafletAddPetMap = ({ onLocationChange }) => {
       {errorMessage && (
         <CustomAlert errorMessage={errorMessage} solutionMessage={solutionMessage} />
       )}
-      <button onClick={handleUseMyLocation}>Use My Location</button>
+      {/* <button onClick={handleUseMyLocation}>Use My Location</button> */}
+      <Grid container spacing={2} justifyContent="center">
+        <Grid item xs={12}>
+          <Button variant="contained" onClick={handleUseMyLocation} fullWidth>
+            Use My Location
+          </Button>
+        </Grid>
+      </Grid>
       <MapContainer center={position} zoom={13} style={{ height: '500px', width: '100%' }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import SearchIcon from '@mui/icons-material/Search';
 import PetsIcon from '@mui/icons-material/Pets';
 import CardMedia from '@mui/material/CardMedia';
@@ -15,7 +17,8 @@ import { useTheme } from '@mui/material/styles';
 import { useAuth } from '../middleware/AuthContext';
 import { useParams } from 'react-router-dom';
 // Import Images
-import BannerImg from '../images/animals_floating_with_balloons_rafiki.svg';
+// import BannerImg from '../images/animals_floating_with_balloons_rafiki.svg';
+import BannerImg from '../images/catdog.jpg';
 import OneSignal from 'react-onesignal';
 
 function HomePage() {
@@ -71,7 +74,7 @@ function HomePage() {
             textAlign="center"
             style={{
               fontWeight: '700',
-              fontSize: isSmallScreen ? '2.2rem' : '3.2rem',
+              fontSize: isSmallScreen ? '2.2rem' : '2.6rem',
             }}
           >
             <span style={{ color: '#ffc107' }}>PawClix</span> -{' '}
@@ -115,12 +118,12 @@ function HomePage() {
               src={BannerImg}
               alt="Dog and cat Floating with balloons"
               style={{
-                width: isLargeScreen ? '90%' : '100%',
+                width: isLargeScreen ? '30%' : '100%',
                 maxHeight: isLargeScreen ? '60vh' : '600px', // Adjust height for large screens
                 objectFit: 'cover',
               }}
             />
-            <Box
+            {/* <Box
               style={{
                 marginTop: '0.5rem',
                 display: 'flex',
@@ -140,7 +143,7 @@ function HomePage() {
               >
                 {credit}
               </MuiLink>
-            </Box>
+            </Box> */}
           </Box>
         </Grid>
 
@@ -237,6 +240,182 @@ function HomePage() {
             </Link>
           </Box>
         </Grid>
+      </Grid>
+      <Grid container spacing={3} style={{ marginTop: '1rem' }}>
+        <Grid item xs={12} textAlign="center">
+          <Typography
+            variant="h2"
+            textAlign="center"
+            style={{
+              fontSize: '1.6rem',
+              fontWeight: '500',
+              marginTop: '1rem',
+            }}
+          >
+            How Exactly We Help You
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid container spacing={3} style={{ marginTop: '1rem' }}>
+        <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
+          <Card style={{ backgroundColor: '#f7f9fd' }}>
+            <CardContent>
+              <Typography
+                variant="h6"
+                textAlign="center"
+                style={{
+                  marginBottom: '0.5rem',
+                  color: '#22badf',
+                  // fontSize: getTypography('h2').fontSize,
+                  // fontWeight: getTypography('h2').fontWeight,
+                }}
+              >
+                Listing on our website
+              </Typography>
+              <Typography variant="body2">
+                Your pet is added to our webpage of missing pets, which makes reporting a sighting
+                easier than ever.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
+          <Card style={{ backgroundColor: '#f7f9fd' }}>
+            <CardContent>
+              <Typography
+                variant="h6"
+                textAlign="center"
+                style={{
+                  marginBottom: '0.5rem',
+                  color: '#22badf',
+                  // fontSize: getTypography('h2').fontSize,
+                  // fontWeight: getTypography('h2').fontWeight,
+                }}
+              >
+                Printable poster
+              </Typography>
+              <Typography variant="body2">
+                Receive an expert-designed missing poster with QR code.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
+          <Card style={{ backgroundColor: '#f7f9fd' }}>
+            <CardContent>
+              <Typography
+                variant="h6"
+                textAlign="center"
+                style={{
+                  marginBottom: '0.5rem',
+                  color: '#22badf',
+                  // fontSize: getTypography('h2').fontSize,
+                  // fontWeight: getTypography('h2').fontWeight,
+                }}
+              >
+                Personal guidance and support
+              </Typography>
+              <Typography variant="body2">
+                With helplines, expert articles we support you every step of the way.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} textAlign="center">
+        <Typography
+          variant="body1"
+          textAlign="center"
+          style={{
+            fontSize: '1.2rem',
+            fontWeight: '400',
+            marginTop: '1rem',
+            marginBottom: '1rem',
+          }}
+        >
+          3 Steps to Find Your Pet
+        </Typography>
+      </Grid>
+      <Grid container spacing={3} style={{ marginTop: '1rem' }}>
+        <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
+          <Card style={{ backgroundColor: '#f7f9fd' }}>
+            <CardContent>
+              <Typography
+                variant="h6"
+                textAlign="center"
+                style={{
+                  marginBottom: '0.5rem',
+                  color: '#22badf',
+                  // fontSize: getTypography('h2').fontSize,
+                  // fontWeight: getTypography('h2').fontWeight,
+                }}
+              >
+                1. You start a PawClix search
+              </Typography>
+              {/* <Typography variant="body2">
+                Your pet is added to our webpage of missing pets, which makes reporting a sighting
+                easier than ever.
+              </Typography> */}
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
+          <Card style={{ backgroundColor: '#f7f9fd' }}>
+            <CardContent>
+              <Typography
+                variant="h6"
+                textAlign="center"
+                style={{
+                  marginBottom: '0.5rem',
+                  color: '#22badf',
+                  // fontSize: getTypography('h2').fontSize,
+                  // fontWeight: getTypography('h2').fontWeight,
+                }}
+              >
+                2. We alert neighbors
+              </Typography>
+              {/* <Typography variant="body2">
+                Receive an expert-designed missing poster with QR code.
+              </Typography> */}
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
+          <Card style={{ backgroundColor: '#f7f9fd' }}>
+            <CardContent>
+              <Typography
+                variant="h6"
+                textAlign="center"
+                style={{
+                  marginBottom: '0.5rem',
+                  color: '#22badf',
+                  // fontSize: getTypography('h2').fontSize,
+                  // fontWeight: getTypography('h2').fontWeight,
+                }}
+              >
+                3. You receive sightings
+              </Typography>
+              {/* <Typography variant="body2">
+                With helplines, expert articles we support you every step of the way.
+              </Typography> */}
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} textAlign="center">
+        <Typography
+          variant="body1"
+          textAlign="center"
+          style={{
+            fontSize: '1.2rem',
+            fontWeight: '400',
+            marginTop: '1rem',
+            marginBottom: '1rem',
+          }}
+        >
+          Guidance and Support
+        </Typography>
       </Grid>
     </React.Fragment>
   );

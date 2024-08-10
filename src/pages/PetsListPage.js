@@ -25,8 +25,13 @@ import {
   DialogActions,
   TextField,
   IconButton,
+  List,
+  ListItem,
+  ListItemText,
   Drawer,
   colors,
+  AlertTitle,
+  Alert,
 } from '@mui/material';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import PetsIcon from '@mui/icons-material/Pets';
@@ -414,17 +419,56 @@ const PetsListPage = () => {
             )}
             {pets.length === 0 && !loading && (
               <Grid item xs={12} sm={12} md={12} lg={12}>
-                <Typography variant="h6" style={{ textAlign: 'center' }}>
-                  Currently, there are no listings to display. Please revisit this page later.
-                </Typography>
-                <Box
+                {/* <Typography variant="h6" align="center" style={{ marginBottom: '1rem' }}>
+                  **No Listings Available**
+                </Typography> */}
+
+                <Alert severity="info">
+                  <AlertTitle>{'No Listings Available'}</AlertTitle>
+                  {
+                    'It looks like there are no listings to display right now. Here are a few things you can try:'
+                  }
+                  <List>
+                    <ListItem style={{ padding: 0 }}>
+                      <ListItemText
+                        primary={
+                          <span style={{ fontSize: '0.875rem' }}>
+                            <strong>Refresh the Page:</strong> Sometimes, a quick refresh can help
+                            update the listings.
+                          </span>
+                        }
+                      />
+                    </ListItem>
+                    <ListItem style={{ padding: 0 }}>
+                      <ListItemText
+                        primary={
+                          <span style={{ fontSize: '0.875rem' }}>
+                            <strong>Adjust Filters:</strong> Check if your current filters might be
+                            too restrictive and try changing them.
+                          </span>
+                        }
+                      />
+                    </ListItem>
+                    <ListItem style={{ padding: 0 }}>
+                      <ListItemText
+                        primary={
+                          <span style={{ fontSize: '0.875rem' }}>
+                            <strong>Check Back Later:</strong> Listings may be updated periodically,
+                            so feel free to revisit this page later.
+                          </span>
+                        }
+                      />
+                    </ListItem>
+                  </List>
+                </Alert>
+
+                {/* <Box
                   position="relative"
                   display="flex"
                   flexDirection="column"
                   justifyContent="center"
                   alignItems="center"
                 >
-                  {/* Banner Image */}
                   <CardMedia
                     component="img"
                     src={NoListingsAvailableImg}
@@ -432,12 +476,12 @@ const PetsListPage = () => {
                     style={{
                       width: 'auto',
                       maxHeight: '280px',
-                      // objectFit: "cover",
+                      objectFit: 'contain',
+                      marginBottom: '1rem',
                     }}
                   />
                   <Box
                     style={{
-                      marginTop: '0.5rem',
                       display: 'flex',
                       alignItems: 'center',
                     }}
@@ -447,7 +491,7 @@ const PetsListPage = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
-                        fontSize: '0.6rem',
+                        fontSize: '0.8rem',
                         fontStyle: 'italic',
                         color: '#999',
                         fontWeight: '300',
@@ -456,7 +500,7 @@ const PetsListPage = () => {
                       Data illustrations by Storyset
                     </MuiLink>
                   </Box>
-                </Box>
+                </Box> */}
               </Grid>
             )}
             {pets.map((pet) => (
@@ -489,8 +533,8 @@ const PetsListPage = () => {
           page={pagination.page}
           count={pagination.totalPages}
           onChange={handlePaginationChange}
-          size="large"
-          color="warning"
+          size="small"
+          color="primary"
         />
       </Grid>
     </Grid>

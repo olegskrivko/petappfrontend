@@ -158,9 +158,14 @@ const PetCard = ({ pet, onPanToLocation }) => {
           />
         </Box>
       </Link>
-      <CardActions disableSpacing style={{ justifyContent: 'start', padding: '8px' }}>
+      <CardActions disableSpacing style={{ justifyContent: 'start', padding: '0.8rem' }}>
         <Box style={{ display: 'flex', alignItems: 'center', color: '#343a40' }}>
-          <LocationOnIcon fontSize="small" onClick={handleLocationClick} />
+          <LocationOnIcon
+            fontSize="small"
+            onClick={handleLocationClick}
+            color="primary"
+            style={{ cursor: 'pointer' }}
+          />
           <Typography variant="body2" style={{ marginLeft: '4px' }}>
             {distance !== null ? `${distance} km` : 'Calculating...'}
           </Typography>
@@ -169,5 +174,5 @@ const PetCard = ({ pet, onPanToLocation }) => {
     </Card>
   );
 };
-
+// #8bc34a
 export default PetCard;

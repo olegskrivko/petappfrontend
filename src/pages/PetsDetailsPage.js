@@ -531,7 +531,7 @@ const PetsDetailsPage = () => {
           <Grid item xs={12} sm={12} md={6} lg={6}>
             <Box>
               <Grid container spacing={1}>
-                <Grid item xs={12} mb={1}>
+                <Grid item xs={12}>
                   <Box
                     gap={1}
                     style={{
@@ -540,12 +540,14 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <TagIcon /> <b>{t('formLabels.identifier')}:</b>{' '}
-                    {pet.identifier ? pet.identifier : 'N/A'}
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <TagIcon />
+                    </IconButton>
+                    <b>{t('formLabels.identifier')}:</b> {pet.identifier ? pet.identifier : 'N/A'}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
-                <Grid item xs={12} mb={1}>
+                <Grid item xs={12}>
                   <Box
                     gap={1}
                     style={{
@@ -554,12 +556,14 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    {/* {pet.size ? getSizeName(options, pet.size) : "N/A"} */}
-                    <HeightIcon /> <b>{t('formLabels.size')}:</b> {getSizeLabel(pet.size)}
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <HeightIcon />
+                    </IconButton>{' '}
+                    <b>{t('formLabels.size')}:</b> {getSizeLabel(pet.size)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
-                <Grid item xs={12} mb={1}>
+                <Grid item xs={12}>
                   <Box
                     gap={1}
                     style={{
@@ -568,11 +572,15 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <MaleIcon /> <b>{t('formLabels.gender')}:</b> {getGenderLabel(pet.gender)}
+                    {' '}
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <MaleIcon />{' '}
+                    </IconButton>
+                    <b>{t('formLabels.gender')}:</b> {getGenderLabel(pet.gender)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
-                <Grid item xs={12} mb={1}>
+                <Grid item xs={12}>
                   <Box
                     gap={1}
                     style={{
@@ -581,11 +589,14 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <MoodIcon /> <b>{t('formLabels.behavior')}:</b> {getBehaviorLabel(pet.behavior)}
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <MoodIcon />{' '}
+                    </IconButton>{' '}
+                    <b>{t('formLabels.behavior')}:</b> {getBehaviorLabel(pet.behavior)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
-                <Grid item xs={12} mb={1}>
+                <Grid item xs={12}>
                   <Box
                     gap={1}
                     style={{
@@ -594,11 +605,14 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <CakeIcon /> <b>{t('formLabels.age')}:</b> {getAgeLabel(pet.age)}
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <CakeIcon />
+                    </IconButton>{' '}
+                    <b>{t('formLabels.age')}:</b> {getAgeLabel(pet.age)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
-                <Grid item xs={12} mb={1}>
+                <Grid item xs={12}>
                   <Box
                     gap={1}
                     style={{
@@ -607,11 +621,15 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <MergeTypeIcon /> <b>{t('formLabels.breed')}:</b> {getBreedLabel(pet.breed)}
+                    {' '}
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <MergeTypeIcon />{' '}
+                    </IconButton>
+                    <b>{t('formLabels.subcategory')}:</b> {getBreedLabel(pet.breed)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
-                <Grid item xs={12} mb={1}>
+                <Grid item xs={12}>
                   <Box
                     gap={1}
                     style={{
@@ -620,12 +638,14 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <ColorLensIcon /> <b>{t('formLabels.mainColor')}:</b>{' '}
-                    {getMainColorLabel(pet.mainColor.hex)}
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <ColorLensIcon />
+                    </IconButton>{' '}
+                    <b>{t('formLabels.mainColor')}:</b> {getMainColorLabel(pet.mainColor.hex)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
-                <Grid item xs={12} mb={1}>
+                <Grid item xs={12}>
                   <Box
                     gap={1}
                     style={{
@@ -634,12 +654,14 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <TextureIcon /> <b>{t('formLabels.markings')}:</b>{' '}
-                    {getMarkingLabel(pet.markingPattern)}
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <TextureIcon />{' '}
+                    </IconButton>{' '}
+                    <b>{t('formLabels.markings')}:</b> {getMarkingLabel(pet.markingPattern)}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
-                <Grid item xs={12} mb={1}>
+                <Grid item xs={12}>
                   <Box
                     gap={1}
                     style={{
@@ -648,7 +670,10 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <ColorLensIcon /> <b>{t('formLabels.markingColors')}:</b>{' '}
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <ColorLensIcon />{' '}
+                    </IconButton>
+                    <b>{t('formLabels.markingColors')}:</b>{' '}
                     {/* {pet.markingColors && pet.markingColors.length > 0
                       ? pet.markingColors.map((color, index) => (
                           <span key={index}>{getMainColorLabel(color.hex)}</span>
@@ -658,14 +683,14 @@ const PetsDetailsPage = () => {
                       ? pet.markingColors.map((color, index) => (
                           <React.Fragment key={index}>
                             <span>{getMainColorLabel(color.hex)}</span>
-                            {index !== pet.markingColors.length - 1 && ', '}
+                            {index !== pet.markingColors.length - 1 && ','}
                           </React.Fragment>
                         ))
                       : 'N/A'}
                     <Typography variant="body1" gutterBottom></Typography>
                   </Box>
                 </Grid>
-                <Grid item xs={12} mb={1}>
+                <Grid item xs={12}>
                   <Box
                     gap={1}
                     style={{
@@ -674,10 +699,13 @@ const PetsDetailsPage = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <EventIcon /> <b>{t('formLabels.date')}:</b> {pet.date}
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <EventIcon />{' '}
+                    </IconButton>{' '}
+                    <b>{t('formLabels.datetime')}:</b> {pet.date} {pet.time}
                   </Box>
                 </Grid>
-                <Grid item xs={12} mb={1}>
+                {/* <Grid item xs={12}>
                   <Box
                     gap={1}
                     style={{
@@ -689,7 +717,7 @@ const PetsDetailsPage = () => {
                     <WatchLaterIcon />
                     <b>{t('formLabels.time')}:</b> {pet.time}
                   </Box>
-                </Grid>
+                </Grid> */}
                 {/* <Grid item xs={12}>
                   <Card style={{ border: 'none', boxShadow: 'none' }}>
                     <CardContent style={{ padding: '0' }}>

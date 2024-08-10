@@ -91,7 +91,7 @@ function EditPetPage() {
   }
 
   return (
-    <Container maxWidth="lg">
+    <>
       <Typography variant="h4" gutterBottom align="center">
         Edit Pet
       </Typography>
@@ -136,7 +136,7 @@ function EditPetPage() {
           </Grid>
         </Grid>
       </form>
-    </Container>
+    </>
   );
 }
 

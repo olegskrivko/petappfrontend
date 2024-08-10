@@ -437,6 +437,7 @@
 // LeafletClusterMap.js
 import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, Marker, TileLayer, Popup, useMap } from 'react-leaflet';
+import Chip from '@mui/material/Chip';
 import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import 'leaflet/dist/leaflet.css';
@@ -538,18 +539,19 @@ function LeafletClusterMap({ pets, centerCoords }) {
         {userLocation && (
           <Marker position={userLocation} icon={userLocationIcon}>
             <Popup offset={[0, 5]}>
-              <div
-                style={{
-                  textAlign: 'center',
-                  backgroundColor: 'slategray',
-                  padding: '0.4rem 0.6rem',
-                  borderRadius: '1rem',
-                  color: 'white',
-                  fontWeight: '500',
-                }}
-              >
-                Your current location
-              </div>
+              <Chip
+                size="small"
+                label="Your current location"
+                style={{ backgroundColor: '#fff1f1', color: '#6d0202' }}
+                // style={{
+                //   textAlign: 'center',
+                //   backgroundColor: '#22badf',
+                //   padding: '0.4rem 0.6rem',
+                //   borderRadius: '1rem',
+                //   color: 'white',
+                //   fontWeight: '500',
+                // }}
+              ></Chip>
             </Popup>
           </Marker>
         )}

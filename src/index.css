@@ -86,16 +86,30 @@ code {
 .custom-marker-cluster {
   width: 33px; /* Match iconSize */
   height: 33px; /* Match iconSize */
-  background-color: darkorchid;
+  /* background-color: darkorchid; */
+  /* background-color: #1976d2; */
+  background-color: rgba(25, 118, 210, 0.9); /* Adjusted to be more translucent */
   border-radius: 50%;
+
   color: aliceblue;
   position: relative;
   font-size: 18px; /* Adjust as needed */
   display: flex;
   align-items: center;
   justify-content: center;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
 }
-
+/* .custom-marker-cluster::before {
+  content: '';
+  position: absolute;
+  top: -0;
+  left: -0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: -1;
+} */
 .custom-marker-cluster span {
   display: inline-block;
   transform: translate(-50%, -50%);
@@ -142,3 +156,18 @@ code {
     box-shadow: 0 0 20px 10px rgba(150, 0, 255, 0.7);
   }
 } */
+/* Add this to your CSS or styled components */
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slideInFromBottom 3s ease-out;
+}

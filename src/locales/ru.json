@@ -3,7 +3,7 @@
     "initialStatusOptions": [
       { "value": "1", "label": "Пропал" },
       { "value": "2", "label": "Найден" },
-      { "value": "3", "label": "Увиден" }
+      { "value": "3", "label": "Замечен " }
     ],
     "categoryOptions": [
       { "value": "1", "label": "Пёс" },
@@ -66,7 +66,7 @@
         { "value": "3", "label": "Пожилой" }
       ]
     },
-    "breedOptions": {
+    "subcategoryOptions": {
       "1": [
         { "value": "1", "label": "Лабрадор" },
         { "value": "2", "label": "Бульдог" },
@@ -414,16 +414,16 @@
     "gender": "Пол",
     "behavior": "Поведение",
     "age": "Возраст",
-    "breed": "Порода",
+    "subcategory": "Подкатегория",
     "healthInformation": "Информация о здоровье",
     "additionalHealthDetails": "Дополнительная Информация о Здоровье",
     "petLocation": "Местоположение животного",
     "markings": "Отметки",
     "mainColor": "Основной цвет",
     "markingColors": "Цвета отметок",
-    "datetime": "Дата и время",
     "date": "Дата",
     "time": "Время",
+    "datetime": "Дата и время",
     "uploadFile": "Загрузить файл",
     "phoneCode": "Код",
     "phoneNumber": "Номер телефона",

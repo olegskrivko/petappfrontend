@@ -77,7 +77,7 @@ function DrawerAppBar(props) {
         style={{
           width: '100%',
           height: '3.5rem',
-          backgroundColor: 'orange',
+          backgroundColor: '#22badf',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -93,7 +93,7 @@ function DrawerAppBar(props) {
               alignItems: 'center',
             }}
           >
-            <PetsIcon sx={{ marginRight: '0.4rem' }} /> PawClix
+            <PetsIcon sx={{ marginRight: '0.4rem', color: '#ffc107' }} /> PawClix
           </Link>
         </Typography>
       </Box>
@@ -168,7 +168,8 @@ function DrawerAppBar(props) {
       <AppBar
         component="nav"
         sx={{
-          background: '#1D1D1D',
+          // background: '#1D1D1D',
+          background: '#22badf',
         }}
       >
         <Container disableGutters>

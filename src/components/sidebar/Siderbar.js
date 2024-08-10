@@ -465,7 +465,7 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
                   size="small"
                   label={status.label}
                   onClick={() => handleStatusChange(status.value)}
-                  color={selectedStatuses.includes(status.value) ? 'warning' : 'default'} // Adjusted condition here
+                  color={selectedStatuses.includes(status.value) ? 'primary' : 'default'} // Adjusted condition here
                 />
               ))}
           </Box>
@@ -485,7 +485,7 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
                   size="small"
                   label={category.label}
                   onClick={() => handleCategoryChange(category.value)}
-                  color={selectedCategories.includes(category.value) ? 'warning' : 'default'} // Adjusted condition here
+                  color={selectedCategories.includes(category.value) ? 'primary' : 'default'} // Adjusted condition here
                 />
               ))}
           </Box>
@@ -505,7 +505,7 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
                   size="small"
                   label={gender.label}
                   onClick={() => handleGenderChange(gender.value)}
-                  color={selectedGenders.includes(gender.value) ? 'warning' : 'default'} // Adjusted condition here
+                  color={selectedGenders.includes(gender.value) ? 'primary' : 'default'} // Adjusted condition here
                 />
               ))}
           </Box>
@@ -525,7 +525,7 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
                   size="small"
                   label={size.label}
                   onClick={() => handleSizeChange(size.value)}
-                  color={selectedSizes.includes(size.value) ? 'warning' : 'default'} // Adjusted condition here
+                  color={selectedSizes.includes(size.value) ? 'primary' : 'default'} // Adjusted condition here
                 />
               ))}
           </Box>
@@ -582,10 +582,11 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
           /> */}
           <Chip
             sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+            size="small"
             onClick={handleLocationToggle}
             icon={isLocationEnabled ? <LocationOnIcon /> : <LocationOffIcon />}
             label={isLocationEnabled ? 'Current Location Enabled' : 'Current Location Disabled'}
-            color={isLocationEnabled ? 'warning' : 'default'}
+            color={isLocationEnabled ? 'primary' : 'default'}
           />
         </ListItem>
         {/* Slider for Distance */}
@@ -597,7 +598,8 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
               km
             </InputLabel>
             <Slider
-              sx={{ height: '8px', color: '#ff6600' }}
+              color="primary"
+              sx={{ height: '8px' }}
               value={distance}
               onChange={handleSliderChange}
               step={5}
@@ -668,7 +670,7 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
                   size="small"
                   label={pattern.label}
                   onClick={() => handlePatternChange(pattern.value)}
-                  color={selectedPatterns.includes(pattern.value) ? 'warning' : 'default'} // Adjusted condition here
+                  color={selectedPatterns.includes(pattern.value) ? 'primary' : 'default'} // Adjusted condition here
                 />
               ))}
           </Box>
@@ -688,7 +690,7 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
                   size="small"
                   label={color.label}
                   onClick={() => handleColorChange(color.value)}
-                  color={selectedColors.includes(color.value) ? 'warning' : 'default'} // Adjusted condition here
+                  color={selectedColors.includes(color.value) ? 'primary' : 'default'} // Adjusted condition here
                 />
               ))}
           </Box>
@@ -707,7 +709,7 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
       </div> */}
       {/* Apply Filters Button */}
       <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
-        <Button type="submit" variant="contained" sx={{ width: '100%' }} color="warning">
+        <Button type="submit" variant="contained" color="primary" sx={{ width: '100%' }}>
           {t('sidebarButtons.applyFilters')}
         </Button>
       </ListItem>
@@ -722,7 +724,7 @@ const Sidebar = ({ applyFilters, resetFilters, userLocation }) => {
           onClick={handleResetFilters}
           variant="outlined"
           sx={{ width: '100%' }}
-          color="warning"
+          color="primary"
         >
           {t('sidebarButtons.resetFilters')}
         </Button>

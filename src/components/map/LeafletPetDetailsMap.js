@@ -142,6 +142,7 @@
 // export default LeafletPetDetailsMap;
 import React, { useEffect, useRef } from 'react';
 import { MapContainer, Marker, TileLayer, Popup, useMap } from 'react-leaflet';
+import Chip from '@mui/material/Chip';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -199,7 +200,7 @@ function LeafletPetDetailsMap({
 }) {
   const mainIcon = createCustomMainIcon('#0077B6');
   const historyIcon = createCustomIcon('#0077B6');
-  const newMarkerIcon = createCustomAddNewIcon('#7F00FF');
+  const newMarkerIcon = createCustomAddNewIcon('#dc004e');
   const mapRef = useRef();
 
   const onMapLoadHandler = (mapInstance) => {
@@ -232,7 +233,7 @@ function LeafletPetDetailsMap({
 
   return (
     <MapContainer
-      style={{ height: '500px', position: 'relative' }}
+      style={{ height: '400px', position: 'relative' }}
       center={[pet.location.coordinates[1], pet.location.coordinates[0]]}
       zoom={14}
       scrollWheelZoom={true}
@@ -329,9 +330,22 @@ function LeafletPetDetailsMap({
           }}
         >
           <Popup offset={[0, 5]}>
-            <div style={{ textAlign: 'center' }}>
+            {/* <div style={{ textAlign: 'center' }}>
               <p>New Location Marker</p>
-            </div>
+            </div> */}
+            <Chip
+              size="small"
+              label="New Location Marker"
+              style={{ backgroundColor: '#fff1f1', color: '#6d0202' }}
+              // style={{
+              //   textAlign: 'center',
+              //   backgroundColor: '#22badf',
+              //   padding: '0.4rem 0.6rem',
+              //   borderRadius: '1rem',
+              //   color: 'white',
+              //   fontWeight: '500',
+              // }}
+            ></Chip>
           </Popup>
         </Marker>
       )}

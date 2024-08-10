@@ -665,13 +665,12 @@ function IconLabelTabs({
                     </Typography>
                   </Box>
 
-                  <Box display="flex" alignItems="center" gap={2} style={{ marginTop: '1rem' }}>
-                    {/* <EmailIcon /> */}
+                  {/* <Box display="flex" alignItems="center" gap={2} style={{ marginTop: '1rem' }}>
                     <Avatar style={{ background: '#555' }}>
                       <EmailIcon />
                     </Avatar>
                     <Typography variant="body1">{pet.email ? pet.email : 'N/A'}</Typography>
-                  </Box>
+                  </Box> */}
                 </CardContent>
               </Card>
             </Box>
