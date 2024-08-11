@@ -161,16 +161,7 @@
       ],
       "7": [{ "value": "1", "label": "Cits" }]
     },
-    "healthInformationOptions": [
-      { "value": "1", "label": "Vesels" },
-      { "value": "2", "label": "Ievainots" },
-      { "value": "3", "label": "Slims" },
-      { "value": "4", "label": "Izbadējies" },
-      { "value": "5", "label": "Akls" },
-      { "value": "6", "label": "Kurls" },
-      { "value": "7", "label": "Mobilitātes problēmas" },
-      { "value": "8", "label": "Miris" }
-    ],
+    "healthInformationOptions": [{ "value": "1", "label": "Jā" }],
     "markingOptions": [
       { "value": "1", "label": "Vienkrāsains" },
       { "value": "2", "label": "Svītrains" },
@@ -443,7 +434,8 @@
     "markingColors": "Krāsu marķējums",
     "datetime": "Datums un laiks",
     "uploadFile": "Augšupielādēt failu",
-    "currentStatus": "Pašreizējais statuss"
+    "currentStatus": "Pašreizējais statuss",
+    "petHasDeceased": "Mājdzīvnieks ir miris"
   },
   "sidebarLabels": {
     "status": "Statuss",
@@ -494,8 +486,8 @@
     "stepSix": "6. Palīdziet atgriezt dzīvnieku īpašniekam un izglābt dzīvību"
   },
   "posterTitles": {
-    "haveYouSeen": "VAI ESAT REDZĒJUŠI ŠO MĀJDZĪVNIEKU",
-    "contact": "JA JUMS IR KĀDA INFORMĀCIJA, LŪDZU, SAIETIET AR",
+    "haveYouSeen": "PALIDZIET ATRAST ŠO MĀJDZĪVNIEKU",
+    "contact": "JA JUMS IR KĀDA INFORMĀCIJA, LŪDZU, SAZINIETIES AR MUMS",
     "scanQRCode": "Noklikšķiniet, lai skatītu karti, detaļas un izsekotu atjauninājumus par mājdzīvnieka statusu.",
     "posterGeneratedBy": "Plakāts izveidots ar PawClix"
   },

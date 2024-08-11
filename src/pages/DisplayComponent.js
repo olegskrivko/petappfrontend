@@ -161,7 +161,7 @@ const DisplayComponent = ({ pet }) => {
               fontSize: isSmallScreen ? '0.8rem' : '1rem',
             }}
           >
-            {t(`posterTitles.haveYouSeen`)}?
+            {t(`posterTitles.haveYouSeen`)}!
           </Typography>
         </Box>
       </Grid>

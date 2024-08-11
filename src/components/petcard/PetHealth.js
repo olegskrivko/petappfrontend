@@ -152,9 +152,10 @@ const PetHealth = ({ formState, setFormState }) => {
     <>
       <Grid item xs={12}>
         <Typography variant="body1" style={{ fontWeight: '500' }} gutterBottom textAlign="left">
-          {t('formTitles.healthInformation')}
+          {t('formTitles.petHasDeceased')}
         </Typography>
       </Grid>
+
       <Grid item xs={12} style={{ marginBottom: '1rem' }}>
         {/* {commonHealthIssues.map((issue) => (
           <FormControlLabel
@@ -184,7 +185,7 @@ const PetHealth = ({ formState, setFormState }) => {
           />
         ))}
       </Grid>
-      <Grid item xs={12}>
+      {/* <Grid item xs={12}>
         <TextField
           label={t('formLabels.additionalHealthDetails')}
           name="healthDetails"
@@ -197,7 +198,7 @@ const PetHealth = ({ formState, setFormState }) => {
           onChange={handleTextChange}
           fullWidth
         />
-      </Grid>
+      </Grid> */}
     </>
   );
 };

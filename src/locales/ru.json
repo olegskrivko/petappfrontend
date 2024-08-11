@@ -161,16 +161,7 @@
       ],
       "7": [{ "value": "1", "label": "Прочее" }]
     },
-    "healthInformationOptions": [
-      { "value": "1", "label": "Здоровый" },
-      { "value": "2", "label": "Раненый" },
-      { "value": "3", "label": "Больной" },
-      { "value": "4", "label": "Истощенный" },
-      { "value": "5", "label": "Слепой" },
-      { "value": "6", "label": "Глухой" },
-      { "value": "7", "label": "Проблемы с подвижностью" },
-      { "value": "8", "label": "Умерший" }
-    ],
+    "healthInformationOptions": [{ "value": "1", "label": "Да" }],
     "markingOptions": [
       { "value": "1", "label": "Сплошной" },
       { "value": "2", "label": "Полосатый" },
@@ -443,7 +434,8 @@
     "markingColors": "Цвета отметин",
     "datetime": "Дата и время",
     "uploadFile": "Загрузить файл",
-    "currentStatus": "Текущий статус"
+    "currentStatus": "Текущий статус",
+    "petHasDeceased": "Домашнее животное умерло"
   },
   "sidebarLabels": {
     "status": "Статус",
@@ -482,8 +474,8 @@
     "stepSix": "6. Помогите вернуть питомца владельцу и спасите жизнь"
   },
   "posterTitles": {
-    "haveYouSeen": "ВЫ ВИДЕЛИ ЭТОГО ПИТОМЦА",
-    "contact": "ЕСЛИ У ВАС ЕСТЬ ЛЮБАЯ ИНФОРМАЦИЯ, ПОЖАЛУЙСТА, СВЯЖИТЕСЬ",
+    "haveYouSeen": "ПОМОГИТЕ НАЙТИ ЭТОГО ПИТОМЦА",
+    "contact": "ЕСЛИ У ВАС ЕСТЬ ЛЮБАЯ ИНФОРМАЦИЯ, ПОЖАЛУЙСТА, СВЯЖИТЕСЬ С НАМИ",
     "scanQRCode": "Сканируйте, чтобы просмотреть карту, детали и отслеживать обновления статуса питомца.",
     "posterGeneratedBy": "Постер создан PawClix"
   },

@@ -19,6 +19,10 @@ import { useParams } from 'react-router-dom';
 // Import Images
 // import BannerImg from '../images/animals_floating_with_balloons_rafiki.svg';
 import BannerImg from '../images/catdog.jpg';
+// import petposter from '../images/lostdogposter.avif';
+import petlisting from '../images/petlisting.png';
+import lostdogposter from '../images/lostdogposter.png';
+import studies from '../images/studies.png';
 import OneSignal from 'react-onesignal';
 
 function HomePage() {
@@ -259,7 +263,20 @@ function HomePage() {
       <Grid container spacing={3} style={{ marginTop: '1rem' }}>
         <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
           <Card style={{ backgroundColor: '#f7f9fd' }}>
-            <CardContent>
+            <CardContent
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <CardMedia
+                component="img"
+                alt=""
+                image={petlisting}
+                style={{ width: 'auto', height: '120px' }}
+              />
               <Typography
                 variant="h6"
                 textAlign="center"
@@ -281,7 +298,20 @@ function HomePage() {
         </Grid>
         <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
           <Card style={{ backgroundColor: '#f7f9fd' }}>
-            <CardContent>
+            <CardContent
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <CardMedia
+                component="img"
+                alt=""
+                image={lostdogposter}
+                style={{ width: 'auto', height: '120px' }}
+              />
               <Typography
                 variant="h6"
                 textAlign="center"
@@ -302,7 +332,21 @@ function HomePage() {
         </Grid>
         <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
           <Card style={{ backgroundColor: '#f7f9fd' }}>
-            <CardContent>
+            <CardContent
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              {' '}
+              <CardMedia
+                component="img"
+                alt=""
+                image={studies}
+                style={{ width: 'auto', height: '120px' }}
+              />
               <Typography
                 variant="h6"
                 textAlign="center"
@@ -403,6 +447,7 @@ function HomePage() {
           </Card>
         </Grid>
       </Grid>
+      {/* <a href="https://www.freepik.com/search">Icon by Freepik</a> */}
       <Grid item xs={12} textAlign="center">
         <Typography
           variant="body1"

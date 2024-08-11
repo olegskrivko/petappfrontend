@@ -104,6 +104,7 @@ const PetsDetailsPage = () => {
   //     // Handle error as needed
   //   }
   // };
+
   const sendMessage = async (message) => {
     try {
       const token = localStorage.getItem('token');

@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 import FormGroup from '@mui/material/FormGroup';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import CardContent from '@mui/material/CardContent';
+import Card from '@mui/material/Card';
 
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
@@ -35,7 +37,7 @@ import { AuthContext } from '../middleware/AuthContext';
 import { LanguageContext } from '../middleware/LanguageContext';
 import { useTranslation } from 'react-i18next';
 // import Upload from '../pages/Upload';
-
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 function CreatePetPage() {
   const { t } = useTranslation();
   const { user } = useContext(AuthContext);
@@ -826,11 +828,33 @@ function CreatePetPage() {
               </Grid>
               <Grid item xs={12}>
                 <LeafletAddPetMap onLocationChange={handleLocationChange} />
-                <div>
+                {/* <div>
                   <h2>Current Location:</h2>
                   <p>Latitude: {formState.location.lat}</p>
                   <p>Longitude: {formState.location.lng}</p>
-                </div>
+                </div> */}
+
+                <Box display="flex" alignItems="center" my={2}>
+                  <LocationOnIcon color="primary" style={{ fontSize: 40, marginRight: 8 }} />
+                  <Typography variant="h6" component="h2">
+                    Current Location
+                  </Typography>
+                </Box>
+                <Box mb={2}>
+                  <Typography variant="body1" style={{ fontWeight: 'bold' }}>
+                    Latitude:
+                    <Typography component="span" style={{ fontWeight: 'normal', marginLeft: 8 }}>
+                      {formState.location.lat}
+                    </Typography>
+                  </Typography>
+                  <Typography variant="body1" style={{ fontWeight: 'bold', marginTop: 8 }}>
+                    Longitude:
+                    <Typography component="span" style={{ fontWeight: 'normal', marginLeft: 8 }}>
+                      {formState.location.lng}
+                    </Typography>
+                  </Typography>
+                </Box>
+
                 {/* <TomTomMap onLocationChange={handleLocationChange} /> */}
               </Grid>
 
@@ -1299,7 +1323,7 @@ function CreatePetPage() {
                 </Typography>
               </Grid>
 
-              <Grid item xs={3} sm={3} md={2} lg={2}>
+              <Grid item xs={4} sm={4} md={4} lg={4}>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel id="phoneCode-label" shrink>
                     {t('formLabels.phoneCode')}
@@ -1346,7 +1370,7 @@ function CreatePetPage() {
                   )}
                 </FormControl>
               </Grid>
-              <Grid item xs={9} sm={9} md={4} lg={4}>
+              <Grid item xs={8} sm={8} md={8} lg={8}>
                 <TextField
                   id="phone"
                   name="phone"
@@ -1362,7 +1386,7 @@ function CreatePetPage() {
                   onChange={(e) => handleChange('phone', e.target.value)}
                 />
               </Grid>
-              <Grid item xs={12} sm={12} md={6} lg={6}>
+              {/* <Grid item xs={12} sm={12} md={6} lg={6}>
                 <TextField
                   id="email"
                   name="email"
@@ -1377,7 +1401,7 @@ function CreatePetPage() {
                   value={formState.email}
                   onChange={(e) => handleChange('email', e.target.value)}
                 />
-              </Grid>
+              </Grid> */}
               <Grid item xs={12}>
                 <TextField
                   id="notes"
