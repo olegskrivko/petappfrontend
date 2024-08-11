@@ -23,6 +23,10 @@ import BannerImg from '../images/catdog.jpg';
 import petlisting from '../images/petlisting.png';
 import lostdogposter from '../images/lostdogposter.png';
 import studies from '../images/studies.png';
+import pathlocations from '../images/pathlocations.png';
+import search from '../images/search.png';
+import notifications from '../images/notifications.png';
+
 import OneSignal from 'react-onesignal';
 
 function HomePage() {
@@ -366,24 +370,39 @@ function HomePage() {
           </Card>
         </Grid>
       </Grid>
-      <Grid item xs={12} textAlign="center">
-        <Typography
-          variant="body1"
-          textAlign="center"
-          style={{
-            fontSize: '1.2rem',
-            fontWeight: '400',
-            marginTop: '1rem',
-            marginBottom: '1rem',
-          }}
-        >
-          3 Steps to Find Your Pet
-        </Typography>
+      <Grid container spacing={3} style={{ marginTop: '1rem' }}>
+        <Grid item xs={12} textAlign="center">
+          <Typography
+            variant="h2"
+            textAlign="center"
+            style={{
+              fontSize: '1.6rem',
+              fontWeight: '500',
+              marginTop: '1rem',
+            }}
+          >
+            3 Steps to Find Your Pet
+          </Typography>
+        </Grid>
       </Grid>
       <Grid container spacing={3} style={{ marginTop: '1rem' }}>
         <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
           <Card style={{ backgroundColor: '#f7f9fd' }}>
-            <CardContent>
+            <CardContent
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <CardMedia
+                component="img"
+                alt=""
+                image={search}
+                style={{ width: 'auto', height: '120px' }}
+              />
+
               <Typography
                 variant="h6"
                 textAlign="center"
@@ -406,7 +425,21 @@ function HomePage() {
 
         <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
           <Card style={{ backgroundColor: '#f7f9fd' }}>
-            <CardContent>
+            <CardContent
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              {' '}
+              <CardMedia
+                component="img"
+                alt=""
+                image={notifications}
+                style={{ width: 'auto', height: '120px' }}
+              />
               <Typography
                 variant="h6"
                 textAlign="center"
@@ -427,7 +460,20 @@ function HomePage() {
         </Grid>
         <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
           <Card style={{ backgroundColor: '#f7f9fd' }}>
-            <CardContent>
+            <CardContent
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <CardMedia
+                component="img"
+                alt=""
+                image={pathlocations}
+                style={{ width: 'auto', height: '120px' }}
+              />
               <Typography
                 variant="h6"
                 textAlign="center"
@@ -448,19 +494,21 @@ function HomePage() {
         </Grid>
       </Grid>
       {/* <a href="https://www.freepik.com/search">Icon by Freepik</a> */}
-      <Grid item xs={12} textAlign="center">
-        <Typography
-          variant="body1"
-          textAlign="center"
-          style={{
-            fontSize: '1.2rem',
-            fontWeight: '400',
-            marginTop: '1rem',
-            marginBottom: '1rem',
-          }}
-        >
-          Guidance and Support
-        </Typography>
+
+      <Grid container spacing={3} style={{ marginTop: '1rem' }}>
+        <Grid item xs={12} textAlign="center">
+          <Typography
+            variant="h2"
+            textAlign="center"
+            style={{
+              fontSize: '1.6rem',
+              fontWeight: '500',
+              marginTop: '1rem',
+            }}
+          >
+            Guidance and Support
+          </Typography>
+        </Grid>
       </Grid>
     </React.Fragment>
   );
