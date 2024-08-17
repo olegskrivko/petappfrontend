@@ -26,9 +26,12 @@ import studies from '../images/studies.png';
 import pathlocations from '../images/pathlocations.png';
 import search from '../images/search.png';
 import notifications from '../images/notifications.png';
-
+import share from '../images/share.png';
+/* Add these lines to your CSS file */
+import ArticlesListPage from './ArticlesListPage';
 import OneSignal from 'react-onesignal';
-
+import PetCounter from './PetCounter';
+import TestimonialSlider from './TestimonialSlider';
 function HomePage() {
   const { t } = useTranslation();
   const { user } = useAuth();
@@ -155,7 +158,7 @@ function HomePage() {
           </Box>
         </Grid>
 
-        <Grid
+        {/* <Grid
           item
           xs={12}
           sm={12}
@@ -168,7 +171,6 @@ function HomePage() {
               {isSmallScreen ? (
                 <Button
                   variant="contained"
-                  startIcon={<SearchIcon />}
                   size="small"
                   style={{
                     marginTop: '2rem',
@@ -184,7 +186,6 @@ function HomePage() {
               ) : (
                 <Button
                   variant="contained"
-                  startIcon={<SearchIcon />}
                   size="large"
                   style={{
                     marginTop: '2rem',
@@ -204,7 +205,6 @@ function HomePage() {
                 <Button
                   variant="outlined"
                   color="warning"
-                  startIcon={<PetsIcon />}
                   size="small"
                   style={{
                     marginTop: '2rem',
@@ -226,7 +226,6 @@ function HomePage() {
                 <Button
                   variant="outlined"
                   color="warning"
-                  startIcon={<PetsIcon />}
                   size="large"
                   style={{
                     marginTop: '2rem',
@@ -247,8 +246,26 @@ function HomePage() {
               )}
             </Link>
           </Box>
-        </Grid>
+        </Grid> */}
       </Grid>
+      {/* Add PetCounter component */}
+      {/* <Grid container spacing={3} style={{ marginTop: '1rem' }}>
+        <Grid item xs={12} textAlign="center">
+          <Typography
+            variant="h2"
+            textAlign="center"
+            style={{
+              fontSize: '1.6rem',
+              fontWeight: '500',
+              marginTop: '1rem',
+            }}
+          >
+            Pets lost
+          </Typography>
+        </Grid>
+      </Grid> */}
+      <PetCounter dailyCount={20} yearlyCount={7300} />
+
       <Grid container spacing={3} style={{ marginTop: '1rem' }}>
         <Grid item xs={12} textAlign="center">
           <Typography
@@ -370,7 +387,7 @@ function HomePage() {
           </Card>
         </Grid>
       </Grid>
-      <Grid container spacing={3} style={{ marginTop: '1rem' }}>
+      {/* <Grid container spacing={3} style={{ marginTop: '1rem' }}>
         <Grid item xs={12} textAlign="center">
           <Typography
             variant="h2"
@@ -384,7 +401,7 @@ function HomePage() {
             3 Steps to Find Your Pet
           </Typography>
         </Grid>
-      </Grid>
+      </Grid> */}
       <Grid container spacing={3} style={{ marginTop: '1rem' }}>
         <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
           <Card style={{ backgroundColor: '#f7f9fd' }}>
@@ -413,17 +430,16 @@ function HomePage() {
                   // fontWeight: getTypography('h2').fontWeight,
                 }}
               >
-                1. You start a PawClix search
+                Start a PawClix search
               </Typography>
-              {/* <Typography variant="body2">
-                Your pet is added to our webpage of missing pets, which makes reporting a sighting
-                easier than ever.
-              </Typography> */}
+              <Typography variant="body2">
+                Discover if your pet has been spotted or reported by someone else.
+              </Typography>
             </CardContent>
           </Card>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
+        {/* <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
           <Card style={{ backgroundColor: '#f7f9fd' }}>
             <CardContent
               style={{
@@ -450,11 +466,47 @@ function HomePage() {
                   // fontWeight: getTypography('h2').fontWeight,
                 }}
               >
-                2. We alert neighbors
+                We alert neighbors
               </Typography>
-              {/* <Typography variant="body2">
-                Receive an expert-designed missing poster with QR code.
-              </Typography> */}
+              <Typography variant="body2">
+                Receive timely push notifications alerting you of any updates from neighbors within
+                a 20km radius.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid> */}
+        <Grid item xs={12} sm={6} md={6} lg={4} textAlign="center">
+          <Card style={{ backgroundColor: '#f7f9fd' }}>
+            <CardContent
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              {' '}
+              <CardMedia
+                component="img"
+                alt=""
+                image={share}
+                style={{ width: 'auto', height: '120px' }}
+              />
+              <Typography
+                variant="h6"
+                textAlign="center"
+                style={{
+                  marginBottom: '0.5rem',
+                  color: '#22badf',
+                  // fontSize: getTypography('h2').fontSize,
+                  // fontWeight: getTypography('h2').fontWeight,
+                }}
+              >
+                Social Media Sharing
+              </Typography>
+              <Typography variant="body2">
+                Share your pet's information on social media to increase visibility.
+              </Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -484,18 +536,34 @@ function HomePage() {
                   // fontWeight: getTypography('h2').fontWeight,
                 }}
               >
-                3. You receive sightings
+                Receive sightings
               </Typography>
-              {/* <Typography variant="body2">
-                With helplines, expert articles we support you every step of the way.
-              </Typography> */}
+              <Typography variant="body2">
+                Check for new sightings reported by the community to stay updated on any leads for
+                your pet.
+              </Typography>
             </CardContent>
           </Card>
         </Grid>
       </Grid>
       {/* <a href="https://www.freepik.com/search">Icon by Freepik</a> */}
-
       <Grid container spacing={3} style={{ marginTop: '1rem' }}>
+        <Grid item xs={12} textAlign="center">
+          <Typography
+            variant="h2"
+            textAlign="center"
+            style={{
+              fontSize: '1.6rem',
+              fontWeight: '500',
+              marginTop: '1rem',
+            }}
+          >
+            What our users say
+          </Typography>
+        </Grid>
+      </Grid>
+      <TestimonialSlider />
+      <Grid container spacing={3} style={{ margin: '1rem' }}>
         <Grid item xs={12} textAlign="center">
           <Typography
             variant="h2"
@@ -510,6 +578,7 @@ function HomePage() {
           </Typography>
         </Grid>
       </Grid>
+      <ArticlesListPage />
     </React.Fragment>
   );
 }

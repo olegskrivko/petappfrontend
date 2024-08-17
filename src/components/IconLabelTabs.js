@@ -527,11 +527,10 @@ function IconLabelTabs({
       <TabPanel value={value} index={2}>
         <Grid container>
           <Grid item xs={12} style={{ paddingLeft: '0' }}>
-            <Box mb={3}>
+            {/* <Box mb={3}>
               <Box display="flex" alignItems="center" mb={1}>
                 <LocalHospitalIcon />
                 <Typography variant="h6" style={{ fontSize: '1rem' }} ml={1} fontWeight="bold">
-                  {/* Health Details */}
                   {t('formLabels.healthInformation')}
                 </Typography>
               </Box>
@@ -563,42 +562,13 @@ function IconLabelTabs({
                   )}
                 </CardContent>
               </Card>
-              {/* <Card elevation={3}>
-                  <CardContent style={{ paddingBottom: "1rem" }}>
-                    {pet.health && pet.health.length > 0 ? (
-                      <Box>
-                        {pet.health.map((item, index) => (
-                          <Chip
-                            key={index}
-                            label={item}
-                            size="small"
-                            variant="contained"
-                            sx={{ m: 0.5 }}
-                          />
-                        ))}
-                      </Box>
-                    ) : (
-                      <Typography variant="body2">
-                        No health information given.
-                      </Typography>
-                    )}
-  
-                    <Typography variant="body2" style={{ marginTop: "1rem" }}>
-                      {pet.healthDetails
-                        ? pet.healthDetails
-                        : "No additional health information given."}
-                    </Typography>
-                  </CardContent>
-                </Card> */}
-            </Box>
+            </Box> */}
 
             <Box>
               <Box display="flex" alignItems="center" mb={1}>
-                {/* <InfoIcon /> */}
                 <FeedIcon />
                 <Typography variant="h6" ml={1} style={{ fontSize: '1rem' }} fontWeight="bold">
-                  {/* Additional Information */}
-                  {t('formLabels.additionalHealthDetails')}
+                  {t('formLabels.notes')}
                 </Typography>
               </Box>
               <Card elevation={3}>

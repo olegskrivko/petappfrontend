@@ -109,7 +109,7 @@ const ArticlesListPage = () => {
 
   return (
     <>
-      <Grid container spacing={3}>
+      {/* <Grid container spacing={3}>
         <Grid item xs={12} sm={12} md={12} lg={12}>
           <Typography
             variant="h1"
@@ -124,7 +124,7 @@ const ArticlesListPage = () => {
             Pet Care Tips
           </Typography>
         </Grid>
-      </Grid>
+      </Grid> */}
       <Grid container spacing={4}>
         {articles.length === 0 ? (
           <Typography variant="h6" style={{ margin: 'auto' }}>
