@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
   const { t } = useTranslation('footer');
-  // const { t } = useTranslation(['footer', 'common']);
+
   const appLinks = [
     { path: '/about', label: 'links.about' },
     { path: '/pets', label: 'links.pets' },
@@ -37,9 +37,7 @@ const Footer = () => {
     { path: '/contact', label: 'links.contact' },
     { path: '/feedback', label: 'links.feedback' },
     { path: '/support', label: 'links.support' },
-    { path: '/sponsors-and-partners#partners', label: 'links.partners' },
     { path: '/contact', label: 'links.socialMedia' },
-    { path: '/sponsors-and-partners#sponsors', label: 'links.sponsors' },
   ];
 
   const renderLinks = (linksArray) =>

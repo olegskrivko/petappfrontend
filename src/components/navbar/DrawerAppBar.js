@@ -228,7 +228,6 @@ function DrawerAppBar(props) {
                   >
                     {t('profile')}
                   </Button>
-                  ffcb56
                 </Link>
               ) : (
                 <Link to="/login">

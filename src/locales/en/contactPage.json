@@ -1,0 +1,36 @@
+{
+  "title": "Contact Us",
+  "partner": {
+    "title": "Partner With Us",
+    "description1": "Are you passionate about pets? Whether you're a vet, animal lover, or just want to share your knowledge, we're here for you!",
+    "description2": "Join us in our mission to reunite lost pets with their families and provide valuable resources to pet owners in need. Let's make a positive impact together!"
+  },
+  "collaboration": {
+    "title": "Further Collaboration Opportunities",
+    "description1": "Additionally, we're open to exploring other collaboration opportunities including visionary branding, development partnerships, and more."
+  },
+  "getInTouch": {
+    "title": "Get In Touch",
+    "description1": "We value your feedback, inquiries, and suggestions. Whether you have a question about our services, want to provide feedback, or simply want to say hello, we’d love to hear from you.",
+    "description2": "Additionally, if you encounter any mistakes or errors on our platform or have concerns regarding the source of data or intellectual property rights, please feel free to contact us. If you have any other questions or feedback, we're here to assist you.",
+    "button": "GET IN TOUCH"
+  },
+  "policies": {
+    "title": "Policies & Community Guidelines",
+    "description1": "Explore our policies and community guidelines to learn about how we collect and protect your data, community rules, and more. For detailed information, please refer to our links down below.",
+    "list": {
+      "listItem1": "Privacy Policy",
+      "listItem2": "Terms of Service",
+      "listItem3": "Cookie Policy",
+      "listItem4": "Data Protection Policy",
+      "listItem5": "Disclaimer",
+      "listItem6": "Community Guidelines"
+    }
+  },
+  "socialMedia": {
+    "title": "Social Media"
+  },
+  "contactInformation": {
+    "title": "Contact Information"
+  }
+}

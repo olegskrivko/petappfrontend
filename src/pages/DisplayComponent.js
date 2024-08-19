@@ -267,7 +267,7 @@ const DisplayComponent = ({ pet }) => {
                 }}
               >
                 <MergeTypeIcon style={{ fontSize: isSmallScreen ? '0.6rem' : '1rem' }} />{' '}
-                <b>{t(`formLabels.breed`)}:</b>{' '}
+                <b>{t(`formLabels.subcategory`)}:</b>{' '}
                 <span style={{ textTransform: 'capitalize' }}>{getBreedLabel(pet.breed)}</span>
               </Box>
             </Grid>

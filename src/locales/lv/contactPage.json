@@ -1,0 +1,37 @@
+{
+  "title": "Sazinieties ar mums",
+  "partner": {
+    "title": "Piedāvājiet sadarbību",
+    "description1": "Vai jums ir aizraušanās ar mājdzīvniekiem? Neatkarīgi no tā, vai esat veterinārārsts, dzīvnieku mīļotājs vai vienkārši vēlaties dalīties ar savām zināšanām, mēs esam šeit jums!",
+    "description2": "Pievienojieties mums mūsu misijā apvienot pazaudētus mājdzīvniekus ar viņu ģimenēm un sniegt vērtīgus resursus mājdzīvnieku īpašniekiem. Kopā radīsim pozitīvu ietekmi!"
+  },
+  "collaboration": {
+    "title": "Papildu sadarbības iespējas",
+    "description1": "Papildus mēs esam atvērti izpētīt citas sadarbības iespējas, tostarp radošo zīmolu veidošanu, izstrādes partnerības un daudz ko citu."
+  },
+  "getInTouch": {
+    "title": "Sazinieties ar mums",
+    "description1": "Mēs novērtējam jūsu atsauksmes, jautājumus un priekšlikumus. Ja jums ir jautājumi par mūsu pakalpojumiem, vēlaties sniegt atsauksmes vai vienkārši teikt sveiki, mēs labprāt dzirdētu no jums.",
+    "description2": "Papildus, ja jūs sastopaties ar kļūdām vai neprecizitātēm mūsu platformā vai jums ir jautājumi par datu avotiem vai intelektuālā īpašuma tiesībām, lūdzu, sazinieties ar mums. Ja jums ir citi jautājumi vai atsauksmes, mēs esam šeit, lai palīdzētu.",
+    "button": "SAZINIETIES"
+  },
+  "policies": {
+    "title": "Politika un kopienas vadlīnijas",
+    "description1": "Izpētiet mūsu politiku un kopienas vadlīnijas, lai uzzinātu, kā mēs vācam un aizsargājam jūsu datus, kopienas noteikumus un daudz ko citu. Lai iegūtu detalizētu informāciju, lūdzu, skatiet mūsu saites zemāk.",
+    "list": {
+      "listItem1": "Privātuma politika",
+      "listItem2": "Pakalpojumu noteikumi",
+      "listItem3": "Sīkdatņu politika",
+      "listItem4": "Datu aizsardzības politika",
+      "listItem5": "Atruna",
+      "listItem6": "Kopienas vadlīnijas"
+    }
+  },
+
+  "socialMedia": {
+    "title": "Sociālie mediji"
+  },
+  "contactInformation": {
+    "title": "Kontaktinformācija"
+  }
+}

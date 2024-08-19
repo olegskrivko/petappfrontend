@@ -35,7 +35,7 @@ import { EMAIL, PHONE, COUNTRY, CITY, FACEBOOK, INSTAGRAM } from '../middleware/
 
 const ContactPage = () => {
   const { getTypography } = useFontSizes();
-  const { t } = useTranslation(); // Initialize translation hook
+  const { t } = useTranslation('contactPage'); // Initialize translation hook
   const handleLocationClick = () => {
     const locationQuery = `${COUNTRY}, ${CITY}`;
     const encodedLocationQuery = encodeURIComponent(locationQuery);
@@ -57,7 +57,7 @@ const ContactPage = () => {
               fontWeight: getTypography('h1').fontWeight,
             }}
           >
-            {t('contactPage.title')}
+            {t('title')}
           </Typography>
         </Grid>
       </Grid>
@@ -73,15 +73,15 @@ const ContactPage = () => {
               fontWeight: getTypography('h2').fontWeight,
             }}
           >
-            {t('contactPage.partner.title')}
+            {t('partner.title')}
           </Typography>
 
           <Typography variant="body1" paragraph style={{ textAlign: 'left' }}>
-            {t('contactPage.partner.description1')}
+            {t('partner.description1')}
           </Typography>
 
           <Typography variant="body1" paragraph style={{ textAlign: 'left' }}>
-            {t('contactPage.partner.description2')}
+            {t('partner.description2')}
           </Typography>
         </Grid>
 
@@ -180,11 +180,11 @@ const ContactPage = () => {
               fontWeight: getTypography('h2').fontWeight,
             }}
           >
-            {t('contactPage.collaboration.title')}
+            {t('collaboration.title')}
           </Typography>
 
           <Typography variant="body1" style={{ textAlign: 'right' }}>
-            {t('contactPage.collaboration.description1')}
+            {t('collaboration.description1')}
           </Typography>
         </Grid>
       </Grid>
@@ -201,14 +201,14 @@ const ContactPage = () => {
               fontWeight: getTypography('h2').fontWeight,
             }}
           >
-            {t('contactPage.getInTouch.title')}
+            {t('getInTouch.title')}
           </Typography>
 
           <Typography variant="body1" style={{ textAlign: 'left' }}>
-            {t('contactPage.getInTouch.description1')}
+            {t('getInTouch.description1')}
           </Typography>
           <Typography variant="body1" sx={{ mt: 2 }} style={{ textAlign: 'left' }}>
-            {t('contactPage.getInTouch.description2')}
+            {t('getInTouch.description2')}
           </Typography>
           <Grid item mt={2} xs={12} sm={12} md={12} lg={12} textAlign="center">
             <Link to="/feedback">
@@ -218,7 +218,7 @@ const ContactPage = () => {
                 variant="contained"
                 style={{ backgroundColor: '#ffcb56', color: '#000' }}
               >
-                {t('contactPage.getInTouch.button')}
+                {t('getInTouch.button')}
               </Button>
             </Link>
           </Grid>
@@ -278,10 +278,10 @@ const ContactPage = () => {
             }}
             gutterBottom
           >
-            {t('contactPage.policies.title')}
+            {t('policies.title')}
           </Typography>
           <Typography variant="body1" gutterBottom sx={{ textAlign: 'center' }}>
-            {t('contactPage.policies.description1')}
+            {t('policies.description1')}
           </Typography>
         </Grid>
       </Grid>
@@ -301,7 +301,7 @@ const ContactPage = () => {
                     fontWeight: getTypography('h3').fontWeight,
                   }}
                 >
-                  {t('contactPage.policies.list.listItem1')}
+                  {t('policies.list.listItem1')}
                 </Typography>
               </Link>
             </ListItem>
@@ -318,7 +318,7 @@ const ContactPage = () => {
                     fontWeight: getTypography('h3').fontWeight,
                   }}
                 >
-                  {t('contactPage.policies.list.listItem2')}
+                  {t('policies.list.listItem2')}
                 </Typography>
               </Link>
             </ListItem>
@@ -335,7 +335,7 @@ const ContactPage = () => {
                     fontWeight: getTypography('h3').fontWeight,
                   }}
                 >
-                  {t('contactPage.policies.list.listItem3')}
+                  {t('policies.list.listItem3')}
                 </Typography>
               </Link>
             </ListItem>
@@ -353,7 +353,7 @@ const ContactPage = () => {
                     fontWeight: getTypography('h3').fontWeight,
                   }}
                 >
-                  {t('contactPage.policies.list.listItem4')}
+                  {t('policies.list.listItem4')}
                 </Typography>
               </Link>
             </ListItem>
@@ -371,7 +371,7 @@ const ContactPage = () => {
                     fontWeight: getTypography('h3').fontWeight,
                   }}
                 >
-                  {t('contactPage.policies.list.listItem5')}
+                  {t('policies.list.listItem5')}
                 </Typography>
               </Link>
             </ListItem>
@@ -390,7 +390,7 @@ const ContactPage = () => {
                     fontWeight: getTypography('h3').fontWeight,
                   }}
                 >
-                  {t('contactPage.policies.list.listItem6')}
+                  {t('policies.list.listItem6')}
                 </Typography>
               </Link>
             </ListItem>
@@ -407,7 +407,7 @@ const ContactPage = () => {
             fontWeight: getTypography('h2').fontWeight,
           }}
         >
-          {t('contactPage.socialMedia.title')}
+          {t('socialMedia.title')}
         </Typography>
 
         <Grid container spacing={2} justifyContent="center">
@@ -435,7 +435,7 @@ const ContactPage = () => {
             fontWeight: getTypography('h2').fontWeight,
           }}
         >
-          {t('contactPage.contactInformation.title')}
+          {t('contactInformation.title')}
         </Typography>
 
         <Grid container spacing={2} sx={{ mb: 5 }} justifyContent="center">

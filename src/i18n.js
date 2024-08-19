@@ -128,6 +128,8 @@ import enTermsOfServicePage from './locales/en/termsOfServicePage.json';
 import enDataProtectionPolicyPage from './locales/en/dataProtectionPolicyPage.json';
 import enCookiePolicyPage from './locales/en/cookiePolicyPage.json';
 import enCommunityGuidelinesPage from './locales/en/communityGuidelinesPage.json';
+import enContactPage from './locales/en/contactPage.json';
+import enVirtualPetTrainingClassesPage from './locales/en/virtualPetTrainingClassesPage.json';
 
 import lvCommon from './locales/lv/common.json';
 import lvNavbar from './locales/lv/navbar.json';
@@ -142,6 +144,8 @@ import lvTermsOfServicePage from './locales/lv/termsOfServicePage.json';
 import lvDataProtectionPolicyPage from './locales/lv/dataProtectionPolicyPage.json';
 import lvCookiePolicyPage from './locales/lv/cookiePolicyPage.json';
 import lvCommunityGuidelinesPage from './locales/lv/communityGuidelinesPage.json';
+import lvContactPage from './locales/lv/contactPage.json';
+import lvVirtualPetTrainingClassesPage from './locales/lv/virtualPetTrainingClassesPage.json';
 
 import ruCommon from './locales/ru/common.json';
 import ruNavbar from './locales/ru/navbar.json';
@@ -156,6 +160,8 @@ import ruTermsOfServicePage from './locales/ru/termsOfServicePage.json';
 import ruDataProtectionPolicyPage from './locales/ru/dataProtectionPolicyPage.json';
 import ruCookiePolicyPage from './locales/ru/cookiePolicyPage.json';
 import ruCommunityGuidelinesPage from './locales/ru/communityGuidelinesPage.json';
+import ruContactPage from './locales/ru/contactPage.json';
+import ruVirtualPetTrainingClassesPage from './locales/ru/virtualPetTrainingClassesPage.json';
 
 i18n
   .use(LanguageDetector) // Detects user language
@@ -181,6 +187,8 @@ i18n
         dataProtectionPolicyPage: enDataProtectionPolicyPage,
         cookiePolicyPage: enCookiePolicyPage,
         communityGuidelinesPage: enCommunityGuidelinesPage,
+        contactPage: enContactPage,
+        virtualPetTrainingClassesPage: enVirtualPetTrainingClassesPage,
       },
       lv: {
         common: lvCommon,
@@ -196,6 +204,8 @@ i18n
         dataProtectionPolicyPage: lvDataProtectionPolicyPage,
         cookiePolicyPage: lvCookiePolicyPage,
         communityGuidelinesPage: lvCommunityGuidelinesPage,
+        contactPage: lvContactPage,
+        virtualPetTrainingClassesPage: lvVirtualPetTrainingClassesPage,
       },
       ru: {
         common: ruCommon,
@@ -211,6 +221,8 @@ i18n
         dataProtectionPolicyPage: ruDataProtectionPolicyPage,
         cookiePolicyPage: ruCookiePolicyPage,
         communityGuidelinesPage: ruCommunityGuidelinesPage,
+        contactPage: ruContactPage,
+        virtualPetTrainingClassesPage: ruVirtualPetTrainingClassesPage,
       },
     },
     detection: {
@@ -230,6 +242,8 @@ i18n
       'dataProtectionPolicyPage',
       'cookiePolicyPage',
       'communityGuidelinesPage',
+      'contactPage',
+      'virtualPetTrainingClassesPage',
     ], // Namespaces to use
     defaultNS: 'common', // Default namespace
   });

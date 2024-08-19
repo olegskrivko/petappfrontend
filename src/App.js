@@ -184,7 +184,7 @@ const EditPetPage = lazy(() => import('./pages/EditPetPage'));
 const SheltersListPage = lazy(() => import('./pages/SheltersListPage'));
 const CreateShelterForm = lazy(() => import('./pages/CreateShelterForm'));
 const ShelterDetailsPage = lazy(() => import('./pages/ShelterDetailsPage'));
-const VirtualPetTrainingClasses = lazy(() => import('./pages/VirtualPetTrainingClasses'));
+const VirtualPetTrainingClassesPage = lazy(() => import('./pages/VirtualPetTrainingClassesPage'));
 const PetInfrastructurePage = lazy(() => import('./pages/PetInfrastructurePage'));
 const CreateServicePage = lazy(() => import('./pages/CreateServicePage'));
 const CreateBusinessPage = lazy(() => import('./pages/CreateBusinessPage'));
@@ -289,7 +289,7 @@ const App = () => {
                   <Route path="shelters/:slug" element={<ShelterDetailsPage />} />
                   <Route
                     path="virtual-pet-training-classes"
-                    element={<VirtualPetTrainingClasses />}
+                    element={<VirtualPetTrainingClassesPage />}
                   />
                   <Route path="pet-infrastructure" element={<PetInfrastructurePage />} />
                   <Route path="contact" element={<ContactPage />} />
