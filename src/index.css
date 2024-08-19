@@ -173,3 +173,14 @@ code {
 .slide-in {
   animation: slideInFromBottom 3s ease-out;
 }
+
+/* General approach for all major browsers */
+body {
+  overflow: auto; /* Ensure scroll functionality */
+}
+
+/* Hide scrollbar for WebKit browsers */
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}

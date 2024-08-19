@@ -1,0 +1,61 @@
+{
+  "title": "Par Mums",
+  "goal": {
+    "title": "Mūsu Mērķis",
+    "description1": "Mūsu lietotne izmanto modernākās tehnoloģijas, lai atvieglotu pazudušu mājdzīvnieku atgriešanos pie īpašniekiem. Piedāvājam ērtu platformu, kurā var ievietot pazudušu mājdzīvnieku sludinājumus, un aktīvi strādājam, lai savienotu īpašniekus ar cilvēkiem, kuri ir atraduši mājdzīvniekus, palielinot veiksmīgas atgriešanās iespējas.",
+    "description2": "Papildus mājdzīvnieku atgriešanai pie ģimenēm, mūsu lietotne kalpo kā visaptverošs centrs visām jūsu mājdzīvnieku vajadzībām. Mēs savienojam jūs ar plašu pakalpojumu tīklu, ieskaitot veterinārās klīnikas, frizētājus, trenerus un daudz ko citu. Neatkarīgi no tā, vai jūsu mājdzīvniekam nepieciešama medicīniska palīdzība, frizēšana vai specializēta apmācība, mūsu lietotne nodrošina ātru piekļuvi labākajiem resursiem, kas pielāgoti jūsu mājdzīvnieka konkrētajām vajadzībām."
+  },
+  "ourJourney": {
+    "title": "Mūsu Ceļš",
+    "title1": "Problēma",
+    "description1": "Es bieži pamanīju pazudušu mājdzīvnieku sludinājumus, kas piestiprināti pie laternu stabiem, lietū izmirkusi un gandrīz nesalasāma. Ierobežotā informācija un sliktā kvalitāte padarīja gandrīz neiespējamu palīdzēt. Sirds sāpēja, domājot par neskaitāmiem pazudušiem mājdzīvniekiem, kuriem nebija uzticama veida, kā atgriezties mājās. Es sapratu, ka jābūt efektīvākam risinājumam, kas sniegtu mājdzīvnieku īpašniekiem cerību un skaidrību krīzes brīdī.",
+    "title2": "Ideja",
+    "description2": "Vadoties pēc vēlmes radīt kaut ko nozīmīgu, es sāku domāt par to, kā mūsdienu tehnoloģijas, piemēram, sociālie tīkli, varētu palīdzēt atrisināt šo problēmu. Latvijā ir neskaitāmas sociālo mediju grupas, kas veltītas pazudušiem mājdzīvniekiem, taču informācija ir izkliedēta dažādās platformās un grupās. Tas apgrūtina centienu centralizāciju un efektīvas palīdzības sniegšanu, it īpaši vecākiem cilvēkiem, kuri var neizmantot sociālos tīklus, piemēram, Facebook.",
+    "title3": "Izaicinājums",
+    "description3": "Es vēlējos izveidot lietotni, kas apvienotu kopienas un vienkāršotu meklēšanas procesu. Bet man nebija nepieciešamo zināšanu, lai to izveidotu pašam, un nolīgt kādu, kas piepildītu manu vīziju, man bija pārāk dārgi. Tāpēc es pieņēmu lēmumu: es apgūšu programmēšanu.",
+    "title4": "Ceļš",
+    "description4": "Tas bija ilgtermiņa mērķis, kas prasīja pacietību, neatlaidību un neskaitāmas stundas mācību. Vairāk nekā gadu es veltīju laiku, lai apgūtu prasmes, kas nepieciešamas šīs lietotnes izstrādei. Es izgāju cauri daudzām iterācijām, nepārtraukti uzlabojot, pārdomājot un pilnveidojot savu pieeju. Ceļš bija izaicinošs, bet es biju apņēmies padarīt šo ideju par realitāti. Pa ceļam es ieguvu milzīgu pieredzi IT jomā, kas ir bijusi nenovērtējama.",
+    "title5": "Rezultāts",
+    "description5": "Beidzot, pēc smaga darba un izmantojot mākslīgā intelekta tehnoloģijas, es pabeidzu lietotni. Šodien tas, kas sākās kā vienkārša ideja, ir izaugusi par kaut ko daudz vairāk. Mana lietotne ir gatava dzīvot, piedāvājot mājdzīvnieku īpašniekiem spēcīgu rīku, lai palīdzētu atrast pazudušos mīluļus. Tomēr man joprojām ir daudz ideju par uzlabojumiem un jaunām funkcijām, kuras vēlos īstenot. Tā kā šis ir blakusprojekts, pie kura strādāju pēc regulārā darba, laika ir maz, bet es esmu apņēmies turpināt to attīstīt un padarīt to par labāko."
+  },
+  "features": {
+    "title": "Funkcijas",
+    "title1": "Pazuduša vai atrasta mājdzīvnieka ziņojums",
+    "description1": "Ātri iesniedziet informāciju par savu pazudušo vai atrasto mājdzīvnieku mūsu kopienai un palieliniet atkalredzēšanās iespējas.",
+    "title2": "Ziņot par pēdējo redzēto atrašanās vietu",
+    "description2": "Ļaujiet lietotājiem ziņot par pēdējo redzēto atrašanās vietu pazudušā mājdzīvnieka kartē, palīdzot citiem kopienas lietotājiem atrast un atkalredzēt mājdzīvniekus.",
+    "title3": "Pazudušo un atrasto mājdzīvnieku karte",
+    "description3": "Funkcija, kas attēlo karti ar pazudušajiem un atrastajiem mājdzīvniekiem apkārtnē, ļaujot lietotājiem viegli atrast un identificēt pazudušos mājdzīvniekus.",
+    "title4": "Mobilajām ierīcēm optimizēta platforma",
+    "description4": "Mūsu mobilajām ierīcēm draudzīgā lietotne izmanto jaunākās tehnoloģijas, lai piedāvātu inovāciju platformu mājdzīvnieku atkalredzēšanai ar viņu īpašniekiem.",
+    "title5": "Mājdzīvnieku veselības ieskati",
+    "description5": "Atklājiet svarīgus ieskatus mājdzīvnieku veselībā un iegūstiet rīkus, lai pārvaldītu un sekotu līdzi vakcinācijām, nodrošinot, ka jūsu mīlulis paliek vesels un laimīgs.",
+    "title6": "Push paziņojumi",
+    "description6": "Saņemiet tūlītējus brīdinājumus, kad jūsu tuvumā tiek ziņots par pazudušu vai atrastu mājdzīvnieku. Esiet pirmais, kas palīdzēs atkalredzēt pūkainos draugus ar viņu īpašniekiem.",
+    "title7": "Padomi un resursi",
+    "description7": "Piekļūstiet resursiem mājdzīvnieku īpašniekiem, kas piedāvā vadlīnijas, kā novērst mājdzīvnieku pazušanu un ko darīt, ja jūsu mājdzīvnieks ir pazudis.",
+    "title8": "Sociālo mediju integrācija",
+    "description8": "Integrācija ar sociālajiem medijiem, lai palīdzētu izplatīt informāciju par pazudušiem mājdzīvniekiem un veicinātu saziņu starp lietotājiem.",
+    "title9": "Meklēšanas filtri",
+    "description9": "Ļaujiet lietotājiem filtrēt pazudušo un atrasto mājdzīvnieku sludinājumus pēc atrašanās vietas, sugas, šķirnes, krāsas un citiem kritērijiem.",
+    "title10": "Pazudušu mājdzīvnieku plakāti",
+    "description10": "Funkcija, kas ļauj lietotājiem viegli izveidot un drukāt plakātus par pazudušiem mājdzīvniekiem, lai izplatītu tos vietējā kopienā.",
+    "title11": "Mājdzīvnieku pakalpojumu katalogs",
+    "description11": "Atklājiet plašu mājdzīvnieku pakalpojumu klāstu, ieskaitot veterinārārstus, patversmes, frizierus, trenerus un citus.",
+    "title12": "Kopienas Sasaistīšana",
+    "description12": "Tiek apvienoti dzīvnieku mīļotāji ar kopīgu mērķi—palīdzēt pazudušiem mājdzīvniekiem atgriezties mājās. Lietotne savieno cilvēkus, kuri var atbalstīt viens otru meklēšanā."
+  },
+  "helpUs": {
+    "title": "Palīdziet mums augt un pilnveidoties"
+  },
+  "support": {
+    "title": "Atbalstiet mūsu projektu",
+    "description": "Jūsu atbalsts palīdzēs mums turpināt mūsu misiju apvienot pazudušos mājdzīvniekus ar viņu ģimenēm. Jūs varat arī atbalstīt mūs, daloties ar saiti sociālajos tīklos vai pastāstot draugiem par mūsu tīmekļa lietotni. Katrs ieguldījums, liels vai mazs, ir svarīgs, un mēs patiesi novērtējam jūsu atbalstu!",
+    "button": "ATBALSTĪT"
+  },
+  "feedback": {
+    "title": "Dalieties ar savu viedokli",
+    "description": "Jūsu atsauksmes ir svarīgas, jo mēs cenšamies uzlabot mūsu lietotni un sniegt labāko pakalpojumu mājdzīvnieku īpašniekiem. Lūdzu, dalieties ar saviem komentāriem, ieteikumiem vai kritiku, lai palīdzētu mums padarīt lietotni vēl labāku.",
+    "button": "ATSTĀT ATSAUKSMI"
+  }
+}

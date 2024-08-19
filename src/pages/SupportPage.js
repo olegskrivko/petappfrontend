@@ -102,7 +102,7 @@
 //           </Typography>
 //           <Grid item xs={12} sm={12} md={12} lg={12} textAlign="center" mt={3}>
 //             <Button
-//               style={{ backgroundColor: '#ffc107', color: '#000' }}
+//               style={{ backgroundColor: '#ffcb56', color: '#000' }}
 //               onClick={() =>
 //                 (window.location.href =
 //                   'https://www.paypal.com/donate/?hosted_button_id=7X42GYG39BMSG')
@@ -174,7 +174,7 @@ import { DOMAIN_URL } from '../middleware/config';
 import SupportImg from '../images/cat_stronaut_cuate.svg';
 
 function SupportPage() {
-  const { t } = useTranslation(); // Initialize translation hook
+  const { t } = useTranslation('supportPage'); // Initialize translation hook
   const { getTypography } = useFontSizes();
   const creditLink = 'https://storyset.com/business';
   const credit = 'Business illustrations by Storyset';
@@ -209,7 +209,7 @@ function SupportPage() {
               fontWeight: getTypography('h1').fontWeight,
             }}
           >
-            {t('supportPage.title')}
+            {t('title')}
           </Typography>
         </Grid>
       </Grid>
@@ -260,10 +260,10 @@ function SupportPage() {
 
         <Grid item xs={12} sm={12} md={6} lg={6} textAlign="justify">
           <Typography variant="body1" paragraph>
-            {t('supportPage.description1')}
+            {t('description1')}
           </Typography>
           <Typography variant="body1" paragraph>
-            {t('supportPage.description2')}
+            {t('description2')}
           </Typography>
           <Grid item mt={2} xs={12} sm={12} md={12} lg={12} textAlign="center" my={3}>
             <Link to="/feedback">
@@ -271,15 +271,15 @@ function SupportPage() {
                 type="submit"
                 size="small"
                 variant="contained"
-                style={{ backgroundColor: '#ffc107', color: '#000' }}
+                style={{ backgroundColor: '#ffcb56', color: '#000' }}
               >
-                {t('contactPage.getInTouch.button')}
+                {t('button.getInTouch')}
               </Button>
             </Link>
           </Grid>
           {/* <Grid item xs={12} sm={12} md={12} lg={12} textAlign="center" my={3}>
             <Button
-              style={{ backgroundColor: '#ffc107', color: '#000' }}
+              style={{ backgroundColor: '#ffcb56', color: '#000' }}
               onClick={() =>
                 (window.location.href =
                   'https://www.paypal.com/donate/?hosted_button_id=7X42GYG39BMSG')
@@ -289,14 +289,14 @@ function SupportPage() {
             </Button>
           </Grid> */}
           <Typography variant="body1" paragraph>
-            {t('supportPage.description3')}
+            {t('description3')}
           </Typography>
 
           {/* Shareable URL Box */}
           {/* Shareable URL Box */}
 
           <Typography variant="body1" paragraph>
-            {t('supportPage.label')}
+            {t('label')}
           </Typography>
           <Box display="flex" alignItems="center" sx={{ color: 'orange !important' }}>
             <TextField

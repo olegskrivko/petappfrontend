@@ -1,0 +1,38 @@
+{
+  "links": {
+    "about": "Par mums",
+    "pets": "Meklēt mājdzīvniekus",
+    "petServices": "Pakalpojumi",
+    "virtualPetTrainingClasses": "Virtuālās dresūras nodarbības",
+    "petInfrastructure": "Insfrastruktūra Dzīvniekiem",
+    "emergencyPetAlerts": "Ārkārtas Mājdzīvnieku Brīdinājumi",
+
+    "petCareTips": "Mājdzīvnieku aprūpes padomi",
+    "howToFindALostCat": "Kā atrast pazudušo kaķi?",
+    "howToFindALostDog": "Kā atrast pazudušo suni?",
+    "adoptDoNotShop": "Adoptējiet, nepērciet!",
+
+    "privacyPolicy": "Privātuma politika",
+    "termsOfService": "Pakalpojumu noteikumi",
+    "cookiePolicy": "Sīkdatņu politika",
+    "dataProtectionPolicy": "Datu aizsardzības politika",
+    "disclaimer": "Atruna",
+    "communityGuidelines": "Kopienas vadlīnijas",
+    "contact": "Kontakti",
+    "feedback": "Atsauksmes",
+    "support": "Atbalsts",
+    "partners": "Partneri",
+    "socialMedia": "Sociālie tīkli",
+    "sponsors": "Sponsori"
+  },
+  "titles": {
+    "app": "Lietotne",
+    "explore": "Izpētīt",
+    "policiesAndGuidelines": "Politikas un vadlīnijas",
+    "information": "Informācija"
+  },
+  "footnote": {
+    "supportText": "Mēs esam pateicīgi par jebkādu atbalstu vai sponsora palīdzību, kas var palīdzēt atklāt lietotnes pilno potenciālu",
+    "allRightsReserved": "Visas tiesības aizsargātas."
+  }
+}

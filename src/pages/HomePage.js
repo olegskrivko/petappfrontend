@@ -88,7 +88,7 @@ function HomePage() {
               fontSize: isSmallScreen ? '2.2rem' : '2.6rem',
             }}
           >
-            <span style={{ color: '#ffc107' }}>PawClix</span> -{' '}
+            <span style={{ color: '#ffcb56' }}>PawClix</span> -{' '}
             {t('pageTitles.lostPetReunionsOneClickAway')}
           </Typography>
           {/* <div>
@@ -177,7 +177,7 @@ function HomePage() {
                     marginLeft: 'auto',
                     marginRight: '1rem',
                     display: 'flex',
-                    backgroundColor: '#ffc107',
+                    backgroundColor: '#ffcb56',
                     color: 'rgba(0, 0, 0, 0.87)',
                   }}
                 >
@@ -192,7 +192,7 @@ function HomePage() {
                     marginLeft: 'auto',
                     marginRight: '1rem',
                     display: 'flex',
-                    backgroundColor: '#ffc107',
+                    backgroundColor: '#ffcb56',
                     color: 'rgba(0, 0, 0, 0.87)',
                   }}
                 >
@@ -211,11 +211,11 @@ function HomePage() {
                     marginLeft: 'auto',
                     marginRight: 'auto',
                     display: 'flex',
-                    color: '#ffc107',
-                    borderColor: '#ffc107', // Border color
+                    color: '#ffcb56',
+                    borderColor: '#ffcb56', // Border color
                     '&:hover': {
-                      color: '#ffc107', // Text color on hover
-                      borderColor: '#ffc107', // Border color on hover
+                      color: '#ffcb56', // Text color on hover
+                      borderColor: '#ffcb56', // Border color on hover
                       backgroundColor: 'rgba(255, 193, 7, 0.08)', // Background color on hover
                     },
                   }}
@@ -232,11 +232,11 @@ function HomePage() {
                     marginLeft: 'auto',
                     marginRight: 'auto',
                     display: 'flex',
-                    color: '#ffc107',
-                    borderColor: '#ffc107', // Border color
+                    color: '#ffcb56',
+                    borderColor: '#ffcb56', // Border color
                     '&:hover': {
-                      color: '#ffc107', // Text color on hover
-                      borderColor: '#ffc107', // Border color on hover
+                      color: '#ffcb56', // Text color on hover
+                      borderColor: '#ffcb56', // Border color on hover
                       backgroundColor: 'rgba(255, 193, 7, 0.08)', // Background color on hover
                     },
                   }}

@@ -1,0 +1,39 @@
+{
+  "links": {
+    "about": "About",
+    "pets": "Pets",
+    "petServices": "Pet Services",
+    "virtualPetTrainingClasses": "Virtual Pet Training Classes",
+    "petInfrastructure": "Pet Infrastructure",
+    "emergencyPetAlerts": "Emergency Pet Alerts",
+
+    "petCareTips": "Pet Care Tips",
+    "howToFindALostCat": "How to Find a Lost Cat?",
+    "howToFindALostDog": "How to Find a Lost Dog?",
+    "adoptDoNotShop": "Adopt, Don't Shop!",
+
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiePolicy": "Cookie Policy",
+    "dataProtectionPolicy": "Data Protection Policy",
+    "disclaimer": "Disclaimer",
+    "communityGuidelines": "Community Guidelines",
+
+    "contact": "Contact",
+    "feedback": "Feedback",
+    "support": "Support",
+    "partners": "Partners",
+    "socialMedia": "Social Media",
+    "sponsors": "Sponsors"
+  },
+  "titles": {
+    "app": "Application",
+    "explore": "Explore",
+    "policiesAndGuidelines": "Policies and guidelines",
+    "information": "Information"
+  },
+  "footnote": {
+    "supportText": "We are grateful for any support or sponsorship that can help us unlock the full potential of our web application",
+    "allRightsReserved": "All rights reserved."
+  }
+}

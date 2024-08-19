@@ -632,7 +632,7 @@
 //                   <CloudUploadIcon
 //                     fontSize="large"
 //                     // style={{ color: "#00DCE4", width: "3rem", height: "3rem" }}
-//                     style={{ color: "#ffc107", width: "3rem", height: "3rem" }}
+//                     style={{ color: "#ffcb56", width: "3rem", height: "3rem" }}
 //                   />
 //                 </IconButton>
 //                 <Typography variant="h6" style={{ fontSize: "1rem" }}>
@@ -767,7 +767,7 @@
 // }
 
 // export default ImageUploader;
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Grid,
   IconButton,
@@ -777,13 +777,13 @@ import {
   FormControlLabel,
   Alert,
   AlertTitle,
-} from "@mui/material";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import CancelIcon from "@mui/icons-material/Cancel";
+} from '@mui/material';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const MAX_FILE_SIZE_MB = 5;
-const SUPPORTED_FORMATS = ["image/jpeg", "image/png", "image/gif"];
+const SUPPORTED_FORMATS = ['image/jpeg', 'image/png', 'image/gif'];
 
 function ImageUploader({ handleImageUpload }) {
   const [image, setImage] = useState(null);
@@ -804,10 +804,8 @@ function ImageUploader({ handleImageUpload }) {
     <Grid container justifyContent="center" spacing={2}>
       {image && (
         <Grid item xs={12}>
-          <Alert severity={isValid ? "success" : "warning"}>
-            <AlertTitle>
-              {isValid ? "Good!" : "Please upload a valid file."}
-            </AlertTitle>
+          <Alert severity={isValid ? 'success' : 'warning'}>
+            <AlertTitle>{isValid ? 'Good!' : 'Please upload a valid file.'}</AlertTitle>
           </Alert>
         </Grid>
       )}
@@ -819,15 +817,15 @@ function ImageUploader({ handleImageUpload }) {
         md={6}
         lg={6}
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginBottom: "1rem",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: '1rem',
         }}
       >
         <input
           accept="image/*"
-          style={{ display: "none" }}
+          style={{ display: 'none' }}
           id="contained-button-file"
           type="file"
           name="image"
@@ -838,43 +836,41 @@ function ImageUploader({ handleImageUpload }) {
             sx={{
               width: 300,
               height: 300,
-              border: "2px dashed #ccc",
-              borderRadius: "8px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              position: "relative",
-              backgroundColor: "#f9f9f9",
-              flexDirection: "column",
-              textAlign: "center",
-              padding: "1rem",
+              border: '2px dashed #ccc',
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              position: 'relative',
+              backgroundColor: '#f9f9f9',
+              flexDirection: 'column',
+              textAlign: 'center',
+              padding: '1rem',
             }}
           >
             {image ? (
               <img
                 src={URL.createObjectURL(image)}
                 alt="Uploaded"
-                style={{ maxWidth: "100%", maxHeight: "100%" }}
+                style={{ maxWidth: '100%', maxHeight: '100%' }}
               />
             ) : (
               <>
                 <IconButton component="span">
                   <CloudUploadIcon
                     fontSize="large"
-                    style={{ color: "#ffc107", width: "3rem", height: "3rem" }}
+                    style={{ color: '#ffcb56', width: '3rem', height: '3rem' }}
                   />
                 </IconButton>
-                <Typography variant="h6" style={{ fontSize: "1rem" }}>
+                <Typography variant="h6" style={{ fontSize: '1rem' }}>
                   Drag files to upload <br />
                   or Browse Files
                 </Typography>
-                <Typography variant="caption" style={{ marginTop: "1rem" }}>
+                <Typography variant="caption" style={{ marginTop: '1rem' }}>
                   Max file size: 5MB
                 </Typography>
-                <Typography variant="caption">
-                  Supported file types: JPG, PNG, GIF
-                </Typography>
+                <Typography variant="caption">Supported file types: JPG, PNG, GIF</Typography>
               </>
             )}
           </Box>
@@ -889,10 +885,10 @@ function ImageUploader({ handleImageUpload }) {
           md={6}
           lg={6}
           style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "start",
-            alignItems: "start",
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'start',
+            alignItems: 'start',
           }}
         >
           <FormControlLabel
@@ -902,7 +898,7 @@ function ImageUploader({ handleImageUpload }) {
                 icon={<CancelIcon />}
                 checkedIcon={<CheckCircleOutlineIcon />}
                 disabled
-                style={{ color: image.size ? "green" : "red" }}
+                style={{ color: image.size ? 'green' : 'red' }}
               />
             }
             label={<Typography>{image.name}</Typography>}
@@ -915,10 +911,7 @@ function ImageUploader({ handleImageUpload }) {
                 checkedIcon={<CheckCircleOutlineIcon />}
                 disabled
                 style={{
-                  color:
-                    image.size <= MAX_FILE_SIZE_MB * 1024 * 1024
-                      ? "green"
-                      : "red",
+                  color: image.size <= MAX_FILE_SIZE_MB * 1024 * 1024 ? 'green' : 'red',
                 }}
               />
             }
@@ -932,15 +925,11 @@ function ImageUploader({ handleImageUpload }) {
                 checkedIcon={<CheckCircleOutlineIcon />}
                 disabled
                 style={{
-                  color: SUPPORTED_FORMATS.includes(image.type)
-                    ? "green"
-                    : "red",
+                  color: SUPPORTED_FORMATS.includes(image.type) ? 'green' : 'red',
                 }}
               />
             }
-            label={
-              <Typography>File type is supported (JPG, PNG, GIF)</Typography>
-            }
+            label={<Typography>File type is supported (JPG, PNG, GIF)</Typography>}
           />
         </Grid>
       )}

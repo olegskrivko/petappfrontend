@@ -1,0 +1,229 @@
+{
+  "selectOptions": {
+    "initialStatusOptions": [
+      { "value": "1", "label": "Missing" },
+      { "value": "2", "label": "Found" },
+      { "value": "3", "label": "Seen" }
+    ],
+    "categoryOptions": [
+      { "value": "1", "label": "Dog" },
+      { "value": "2", "label": "Cat" },
+      { "value": "3", "label": "Bird" },
+      { "value": "4", "label": "Rodent" },
+      { "value": "5", "label": "Reptile" },
+      { "value": "6", "label": "Livestock" },
+      { "value": "7", "label": "Other" }
+    ],
+    "sizeOptions": [
+      { "value": "1", "label": "Small" },
+      { "value": "2", "label": "Medium" },
+      { "value": "3", "label": "Large" }
+    ],
+    "genderOptions": [
+      { "value": "1", "label": "Male" },
+      { "value": "2", "label": "Female" }
+    ],
+    "behaviorOptions": [
+      { "value": "1", "label": "Friendly" },
+      { "value": "2", "label": "Aggressive" },
+      { "value": "3", "label": "Calm" },
+      { "value": "4", "label": "Fearful" }
+    ],
+    "ageOptions": {
+      "1": [
+        { "value": "1", "label": "Puppy" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "2": [
+        { "value": "1", "label": "Kitten" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "3": [
+        { "value": "1", "label": "Chick" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "4": [
+        { "value": "1", "label": "Pup" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "5": [
+        { "value": "1", "label": "Hatchling" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "6": [
+        { "value": "1", "label": "Juvenile" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "7": [
+        { "value": "1", "label": "Baby" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ]
+    },
+    "breedOptions": {
+      "1": [
+        { "value": "1", "label": "Labrador" },
+        { "value": "2", "label": "Bulldog" },
+        { "value": "3", "label": "Poodle" },
+        { "value": "4", "label": "Beagle" },
+        { "value": "5", "label": "Rottweiler" },
+        { "value": "6", "label": "German Shepherd" },
+        { "value": "7", "label": "Golden Retriever" },
+        { "value": "8", "label": "Dachshund" },
+        { "value": "9", "label": "Chihuahua" },
+        { "value": "10", "label": "Boxer" },
+        { "value": "11", "label": "Schnauzer" },
+        { "value": "12", "label": "Pomeranian" },
+        { "value": "13", "label": "Husky" },
+        { "value": "14", "label": "Maltese" },
+        { "value": "15", "label": "Yorkshire Terrier" },
+        { "value": "16", "label": "Pug" },
+        { "value": "17", "label": "Shih Tzu" },
+        { "value": "18", "label": "Doberman" },
+        { "value": "19", "label": "Mastiff" },
+        { "value": "20", "label": "Great Dane" },
+        { "value": "21", "label": "Cocker Spaniel" },
+        { "value": "22", "label": "Border Collie" },
+        { "value": "23", "label": "Australian Shepherd" },
+        { "value": "24", "label": "Siberian Husky" },
+        { "value": "25", "label": "Dalmatian" },
+        { "value": "26", "label": "Weimaraner" },
+        { "value": "27", "label": "Pointer" },
+        { "value": "28", "label": "Vizsla" },
+        { "value": "29", "label": "Setter" },
+        { "value": "30", "label": "Spaniel" },
+        { "value": "31", "label": "Terrier" },
+        { "value": "32", "label": "Hound" }
+      ],
+      "2": [
+        { "value": "1", "label": "Siamese" },
+        { "value": "2", "label": "Persian" },
+        { "value": "3", "label": "Maine Coon" },
+        { "value": "4", "label": "Ragdoll" },
+        { "value": "5", "label": "Bengal" },
+        { "value": "6", "label": "British Shorthair" },
+        { "value": "7", "label": "Sphynx" },
+        { "value": "8", "label": "Scottish Fold" },
+        { "value": "9", "label": "Abyssinian" },
+        { "value": "10", "label": "Birman" },
+        { "value": "11", "label": "American Shorthair" },
+        { "value": "12", "label": "Oriental" },
+        { "value": "13", "label": "Devon Rex" },
+        { "value": "14", "label": "Russian Blue" },
+        { "value": "15", "label": "Norwegian Forest Cat" },
+        { "value": "16", "label": "Siberian" },
+        { "value": "17", "label": "Burmese" },
+        { "value": "18", "label": "Tonkinese" },
+        { "value": "19", "label": "Egyptian Mau" },
+        { "value": "20", "label": "Chartreux" }
+      ],
+      "3": [
+        { "value": "1", "label": "Parrot" },
+        { "value": "2", "label": "Canary" },
+        { "value": "3", "label": "Budgerigar" },
+        { "value": "4", "label": "Other" }
+      ],
+      "4": [
+        { "value": "1", "label": "Hamster" },
+        { "value": "2", "label": "Guinea Pig" },
+        { "value": "3", "label": "Rabbit" },
+        { "value": "4", "label": "Mouse" },
+        { "value": "5", "label": "Rat" },
+        { "value": "6", "label": "Ferret" },
+        { "value": "7", "label": "Hedgehog" },
+        { "value": "8", "label": "Other" }
+      ],
+      "5": [
+        { "value": "1", "label": "Snake" },
+        { "value": "2", "label": "Gecko" },
+        { "value": "3", "label": "Lizard" },
+        { "value": "4", "label": "Turtle" },
+        { "value": "5", "label": "Tortoise" },
+        { "value": "6", "label": "Other" }
+      ],
+      "6": [
+        { "value": "1", "label": "Cattle" },
+        { "value": "2", "label": "Pig" },
+        { "value": "3", "label": "Sheep" },
+        { "value": "4", "label": "Goat" },
+        { "value": "5", "label": "Chicken" },
+        { "value": "6", "label": "Turkey" },
+        { "value": "7", "label": "Duck" },
+        { "value": "8", "label": "Horse" },
+        { "value": "9", "label": "Donkey" },
+        { "value": "10", "label": "Other" }
+      ],
+      "7": [{ "value": "1", "label": "Other" }]
+    },
+    "healthInformationOptions": [{ "value": "1", "label": "Yes" }],
+    "markingOptions": [
+      { "value": "1", "label": "Solid" },
+      { "value": "2", "label": "Striped" },
+      { "value": "3", "label": "Spotted" },
+      { "value": "4", "label": "Patched" },
+      { "value": "5", "label": "Marbled" }
+    ],
+    "colorOptions": [
+      { "value": "#000000", "label": "Black" },
+      { "value": "#BEBEBE", "label": "Gray" },
+      { "value": "#f7f7f7", "label": "White" },
+      { "value": "#FFF1B9", "label": "Cream" },
+      { "value": "#FCDC5C", "label": "Yellow" },
+      { "value": "#FFA500", "label": "Golden" },
+      { "value": "#C37C4D", "label": "Brown" },
+      { "value": "#A71A20", "label": "Red" },
+      { "value": "#BA97AA", "label": "Lilac" },
+      { "value": "#1A355E", "label": "Blue" },
+      { "value": "#5F6F52", "label": "Green" },
+      { "value": "#BDB76B", "label": "Khaki" },
+      { "value": "#E5DECA", "label": "Beige" },
+      { "value": "#D2B48C", "label": "Tan" },
+      { "value": "#E5AA70", "label": "Fawn" },
+      { "value": "#954535", "label": "Chestnut" }
+    ],
+    "phoneCodeOptions": [
+      { "value": "+371", "label": "+371" },
+      { "value": "+372", "label": "+372" },
+      { "value": "+370", "label": "+370" }
+    ],
+    "updatedStatusOptions": {
+      "1": [
+        { "value": "1", "label": "Actively Searching" },
+        { "value": "2", "label": "Still Missing" },
+        { "value": "3", "label": "Reunited" },
+        { "value": "4", "label": "Deceased" },
+        { "value": "5", "label": "Other" }
+      ],
+      "2": [
+        { "value": "1", "label": "Awaiting Owner" },
+        { "value": "2", "label": "Adopted" },
+        { "value": "3", "label": "Taken to Shelter" },
+        { "value": "4", "label": "Taken to Veterinary Clinic" },
+        { "value": "5", "label": "Deceased" },
+        { "value": "6", "label": "Other" }
+      ],
+      "3": [
+        { "value": "1", "label": "Reported to Authorities" },
+        { "value": "2", "label": "Free Roaming" },
+        { "value": "3", "label": "Deceased" },
+        { "value": "4", "label": "Other" }
+      ]
+    },
+    "subjectsOptions": [
+      { "value": "1", "label": "General Feedback" },
+      { "value": "2", "label": "Feature Request" },
+      { "value": "3", "label": "Bug Report" },
+      { "value": "4", "label": "Technical Support" },
+      { "value": "5", "label": "Advertising and Sponsorship" },
+      { "value": "6", "label": "Data Privacy Concerns" },
+      { "value": "7", "label": "Partnership Opportunities" },
+      { "value": "8", "label": "Other" }
+    ]
+  }
+}

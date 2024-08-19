@@ -1,0 +1,229 @@
+{
+  "selectOptions": {
+    "initialStatusOptions": [
+      { "value": "1", "label": "Pazudis" },
+      { "value": "2", "label": "Atrasts" },
+      { "value": "3", "label": "Redzēts" }
+    ],
+    "categoryOptions": [
+      { "value": "1", "label": "Suns" },
+      { "value": "2", "label": "Kaķis" },
+      { "value": "3", "label": "Putns" },
+      { "value": "4", "label": "Grauzējs" },
+      { "value": "5", "label": "Rāpulis" },
+      { "value": "6", "label": "Mājlops" },
+      { "value": "7", "label": "Cits" }
+    ],
+    "sizeOptions": [
+      { "value": "1", "label": "Mazs" },
+      { "value": "2", "label": "Vidējs" },
+      { "value": "3", "label": "Liels" }
+    ],
+    "genderOptions": [
+      { "value": "1", "label": "Vīriešu" },
+      { "value": "2", "label": "Sieviešu" }
+    ],
+    "behaviorOptions": [
+      { "value": "1", "label": "Draudzīgs" },
+      { "value": "2", "label": "Agresīvs" },
+      { "value": "3", "label": "Mierīgs" },
+      { "value": "4", "label": "Bailīgs" }
+    ],
+    "ageOptions": {
+      "1": [
+        { "value": "1", "label": "Kucēns" },
+        { "value": "2", "label": "Pieaugušais" },
+        { "value": "3", "label": "Seniors" }
+      ],
+      "2": [
+        { "value": "1", "label": "Kaķēns" },
+        { "value": "2", "label": "Pieaugušais" },
+        { "value": "3", "label": "Seniors" }
+      ],
+      "3": [
+        { "value": "1", "label": "Cālis" },
+        { "value": "2", "label": "Pieaugušais" },
+        { "value": "3", "label": "Seniors" }
+      ],
+      "4": [
+        { "value": "1", "label": "Mazulis" },
+        { "value": "2", "label": "Pieaugušais" },
+        { "value": "3", "label": "Seniors" }
+      ],
+      "5": [
+        { "value": "1", "label": "Mazulis" },
+        { "value": "2", "label": "Pieaugušais" },
+        { "value": "3", "label": "Seniors" }
+      ],
+      "6": [
+        { "value": "1", "label": "Mazulis" },
+        { "value": "2", "label": "Pieaugušais" },
+        { "value": "3", "label": "Seniors" }
+      ],
+      "7": [
+        { "value": "1", "label": "Mazulis" },
+        { "value": "2", "label": "Pieaugušais" },
+        { "value": "3", "label": "Seniors" }
+      ]
+    },
+    "breedOptions": {
+      "1": [
+        { "value": "1", "label": "Labradors" },
+        { "value": "2", "label": "Buldogs" },
+        { "value": "3", "label": "Putna" },
+        { "value": "4", "label": "Bigls" },
+        { "value": "5", "label": "Rottvailers" },
+        { "value": "6", "label": "Vācu aitu suns" },
+        { "value": "7", "label": "Zelta retrīvers" },
+        { "value": "8", "label": "Taksis" },
+        { "value": "9", "label": "Čihuahua" },
+        { "value": "10", "label": "Boksers" },
+        { "value": "11", "label": "Šnauzeris" },
+        { "value": "12", "label": "Pomerānija" },
+        { "value": "13", "label": "Haskijs" },
+        { "value": "14", "label": "Maltiešu" },
+        { "value": "15", "label": "Jorkšīras terjers" },
+        { "value": "16", "label": "Mops" },
+        { "value": "17", "label": "Šiccau" },
+        { "value": "18", "label": "Dobermans" },
+        { "value": "19", "label": "Mastifa" },
+        { "value": "20", "label": "Lielais dāns" },
+        { "value": "21", "label": "Kokera spaniela" },
+        { "value": "22", "label": "Robežu kolī" },
+        { "value": "23", "label": "Austrāliešu aitu suns" },
+        { "value": "24", "label": "Sibīrijas haskija" },
+        { "value": "25", "label": "Dalmācietis" },
+        { "value": "26", "label": "Veimaranera" },
+        { "value": "27", "label": "Pērtinieka" },
+        { "value": "28", "label": "Vizslas" },
+        { "value": "29", "label": "Setter" },
+        { "value": "30", "label": "Spaniela" },
+        { "value": "31", "label": "Terjers" },
+        { "value": "32", "label": "Havanas" }
+      ],
+      "2": [
+        { "value": "1", "label": "Siamiešu" },
+        { "value": "2", "label": "Persiešu" },
+        { "value": "3", "label": "Maine kūns" },
+        { "value": "4", "label": "Ragdolla" },
+        { "value": "5", "label": "Bengāļu" },
+        { "value": "6", "label": "Britu īsā spalva" },
+        { "value": "7", "label": "Sfinkss" },
+        { "value": "8", "label": "Skotijas sazvērē" },
+        { "value": "9", "label": "Abisīnijas" },
+        { "value": "10", "label": "Birmas" },
+        { "value": "11", "label": "Amerikāņu īsā spalva" },
+        { "value": "12", "label": "Orients" },
+        { "value": "13", "label": "Devena reksa" },
+        { "value": "14", "label": "Krievijas zila" },
+        { "value": "15", "label": "Norvēģu mežu kaķis" },
+        { "value": "16", "label": "Sibīrijas kaķis" },
+        { "value": "17", "label": "Birma" },
+        { "value": "18", "label": "Tonkineze" },
+        { "value": "19", "label": "Ēģiptiešu mau" },
+        { "value": "20", "label": "Šārtrū" }
+      ],
+      "3": [
+        { "value": "1", "label": "Papagailis" },
+        { "value": "2", "label": "Kanārijputniņš" },
+        { "value": "3", "label": "Viļņotais papagailis" },
+        { "value": "4", "label": "Cits" }
+      ],
+      "4": [
+        { "value": "1", "label": "Kāmis" },
+        { "value": "2", "label": "Jūrascūciņa" },
+        { "value": "3", "label": "Trusis" },
+        { "value": "4", "label": "Pele" },
+        { "value": "5", "label": "Žurka" },
+        { "value": "6", "label": "Sesks" },
+        { "value": "7", "label": "Ezis" },
+        { "value": "8", "label": "Cits" }
+      ],
+      "5": [
+        { "value": "1", "label": "Čūska" },
+        { "value": "2", "label": "Gekons" },
+        { "value": "3", "label": "Ķirzaka" },
+        { "value": "4", "label": "Bruņurupucis" },
+        { "value": "5", "label": "Sauszemes bruņurupucis" },
+        { "value": "6", "label": "Cits" }
+      ],
+      "6": [
+        { "value": "1", "label": "Liellops" },
+        { "value": "2", "label": "Cūka" },
+        { "value": "3", "label": "Aita" },
+        { "value": "4", "label": "Kaza" },
+        { "value": "5", "label": "Vista" },
+        { "value": "6", "label": "Tītars" },
+        { "value": "7", "label": "Pīle" },
+        { "value": "8", "label": "Zirgs" },
+        { "value": "9", "label": "Ēzelis" },
+        { "value": "10", "label": "Cits" }
+      ],
+      "7": [{ "value": "1", "label": "Cits" }]
+    },
+    "healthInformationOptions": [{ "value": "1", "label": "Jā" }],
+    "markingOptions": [
+      { "value": "1", "label": "Vienkrāsains" },
+      { "value": "2", "label": "Svītrains" },
+      { "value": "3", "label": "Punktveida" },
+      { "value": "4", "label": "Plankumains" },
+      { "value": "5", "label": "Raibs" }
+    ],
+    "colorOptions": [
+      { "value": "#000000", "label": "Melns" },
+      { "value": "#BEBEBE", "label": "Pelēks" },
+      { "value": "#f7f7f7", "label": "Balts" },
+      { "value": "#FFF1B9", "label": "Krēmkrāsains" },
+      { "value": "#FCDC5C", "label": "Dzeltenīgs" },
+      { "value": "#FFA500", "label": "Zelts" },
+      { "value": "#C37C4D", "label": "Brūns" },
+      { "value": "#A71A20", "label": "Sarkans" },
+      { "value": "#BA97AA", "label": "Lilaks" },
+      { "value": "#1A355E", "label": "Zils" },
+      { "value": "#5F6F52", "label": "Zaļš" },
+      { "value": "#BDB76B", "label": "Khaki" },
+      { "value": "#E5DECA", "label": "Bežs" },
+      { "value": "#D2B48C", "label": "Brūns" },
+      { "value": "#E5AA70", "label": "Dzeltenbrūns" },
+      { "value": "#954535", "label": "Kaštanbrūns" }
+    ],
+    "phoneCodeOptions": [
+      { "value": "+371", "label": "+371" },
+      { "value": "+372", "label": "+372" },
+      { "value": "+370", "label": "+370" }
+    ],
+    "updatedStatusOptions": {
+      "1": [
+        { "value": "1", "label": "Tiek aktīvi meklēts" },
+        { "value": "2", "label": "Joprojām pazudis" },
+        { "value": "3", "label": "Atradies" },
+        { "value": "4", "label": "Miris" },
+        { "value": "5", "label": "Cits" }
+      ],
+      "2": [
+        { "value": "1", "label": "Gaida īpašnieku" },
+        { "value": "2", "label": "Adoptēts" },
+        { "value": "3", "label": "Nodots patversmei" },
+        { "value": "4", "label": "Nodots veterinārajā klīnikā" },
+        { "value": "5", "label": "Miris" },
+        { "value": "6", "label": "Cits" }
+      ],
+      "3": [
+        { "value": "1", "label": "Ziņots varas iestādēm" },
+        { "value": "2", "label": "Brīvi klejojošs" },
+        { "value": "3", "label": "Miris" },
+        { "value": "4", "label": "Cits" }
+      ]
+    },
+    "subjectsOptions": [
+      { "value": "1", "label": "Vispārējā atsauksme" },
+      { "value": "2", "label": "Funkciju pieprasījums" },
+      { "value": "3", "label": "Kļūdu ziņojums" },
+      { "value": "4", "label": "Tehniskais atbalsts" },
+      { "value": "5", "label": "Reklāma un sponsori" },
+      { "value": "6", "label": "Datu privātuma problēmas" },
+      { "value": "7", "label": "Partnerības iespējas" },
+      { "value": "8", "label": "Cits" }
+    ]
+  }
+}

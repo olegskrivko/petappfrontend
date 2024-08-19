@@ -1,0 +1,762 @@
+{
+  "selectOptions": {
+    "initialStatusOptions": [
+      { "value": "1", "label": "Missing" },
+      { "value": "2", "label": "Found" },
+      { "value": "3", "label": "Seen" }
+    ],
+    "categoryOptions": [
+      { "value": "1", "label": "Dog" },
+      { "value": "2", "label": "Cat" },
+      { "value": "3", "label": "Bird" },
+      { "value": "4", "label": "Rodent" },
+      { "value": "5", "label": "Reptile" },
+      { "value": "6", "label": "Livestock" },
+      { "value": "7", "label": "Other" }
+    ],
+    "sizeOptions": [
+      { "value": "1", "label": "Small" },
+      { "value": "2", "label": "Medium" },
+      { "value": "3", "label": "Large" }
+    ],
+    "genderOptions": [
+      { "value": "1", "label": "Male" },
+      { "value": "2", "label": "Female" }
+    ],
+    "behaviorOptions": [
+      { "value": "1", "label": "Friendly" },
+      { "value": "2", "label": "Aggressive" },
+      { "value": "3", "label": "Calm" },
+      { "value": "4", "label": "Fearful" }
+    ],
+    "ageOptions": {
+      "1": [
+        { "value": "1", "label": "Puppy" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "2": [
+        { "value": "1", "label": "Kitten" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "3": [
+        { "value": "1", "label": "Chick" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "4": [
+        { "value": "1", "label": "Pup" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "5": [
+        { "value": "1", "label": "Hatchling" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "6": [
+        { "value": "1", "label": "Juvenile" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ],
+      "7": [
+        { "value": "1", "label": "Baby" },
+        { "value": "2", "label": "Adult" },
+        { "value": "3", "label": "Senior" }
+      ]
+    },
+    "breedOptions": {
+      "1": [
+        { "value": "1", "label": "Labrador" },
+        { "value": "2", "label": "Bulldog" },
+        { "value": "3", "label": "Poodle" },
+        { "value": "4", "label": "Beagle" },
+        { "value": "5", "label": "Rottweiler" },
+        { "value": "6", "label": "German Shepherd" },
+        { "value": "7", "label": "Golden Retriever" },
+        { "value": "8", "label": "Dachshund" },
+        { "value": "9", "label": "Chihuahua" },
+        { "value": "10", "label": "Boxer" },
+        { "value": "11", "label": "Schnauzer" },
+        { "value": "12", "label": "Pomeranian" },
+        { "value": "13", "label": "Husky" },
+        { "value": "14", "label": "Maltese" },
+        { "value": "15", "label": "Yorkshire Terrier" },
+        { "value": "16", "label": "Pug" },
+        { "value": "17", "label": "Shih Tzu" },
+        { "value": "18", "label": "Doberman" },
+        { "value": "19", "label": "Mastiff" },
+        { "value": "20", "label": "Great Dane" },
+        { "value": "21", "label": "Cocker Spaniel" },
+        { "value": "22", "label": "Border Collie" },
+        { "value": "23", "label": "Australian Shepherd" },
+        { "value": "24", "label": "Siberian Husky" },
+        { "value": "25", "label": "Dalmatian" },
+        { "value": "26", "label": "Weimaraner" },
+        { "value": "27", "label": "Pointer" },
+        { "value": "28", "label": "Vizsla" },
+        { "value": "29", "label": "Setter" },
+        { "value": "30", "label": "Spaniel" },
+        { "value": "31", "label": "Terrier" },
+        { "value": "32", "label": "Hound" }
+      ],
+      "2": [
+        { "value": "1", "label": "Siamese" },
+        { "value": "2", "label": "Persian" },
+        { "value": "3", "label": "Maine Coon" },
+        { "value": "4", "label": "Ragdoll" },
+        { "value": "5", "label": "Bengal" },
+        { "value": "6", "label": "British Shorthair" },
+        { "value": "7", "label": "Sphynx" },
+        { "value": "8", "label": "Scottish Fold" },
+        { "value": "9", "label": "Abyssinian" },
+        { "value": "10", "label": "Birman" },
+        { "value": "11", "label": "American Shorthair" },
+        { "value": "12", "label": "Oriental" },
+        { "value": "13", "label": "Devon Rex" },
+        { "value": "14", "label": "Russian Blue" },
+        { "value": "15", "label": "Norwegian Forest Cat" },
+        { "value": "16", "label": "Siberian" },
+        { "value": "17", "label": "Burmese" },
+        { "value": "18", "label": "Tonkinese" },
+        { "value": "19", "label": "Egyptian Mau" },
+        { "value": "20", "label": "Chartreux" }
+      ],
+      "3": [
+        { "value": "1", "label": "Parrot" },
+        { "value": "2", "label": "Canary" },
+        { "value": "3", "label": "Budgerigar" },
+        { "value": "4", "label": "Other" }
+      ],
+      "4": [
+        { "value": "1", "label": "Hamster" },
+        { "value": "2", "label": "Guinea Pig" },
+        { "value": "3", "label": "Rabbit" },
+        { "value": "4", "label": "Mouse" },
+        { "value": "5", "label": "Rat" },
+        { "value": "6", "label": "Ferret" },
+        { "value": "7", "label": "Hedgehog" },
+        { "value": "8", "label": "Other" }
+      ],
+      "5": [
+        { "value": "1", "label": "Snake" },
+        { "value": "2", "label": "Gecko" },
+        { "value": "3", "label": "Lizard" },
+        { "value": "4", "label": "Turtle" },
+        { "value": "5", "label": "Tortoise" },
+        { "value": "6", "label": "Other" }
+      ],
+      "6": [
+        { "value": "1", "label": "Cattle" },
+        { "value": "2", "label": "Pig" },
+        { "value": "3", "label": "Sheep" },
+        { "value": "4", "label": "Goat" },
+        { "value": "5", "label": "Chicken" },
+        { "value": "6", "label": "Turkey" },
+        { "value": "7", "label": "Duck" },
+        { "value": "8", "label": "Horse" },
+        { "value": "9", "label": "Donkey" },
+        { "value": "10", "label": "Other" }
+      ],
+      "7": [{ "value": "1", "label": "Other" }]
+    },
+    "healthInformationOptions": [{ "value": "1", "label": "Yes" }],
+    "markingOptions": [
+      { "value": "1", "label": "Solid" },
+      { "value": "2", "label": "Striped" },
+      { "value": "3", "label": "Spotted" },
+      { "value": "4", "label": "Patched" },
+      { "value": "5", "label": "Marbled" }
+    ],
+    "colorOptions": [
+      { "value": "#000000", "label": "Black" },
+      { "value": "#BEBEBE", "label": "Gray" },
+      { "value": "#f7f7f7", "label": "White" },
+      { "value": "#FFF1B9", "label": "Cream" },
+      { "value": "#FCDC5C", "label": "Yellow" },
+      { "value": "#FFA500", "label": "Golden" },
+      { "value": "#C37C4D", "label": "Brown" },
+      { "value": "#A71A20", "label": "Red" },
+      { "value": "#BA97AA", "label": "Lilac" },
+      { "value": "#1A355E", "label": "Blue" },
+      { "value": "#5F6F52", "label": "Green" },
+      { "value": "#BDB76B", "label": "Khaki" },
+      { "value": "#E5DECA", "label": "Beige" },
+      { "value": "#D2B48C", "label": "Tan" },
+      { "value": "#E5AA70", "label": "Fawn" },
+      { "value": "#954535", "label": "Chestnut" }
+    ],
+    "phoneCodeOptions": [
+      { "value": "+371", "label": "+371" },
+      { "value": "+372", "label": "+372" },
+      { "value": "+370", "label": "+370" }
+    ],
+    "updatedStatusOptions": {
+      "1": [
+        { "value": "1", "label": "Actively Searching" },
+        { "value": "2", "label": "Still Missing" },
+        { "value": "3", "label": "Reunited" },
+        { "value": "4", "label": "Deceased" },
+        { "value": "5", "label": "Other" }
+      ],
+      "2": [
+        { "value": "1", "label": "Awaiting Owner" },
+        { "value": "2", "label": "Adopted" },
+        { "value": "3", "label": "Taken to Shelter" },
+        { "value": "4", "label": "Taken to Veterinary Clinic" },
+        { "value": "5", "label": "Deceased" },
+        { "value": "6", "label": "Other" }
+      ],
+      "3": [
+        { "value": "1", "label": "Reported to Authorities" },
+        { "value": "2", "label": "Free Roaming" },
+        { "value": "3", "label": "Deceased" },
+        { "value": "4", "label": "Other" }
+      ]
+    },
+    "subjectsOptions": [
+      { "value": "1", "label": "General Feedback" },
+      { "value": "2", "label": "Feature Request" },
+      { "value": "3", "label": "Bug Report" },
+      { "value": "4", "label": "Technical Support" },
+      { "value": "5", "label": "Advertising and Sponsorship" },
+      { "value": "6", "label": "Data Privacy Concerns" },
+      { "value": "7", "label": "Partnership Opportunities" },
+      { "value": "8", "label": "Other" }
+    ]
+  },
+  "serviceCategories": [
+    {
+      "id": "1",
+      "name": "Pet Boarding",
+      "slug": "pet-boarding",
+      "description": "Pet Boarding services provide temporary housing and care for pets when their owners are away. Facilities often include amenities like play areas, feeding, and daily exercise.",
+      "tags": ["Overnight Stay", "Daycare", "Kennels", "Pet Hotels", "Cage-Free Boarding"],
+      "priority": 1
+    },
+    {
+      "id": "2",
+      "name": "Veterinary Services",
+      "slug": "veterinary-services",
+      "description": "Veterinary Services offer medical care for pets, including routine check-ups, emergency care, and specialized treatments. These services ensure pets receive necessary health and wellness attention.",
+      "tags": [
+        "Routine Check-ups",
+        "Emergency Care",
+        "Surgery",
+        "Vaccinations",
+        "Dental Care",
+        "Wellness Exams"
+      ],
+      "priority": 2
+    },
+    {
+      "id": "3",
+      "name": "Pet Grooming",
+      "slug": "pet-grooming",
+      "description": "Pet Grooming includes bathing, brushing, trimming, and styling services to keep pets clean and comfortable. Groomers also provide nail trimming and ear cleaning.",
+      "tags": ["Bathing", "Haircuts", "Nail Trimming", "Ear Cleaning", "Styling"],
+      "priority": 3
+    },
+    {
+      "id": "4",
+      "name": "Pet Photography",
+      "slug": "pet-photography",
+      "description": "Pet Photography captures high-quality images of pets in various settings. Services may include studio sessions, on-location shoots, and customized photo packages.",
+      "tags": [
+        "Studio Photography",
+        "On-Location Shoots",
+        "Portraits",
+        "Action Shots",
+        "Custom Packages"
+      ],
+      "priority": 4
+    },
+    {
+      "id": "5",
+      "name": "Pet Rescue and Search",
+      "slug": "pet-rescue-and-search",
+      "description": "Pet Rescue and Search services focus on locating lost pets and providing emergency rescue operations. These organizations often help with rehoming and fostering.",
+      "tags": [
+        "Lost Pet Recovery",
+        "Emergency Rescue",
+        "Rehoming",
+        "Fostering",
+        "Microchip Scanning"
+      ],
+      "priority": 5
+    },
+    {
+      "id": "6",
+      "name": "Pet Sitting",
+      "slug": "pet-sitting",
+      "description": "Pet Sitting involves care for pets in their own home while owners are away. Services typically include feeding, walking, and companionship.",
+      "tags": ["In-Home Care", "Feeding", "Walking", "Playtime", "Medication Administration"],
+      "priority": 6
+    },
+    {
+      "id": "7",
+      "name": "Pet Supplies and Accessories",
+      "slug": "pet-supplies-and-accessories",
+      "description": "Pet Supplies and Accessories include products for pets such as food, toys, grooming tools, and bedding. These items help keep pets healthy, entertained, and comfortable.",
+      "tags": ["Pet Food", "Toys", "Grooming Tools", "Bedding", "Collars and Leashes"],
+      "priority": 7
+    },
+    {
+      "id": "8",
+      "name": "Pet Training",
+      "slug": "pet-training",
+      "description": "Pet Training services offer obedience training, behavior modification, and specialized instruction for pets. Training may be provided in group classes or private sessions.",
+      "tags": [
+        "Obedience Training",
+        "Behavior Modification",
+        "Puppy Classes",
+        "Advanced Training",
+        "Private Sessions"
+      ],
+      "priority": 8
+    },
+    {
+      "id": "9",
+      "name": "Dog Walking",
+      "slug": "dog-walking",
+      "description": "Dog Walking services provide exercise and outdoor activity for dogs. Walkers may offer scheduled walks, group walks, or private sessions.",
+      "tags": ["Scheduled Walks", "Group Walks", "Private Walks", "Exercise", "Socialization"],
+      "priority": 9
+    },
+    {
+      "id": "10",
+      "name": "Pet Art",
+      "slug": "pet-art",
+      "description": "Pet Art includes custom artwork featuring pets, such as paintings, drawings, and sculptures. These pieces celebrate and immortalize pets in a creative form.",
+      "tags": ["Paintings", "Drawings", "Sculptures", "Custom Portraits", "Commemorative Art"],
+      "priority": 10
+    },
+    {
+      "id": "11",
+      "name": "Pet Transportation",
+      "slug": "pet-transportation",
+      "description": "Pet Transportation services assist in safely moving pets from one location to another, whether locally or over long distances. Services include ground transport and air travel arrangements.",
+      "tags": [
+        "Local Transport",
+        "Long-Distance Transport",
+        "Air Travel",
+        "Ground Transport",
+        "Pet Relocation"
+      ],
+      "priority": 11
+    },
+    {
+      "id": "12",
+      "name": "Pet Burial Services",
+      "slug": "pet-burial-services",
+      "description": "Pet Burial Services provide respectful end-of-life care, including burial and cremation options. Services may also include memorials and aftercare.",
+      "tags": ["Burial", "Cremation", "Memorials", "Urns", "Aftercare"],
+      "priority": 12
+    },
+    {
+      "id": "13",
+      "name": "Pet Breeders",
+      "slug": "pet-breeders",
+      "description": "Pet Breeders specialize in the responsible breeding of pets. They ensure the health and well-being of animals and provide guidance on pet care for new owners.",
+      "tags": [
+        "Responsible Breeding",
+        "Puppies",
+        "Kittens",
+        "Breed Information",
+        "Health Guarantees"
+      ],
+      "priority": 13
+    },
+    {
+      "id": "14",
+      "name": "Pet Insurance",
+      "slug": "pet-insurance",
+      "description": "Pet Insurance offers financial protection against veterinary expenses for unexpected health issues or accidents. Policies may cover various treatments and conditions.",
+      "tags": [
+        "Accident Coverage",
+        "Illness Coverage",
+        "Wellness Plans",
+        "Claims Assistance",
+        "Policy Options"
+      ],
+      "priority": 14
+    },
+    {
+      "id": "15",
+      "name": "Pet Legal Services",
+      "slug": "pet-legal-services",
+      "description": "Pet Legal Services provide legal assistance related to pet ownership, including custody disputes, liability issues, and pet-related estate planning.",
+      "tags": [
+        "Custody Disputes",
+        "Liability Issues",
+        "Estate Planning",
+        "Contracts",
+        "Legal Advice"
+      ],
+      "priority": 15
+    }
+  ],
+  "formLabels": {
+    "initialStatus": "Status",
+    "category": "Category",
+    "identifier": "Identifier",
+    "size": "Size",
+    "gender": "Gender",
+    "behavior": "Behavior",
+    "age": "Age",
+    "subcategory": "Subcategory",
+    "healthInformation": "Health Information",
+
+    "petLocation": "Pet Location",
+    "markings": "Pet Markings",
+    "mainColor": "Main Color",
+    "markingColors": "Marking Colors",
+    "date": "Date",
+    "time": "Time",
+    "datetime": "Date and time",
+    "uploadFile": "Upload file",
+    "phoneCode": "Code",
+    "phoneNumber": "Phone number",
+    "email": "Email",
+    "notes": "Notes",
+    "updatedStatus": "Current status",
+    "updatedStatusDescription": "Current status description"
+  },
+  "formTitles": {
+    "petDetails": "Pet Details",
+    "healthInformation": "Health Information",
+    "petLocation": "Pet Location",
+    "markings": "Does the pet have markings?",
+    "mainColor": "Main Color",
+    "contactInformation": "Contact Information",
+    "additionalHealthDetails": "Additional Health Details",
+    "markingColors": "Marking Colors",
+    "datetime": "Date and Time",
+    "uploadFile": "Upload File",
+    "currentStatus": "Current Status",
+    "petHasDeceased": "Pet is Deceased"
+  },
+  "sidebarLabels": {
+    "status": "Status",
+    "category": "Category",
+    "gender": "Gender",
+    "size": "Size",
+    "identifierOrName": "Identifier or Name",
+    "date": "Date",
+    "distance": "Distance",
+    "pattern": "Pattern",
+    "color": "Color"
+  },
+  "sidebarButtons": {
+    "applyFilters": "Apply Filters",
+    "resetFilters": "Reset Filters"
+  },
+  "sectionTitles": {
+    "ownerDetails": "Owner Details",
+    "emergencyContacts": "Emergency Contacts",
+    "vaccinationRecords": "Vaccination Records",
+    "medicalHistory": "Medical History"
+  },
+  "dialogTitles": {
+    "confirmation": "Confirmation",
+    "warning": "Warning",
+    "success": "Success",
+    "failure": "Failure"
+  },
+  "tabTitles": {
+    "messages": "MESSAGES",
+    "history": "HISTORY",
+    "notes": "NOTES",
+    "contacts": "CONTACTS"
+  },
+  "historyTab": {
+    "pet": "Pet was",
+    "post": "Post created",
+    "addedBy": "Added by",
+    "updates": "No updates available",
+    "noLocationHistory": "No location history available"
+  },
+  "posterSteps": {
+    "stepOne": "1. Open camera on your smartphone",
+    "stepTwo": "2. Point the camera at the QR code",
+    "stepThree": "3. Click on the link that appears",
+    "stepFour": "4. Follow up on the pet",
+    "stepFive": "5. Share the link with others",
+    "stepSix": "6. Help reunite the pet with its owner and save a life"
+  },
+  "posterTitles": {
+    "haveYouSeen": "HELP TO FIND THIS PET",
+    "contact": "IF YOU HAVE ANY INFORMATION PLEASE CONTACT US",
+    "scanQRCode": "Scan to view map, details and track updates on the pet's status.",
+    "posterGeneratedBy": "Poster generated by PawClix"
+  },
+  "posterLabels": {
+    "additionalInfo": "Additional Information"
+  },
+
+  "mapIconLabel": {
+    "added": "Added"
+  },
+  "notificationTitles": {
+    "newMessage": "New Message",
+    "systemAlert": "System Alert",
+    "updateAvailable": "Update Available",
+    "reminder": "Reminder"
+  },
+  "widgetTitles": {
+    "recentActivities": "Recent Activities",
+    "statistics": "Statistics",
+    "quickLinks": "Quick Links",
+    "calendar": "Calendar"
+  },
+  "paragraphTitles": {
+    "monthlyReport": "Monthly Report",
+    "annualSummary": "Annual Summary",
+    "userActivity": "User Activity",
+    "financialOverview": "Financial Overview"
+  },
+  "pageTitles": {
+    "pawclix": "PawClix",
+    "lostPetReunionsOneClickAway": "Lost Pet Reunions, One Click Away",
+    "findYourFurryFriend": "Find your furry friend with PawClix.",
+    "ourGoal": "Our Goal",
+    "reportAPet": "Report a pet",
+    "contactUs": "Contact Us",
+    "leaveYourFeedback": "Leave Your Feedback",
+    "supportOurProject": "Support Our Project",
+    "joinOurMission": "Join Our Mission",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiePolicy": "Cookie Policy",
+    "dataProtectionPolicy": "Data Protection Policy",
+    "disclaimer": "Disclaimer",
+    "communityGuidelines": "Community Guidelines"
+  },
+  "homePage": {
+    "title": "Home Page",
+    "description": "PawClix is your ultimate solution for finding lost pets. Whether you’ve lost a dog, cat, or any other animal, our app helps you quickly alert the community and track down your furry friend. With real-time notifications, a comprehensive lost and found database, and an easy-to-use interface, PawClix makes reunification with your lost pet fast and efficient. Join our network to ensure your pet’s safety and increase the chances of a happy reunion.",
+    "keywords": "lost pets, pet recovery, find lost pets, lost dog app, lost cat app, pet reunification, pet search, pet tracking, pet finder, PawClix, lost pet alert, pet lost and found, pet locator, animal rescue, pet identification, pet safety"
+  },
+  "aboutPage": {
+    "goal": {
+      "title": "Our Goal",
+      "description1": "Our app utilizes advanced technology to facilitate the reunification of lost pets with their owners. We provide a platform for posting lost pet listings and actively work to connect owners with individuals who have found them.",
+      "description2": "Additionally, our app connects you with a wide range of pet-related services, including veterinary clinics, groomers, trainers, and more. We ensure that you have access to the right resources for your pet's specific needs."
+    },
+    "features": {
+      "title": "Features",
+      "title1": "Lost and Found Pet Report",
+      "description1": "Quickly submit details about your lost or found pet to our community and increase the chances of a reunion.",
+      "title2": "Report Last Seen Location",
+      "description2": "Enable users to report the last seen location of a lost pet on the map, helping other users in the community locate and reunite pets..",
+      "title3": "Lost and Found Pet Map",
+      "description3": "A feature that displays a map of lost and found pets in the area, allowing users to easily locate and identify lost pets.",
+      "title4": "Mobile-Optimized Platform",
+      "description4": "Our mobile-friendly app uses the latest technologies to provide an innovative platform for reuniting lost pets with their owners.",
+      "title5": "Pet Health Insights",
+      "description5": "Discover vital insights on pet health, including vaccination schedules and reminders, ensuring your pet remains healthy and happy.",
+      "title6": "Push Notification",
+      "description6": "Receive immediate alerts when a lost or found pet is reported in your vicinity. Be the first to help reunite furry friends with their owners.",
+      "title7": "Tips and Resources",
+      "description7": "Access resources for pet owners, offering guidance on preventing pet loss and what to do if their pet goes missing.",
+      "title8": "Social Media Integration",
+      "description8": "Integration with social media platforms to help spread the word about lost pets and facilitate communication among users.",
+      "title9": "Search Filters",
+      "description9": "Enable users to filter lost and found pet listings by location, species, breed, color, and other criteria.",
+      "title10": "Lost Pet Flyers",
+      "description10": "A feature that allows users to easily create and print lost pet flyers to distribute in their local community.",
+      "title11": "Pet Services Directory",
+      "description11": "Discover a wide range of pet services, including veterinarians, shelters, groomers, trainers, and more.",
+      "title12": "Community Engagement",
+      "description12": "Foster a supportive community where users can share tips, advice, and stories about lost and found pets."
+    },
+    "support": {
+      "title": "Support Our Project",
+      "description": "Your contribution can help us continue our mission to reunite lost pets with their families. You can also support us by sharing a link on social media or telling friends about our web app. Every effort, big or small, helps, and we truly appreciate your support!",
+      "button": "SUPPORT"
+    },
+    "feedback": {
+      "title": "Share Your Thoughts",
+      "description": "Your feedback is valuable to us as we strive to improve our app and provide the best service to pet owners. Please share any comments, suggestions, or criticisms to help us make our app even better.",
+      "button": "LEAVE FEEDBACK"
+    }
+  },
+  "supportPage": {
+    "title": "Support Our Page",
+    "description1": "We are grateful for any support or sponsorship that can help us unlock the full potential of our web application. If you share our vision and would like to contribute towards the cost of utilizing premium tiers and services, please reach out to us.",
+    "description2": "Your support will enable us to enhance our app and provide an even better experience for our users.",
+    "description3": "You can also support our project by simply sharing our web app with friends and fellow pet owners. Spread the word on social media or tell your friends about it. It’s a cost-free way to help us grow and reach more people who could benefit from our service.",
+    "button": "DONATE",
+    "label": "Share this link with others:"
+  },
+
+  "sheltersPage": {
+    "title": "Adopt, Don't Shop!",
+    "description1": "If you've lost a pet or are considering bringing a new furry friend into your life, we encourage you to start your search at these local shelters. They provide loving care and support to animals in need, and you can make a real difference by adopting rather than buying.",
+    "description2": "Each shelter listed below offers a unique opportunity to find a companion who will bring joy to your home. Click on their names to learn more about their work and how you can support their mission."
+  },
+  "contactPage": {
+    "title": "Contact Us",
+    "partner": {
+      "title": "Partner With Us",
+      "description1": "Are you passionate about pets? Whether you're a vet, animal lover, or just want to share your knowledge, we're here for you!",
+      "description2": "Join us in our mission to reunite lost pets with their families and provide valuable resources to pet owners in need. Let's make a positive impact together!"
+    },
+    "collaboration": {
+      "title": "Further Collaboration Opportunities",
+      "description1": "Additionally, we're open to exploring other collaboration opportunities including visionary branding, development partnerships, and more."
+    },
+    "getInTouch": {
+      "title": "Get In Touch",
+      "description1": "We value your feedback, inquiries, and suggestions. Whether you have a question about our services, want to provide feedback, or simply want to say hello, we’d love to hear from you.",
+      "description2": "Additionally, if you encounter any mistakes or errors on our platform or have concerns regarding the source of data or intellectual property rights, please feel free to contact us. If you have any other questions or feedback, we're here to assist you.",
+      "button": "GET IN TOUCH"
+    },
+    "policies": {
+      "title": "Policies & Community Guidelines",
+      "description1": "Explore our policies and community guidelines to learn about how we collect and protect your data, community rules, and more. For detailed information, please refer to our links down below.",
+      "list": {
+        "listItem1": "Privacy Policy",
+        "listItem2": "Terms of Service",
+        "listItem3": "Cookie Policy",
+        "listItem4": "Data Protection Policy",
+        "listItem5": "Disclaimer",
+        "listItem6": "Community Guidelines"
+      }
+    },
+    "socialMedia": {
+      "title": "Social Media"
+    },
+    "contactInformation": {
+      "title": "Contact Information"
+    }
+  },
+  "sheltersDetailsPage": {
+    "labels": {
+      "description": "Description",
+      "website": "Website",
+      "address": "Address",
+      "contact": "Contact",
+      "socialMedia": "Social Media",
+      "services": "Services",
+      "tags": "Tags"
+    }
+  },
+  "profileNotificationsPage": {
+    "title": "Profile Notifications",
+    "step1": "1. Click the 'Subscribe' button to allow receive notifications.",
+    "step2": "2. Click 'Get Current Location' to automatically use your current location for notifications, or click on the map to select a different location.",
+    "step3": "3. Set the radius for notifications. By default, you will receive notifications within a 20 km radius, but you can adjust this to as low as 1 km.",
+    "step4": "4. Click 'Save' to apply your notification settings.",
+    "step5": "5. If you wish to stop receiving notifications, go to your browser settings and delete saved settings for this web app.",
+    "getCurrentLocation": "Get Current Location",
+    "chooseLocation": "Choose Location on Map",
+    "setRadius": "Set Notification Radius",
+    "save": "Save",
+    "info": "If you no longer wish to receive notifications, please go to your browser settings and delete saved settings for this web app.",
+    "successMessage": "You have successfully subscribed to notifications!",
+    "subscribe": "Subscribe!"
+  },
+  "modalTitles": {
+    "deleteConfirmation": "Delete Confirmation",
+    "updateSuccess": "Update Successful",
+    "error": "Error",
+    "info": "Information"
+  },
+  "petCardLabels": {
+    "views": "views",
+    "report": "Ziņot"
+  },
+  "iconLabelTabs": {
+    "contactPerson": "Contact person",
+    "locationAdded": "Location added"
+  },
+
+  "buttons": {
+    "searchPet": "Search for a pet",
+    "reportPet": "Report a pet",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete"
+  },
+  "links": {
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "contactUs": "Contact Us"
+  },
+  "footerLinks": {
+    "about": "About",
+    "pets": "Pets",
+    "petServices": "Pet Services",
+    "virtualPetTrainingClasses": "Virtual Pet Training Classes",
+    "petInfrastructure": "Pet Infrastructure",
+    "emergencyPetAlerts": "Emergency Pet Alerts",
+
+    "petCareTips": "Pet Care Tips",
+    "howToFindALostCat": "How to Find a Lost Cat?",
+    "howToFindALostDog": "How to Find a Lost Dog?",
+    "adoptDoNotShop": "Adopt, Don't Shop!",
+
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiePolicy": "Cookie Policy",
+    "dataProtectionPolicy": "Data Protection Policy",
+    "disclaimer": "Disclaimer",
+    "communityGuidelines": "Community Guidelines",
+
+    "contact": "Contact",
+    "feedback": "Feedback",
+    "support": "Support",
+    "partners": "Partners",
+    "socialMedia": "Social Media",
+    "sponsors": "Sponsors"
+  },
+  "footerTitles": {
+    "app": "Application",
+    "explore": "Explore",
+    "policiesAndGuidelines": "Policies and Guidelines",
+    "information": "Information"
+  },
+  "footerNote": {
+    "supportText": "We are grateful for any support or sponsorship that can help us unlock the full potential of our web application",
+    "allRightsReserved": "All rights reserved."
+  },
+  "altText": {
+    "logo": "Company Logo",
+    "petImage": "Pet Image"
+  },
+  "navigation": {
+    "pets": "Pets",
+    "shelters": "Shelters",
+    "articles": "Articles",
+    "services": "Services",
+    "login": "Login",
+    "profile": "profile"
+  },
+  "validationMessages": {
+    "required": "This field is required.",
+    "invalidEmail": "Please enter a valid email address.",
+    "passwordMismatch": "Passwords do not match."
+  },
+  "notifications": {
+    "petAddedSuccess": "Pet added successfully.",
+    "errorOccurred": "An error occurred. Please try again."
+  },
+  "placeholders": {
+    "updatedStatusDescription": "Enter details such as where the pet was found, shelter name, vet clinic name.",
+    "identifier": "Pet's name or identifier",
+    "notes": "Appearance, behavior, special medical care, circumstances of loss, or any other relevant notes."
+  },
+  "tooltips": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "moreInfo": "More information"
+  },
+  "miscellaneous": {
+    "loading": "Loading...",
+    "noResultsFound": "No results found.",
+    "pleaseWait": "Please wait..."
+  }
+}

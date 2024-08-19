@@ -34,13 +34,13 @@ const drawerWidth = 240;
 
 const navItems = {
   // "/": "Home",
-  '/pets': 'navigation.pets',
+  '/pets': 'pets',
   // "/about": "About",
   // '/services': 'Services',
-  // '/shelters': 'navigation.shelters',
-  // '/articles': 'navigation.articles',
+  // '/shelters': 'shelters',
+  // '/articles': 'articles',
   // '/add-service-category': 'Add service category',
-  // '/service-categories': 'navigation.services',
+  // '/service-categories': 'services',
 
   // '/create-service': 'Add Service',
   // '/create-business': 'Add Business',
@@ -57,7 +57,7 @@ function DrawerAppBar(props) {
   // const { isAuthenticated, logout } = useAuth();
   const { user, logout } = useAuth();
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
-  const { t } = useTranslation();
+  const { t } = useTranslation('navbar');
   const navigate = useNavigate();
   console.log('userDRAWer', user);
   const handleDrawerToggle = () => {
@@ -93,7 +93,7 @@ function DrawerAppBar(props) {
               alignItems: 'center',
             }}
           >
-            <PetsIcon sx={{ marginRight: '0.4rem', color: '#ffc107' }} /> PawClix
+            <PetsIcon sx={{ marginRight: '0.4rem', color: '#ffcb56' }} /> PawClix
           </Link>
         </Typography>
       </Box>
@@ -118,13 +118,13 @@ function DrawerAppBar(props) {
                 color: '#000', // Change font color to black for better contrast
                 fontWeight: '500',
 
-                backgroundColor: '#ffc107',
+                backgroundColor: '#ffcb56',
                 '&:hover': {
                   backgroundColor: '#e0a800', // Adjust the hover color as needed
                 },
               }}
             >
-              {t('navigation.profile')}
+              {t('profile')}
             </Button>
           </Link>
         ) : (
@@ -135,13 +135,13 @@ function DrawerAppBar(props) {
                 color: '#000', // Change font color to black for better contrast
                 fontWeight: '500',
 
-                backgroundColor: '#ffc107',
+                backgroundColor: '#ffcb56',
                 '&:hover': {
                   backgroundColor: '#e0a800', // Adjust the hover color as needed
                 },
               }}
             >
-              {t('navigation.login')}
+              {t('login')}
             </Button>
           </Link>
         )}
@@ -200,7 +200,7 @@ function DrawerAppBar(props) {
                   alignItems: 'center',
                 }}
               >
-                <PetsIcon sx={{ marginRight: '0.4rem', color: '#ffc107' }} />
+                <PetsIcon sx={{ marginRight: '0.4rem', color: '#ffcb56' }} />
                 PawClix
               </Link>
             </Typography>
@@ -220,14 +220,15 @@ function DrawerAppBar(props) {
                       color: '#000', // Change font color to black for better contrast
                       fontWeight: '500',
 
-                      backgroundColor: '#ffc107',
+                      backgroundColor: '#ffcb56',
                       '&:hover': {
                         backgroundColor: '#e0a800', // Adjust the hover color as needed
                       },
                     }}
                   >
-                    {t('navigation.profile')}
+                    {t('profile')}
                   </Button>
+                  ffcb56
                 </Link>
               ) : (
                 <Link to="/login">
@@ -237,13 +238,14 @@ function DrawerAppBar(props) {
                       color: '#000', // Change font color to black for better contrast
                       fontWeight: '500',
 
-                      backgroundColor: '#ffc107',
+                      backgroundColor: '#ffcb56',
+                      // backgroundColor: '#ffcb56',
                       '&:hover': {
                         backgroundColor: '#e0a800', // Adjust the hover color as needed
                       },
                     }}
                   >
-                    {t('navigation.login')}
+                    {t('login')}
                   </Button>
                 </Link>
               )}

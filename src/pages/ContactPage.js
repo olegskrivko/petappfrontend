@@ -216,7 +216,7 @@ const ContactPage = () => {
                 type="submit"
                 size="small"
                 variant="contained"
-                style={{ backgroundColor: '#ffc107', color: '#000' }}
+                style={{ backgroundColor: '#ffcb56', color: '#000' }}
               >
                 {t('contactPage.getInTouch.button')}
               </Button>
@@ -290,7 +290,7 @@ const ContactPage = () => {
           <List sx={{ paddingBottom: '0 !important' }}>
             <ListItem sx={{ paddingLeft: '0 !important' }}>
               <ListItemIcon sx={{ marginRight: '-20px' }}>
-                <PetsIcon sx={{ color: '#ffc107' }} />
+                <PetsIcon sx={{ color: '#ffcb56' }} />
               </ListItemIcon>
               <Link to="/privacy-policy">
                 <Typography
@@ -307,7 +307,7 @@ const ContactPage = () => {
             </ListItem>
             <ListItem sx={{ paddingLeft: '0 !important' }}>
               <ListItemIcon sx={{ marginRight: '-20px' }}>
-                <PetsIcon sx={{ color: '#ffc107' }} />
+                <PetsIcon sx={{ color: '#ffcb56' }} />
               </ListItemIcon>
               <Link to="/terms-of-service">
                 <Typography
@@ -324,7 +324,7 @@ const ContactPage = () => {
             </ListItem>
             <ListItem sx={{ paddingLeft: '0 !important' }}>
               <ListItemIcon sx={{ marginRight: '-20px' }}>
-                <PetsIcon sx={{ color: '#ffc107' }} />
+                <PetsIcon sx={{ color: '#ffcb56' }} />
               </ListItemIcon>
               <Link to="/cookie-policy">
                 <Typography
@@ -342,7 +342,7 @@ const ContactPage = () => {
 
             <ListItem sx={{ paddingLeft: '0 !important' }}>
               <ListItemIcon sx={{ marginRight: '-20px' }}>
-                <PetsIcon sx={{ color: '#ffc107' }} />
+                <PetsIcon sx={{ color: '#ffcb56' }} />
               </ListItemIcon>
               <Link to="/data-protection-policy">
                 <Typography
@@ -360,7 +360,7 @@ const ContactPage = () => {
 
             <ListItem sx={{ paddingLeft: '0 !important' }}>
               <ListItemIcon sx={{ marginRight: '-20px' }}>
-                <PetsIcon sx={{ color: '#ffc107' }} />
+                <PetsIcon sx={{ color: '#ffcb56' }} />
               </ListItemIcon>
               <Link to="/disclaimer">
                 <Typography
@@ -378,7 +378,7 @@ const ContactPage = () => {
 
             <ListItem sx={{ paddingLeft: '0 !important' }}>
               <ListItemIcon sx={{ marginRight: '-20px' }}>
-                <PetsIcon sx={{ color: '#ffc107' }} />
+                <PetsIcon sx={{ color: '#ffcb56' }} />
               </ListItemIcon>
 
               <Link to="/community-guidelines">
@@ -441,7 +441,7 @@ const ContactPage = () => {
         <Grid container spacing={2} sx={{ mb: 5 }} justifyContent="center">
           <Grid item xs={12} md={4}>
             <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
-              <MailIcon fontSize="large" sx={{ color: '#ffc107' }} />
+              <MailIcon fontSize="large" sx={{ color: '#ffcb56' }} />
               <Box>
                 <MuiLink href={`mailto:${EMAIL}`}>
                   <Typography variant="body1" sx={{ display: 'inline-block', color: 'black' }}>
@@ -453,7 +453,7 @@ const ContactPage = () => {
           </Grid>
           {/* <Grid item xs={12} md={4}>
             <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
-              <PhoneIcon fontSize="large" sx={{ color: '#ffc107' }} />
+              <PhoneIcon fontSize="large" sx={{ color: '#ffcb56' }} />
               <Box>
                 <MuiLink href={`tel:${PHONE}`}>
                   <Typography variant="body1" sx={{ display: 'inline-block', color: 'black' }}>
@@ -465,7 +465,7 @@ const ContactPage = () => {
           </Grid> */}
           <Grid item xs={12} md={4}>
             <Paper sx={{ padding: '2rem 0', backgroundColor: '#F0F4F9' }}>
-              <LocationOnIcon fontSize="large" sx={{ color: '#ffc107' }} />
+              <LocationOnIcon fontSize="large" sx={{ color: '#ffcb56' }} />
               <Box>
                 <MuiLink onClick={handleLocationClick} style={{ cursor: 'pointer' }}>
                   <Typography variant="body1" sx={{ display: 'inline-block', color: 'black' }}>

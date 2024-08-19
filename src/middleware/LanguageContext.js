@@ -21,8 +21,9 @@ export const LanguageProvider = ({ children }) => {
 
   useEffect(() => {
     try {
+      // Update localStorage with the selected language
       localStorage.setItem('preferredLanguage', selectedLanguage);
-      document.documentElement.lang = selectedLanguage;
+      document.documentElement.lang = selectedLanguage; // Set the document language attribute
       i18n.changeLanguage(selectedLanguage); // Change the language in i18next
     } catch (error) {
       console.error('Error setting language preference in localStorage:', error);

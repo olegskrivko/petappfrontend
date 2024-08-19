@@ -1507,7 +1507,7 @@ function CreatePetPage() {
                     marginLeft: 'auto',
                     marginRight: '0',
                     display: 'flex',
-                    backgroundColor: '#ffc107',
+                    backgroundColor: '#ffcb56',
                     color: 'rgba(0, 0, 0, 0.87)',
                   }}
                 >

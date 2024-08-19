@@ -1,0 +1,11 @@
+{
+  "title": "Support Our Page",
+  "description1": "We are grateful for any support or sponsorship that can help us unlock the full potential of our web application. If you share our vision and would like to contribute towards the cost of utilizing premium tiers and services, please reach out to us.",
+  "description2": "Your support will enable us to enhance our app and provide an even better experience for our users.",
+  "description3": "You can also support our project by simply sharing our web app with friends and fellow pet owners. Spread the word on social media or tell your friends about it. It’s a cost-free way to help us grow and reach more people who could benefit from our service.",
+  "button": {
+    "getInTouch": "GET IN TOUCH",
+    "donate": "DONATE"
+  },
+  "label": "Share this link with others:"
+}

@@ -1,0 +1,61 @@
+{
+  "title": "About Us",
+  "goal": {
+    "title": "Our Goal",
+    "description1": "Our app harnesses cutting-edge technology to make it easier and faster for lost pets to be reunited with their owners. By providing a user-friendly platform for posting lost pet alerts, we actively bridge the gap between pet owners and those who have found lost animals, increasing the chances of a successful reunion.",
+    "description2": "Beyond reuniting lost pets with their families, our app serves as a comprehensive hub for all your pet-related needs. We connect you with a vast network of services, including veterinary clinics, groomers, trainers, and more. Whether your pet requires medical attention, grooming, or specialized training, our app ensures that you have quick access to the best resources tailored to your pet’s specific needs."
+  },
+  "ourJourney": {
+    "title": "Our Journey",
+    "title1": "The Problem",
+    "description1": "I often noticed missing pet posters pinned to lamp posts, drenched in the rain and barely legible. The limited information and poor quality made it nearly impossible to help. It broke my heart to think of the countless pets lost without a reliable way to bring them back home. I knew there had to be a better way—something more effective, something that would give pet owners hope and clarity in a time of distress.",
+    "title2": "The Idea",
+    "description2": "Driven by the desire to create something meaningful, I started thinking about how modern technology, like social media, could be used to solve this problem. In Latvia, there are countless social media groups dedicated to lost pets, but the information is scattered across different platforms and groups. This makes it difficult to centralize efforts and provide effective assistance, especially for older people who might not use social networks like Facebook.",
+    "title3": "The Challenge",
+    "description3": "I wanted to build an app that could bring together communities and streamline the search process. But I didn’t have the knowledge to create it myself, and hiring someone to bring my vision to life was beyond my budget. So, I made a decision: I would learn programming.",
+    "title4": "The Journey",
+    "description4": "It was a long-term goal that required patience, persistence, and countless hours of learning. For over a year, I devoted myself to mastering the skills needed to develop this app. I went through many iterations, continuously improving, rethinking, and refining my approach. The journey was challenging, but I was determined to make this idea a reality. Along the way, I gained a tremendous amount of experience in the IT field, which has been invaluable.",
+    "title5": "The Result",
+    "description5": "Finally, after much hard work and with the help of AI technologies, I completed the app. Today, what started as a simple idea has grown into something much more. My app is now ready to go live, offering pet owners a powerful tool to help reunite with their lost companions. However, I still have many ideas for improvements and new features that I’d like to implement. As this is a side project that I work on after my regular job, time is limited, but I’m committed to continuing to develop it and make it the best it can be."
+  },
+  "features": {
+    "title": "Features",
+    "title1": "Lost and Found Pet Report",
+    "description1": "Quickly submit details about your lost or found pet to our community and increase the chances of a reunion.",
+    "title2": "Report Last Seen Location",
+    "description2": "Enable users to report the last seen location of a lost pet on the map, helping other users in the community locate and reunite pets..",
+    "title3": "Lost and Found Pet Map",
+    "description3": "A feature that displays a map of lost and found pets in the area, allowing users to easily locate and identify lost pets.",
+    "title4": "Mobile-Optimized Platform",
+    "description4": "Our mobile-friendly app uses the latest technologies to provide an innovative platform for reuniting lost pets with their owners.",
+    "title5": "Pet Health Insights",
+    "description5": "Explore key insights on pet health, with tools to manage and track your pet's vaccinations, ensuring they stay healthy and happy.",
+    "title6": "Push Notification",
+    "description6": "Receive immediate alerts when a lost or found pet is reported in your vicinity. Be the first to help reunite furry friends with their owners.",
+    "title7": "Tips and Resources",
+    "description7": "Access resources for pet owners, offering guidance on preventing pet loss and what to do if their pet goes missing.",
+    "title8": "Social Media Integration",
+    "description8": "Integration with social media platforms to help spread the word about lost pets and facilitate communication among users.",
+    "title9": "Search Filters",
+    "description9": "Enable users to filter lost and found pet listings by location, species, breed, color, and other criteria.",
+    "title10": "Lost Pet Flyers",
+    "description10": "A feature that allows users to easily create and print lost pet flyers to distribute in their local community.",
+    "title11": "Pet Services Directory",
+    "description11": "Discover a wide range of pet services, including veterinarians, shelters, groomers, trainers, and more.",
+    "title12": "Community Connection",
+    "description12": "Bring together pet lovers with a shared goal—helping lost pets find their way home. The app connects people who can support each other in the search."
+  },
+  "helpUs": {
+    "title": "Help Us Grow and Improve"
+  },
+  "support": {
+    "title": "Support Our Project",
+    "description": "Your contribution can help us continue our mission to reunite lost pets with their families. You can also support us by sharing a link on social media or telling friends about our web app. Every effort, big or small, helps, and we truly appreciate your support!",
+    "button": "SUPPORT"
+  },
+  "feedback": {
+    "title": "Share Your Thoughts",
+    "description": "Your feedback is valuable to us as we strive to improve our app and provide the best service to pet owners. Please share any comments, suggestions, or criticisms to help us make our app even better.",
+    "button": "LEAVE FEEDBACK"
+  }
+}

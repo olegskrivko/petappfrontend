@@ -1,0 +1,9 @@
+{
+  "title": "Leave Your Feedback",
+  "labels": {
+    "subject": "Subject",
+    "email": "Email",
+    "message": "Message"
+  },
+  "button": "SUBMIT"
+}

@@ -1,0 +1,38 @@
+{
+  "links": {
+    "about": "О Нас",
+    "pets": "Питомцы",
+    "petServices": "Сервисы для питомцев",
+    "virtualPetTrainingClasses": "Виртуальные уроки дрессировки",
+    "petInfrastructure": "Инфраструктура Для Питомцев",
+    "emergencyPetAlerts": "Экстренные оповещения о питомцах",
+
+    "petCareTips": "Советы и рекомендации",
+    "howToFindALostCat": "Как найти пропавшего кота?",
+    "howToFindALostDog": "Как найти пропавшую собаку?",
+    "adoptDoNotShop": "Приютите, не покупайте!",
+
+    "privacyPolicy": "Политика конфиденциальности",
+    "termsOfService": "Условия обслуживания",
+    "cookiePolicy": "Политика использования cookie",
+    "dataProtectionPolicy": "Политика защиты данных",
+    "disclaimer": "Отказ от ответственности",
+    "communityGuidelines": "Правила сообщества",
+    "contact": "Контакты",
+    "feedback": "Обратная связь",
+    "support": "Поддержка",
+    "partners": "Партнеры",
+    "socialMedia": "Социальные сети",
+    "sponsors": "Спонсоры"
+  },
+  "titles": {
+    "app": "Приложение",
+    "explore": "Исследовать",
+    "policiesAndGuidelines": "Политики и руководства",
+    "information": "Информация"
+  },
+  "footnote": {
+    "supportText": "Мы благодарим за любую поддержку или спонсорство, которые могут помочь нам раскрыть полный потенциал нашего веб-приложения",
+    "allRightsReserved": "Все права защищены."
+  }
+}

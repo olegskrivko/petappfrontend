@@ -15,17 +15,10 @@ import useFontSizes from '../utils/getFontSize';
 import { useTranslation } from 'react-i18next';
 
 function FeedbackPage() {
-  const { t } = useTranslation(); // Initialize translation hook
-  const subjects = [
-    { value: '1', label: t('subjectsOptions.subjects.0') },
-    { value: '2', label: t('subjectsOptions.subjects.1') },
-    { value: '3', label: t('subjectsOptions.subjects.2') },
-    { value: '4', label: t('subjectsOptions.subjects.3') },
-    { value: '5', label: t('subjectsOptions.subjects.4') },
-    { value: '6', label: t('subjectsOptions.subjects.5') },
-    { value: '7', label: t('subjectsOptions.subjects.6') },
-    { value: '8', label: t('subjectsOptions.subjects.7') },
-  ];
+  // const { t } = useTranslation(['selectOptions', 'feedbackPage']); // Initialize translation hook
+
+  const { t: tSelectOptions } = useTranslation('selectOptions');
+  const { t: tFeedbackPage } = useTranslation('feedbackPage');
 
   const { getTypography } = useFontSizes();
   const creditLink = 'https://storyset.com/people';
@@ -95,7 +88,7 @@ function FeedbackPage() {
               fontWeight: getTypography('h1').fontWeight,
             }}
           >
-            {t('feedbackPage.title')}
+            {tFeedbackPage('title')}
           </Typography>
         </Grid>
       </Grid>
@@ -147,7 +140,7 @@ function FeedbackPage() {
             <Box mb={2}>
               <TextField
                 select
-                label={t('feedbackPage.labels.subject')}
+                label={tFeedbackPage('labels.subject')}
                 fullWidth
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
@@ -158,16 +151,18 @@ function FeedbackPage() {
                   </MenuItem>
                 ))} */}
 
-                {t('selectOptions.subjectsOptions', { returnObjects: true }).map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
+                {tSelectOptions('selectOptions.subjectsOptions', { returnObjects: true }).map(
+                  (option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ),
+                )}
               </TextField>
             </Box>
             <Box mb={2}>
               <TextField
-                label={t('feedbackPage.labels.email')}
+                label={tFeedbackPage('labels.email')}
                 type="email"
                 fullWidth
                 value={email}
@@ -178,7 +173,7 @@ function FeedbackPage() {
             </Box>
             <Box mb={2}>
               <TextField
-                label={t('feedbackPage.labels.message')}
+                label={tFeedbackPage('labels.message')}
                 multiline
                 fullWidth
                 rows={4}
@@ -193,10 +188,10 @@ function FeedbackPage() {
                 type="submit"
                 size="small"
                 variant="contained"
-                style={{ backgroundColor: '#ffc107', color: '#000' }}
+                style={{ backgroundColor: '#ffcb56', color: '#000' }}
                 disabled={loading}
               >
-                {loading ? 'Submitting...' : t('feedbackPage.button')}
+                {loading ? 'Submitting...' : tFeedbackPage('button')}
               </Button>
             </Grid>
           </form>

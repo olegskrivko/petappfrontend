@@ -1,0 +1,763 @@
+{
+  "selectOptions": {
+    "initialStatusOptions": [
+      { "value": "1", "label": "Пропал" },
+      { "value": "2", "label": "Найден" },
+      { "value": "3", "label": "Замечен " }
+    ],
+    "categoryOptions": [
+      { "value": "1", "label": "Пёс" },
+      { "value": "2", "label": "Кот" },
+      { "value": "3", "label": "Птица" },
+      { "value": "4", "label": "Грызун" },
+      { "value": "5", "label": "Рептилия" },
+      { "value": "6", "label": "с/х животное" },
+      { "value": "7", "label": "Прочее" }
+    ],
+    "sizeOptions": [
+      { "value": "1", "label": "Маленький" },
+      { "value": "2", "label": "Средний" },
+      { "value": "3", "label": "Большой" }
+    ],
+    "genderOptions": [
+      { "value": "1", "label": "Мужской" },
+      { "value": "2", "label": "Женский" }
+    ],
+    "behaviorOptions": [
+      { "value": "1", "label": "Дружелюбный" },
+      { "value": "2", "label": "Агрессивный" },
+      { "value": "3", "label": "Спокойный" },
+      { "value": "4", "label": "Пугливый" }
+    ],
+    "ageOptions": {
+      "1": [
+        { "value": "1", "label": "Щенок" },
+        { "value": "2", "label": "Взрослый" },
+        { "value": "3", "label": "Пожилой" }
+      ],
+      "2": [
+        { "value": "1", "label": "Котенок" },
+        { "value": "2", "label": "Взрослый" },
+        { "value": "3", "label": "Пожилой" }
+      ],
+      "3": [
+        { "value": "1", "label": "Цыпленок" },
+        { "value": "2", "label": "Взрослый" },
+        { "value": "3", "label": "Пожилой" }
+      ],
+      "4": [
+        { "value": "1", "label": "Детеныш" },
+        { "value": "2", "label": "Взрослый" },
+        { "value": "3", "label": "Пожилой" }
+      ],
+      "5": [
+        { "value": "1", "label": "Детеныш" },
+        { "value": "2", "label": "Взрослый" },
+        { "value": "3", "label": "Пожилой" }
+      ],
+      "6": [
+        { "value": "1", "label": "Детеныш" },
+        { "value": "2", "label": "Взрослый" },
+        { "value": "3", "label": "Пожилой" }
+      ],
+      "7": [
+        { "value": "1", "label": "Детеныш" },
+        { "value": "2", "label": "Взрослый" },
+        { "value": "3", "label": "Пожилой" }
+      ]
+    },
+    "subcategoryOptions": {
+      "1": [
+        { "value": "1", "label": "Лабрадор" },
+        { "value": "2", "label": "Бульдог" },
+        { "value": "3", "label": "Пудель" },
+        { "value": "4", "label": "Бигль" },
+        { "value": "5", "label": "Ротвейлер" },
+        { "value": "6", "label": "Немецкая овчарка" },
+        { "value": "7", "label": "Золотистый ретривер" },
+        { "value": "8", "label": "Такса" },
+        { "value": "9", "label": "Чихуахуа" },
+        { "value": "10", "label": "Боксер" },
+        { "value": "11", "label": "Шнауцер" },
+        { "value": "12", "label": "Померанский шпиц" },
+        { "value": "13", "label": "Хаски" },
+        { "value": "14", "label": "Мальтийская болонка" },
+        { "value": "15", "label": "Йоркширский терьер" },
+        { "value": "16", "label": "Мопс" },
+        { "value": "17", "label": "Ши-тцу" },
+        { "value": "18", "label": "Доберман" },
+        { "value": "19", "label": "Мастиф" },
+        { "value": "20", "label": "Датский дог" },
+        { "value": "21", "label": "Английский кокер-спаниель" },
+        { "value": "22", "label": "Бордер-колли" },
+        { "value": "23", "label": "Австралийская овчарка" },
+        { "value": "24", "label": "Сибирский хаски" },
+        { "value": "25", "label": "Далматин" },
+        { "value": "26", "label": "Веймаранер" },
+        { "value": "27", "label": "Пойнтер" },
+        { "value": "28", "label": "Визсла" },
+        { "value": "29", "label": "Сеттер" },
+        { "value": "30", "label": "Спаниель" },
+        { "value": "31", "label": "Терьер" },
+        { "value": "32", "label": "Гончая" }
+      ],
+      "2": [
+        { "value": "1", "label": "Сиамская" },
+        { "value": "2", "label": "Персидская" },
+        { "value": "3", "label": "Мейн-кун" },
+        { "value": "4", "label": "Рэгдолл" },
+        { "value": "5", "label": "Бенгальская" },
+        { "value": "6", "label": "Британская короткошерстная" },
+        { "value": "7", "label": "Сфинкс" },
+        { "value": "8", "label": "Шотландская вислоухая" },
+        { "value": "9", "label": "Абиссинская" },
+        { "value": "10", "label": "Бирма" },
+        { "value": "11", "label": "Американская короткошерстная" },
+        { "value": "12", "label": "Ориентальная" },
+        { "value": "13", "label": "Девон-рекс" },
+        { "value": "14", "label": "Русская голубая" },
+        { "value": "15", "label": "Норвежский лесной кот" },
+        { "value": "16", "label": "Сибирская кошка" },
+        { "value": "17", "label": "Бурманская" },
+        { "value": "18", "label": "Тонкинез" },
+        { "value": "19", "label": "Египетская мау" },
+        { "value": "20", "label": "Шартрез" }
+      ],
+      "3": [
+        { "value": "1", "label": "Попугай" },
+        { "value": "2", "label": "Канарейка" },
+        { "value": "3", "label": "Волнистый попугай" },
+        { "value": "4", "label": "Прочее" }
+      ],
+      "4": [
+        { "value": "1", "label": "Хомяк" },
+        { "value": "2", "label": "Морская свинка" },
+        { "value": "3", "label": "Кролик" },
+        { "value": "4", "label": "Мышь" },
+        { "value": "5", "label": "Крыса" },
+        { "value": "6", "label": "Хорёк" },
+        { "value": "7", "label": "Еж" },
+        { "value": "8", "label": "Прочее" }
+      ],
+      "5": [
+        { "value": "1", "label": "Змея" },
+        { "value": "2", "label": "Геккон" },
+        { "value": "3", "label": "Ящерица" },
+        { "value": "4", "label": "Черепаха" },
+        { "value": "5", "label": "Сухопутная черепаха" },
+        { "value": "6", "label": "Прочее" }
+      ],
+      "6": [
+        { "value": "1", "label": "Крупный рогатый скот" },
+        { "value": "2", "label": "Свинья" },
+        { "value": "3", "label": "Овца" },
+        { "value": "4", "label": "Коза" },
+        { "value": "5", "label": "Курица" },
+        { "value": "6", "label": "Индейка" },
+        { "value": "7", "label": "Утка" },
+        { "value": "8", "label": "Лошадь" },
+        { "value": "9", "label": "Осел" },
+        { "value": "10", "label": "Прочее" }
+      ],
+      "7": [{ "value": "1", "label": "Прочее" }]
+    },
+    "healthInformationOptions": [{ "value": "1", "label": "Да" }],
+    "markingOptions": [
+      { "value": "1", "label": "Сплошной" },
+      { "value": "2", "label": "Полосатый" },
+      { "value": "3", "label": "Точечный" },
+      { "value": "4", "label": "Пятнистый" },
+      { "value": "5", "label": "Рябой" }
+    ],
+    "colorOptions": [
+      { "value": "#000000", "label": "Черный" },
+      { "value": "#BEBEBE", "label": "Серый" },
+      { "value": "#f7f7f7", "label": "Белый" },
+      { "value": "#FFF1B9", "label": "Кремовый" },
+      { "value": "#FCDC5C", "label": "Желтый" },
+      { "value": "#FFA500", "label": "Золотой" },
+      { "value": "#C37C4D", "label": "Коричневый" },
+      { "value": "#A71A20", "label": "Красный" },
+      { "value": "#BA97AA", "label": "Сиреневый" },
+      { "value": "#1A355E", "label": "Синий" },
+      { "value": "#5F6F52", "label": "Зеленый" },
+      { "value": "#BDB76B", "label": "Хаки" },
+      { "value": "#E5DECA", "label": "Бежевый" },
+      { "value": "#D2B48C", "label": "Шоколадный" },
+      { "value": "#E5AA70", "label": "Оленевый" },
+      { "value": "#954535", "label": "Каштановый" }
+    ],
+    "phoneCodeOptions": [
+      { "value": "+371", "label": "+371" },
+      { "value": "+372", "label": "+372" },
+      { "value": "+370", "label": "+370" }
+    ],
+    "updatedStatusOptions": {
+      "1": [
+        { "value": "1", "label": "Активные поиски" },
+        { "value": "2", "label": "Все еще пропал" },
+        { "value": "3", "label": "Воссоединен" },
+        { "value": "4", "label": "Погиб" },
+        { "value": "5", "label": "Другое" }
+      ],
+      "2": [
+        { "value": "1", "label": "Ожидает владельца" },
+        { "value": "2", "label": "Усыновлен" },
+        { "value": "3", "label": "Отправлен в приют" },
+        { "value": "4", "label": "Отправлен в ветеринарную клинику" },
+        { "value": "5", "label": "Погиб" },
+        { "value": "6", "label": "Другое" }
+      ],
+      "3": [
+        { "value": "1", "label": "Сообщено властям" },
+        { "value": "2", "label": "Свободное блуждание" },
+        { "value": "3", "label": "Погиб" },
+        { "value": "4", "label": "Другое" }
+      ]
+    },
+    "subjectsOptions": [
+      { "value": "1", "label": "Общий отзыв" },
+      { "value": "2", "label": "Запрос функции" },
+      { "value": "3", "label": "Сообщение об ошибке" },
+      { "value": "4", "label": "Техническая поддержка" },
+      { "value": "5", "label": "Реклама и спонсорство" },
+      { "value": "6", "label": "Проблемы с конфиденциальностью данных" },
+      { "value": "7", "label": "Возможности партнерства" },
+      { "value": "8", "label": "Другое" }
+    ]
+  },
+  "serviceCategories": [
+    {
+      "id": "1",
+      "name": "Pet Boarding",
+      "slug": "pet-boarding",
+      "description": "Pet Boarding services provide temporary housing and care for pets when their owners are away. Facilities often include amenities like play areas, feeding, and daily exercise.",
+      "tags": ["Overnight Stay", "Daycare", "Kennels", "Pet Hotels", "Cage-Free Boarding"],
+      "priority": 1
+    },
+    {
+      "id": "2",
+      "name": "Veterinary Services",
+      "slug": "veterinary-services",
+      "description": "Veterinary Services offer medical care for pets, including routine check-ups, emergency care, and specialized treatments. These services ensure pets receive necessary health and wellness attention.",
+      "tags": [
+        "Routine Check-ups",
+        "Emergency Care",
+        "Surgery",
+        "Vaccinations",
+        "Dental Care",
+        "Wellness Exams"
+      ],
+      "priority": 2
+    },
+    {
+      "id": "3",
+      "name": "Pet Grooming",
+      "slug": "pet-grooming",
+      "description": "Pet Grooming includes bathing, brushing, trimming, and styling services to keep pets clean and comfortable. Groomers also provide nail trimming and ear cleaning.",
+      "tags": ["Bathing", "Haircuts", "Nail Trimming", "Ear Cleaning", "Styling"],
+      "priority": 3
+    },
+    {
+      "id": "4",
+      "name": "Pet Photography",
+      "slug": "pet-photography",
+      "description": "Pet Photography captures high-quality images of pets in various settings. Services may include studio sessions, on-location shoots, and customized photo packages.",
+      "tags": [
+        "Studio Photography",
+        "On-Location Shoots",
+        "Portraits",
+        "Action Shots",
+        "Custom Packages"
+      ],
+      "priority": 4
+    },
+    {
+      "id": "5",
+      "name": "Pet Rescue and Search",
+      "slug": "pet-rescue-and-search",
+      "description": "Pet Rescue and Search services focus on locating lost pets and providing emergency rescue operations. These organizations often help with rehoming and fostering.",
+      "tags": [
+        "Lost Pet Recovery",
+        "Emergency Rescue",
+        "Rehoming",
+        "Fostering",
+        "Microchip Scanning"
+      ],
+      "priority": 5
+    },
+    {
+      "id": "6",
+      "name": "Pet Sitting",
+      "slug": "pet-sitting",
+      "description": "Pet Sitting involves care for pets in their own home while owners are away. Services typically include feeding, walking, and companionship.",
+      "tags": ["In-Home Care", "Feeding", "Walking", "Playtime", "Medication Administration"],
+      "priority": 6
+    },
+    {
+      "id": "7",
+      "name": "Pet Supplies and Accessories",
+      "slug": "pet-supplies-and-accessories",
+      "description": "Pet Supplies and Accessories include products for pets such as food, toys, grooming tools, and bedding. These items help keep pets healthy, entertained, and comfortable.",
+      "tags": ["Pet Food", "Toys", "Grooming Tools", "Bedding", "Collars and Leashes"],
+      "priority": 7
+    },
+    {
+      "id": "8",
+      "name": "Pet Training",
+      "slug": "pet-training",
+      "description": "Pet Training services offer obedience training, behavior modification, and specialized instruction for pets. Training may be provided in group classes or private sessions.",
+      "tags": [
+        "Obedience Training",
+        "Behavior Modification",
+        "Puppy Classes",
+        "Advanced Training",
+        "Private Sessions"
+      ],
+      "priority": 8
+    },
+    {
+      "id": "9",
+      "name": "Dog Walking",
+      "slug": "dog-walking",
+      "description": "Dog Walking services provide exercise and outdoor activity for dogs. Walkers may offer scheduled walks, group walks, or private sessions.",
+      "tags": ["Scheduled Walks", "Group Walks", "Private Walks", "Exercise", "Socialization"],
+      "priority": 9
+    },
+    {
+      "id": "10",
+      "name": "Pet Art",
+      "slug": "pet-art",
+      "description": "Pet Art includes custom artwork featuring pets, such as paintings, drawings, and sculptures. These pieces celebrate and immortalize pets in a creative form.",
+      "tags": ["Paintings", "Drawings", "Sculptures", "Custom Portraits", "Commemorative Art"],
+      "priority": 10
+    },
+    {
+      "id": "11",
+      "name": "Pet Transportation",
+      "slug": "pet-transportation",
+      "description": "Pet Transportation services assist in safely moving pets from one location to another, whether locally or over long distances. Services include ground transport and air travel arrangements.",
+      "tags": [
+        "Local Transport",
+        "Long-Distance Transport",
+        "Air Travel",
+        "Ground Transport",
+        "Pet Relocation"
+      ],
+      "priority": 11
+    },
+    {
+      "id": "12",
+      "name": "Pet Burial Services",
+      "slug": "pet-burial-services",
+      "description": "Pet Burial Services provide respectful end-of-life care, including burial and cremation options. Services may also include memorials and aftercare.",
+      "tags": ["Burial", "Cremation", "Memorials", "Urns", "Aftercare"],
+      "priority": 12
+    },
+    {
+      "id": "13",
+      "name": "Pet Breeders",
+      "slug": "pet-breeders",
+      "description": "Pet Breeders specialize in the responsible breeding of pets. They ensure the health and well-being of animals and provide guidance on pet care for new owners.",
+      "tags": [
+        "Responsible Breeding",
+        "Puppies",
+        "Kittens",
+        "Breed Information",
+        "Health Guarantees"
+      ],
+      "priority": 13
+    },
+    {
+      "id": "14",
+      "name": "Pet Insurance",
+      "slug": "pet-insurance",
+      "description": "Pet Insurance offers financial protection against veterinary expenses for unexpected health issues or accidents. Policies may cover various treatments and conditions.",
+      "tags": [
+        "Accident Coverage",
+        "Illness Coverage",
+        "Wellness Plans",
+        "Claims Assistance",
+        "Policy Options"
+      ],
+      "priority": 14
+    },
+    {
+      "id": "15",
+      "name": "Pet Legal Services",
+      "slug": "pet-legal-services",
+      "description": "Pet Legal Services provide legal assistance related to pet ownership, including custody disputes, liability issues, and pet-related estate planning.",
+      "tags": [
+        "Custody Disputes",
+        "Liability Issues",
+        "Estate Planning",
+        "Contracts",
+        "Legal Advice"
+      ],
+      "priority": 15
+    }
+  ],
+  "formLabels": {
+    "initialStatus": "Статус",
+    "category": "Категория",
+    "identifier": "Идентификатор",
+    "size": "Размер",
+    "gender": "Пол",
+    "behavior": "Поведение",
+    "age": "Возраст",
+    "subcategory": "Подкатегория",
+    "healthInformation": "Информация о здоровье",
+
+    "petLocation": "Местоположение животного",
+    "markings": "Отметки",
+    "mainColor": "Основной цвет",
+    "markingColors": "Цвета отметок",
+    "date": "Дата",
+    "time": "Время",
+    "datetime": "Дата и время",
+    "uploadFile": "Загрузить файл",
+    "phoneCode": "Код",
+    "phoneNumber": "Номер телефона",
+    "email": "Электронная почта",
+    "notes": "Примечания",
+    "updatedStatus": "Текущий статус",
+    "updatedStatusDescription": "Описание текущего статуса"
+  },
+  "formTitles": {
+    "petDetails": "Информация о животном",
+    "healthInformation": "Информация о здоровье",
+    "petLocation": "Местоположение животного",
+    "markings": "Есть ли у животного отметины?",
+    "mainColor": "Основной цвет",
+    "contactInformation": "Контактная информация",
+    "additionalHealthDetails": "Дополнительная информация о здоровье",
+    "markingColors": "Цвета отметин",
+    "datetime": "Дата и время",
+    "uploadFile": "Загрузить файл",
+    "currentStatus": "Текущий статус",
+    "petHasDeceased": "Домашнее животное умерло"
+  },
+  "sidebarLabels": {
+    "status": "Статус",
+    "category": "Категория",
+    "gender": "Пол",
+    "size": "Размер",
+    "identifierOrName": "Идентификатор или Имя",
+    "date": "Дата",
+    "distance": "Расстояние",
+    "pattern": "Узор",
+    "color": "Цвет"
+  },
+  "sidebarButtons": {
+    "applyFilters": "Применить фильтры",
+    "resetFilters": "Сбросить фильтры"
+  },
+  "tabTitles": {
+    "messages": "СООБЩЕНИЯ",
+    "history": "ИСТОРИЯ",
+    "notes": "ЗАПИСКИ",
+    "contacts": "КОНТАКТЫ"
+  },
+  "historyTab": {
+    "pet": "Питомец был",
+    "post": "Сообщение создано",
+    "addedBy": "Добавлено",
+    "updates": "Обновлений нет",
+    "noLocationHistory": "История местоположений недоступна"
+  },
+  "posterSteps": {
+    "stepOne": "1. Откройте камеру на вашем смартфоне",
+    "stepTwo": "2. Наведите камеру на QR-код",
+    "stepThree": "3. Нажмите на появившуюся ссылку",
+    "stepFour": "4. Проследите за питомцем",
+    "stepFive": "5. Поделитесь ссылкой с другими",
+    "stepSix": "6. Помогите вернуть питомца владельцу и спасите жизнь"
+  },
+  "posterTitles": {
+    "haveYouSeen": "ПОМОГИТЕ НАЙТИ ЭТОГО ПИТОМЦА",
+    "contact": "ЕСЛИ У ВАС ЕСТЬ ЛЮБАЯ ИНФОРМАЦИЯ, ПОЖАЛУЙСТА, СВЯЖИТЕСЬ С НАМИ",
+    "scanQRCode": "Сканируйте, чтобы просмотреть карту, детали и отслеживать обновления статуса питомца.",
+    "posterGeneratedBy": "Постер создан PawClix"
+  },
+  "posterLabels": {
+    "additionalInfo": "Дополнительная Информация"
+  },
+
+  "mapIconLabel": {
+    "added": "Добавлено"
+  },
+  "sectionTitles": {
+    "ownerDetails": "Owner Details",
+    "emergencyContacts": "Emergency Contacts",
+    "vaccinationRecords": "Vaccination Records",
+    "medicalHistory": "Medical History"
+  },
+  "dialogTitles": {
+    "confirmation": "Confirmation",
+    "warning": "Warning",
+    "success": "Success",
+    "failure": "Failure"
+  },
+  "notificationTitles": {
+    "newMessage": "New Message",
+    "systemAlert": "System Alert",
+    "updateAvailable": "Update Available",
+    "reminder": "Reminder"
+  },
+  "widgetTitles": {
+    "recentActivities": "Recent Activities",
+    "statistics": "Statistics",
+    "quickLinks": "Quick Links",
+    "calendar": "Calendar"
+  },
+  "paragraphTitles": {
+    "monthlyReport": "Monthly Report",
+    "annualSummary": "Annual Summary",
+    "userActivity": "User Activity",
+    "financialOverview": "Financial Overview"
+  },
+  "pageTitles": {
+    "pawclix": "PawClix",
+    "lostPetReunionsOneClickAway": "Воссоединение с потерянными питомцами в один клик",
+    "findYourFurryFriend": "Найдите своего пушистого друга с помощью PawClix.",
+    "ourGoal": "Our Goal",
+    "reportAPet": "Сообщить о питомце",
+    "contactUs": "Contact Us",
+    "leaveYourFeedback": "Leave Your Feedback",
+    "supportOurProject": "Support Our Project",
+    "joinOurMission": "Join Our Mission",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiePolicy": "Cookie Policy",
+    "dataProtectionPolicy": "Data Protection Policy",
+    "disclaimer": "Disclaimer",
+    "communityGuidelines": "Community Guidelines"
+  },
+
+  "homePage": {
+    "title": "Главная страница",
+    "description": "PawClix — ваше идеальное решение для поиска пропавших домашних животных. Независимо от того, потеряли ли вы собаку, кошку или любое другое животное, наше приложение поможет вам быстро оповестить сообщество и найти вашего пушистого друга. Благодаря уведомлениям в реальном времени, обширной базе данных пропавших и найденных животных и простому в использовании интерфейсу, PawClix делает воссоединение с вашим потерянным питомцем быстрым и эффективным. Присоединяйтесь к нашей сети, чтобы обеспечить безопасность вашего питомца и увеличить шансы на счастливое воссоединение.",
+    "keywords": "пропавшие животные, восстановление питомцев, найти пропавших питомцев, приложение для пропавших собак, приложение для пропавших кошек, воссоединение с питомцем, поиск питомцев, отслеживание питомцев, находка питомцев, PawClix, сигнал о пропавшем питомце, пропавший и найденный питомец, локатор питомцев, спасение животных, идентификация питомцев, безопасность питомцев"
+  },
+  "aboutPage": {
+    "goal": {
+      "title": "Наша цель",
+      "description1": "Наше приложение использует передовые технологии для содействия воссоединению пропавших питомцев с их владельцами. Мы предоставляем платформу для размещения объявлений о пропавших питомцах и активно работаем над тем, чтобы связать владельцев с людьми, которые их нашли.",
+      "description2": "Кроме того, наше приложение соединяет вас с широким спектром услуг для питомцев, включая ветеринарные клиники, грумеров, тренеров и другие. Мы обеспечиваем доступ к необходимым ресурсам для удовлетворения специфических потребностей вашего питомца."
+    },
+    "features": {
+      "title": "Функции",
+      "title1": "Сообщение о пропавшем или найденном питомце",
+      "description1": "Быстро отправляйте информацию о вашем пропавшем или найденном питомце в наше сообщество и увеличивайте шансы на воссоединение.",
+      "title2": "Сообщить последнее место нахождения",
+      "description2": "Позвольте пользователям сообщать о последнем месте нахождения пропавшего питомца на карте, помогая другим пользователям сообщества находить и воссоединять питомцев.",
+      "title3": "Карта пропавших и найденных питомцев",
+      "description3": "Функция, отображающая карту пропавших и найденных питомцев в районе, позволяя пользователям легко находить и идентифицировать пропавших питомцев.",
+      "title4": "Мобильная оптимизация",
+      "description4": "Наше мобильное приложение использует новейшие технологии для предоставления инновационной платформы для воссоединения пропавших питомцев с их владельцами.",
+      "title5": "Здоровье питомцев",
+      "description5": "Получите важную информацию о здоровье питомцев, включая графики вакцинации и напоминания, чтобы ваш питомец оставался здоровым и счастливым.",
+      "title6": "Push-уведомления",
+      "description6": "Получайте немедленные оповещения, когда в вашем районе сообщается о пропавшем или найденном питомце. Будьте первыми, кто поможет воссоединить пушистых друзей с их владельцами.",
+      "title7": "Советы и ресурсы",
+      "description7": "Доступ к ресурсам для владельцев питомцев, предлагающим рекомендации по предотвращению потери питомца и действиям в случае его пропажи.",
+      "title8": "Интеграция с социальными сетями",
+      "description8": "Интеграция с социальными сетями для распространения информации о пропавших питомцах и содействия общению между пользователями.",
+      "title9": "Фильтры поиска",
+      "description9": "Позвольте пользователям фильтровать объявления о пропавших и найденных питомцах по местоположению, виду, породе, цвету и другим критериям.",
+      "title10": "Флаеры о пропавших питомцах",
+      "description10": "Функция, позволяющая пользователям легко создавать и печатать флаеры о пропавших питомцах для распространения в местном сообществе.",
+      "title11": "Каталог услуг для питомцев",
+      "description11": "Откройте для себя широкий выбор услуг для питомцев, включая ветеринаров, приюты, грумеров, тренеров и другие.",
+      "title12": "Вовлеченность сообщества",
+      "description12": "Создайте поддерживающее сообщество, где пользователи могут делиться советами, рекомендациями и историями о пропавших и найденных питомцах."
+    },
+    "support": {
+      "title": "Поддержите наш проект",
+      "description": "Ваша поддержка поможет нам продолжить нашу миссию по воссоединению потерянных питомцев с их семьями. Вы также можете поддержать нас, поделившись ссылкой в социальных сетях или рассказав друзьям о нашем веб-приложении. Каждое усилие, большое или маленькое, имеет значение, и мы искренне благодарны за вашу помощь!",
+      "button": "ПОДДЕРЖАТЬ"
+    },
+    "feedback": {
+      "title": "Поделитесь своим мнением",
+      "description": "Ваш отзыв важен для нас, так как мы стремимся улучшить наше приложение и предоставить лучший сервис владельцам питомцев. Пожалуйста, поделитесь своими комментариями, предложениями или критикой, чтобы помочь нам сделать приложение еще лучше.",
+      "button": "ОСТАВИТЬ ОТЗЫВ"
+    }
+  },
+  "supportPage": {
+    "title": "Поддержите нашу страницу",
+    "description1": "Мы благодарны за любую поддержку или спонсорство, которые помогут нам раскрыть весь потенциал нашего веб-приложения. Если вы разделяете наше видение и хотите внести вклад в использование премиум-уровней и услуг, пожалуйста, свяжитесь с нами.",
+    "description2": "Ваша поддержка позволит нам улучшить наше приложение и предоставить пользователям еще более качественный опыт.",
+    "description3": "Вы также можете поддержать наш проект, просто поделившись нашим веб-приложением с друзьями и другими владельцами домашних животных. Расскажите о нас в социальных сетях или расскажите своим друзьям. Это бесплатный способ помочь нам расти и достичь большего числа людей, которые могут воспользоваться нашим сервисом.",
+    "button": "ПОЖЕРТВОВАТЬ",
+    "label": "Поделитесь этой ссылкой с другими:"
+  },
+
+  "sheltersPage": {
+    "title": "Адоптируй, не покупай!",
+    "description1": "Если вы потеряли питомца или собираетесь завести нового пушистого друга, мы советуем начать поиски в этих местных приютах. Они предоставляют любящую заботу и поддержку животным, нуждающимся в помощи, и вы можете внести реальный вклад, усыновив питомца, а не покупая его.",
+    "description2": "Каждый приют, указанный ниже, предлагает уникальную возможность найти спутника, который принесет радость в ваш дом. Нажмите на их названия, чтобы узнать больше о их работе и о том, как вы можете поддержать их миссию."
+  },
+  "sheltersDetailsPage": {
+    "labels": {
+      "description": "Описание",
+      "website": "Вебсайт",
+      "address": "Адрес",
+      "contact": "Контакт",
+      "socialMedia": "Социальные сети",
+      "services": "Услуги",
+      "tags": "Теги"
+    }
+  },
+  "profileNotificationsPage": {
+    "title": "Уведомления профиля",
+    "step1": "1. Нажмите кнопку 'Подписаться', чтобы разрешить получать уведомления.",
+    "step2": "2. Нажмите 'Получить текущее местоположение', чтобы автоматически использовать ваше текущее местоположение для уведомлений, или нажмите на карту, чтобы выбрать другое место.",
+    "step3": "3. Установите радиус уведомлений. По умолчанию вы будете получать уведомления в радиусе 20 км, но вы можете уменьшить этот радиус до 1 км.",
+    "step4": "4. Нажмите 'Сохранить', чтобы применить ваши настройки уведомлений.",
+    "step5": "5. Если вы больше не хотите получать уведомления, перейдите в настройки вашего браузера и удалите сохраненные настройки для этого веб-приложения.",
+    "getCurrentLocation": "Получить текущее местоположение",
+    "chooseLocation": "Выберите местоположение на карте",
+    "setRadius": "Установить радиус уведомлений",
+    "save": "Сохранить",
+    "info": "Если вы больше не хотите получать уведомления, перейдите в настройки вашего браузера и удалите сохраненные настройки для этого веб-приложения.",
+    "successMessage": "Вы успешно подписались на уведомления!",
+    "subscribe": "Подписаться!"
+  },
+  "contactPage": {
+    "title": "Свяжитесь с нами",
+    "partner": {
+      "title": "Станьте нашим партнером",
+      "description1": "Вы увлечены питомцами? Будь вы ветеринаром, любителем животных или просто хотите поделиться своими знаниями, мы здесь для вас!",
+      "description2": "Присоединяйтесь к нам в нашей миссии по воссоединению потерянных питомцев с их семьями и предоставлению ценным ресурсам владельцам домашних животных. Давайте вместе создавать положительное влияние!"
+    },
+    "collaboration": {
+      "title": "Дополнительные возможности для сотрудничества",
+      "description1": "Кроме того, мы открыты для изучения других возможностей сотрудничества, включая креативный брендинг, партнерство в разработке и многое другое."
+    },
+    "getInTouch": {
+      "title": "Свяжитесь с нами",
+      "description1": "Мы ценим ваши отзывы, запросы и предложения. Если у вас есть вопросы о наших услугах, вы хотите оставить отзыв или просто сказать привет, мы будем рады услышать вас.",
+      "description2": "Кроме того, если вы обнаружите ошибки или неточности на нашей платформе или у вас есть вопросы относительно источника данных или интеллектуальной собственности, пожалуйста, не стесняйтесь связаться с нами. Если у вас есть другие вопросы или предложения, мы готовы помочь.",
+      "button": "СВЯЗАТЬСЯ С НАМИ"
+    },
+    "policies": {
+      "title": "Политика и правила сообщества",
+      "description1": "Изучите наши политики и правила сообщества, чтобы узнать, как мы собираем и защищаем ваши данные, правила сообщества и многое другое. Для получения подробной информации, пожалуйста, обратитесь к нашим ссылкам ниже.",
+      "list": {
+        "listItem1": "Политика конфиденциальности",
+        "listItem2": "Условия обслуживания",
+        "listItem3": "Политика использования cookie",
+        "listItem4": "Политика защиты данных",
+        "listItem5": "Отказ от ответственности",
+        "listItem6": "Правила сообщества"
+      }
+    },
+
+    "socialMedia": {
+      "title": "Социальные сети"
+    },
+    "contactInformation": {
+      "title": "Контактная информация"
+    }
+  },
+  "modalTitles": {
+    "deleteConfirmation": "Delete Confirmation",
+    "updateSuccess": "Update Successful",
+    "error": "Error",
+    "info": "Information"
+  },
+  "petCardLabels": {
+    "views": "просмотров",
+    "report": "Сообщить"
+  },
+  "iconLabelTabs": {
+    "contactPerson": "Контактное лицо",
+    "locationAdded": "Местоположение добавлено"
+  },
+  "buttons": {
+    "searchPet": "Искать питомца",
+    "reportPet": "Сообщить о питомце",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete"
+  },
+  "links": {
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "contactUs": "Contact Us"
+  },
+  "footerLinks": {
+    "about": "О Нас",
+    "pets": "Питомцы",
+    "petServices": "Сервисы для питомцев",
+    "virtualPetTrainingClasses": "Виртуальные уроки дрессировки",
+    "petInfrastructure": "Инфраструктура Для Питомцев",
+    "emergencyPetAlerts": "Экстренные оповещения о питомцах",
+
+    "petCareTips": "Советы и рекомендации",
+    "howToFindALostCat": "Как найти пропавшего кота?",
+    "howToFindALostDog": "Как найти пропавшую собаку?",
+    "adoptDoNotShop": "Приютите, не покупайте!",
+
+    "privacyPolicy": "Политика конфиденциальности",
+    "termsOfService": "Условия обслуживания",
+    "cookiePolicy": "Политика использования cookie",
+    "dataProtectionPolicy": "Политика защиты данных",
+    "disclaimer": "Отказ от ответственности",
+    "communityGuidelines": "Правила сообщества",
+    "contact": "Контакты",
+    "feedback": "Обратная связь",
+    "support": "Поддержка",
+    "partners": "Партнеры",
+    "socialMedia": "Социальные сети",
+    "sponsors": "Спонсоры"
+  },
+  "footerTitles": {
+    "app": "Приложение",
+    "explore": "Исследовать",
+    "policiesAndGuidelines": "Политики и руководства",
+    "information": "Информация"
+  },
+  "footerNote": {
+    "supportText": "Мы благодарим за любую поддержку или спонсорство, которые могут помочь нам раскрыть полный потенциал нашего веб-приложения",
+    "allRightsReserved": "Все права защищены."
+  },
+
+  "altText": {
+    "logo": "Company Logo",
+    "petImage": "Pet Image"
+  },
+  "navigation": {
+    "pets": "Питомцы",
+    "shelters": "Приюты",
+    "articles": "Статьи",
+    "services": "Услуги",
+    "login": "Войти",
+    "profile": "Профиль"
+  },
+  "validationMessages": {
+    "required": "This field is required.",
+    "invalidEmail": "Please enter a valid email address.",
+    "passwordMismatch": "Passwords do not match."
+  },
+  "notifications": {
+    "petAddedSuccess": "Pet added successfully.",
+    "errorOccurred": "An error occurred. Please try again."
+  },
+  "placeholders": {
+    "updatedStatusDescription": "Введите подробности, такие как место нахождения питомца, название приюта, название ветеринарной клиники.",
+    "identifier": "Имя или идентификатор домашнего животного",
+    "notes": "Внешний вид, поведение, особый медицинский уход, обстоятельства потери или любые другие важные примечания."
+  },
+  "tooltips": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "moreInfo": "More information"
+  },
+  "miscellaneous": {
+    "loading": "Loading...",
+    "noResultsFound": "No results found.",
+    "pleaseWait": "Please wait..."
+  }
+}
