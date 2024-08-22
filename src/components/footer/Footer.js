@@ -12,7 +12,7 @@ const Footer = () => {
   const appLinks = [
     { path: '/about', label: 'links.about' },
     { path: '/pets', label: 'links.pets' },
-    { path: '/pet-services', label: 'links.petServices' },
+    { path: '/services', label: 'links.petServices' },
     { path: '/virtual-pet-training-classes', label: 'links.virtualPetTrainingClasses' },
     { path: '/pet-infrastructure', label: 'links.petInfrastructure' },
   ];

@@ -110,7 +110,7 @@ const PetCounter = ({ yearlyCount }) => {
         <CountText>
           Every year, Latvia sees a significant number of lost pets reported, totaling
           <HighlightText style={{ marginLeft: '1rem', marginRight: '1rem', display: 'inline' }}>
-            {startCount && <CountUp end={yearlyCount} duration={2} />}
+            {startCount && <CountUp end={yearlyCount} duration={7} />}
           </HighlightText>
         </CountText>
       </Box>

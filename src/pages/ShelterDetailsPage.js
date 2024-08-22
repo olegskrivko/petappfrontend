@@ -30,7 +30,7 @@ import { useTranslation } from 'react-i18next';
 function ShelterDetailsPage() {
   const { t } = useTranslation(); // Initialize translation hook
   const { getTypography } = useFontSizes();
-  const { slug } = useParams(); // Retrieve slug from URL params
+  const { shelterId } = useParams(); // Retrieve slug from URL params
   const [shelter, setShelter] = useState(null);
 
   const colors = ['2474A3', '21ABCD', '31758D', '006980', '476997', '666699', '88AFD2', '8AB9F1'];
@@ -43,7 +43,7 @@ function ShelterDetailsPage() {
   useEffect(() => {
     const fetchShelter = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/shelters/${slug}`);
+        const response = await axios.get(`${BASE_URL}/shelters/${shelterId}`);
         setShelter(response.data);
       } catch (error) {
         console.error('Error fetching shelter:', error);
@@ -51,10 +51,10 @@ function ShelterDetailsPage() {
       }
     };
 
-    if (slug) {
+    if (shelterId) {
       fetchShelter();
     }
-  }, [slug]);
+  }, [shelterId]);
 
   if (!shelter) {
     return (
@@ -104,9 +104,6 @@ function ShelterDetailsPage() {
         <Grid item xs={12} sm={7}>
           <Card style={{ boxShadow: 'none' }}>
             <CardContent style={{ paddingTop: '0' }}>
-              {/* <Typography variant="body1" gutterBottom>
-                <strong>Author:</strong> {shelter.author}
-              </Typography> */}
               <Typography variant="body1">
                 <strong>{t('sheltersDetailsPage.labels.description')}: </strong>
                 {shelter.description}
@@ -131,14 +128,14 @@ function ShelterDetailsPage() {
                     <PublicIcon style={{ color: '#6E6E6E' }} />
                   </ListItemIcon>
                   <ListItemText style={{ marginLeft: '-1rem' }}>
-                    <a
-                      href={shelter.website.url}
+                    <MuiLink
+                      href={shelter.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ textDecoration: 'none', color: 'inherit' }}
+                      style={{ textDecoration: 'none' }}
                     >
-                      {shelter.website.name}
-                    </a>
+                      {shelter.website}
+                    </MuiLink>
                   </ListItemText>
                 </ListItem>
               </List>
@@ -154,22 +151,19 @@ function ShelterDetailsPage() {
                     <MuiLink onClick={handleLocationClick} style={{ cursor: 'pointer' }}>
                       <Typography variant="body1" sx={{ display: 'inline-block' }}>
                         {shelter.addressDetails?.address}, {shelter.addressDetails?.city},{' '}
-                        {shelter.addressDetails?.country}
+                        {shelter.addressDetails?.country}, {shelter.addressDetails?.zipCode}
                       </Typography>
                     </MuiLink>
                   </ListItemText>
                 </ListItem>
               </List>
-              {/* <Typography variant="body1">
-                <strong>Address:</strong> {shelter.addressDetails?.address},{' '}
-                {shelter.addressDetails?.city}, {shelter.addressDetails?.country}
-              </Typography> */}
 
               {/* <Box>
+                <strong>Address:</strong>{' '}
                 <MuiLink onClick={handleLocationClick}>
                   <Typography variant="body1" sx={{ display: 'inline-block' }}>
-                    <strong>Address:</strong> {shelter.addressDetails?.address},{' '}
-                    {shelter.addressDetails?.city}, {shelter.addressDetails?.country}
+                    {shelter.addressDetails?.address}, {shelter.addressDetails?.city},{' '}
+                    {shelter.addressDetails?.country}
                   </Typography>
                 </MuiLink>
               </Box> */}
@@ -199,26 +193,20 @@ function ShelterDetailsPage() {
                 <strong>{t('sheltersDetailsPage.labels.socialMedia')}:</strong>
               </Typography>
               <List>
-                <ListItem>
-                  <ListItemIcon>
-                    <FacebookIcon style={{ color: '#6E6E6E' }} />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={
-                      <MuiLink
-                        href={shelter.socialMedia.facebook.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ textDecoration: 'none', color: 'inherit' }}
-                      >
-                        {shelter.socialMedia.facebook.name}
-                      </MuiLink>
-                    }
-                    style={{ marginLeft: '-1rem' }}
-                  />
-                </ListItem>
+                {shelter.socialMediaProfiles.map((profile) => (
+                  <ListItem key={profile._id}>
+                    <MuiLink
+                      href={profile.profileUrl}
+                      style={{ textDecoration: 'none' }}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {profile.platform.name}
+                    </MuiLink>
+                  </ListItem>
+                ))}
 
-                <ListItem>
+                {/* <ListItem>
                   <ListItemIcon>
                     <InstagramIcon style={{ color: '#6E6E6E' }} />
                   </ListItemIcon>
@@ -226,8 +214,8 @@ function ShelterDetailsPage() {
                     primary={shelter.socialMedia.instagram.name}
                     style={{ marginLeft: '-1rem' }}
                   />
-                </ListItem>
-                <ListItem>
+                </ListItem> */}
+                {/* <ListItem>
                   <ListItemIcon>
                     <LinkedInIcon style={{ color: '#6E6E6E' }} />
                   </ListItemIcon>
@@ -235,8 +223,8 @@ function ShelterDetailsPage() {
                     primary={shelter.socialMedia.linkedin.name}
                     style={{ marginLeft: '-1rem' }}
                   />
-                </ListItem>
-                <ListItem>
+                </ListItem> */}
+                {/* <ListItem>
                   <ListItemIcon>
                     <YouTubeIcon style={{ color: '#6E6E6E' }} />
                   </ListItemIcon>
@@ -244,19 +232,9 @@ function ShelterDetailsPage() {
                     primary={shelter.socialMedia.youtube.name}
                     style={{ marginLeft: '-1rem' }}
                   />
-                </ListItem>
+                </ListItem> */}
               </List>
-              <Typography variant="body1" gutterBottom>
-                <strong>{t('sheltersDetailsPage.labels.services')}:</strong>
-                {/* {shelter.services.join(', ')} */}
-              </Typography>
-              <List>
-                {shelter.services.map((service, index) => (
-                  <ListItem key={index}>
-                    <ListItemText primary={service} />
-                  </ListItem>
-                ))}
-              </List>
+
               <Typography variant="body1">
                 <strong>{t('sheltersDetailsPage.labels.tags')}:</strong>{' '}
                 {shelter.tags.map((tag) => (

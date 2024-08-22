@@ -16,7 +16,8 @@ import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { BASE_URL } from '../middleware/config';
 import { useTranslation } from 'react-i18next';
-
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 // Import Custom hook
 import useFontSizes from '../utils/getFontSize';
 
@@ -80,6 +81,10 @@ const SheltersListPage = () => {
         <Grid item xs={12} sm={12} md={12} lg={12}>
           <Typography paragraph>{t('sheltersPage.description1')}</Typography>
           <Typography paragraph>{t('sheltersPage.description2')}</Typography>
+          <Alert severity="info" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+            <AlertTitle>{t('sheltersPage.note')}</AlertTitle>
+            {t('sheltersPage.description3')}
+          </Alert>
         </Grid>
       </Grid>
       <Grid container spacing={3}>
@@ -87,7 +92,7 @@ const SheltersListPage = () => {
           <Grid item key={shelter._id} xs={12} sm={6} md={3}>
             <Card>
               <Link
-                to={`/shelters/${shelter.slug}`}
+                to={`/shelters/${shelter._id}`}
                 color="inherit"
                 underline="none"
                 style={{ textDecoration: 'none' }}

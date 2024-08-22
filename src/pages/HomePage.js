@@ -547,7 +547,7 @@ function HomePage() {
         </Grid>
       </Grid>
       {/* <a href="https://www.freepik.com/search">Icon by Freepik</a> */}
-      <Grid container spacing={3} style={{ marginTop: '1rem' }}>
+      {/* <Grid container spacing={3} style={{ marginTop: '1rem' }}>
         <Grid item xs={12} textAlign="center">
           <Typography
             variant="h2"
@@ -561,8 +561,8 @@ function HomePage() {
             What our users say
           </Typography>
         </Grid>
-      </Grid>
-      <TestimonialSlider />
+      </Grid> */}
+      {/* <TestimonialSlider /> */}
       <Grid container spacing={3} style={{ margin: '1rem' }}>
         <Grid item xs={12} textAlign="center">
           <Typography
