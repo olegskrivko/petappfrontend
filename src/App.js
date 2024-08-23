@@ -284,7 +284,7 @@ const App = () => {
                   <Route path="pets/:id/poster" element={<PetsPosterPage />} />
                   <Route path="edit-pet/:petId" element={<EditPetPage />} />
                   <Route path="articles" element={<ArticlesListPage />} />
-                  <Route path="articles/:slug" element={<ArticleDetailsPage />} />
+                  <Route path="articles/:id" element={<ArticleDetailsPage />} />
                   <Route path="shelters" element={<SheltersListPage />} />
                   <Route path="shelters/:shelterId" element={<ShelterDetailsPage />} />
                   <Route

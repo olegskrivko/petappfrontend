@@ -14,7 +14,6 @@ const Footer = () => {
     { path: '/pets', label: 'links.pets' },
     { path: '/services', label: 'links.petServices' },
     { path: '/virtual-pet-training-classes', label: 'links.virtualPetTrainingClasses' },
-    { path: '/pet-infrastructure', label: 'links.petInfrastructure' },
   ];
 
   const exploreLinks = [

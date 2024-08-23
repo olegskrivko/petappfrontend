@@ -399,60 +399,56 @@ const ProfileNotificationsPage = () => {
           <Typography variant="body1" paragraph>
             {t('profileNotificationsPage.step1')}
           </Typography>
-          <Box p={2} bgcolor="lightgray">
-            <Grid container spacing={2} justifyContent="center">
-              <Grid item xs={12}>
-                <Button variant="contained" onClick={initOneSignal} fullWidth>
-                  {t('profileNotificationsPage.subscribe')}
-                </Button>
-              </Grid>
+
+          <Grid container spacing={2} justifyContent="center">
+            <Grid item xs={12}>
+              <Button variant="contained" onClick={initOneSignal} fullWidth>
+                {t('profileNotificationsPage.subscribe')}
+              </Button>
             </Grid>
-          </Box>
+          </Grid>
         </Grid>
         <Grid item xs={12}>
           <Typography variant="body1" paragraph>
             {t('profileNotificationsPage.step2')}
           </Typography>
-          <Box p={2} bgcolor="lightgray">
-            {/* <Grid container spacing={2} justifyContent="center">
+
+          {/* <Grid container spacing={2} justifyContent="center">
               <Grid item xs={12}>
                 <Button variant="contained" onClick={getLocation} fullWidth>
                   {t('profileNotificationsPage.getCurrentLocation')}
                 </Button>
               </Grid>
             </Grid> */}
-            <Map onLocationChange={handleLocationChange} />
-          </Box>
+          <Map onLocationChange={handleLocationChange} />
         </Grid>
         <Grid item xs={12}>
           <Typography variant="body1" paragraph>
             {t('profileNotificationsPage.step3')}
           </Typography>
-          <Box p={2} bgcolor="lightgray">
-            <Typography variant="body1" mt={2}>
-              {t('profileNotificationsPage.setRadius')}
-            </Typography>
-            <Slider
-              value={distance}
-              onChange={handleDistanceChange}
-              min={1}
-              max={20}
-              valueLabelDisplay="auto"
-              aria-labelledby="radius-slider"
-              sx={{ width: '100%' }}
-            />
-          </Box>
+
+          <Typography variant="body1" mt={2}>
+            {t('profileNotificationsPage.setRadius')}
+          </Typography>
+          <Slider
+            value={distance}
+            onChange={handleDistanceChange}
+            min={1}
+            max={20}
+            valueLabelDisplay="auto"
+            aria-labelledby="radius-slider"
+            sx={{ width: '100%' }}
+          />
         </Grid>
 
         <Grid item xs={12}>
           <Typography variant="body1" paragraph>
             {t('profileNotificationsPage.step4')}
           </Typography>
-          <Box p={2} bgcolor="lightgray">
-            <Button variant="contained" color="secondary" onClick={handleSubscribe} fullWidth>
-              {t('profileNotificationsPage.save')}
-            </Button>
-          </Box>
+
+          <Button variant="contained" color="secondary" onClick={handleSubscribe} fullWidth>
+            {t('profileNotificationsPage.save')}
+          </Button>
         </Grid>
         <Grid item xs={12}>
           <Typography variant="body2" mt={2}>
@@ -460,44 +456,44 @@ const ProfileNotificationsPage = () => {
           </Typography>
         </Grid>
       </Grid>
-      <Box p={2} bgcolor="lightgray">
-        <Grid item xs={12}>
-          <TextField
-            variant="outlined"
-            type="text"
-            name="latitude"
-            value={location.latitude}
-            // onChange={handleChange}
-            fullWidth
-            size="small"
-            label="Latitude"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            variant="outlined"
-            type="text"
-            name="longitude"
-            value={location.longitude}
-            // onChange={handleChange}
-            fullWidth
-            size="small"
-            label="Longitude"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            variant="outlined"
-            type="text"
-            name="distance"
-            value={distance}
-            onChange={handleDistanceChange}
-            fullWidth
-            size="small"
-            label="Distance"
-          />
-        </Grid>
-      </Box>
+
+      <Grid item xs={12}>
+        <TextField
+          variant="outlined"
+          type="text"
+          name="latitude"
+          value={location.latitude}
+          // onChange={handleChange}
+          fullWidth
+          size="small"
+          label="Latitude"
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          variant="outlined"
+          type="text"
+          name="longitude"
+          value={location.longitude}
+          // onChange={handleChange}
+          fullWidth
+          size="small"
+          label="Longitude"
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          variant="outlined"
+          type="text"
+          name="distance"
+          value={distance}
+          onChange={handleDistanceChange}
+          fullWidth
+          size="small"
+          label="Distance"
+        />
+      </Grid>
+
       <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={() => setOpenSnackbar(false)}>
         <Alert onClose={() => setOpenSnackbar(false)} severity="success">
           {t('profileNotificationsPage.successMessage')}

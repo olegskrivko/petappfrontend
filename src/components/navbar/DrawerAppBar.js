@@ -38,7 +38,7 @@ const navItems = {
   // "/about": "About",
   // '/services': 'Services',
   '/shelters': 'shelters',
-  // '/articles': 'articles',
+  '/articles': 'articles',
   // '/add-service-category': 'Add service category',
   // '/service-categories': 'services',
 

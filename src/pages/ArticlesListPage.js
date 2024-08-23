@@ -51,7 +51,7 @@
 // };
 
 // export default ArticlesListPage;
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link as MuiLink } from '@mui/material';
 import axios from 'axios';
 import {
@@ -67,8 +67,9 @@ import { Link } from 'react-router-dom';
 import { BASE_URL } from '../middleware/config';
 // Import Custom hook
 import useFontSizes from '../utils/getFontSize';
-
+import { LanguageContext } from '../middleware/LanguageContext';
 const ArticlesListPage = () => {
+  const { selectedLanguage } = useContext(LanguageContext);
   const { getTypography } = useFontSizes();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -134,14 +135,14 @@ const ArticlesListPage = () => {
           articles.map((article) => (
             <Grid item key={article._id} xs={12} sm={6} md={4}>
               <Link
-                to={`/articles/${article.slug}`}
+                to={`/articles/${article._id}`}
                 style={{ textDecoration: 'none', color: 'inherit' }}
               >
                 <Card>
                   <CardMedia
                     component="img"
                     height="240"
-                    image={article.sections[0]?.picture || 'https://via.placeholder.com/150'}
+                    image={article.sections?.[0]?.picture || 'https://via.placeholder.com/150'}
                     alt={article.title}
                   />
 
@@ -156,10 +157,10 @@ const ArticlesListPage = () => {
                         fontWeight: getTypography('h3').fontWeight,
                       }}
                     >
-                      {article.title}
+                      {article.mainTitle[selectedLanguage]}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      {article.content.substring(0, 80)}...
+                      {article.description[selectedLanguage].substring(0, 80)}...
                     </Typography>
                   </CardContent>
                 </Card>

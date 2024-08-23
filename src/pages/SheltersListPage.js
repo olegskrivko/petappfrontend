@@ -81,10 +81,6 @@ const SheltersListPage = () => {
         <Grid item xs={12} sm={12} md={12} lg={12}>
           <Typography paragraph>{t('sheltersPage.description1')}</Typography>
           <Typography paragraph>{t('sheltersPage.description2')}</Typography>
-          <Alert severity="info" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
-            <AlertTitle>{t('sheltersPage.note')}</AlertTitle>
-            {t('sheltersPage.description3')}
-          </Alert>
         </Grid>
       </Grid>
       <Grid container spacing={3}>
@@ -140,6 +136,14 @@ const SheltersListPage = () => {
             </Card>
           </Grid>
         ))}
+      </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          <Alert severity="info" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+            <AlertTitle>{t('sheltersPage.note')}</AlertTitle>
+            {t('sheltersPage.description3')}
+          </Alert>
+        </Grid>
       </Grid>
     </React.Fragment>
   );
