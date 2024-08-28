@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import {
   Container,
@@ -18,15 +18,15 @@ function BusinessesPage() {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const query = new URLSearchParams(useLocation().search);
-  const serviceId = query.get('service');
-
+  // const query = new URLSearchParams(useLocation().search);
+  // const serviceId = query.get('service');
+  const { serviceId } = useParams();
   useEffect(() => {
     const fetchBusinesses = async () => {
       setLoading(true);
       setError(null); // Reset error state
       try {
-        const response = await axios.get(`${BASE_URL}/businesses/services/${serviceId}`);
+        const response = await axios.get(`${BASE_URL}/businesses/service/${serviceId}`);
         setBusinesses(response.data);
       } catch (error) {
         setError('Error fetching businesses');
@@ -41,26 +41,26 @@ function BusinessesPage() {
     }
   }, [serviceId]);
 
-  if (loading) {
-    return (
-      <Container maxWidth="md" style={{ marginTop: '50px', textAlign: 'center' }}>
-        <CircularProgress />
-        <Typography variant="h6" style={{ marginTop: '20px' }}>
-          Loading...
-        </Typography>
-      </Container>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <Container maxWidth="md" style={{ marginTop: '50px', textAlign: 'center' }}>
+  //       <CircularProgress />
+  //       <Typography variant="h6" style={{ marginTop: '20px' }}>
+  //         Loading...
+  //       </Typography>
+  //     </Container>
+  //   );
+  // }
 
-  if (error) {
-    return (
-      <Container maxWidth="md" style={{ marginTop: '50px', textAlign: 'center' }}>
-        <Typography variant="h6" color="error">
-          {error}
-        </Typography>
-      </Container>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <Container maxWidth="md" style={{ marginTop: '50px', textAlign: 'center' }}>
+  //       <Typography variant="h6" color="error">
+  //         {error}
+  //       </Typography>
+  //     </Container>
+  //   );
+  // }
 
   return (
     <Container maxWidth="md" style={{ marginTop: '50px' }}>
@@ -108,16 +108,6 @@ function BusinessesPage() {
                         />
                       ))}
                   </Box>
-                  {/* <Typography variant="body2" color="textSecondary">
-                    {business.description}
-                  </Typography> */}
-
-                  {/* <Link
-                    to={`/businesses/${business._id}`}
-                    style={{ textDecoration: 'none', color: 'inherit' }}
-                  >
-                    View Details
-                  </Link> */}
                 </CardContent>
               </Card>
             </Grid>

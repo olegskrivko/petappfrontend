@@ -319,7 +319,7 @@ const App = () => {
                   {/* New Route for Businesses by Service */}
                   {/* <Route path="businesses" element={<BusinessesPage />} /> */}
                   {/* <Route path="businesses/:serviceId" element={<BusinessesPage />} /> */}
-                  <Route path="businesses/services/:serviceId" element={<BusinessesPage />} />
+                  {/* <Route path="businesses/service/:serviceId" element={<BusinessesPage />} /> */}
 
                   <Route path="businesses/:id" element={<BusinessDetailsPage />} />
                   {/* <Route path="add-pet" element={<PrivateRoute element={<CreatePetPage />} />} /> */}
@@ -386,7 +386,8 @@ const App = () => {
                   {/* <Route path="user/profile/services" element={<ProfileServicesPage />} /> */}
                   {/* <Route path="user/profile/pets" element={<ProfilePetsPage />} /> */}
                   <Route path="services" element={<ServicesListPage />} />
-                  <Route path="businesses" element={<BusinessesPage />} />
+                  <Route path="services/:serviceId" element={<BusinessesPage />} />
+                  {/* <Route path="businesses" element={<BusinessesPage />} /> */}
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="*" element={<NotFoundPage />} />

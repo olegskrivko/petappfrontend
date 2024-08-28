@@ -36,7 +36,7 @@ const navItems = {
   // "/": "Home",
   '/pets': 'pets',
   // "/about": "About",
-  // '/services': 'Services',
+  '/services': 'Services',
   '/shelters': 'shelters',
   '/articles': 'articles',
   // '/add-service-category': 'Add service category',

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
   Container,
   Typography,
@@ -9,55 +9,88 @@ import {
   Grid,
   Chip,
   Button,
+  CircularProgress, // Import CircularProgress for loading state
 } from '@mui/material';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { LanguageContext } from '../middleware/LanguageContext';
 import { BASE_URL } from '../middleware/config';
 import { useTranslation } from 'react-i18next';
 
 function ServicesListPage() {
+  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
   const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true); // State to manage loading
+  const [error, setError] = useState(null); // State to manage error
   const { t } = useTranslation(); // Initialize translation hook
   const navigate = useNavigate();
-  const handleServiceClick = (serviceId) => {
-    navigate(`/businesses?service=${serviceId}`);
-  };
-  // Fetch service categories from localization file
-  const categories = t('serviceCategories', { returnObjects: true });
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/services`);
+        setServices(response.data); // Set the fetched services to state
+      } catch (err) {
+        setError('Failed to fetch services'); // Set error message
+        console.error(err); // Log error for debugging
+      } finally {
+        setLoading(false); // Set loading to false once data is fetched
+      }
+    };
+
+    fetchServices();
+  }, []);
+
+  // const handleServiceClick = (serviceId) => {
+  //   navigate(`/businesses?service=${serviceId}`);
+  // };
+
+  // Render loading indicator if data is still being fetched
+  if (loading) {
+    return (
+      <Container style={{ marginTop: '50px', textAlign: 'center' }}>
+        <CircularProgress /> {/* Show loading spinner */}
+      </Container>
+    );
+  }
+
+  // Render error message if there was an error fetching data
+  if (error) {
+    return (
+      <Container style={{ marginTop: '50px', textAlign: 'center' }}>
+        <Typography variant="h6" color="error">
+          {error}
+        </Typography>
+      </Container>
+    );
+  }
 
   return (
     <Container style={{ marginTop: '50px' }}>
       <Typography variant="h4" align="center" style={{ marginBottom: '20px' }}>
-        Services
+        Service Categories
       </Typography>
       <Grid container spacing={3}>
-        {categories.map((category) => (
-          <Grid item xs={12} sm={6} md={4} key={category.id}>
+        {services.map((service) => (
+          <Grid item xs={12} sm={6} md={4} key={service._id}>
             <Card>
               <Link
-                to={`/businesses?service=${category.id}`}
+                to={`/services/${service._id}`}
                 style={{ textDecoration: 'none', color: 'inherit' }}
               >
                 <CardMedia
                   component="img"
-                  height="240"
-                  image={'services/' + category.slug + '.svg' || 'https://placehold.co/600x400'} // Assuming `category.image` is the URL to the image
-                  alt={category.name}
+                  height="340"
+                  image={service.image || 'https://placehold.co/600x400'} // Use service image or placeholder
+                  alt={service.name.en} // Use English name for alt text
                 />
               </Link>
               <CardContent>
-                {/* <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => handleServiceClick(category.id)}
-                  style={{ marginTop: '10px' }}
-                >
-                  viewBusinesses
-                </Button> */}
-                <Typography variant="h6">{category.name}</Typography>
+                {/* currently its stored as one array, so first array item is taken, later need to fix.store each tag as array */}
+                <Typography variant="h6">{service.name[selectedLanguage]}</Typography>
                 <Box mt={1}>
-                  {category.tags &&
-                    category.tags.map((tag, index) => (
+                  {service.tags[selectedLanguage] &&
+                    service.tags[selectedLanguage][0].split(',').map((tag, index) => (
                       <Chip
                         key={index}
                         size="small"
@@ -80,6 +113,90 @@ function ServicesListPage() {
 }
 
 export default ServicesListPage;
+
+// import React, { useEffect, useState } from 'react';
+// import {
+//   Container,
+//   Typography,
+//   Box,
+//   Card,
+//   CardContent,
+//   CardMedia,
+//   Grid,
+//   Chip,
+//   Button,
+// } from '@mui/material';
+// import axios from 'axios';
+// import { useNavigate, Link } from 'react-router-dom';
+// import { BASE_URL } from '../middleware/config';
+// import { useTranslation } from 'react-i18next';
+
+// function ServicesListPage() {
+//   const [services, setServices] = useState([]);
+//   const { t } = useTranslation(); // Initialize translation hook
+//   const navigate = useNavigate();
+//   const handleServiceClick = (serviceId) => {
+//     navigate(`/businesses?service=${serviceId}`);
+//   };
+//   // Fetch service categories from localization file
+//   const categories = t('serviceCategories', { returnObjects: true });
+
+//   return (
+//     <Container style={{ marginTop: '50px' }}>
+//       <Typography variant="h4" align="center" style={{ marginBottom: '20px' }}>
+//         Services
+//       </Typography>
+//       <Grid container spacing={3}>
+//         {categories.map((category) => (
+//           <Grid item xs={12} sm={6} md={4} key={category.id}>
+//             <Card>
+//               <Link
+//                 to={`/businesses?service=${category.id}`}
+//                 style={{ textDecoration: 'none', color: 'inherit' }}
+//               >
+//                 <CardMedia
+//                   component="img"
+//                   height="240"
+//                   image={'services/' + category.slug + '.svg' || 'https://placehold.co/600x400'} // Assuming `category.image` is the URL to the image
+//                   alt={category.name}
+//                 />
+//               </Link>
+//               <CardContent>
+//                 {/* <Button
+//                   variant="contained"
+//                   color="primary"
+//                   onClick={() => handleServiceClick(category.id)}
+//                   style={{ marginTop: '10px' }}
+//                 >
+//                   viewBusinesses
+//                 </Button> */}
+//                 <Typography variant="h6">{category.name}</Typography>
+//                 <Box mt={1}>
+//                   {category.tags &&
+//                     category.tags.map((tag, index) => (
+//                       <Chip
+//                         key={index}
+//                         size="small"
+//                         label={tag}
+//                         style={{
+//                           marginRight: '4px',
+//                           marginTop: '4px',
+//                           backgroundColor: 'lightgray',
+//                         }}
+//                       />
+//                     ))}
+//                 </Box>
+//               </CardContent>
+//             </Card>
+//           </Grid>
+//         ))}
+//       </Grid>
+//     </Container>
+//   );
+// }
+
+// export default ServicesListPage;
+
 //<a href="https://storyset.com/animal">Animal illustrations by Storyset</a>
 //<a href="https://storyset.com/job">Job illustrations by Storyset</a>
 //<a href="https://storyset.com/food">Food illustrations by Storyset</a>
