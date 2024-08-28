@@ -19,8 +19,8 @@ const Footer = () => {
   const exploreLinks = [
     { path: '/shelters', label: 'links.adoptDoNotShop' },
     { path: '/articles', label: 'links.petCareTips' },
-    { path: '/articles/how-to-find-a-lost-cat', label: 'links.howToFindALostCat' },
-    { path: '/articles/how-to-find-a-lost-dog', label: 'links.howToFindALostDog' },
+    { path: '/articles/66c908b1635093acc0b86190', label: 'links.howToFindALostCat' },
+    { path: '/articles/66c90b03635093acc0b861cd', label: 'links.howToFindALostDog' },
   ];
 
   const policyLinks = [
