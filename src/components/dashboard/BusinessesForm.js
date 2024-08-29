@@ -27,10 +27,15 @@ const BusinessesForm = () => {
   const [formState, setFormState] = useState({
     name: '',
     category: '',
+    businessForm: '',
+    registrationNumber: '',
+    isActive: true,
     description: '',
     image: null,
     tags: [],
     website: '',
+    minPrice: 0,
+    maxPrice: 0,
     socialMediaProfiles: [{ platform: '', profileUrl: '', username: '' }],
     services: [],
     locations: [],
@@ -113,7 +118,6 @@ const BusinessesForm = () => {
           friday: '',
           saturday: '',
           sunday: '',
-          season: [],
           street: '',
           city: '',
           state: '',
@@ -133,12 +137,14 @@ const BusinessesForm = () => {
   };
 
   const handleSocialMediaChange = (index, field, value) => {
+    console.log(`Updating profile at index ${index} - Field: ${field}, Value: ${value}`);
     const updatedProfiles = [...formState.socialMediaProfiles];
     updatedProfiles[index][field] = value;
     setFormState({
       ...formState,
       socialMediaProfiles: updatedProfiles,
     });
+    console.log('Updated Social Media Profiles:', updatedProfiles);
   };
 
   const handleTagChange = (index, value) => {
@@ -244,7 +250,9 @@ const BusinessesForm = () => {
     try {
       const formData = new FormData();
       Object.keys(formState).forEach((key) => {
-        if (key === 'image' && formState[key]) {
+        if (key === 'socialMediaProfiles') {
+          formData.append(key, JSON.stringify(formState[key])); // Stringify array before appending
+        } else if (key === 'image' && formState[key]) {
           formData.append(key, formState[key]);
         } else if (key === 'locations') {
           formState[key].forEach((item, index) => {
@@ -343,7 +351,7 @@ const BusinessesForm = () => {
               </Box>
             )}
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <TextField
               name="name"
               label="Business Name"
@@ -354,6 +362,27 @@ const BusinessesForm = () => {
               required
             />
           </Grid>
+          <Grid item xs={12}>
+            <TextField
+              name="businessForm"
+              label="Business Form"
+              value={formState.businessForm}
+              onChange={handleChange}
+              fullWidth
+              margin="normal"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              name="registrationNumber"
+              label="Registration Number"
+              value={formState.registrationNumber}
+              onChange={handleChange}
+              fullWidth
+              margin="normal"
+            />
+          </Grid>
+
           {/* Social Media Profiles */}
           <Grid item xs={12}>
             <Typography variant="h6" gutterBottom>
@@ -409,7 +438,7 @@ const BusinessesForm = () => {
               Add Another Social Media Profile
             </Button>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <FormControl fullWidth margin="normal">
               <InputLabel>Category</InputLabel>
               <Select name="category" value={formState.category} onChange={handleChange} required>
@@ -435,7 +464,7 @@ const BusinessesForm = () => {
             />
           </Grid>
           {/* Social Media Links */}
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
             <TextField
               name="website"
               label="Website"
@@ -445,8 +474,35 @@ const BusinessesForm = () => {
               margin="normal"
             />
           </Grid>
+          <Grid item xs={12} sm={12}>
+            <Typography variant="h6" gutterBottom>
+              Price range
+            </Typography>
+          </Grid>
+          <Grid item xs={6} sm={6}>
+            <TextField
+              name="minPrice"
+              label="Min price"
+              value={formState.minPrice}
+              onChange={handleChange}
+              fullWidth
+              margin="normal"
+              type="number"
+            />
+          </Grid>
+          <Grid item xs={6} sm={6}>
+            <TextField
+              name="maxPrice"
+              label="Max price"
+              value={formState.maxPrice}
+              onChange={handleChange}
+              fullWidth
+              margin="normal"
+              type="number"
+            />
+          </Grid>
 
-          <TextField
+          {/* <TextField
             name="tags"
             label="Tags (comma separated)"
             value={formState.tags.join(', ')}
@@ -458,7 +514,7 @@ const BusinessesForm = () => {
             }
             fullWidth
             margin="normal"
-          />
+          /> */}
           {/* Locations */}
           <Grid item xs={12}>
             <Typography variant="h6" gutterBottom>
@@ -467,7 +523,7 @@ const BusinessesForm = () => {
             {formState.locations.map((location, index) => (
               <Box key={index} mb={3} p={2} border={1} borderRadius={2} borderColor="grey.300">
                 <Grid container spacing={3}>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12}>
                     <TextField
                       name="name"
                       label="Location Name"
@@ -477,7 +533,7 @@ const BusinessesForm = () => {
                       margin="normal"
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12}>
                     <TextField
                       name="description"
                       label="Location Description"
@@ -487,7 +543,7 @@ const BusinessesForm = () => {
                       margin="normal"
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12}>
                     <TextField
                       name="phone"
                       label="Phone"
@@ -497,7 +553,7 @@ const BusinessesForm = () => {
                       margin="normal"
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12}>
                     <TextField
                       name="email"
                       label="Email"
@@ -528,7 +584,7 @@ const BusinessesForm = () => {
                     />
                   </Grid>
                   {/* Hours of Operation */}
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12}>
                     <TextField
                       name="monday"
                       label="Monday Hours"
@@ -538,7 +594,7 @@ const BusinessesForm = () => {
                       margin="normal"
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12}>
                     <TextField
                       name="tuesday"
                       label="Tuesday Hours"
@@ -548,7 +604,7 @@ const BusinessesForm = () => {
                       margin="normal"
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12}>
                     <TextField
                       name="wednesday"
                       label="Wednesday Hours"
@@ -558,7 +614,7 @@ const BusinessesForm = () => {
                       margin="normal"
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12}>
                     <TextField
                       name="thursday"
                       label="Thursday Hours"
@@ -568,7 +624,7 @@ const BusinessesForm = () => {
                       margin="normal"
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12}>
                     <TextField
                       name="friday"
                       label="Friday Hours"
@@ -578,7 +634,7 @@ const BusinessesForm = () => {
                       margin="normal"
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12}>
                     <TextField
                       name="saturday"
                       label="Saturday Hours"
@@ -588,7 +644,7 @@ const BusinessesForm = () => {
                       margin="normal"
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12}>
                     <TextField
                       name="sunday"
                       label="Sunday Hours"
@@ -661,6 +717,7 @@ const BusinessesForm = () => {
                 </Grid>
               </Box>
             ))}
+
             <Button
               variant="contained"
               color="primary"
@@ -699,7 +756,7 @@ const BusinessesForm = () => {
           </Grid>
 
           {/* Contact Information */}
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <Typography variant="h6" gutterBottom>
               Contact Information
             </Typography>
@@ -749,7 +806,7 @@ const BusinessesForm = () => {
                 />
               </Grid>
             </Grid>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary" fullWidth>
               Submit

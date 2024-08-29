@@ -93,8 +93,19 @@ function BusinessesPage() {
                       {business.name}
                     </Link>
                   </Typography>
+
                   <Box mt={1}>
-                    {business.tags &&
+                    <Chip
+                      size="small"
+                      label={'Price ' + business.minPrice + '$' + ' - ' + business.maxPrice + '$'}
+                      style={{
+                        marginRight: '4px',
+                        marginTop: '4px',
+                        backgroundColor: 'lightgray',
+                      }}
+                    />
+
+                    {/* {business.tags &&
                       business.tags.map((tag, index) => (
                         <Chip
                           key={index}
@@ -106,7 +117,7 @@ function BusinessesPage() {
                             backgroundColor: 'lightgray',
                           }}
                         />
-                      ))}
+                      ))} */}
                   </Box>
                 </CardContent>
               </Card>

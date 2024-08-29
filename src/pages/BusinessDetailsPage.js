@@ -80,11 +80,25 @@ import {
   CardContent,
   CardMedia,
   Box,
+  ListItem,
+  List,
+  ListItemIcon,
+  ListItemText,
   Link as MuiLink,
 } from '@mui/material';
 import { BASE_URL } from '../middleware/config';
 import { Link } from 'react-router-dom';
-import { ExpandMore, Facebook, Instagram, YouTube, LocationOn } from '@mui/icons-material';
+import { LocationOn } from '@mui/icons-material';
+import PhoneIcon from '@mui/icons-material/Phone';
+import EmailIcon from '@mui/icons-material/Email';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import PublicIcon from '@mui/icons-material/Public';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import EuroIcon from '@mui/icons-material/Euro';
 const BusinessDetailsPage = () => {
   const { id } = useParams();
   const [business, setBusiness] = useState(null);
@@ -130,21 +144,53 @@ const BusinessDetailsPage = () => {
         <Typography variant="h6" mt={2}>
           Social Media
         </Typography>
-        <Typography>
-          <a href={business?.facebook} target="_blank" rel="noopener noreferrer">
-            Facebook
-          </a>
+        <List>
+          {business.socialMediaProfiles.map((profile) => (
+            <ListItem key={profile._id}>
+              <MuiLink
+                href={profile.profileUrl}
+                style={{ textDecoration: 'none' }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {profile.platform.name}
+              </MuiLink>
+            </ListItem>
+          ))}
+        </List>
+        <Typography variant="h6" mt={2}>
+          Website
         </Typography>
-        <Typography>
-          <a href={business?.instagram} target="_blank" rel="noopener noreferrer">
-            Instagram
-          </a>
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <PublicIcon style={{ color: '#6E6E6E' }} />
+            </ListItemIcon>
+            <ListItemText style={{ marginLeft: '-1rem' }}>
+              <MuiLink
+                href={business.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none' }}
+              >
+                {business.website}
+              </MuiLink>
+            </ListItemText>
+          </ListItem>
+        </List>
+        <Typography variant="h6" mt={2}>
+          Price Range
         </Typography>
-        <Typography>
-          <a href={business?.youtube} target="_blank" rel="noopener noreferrer">
-            YouTube
-          </a>
-        </Typography>
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <EuroIcon style={{ color: '#6E6E6E' }} />
+            </ListItemIcon>
+            <ListItemText style={{ marginLeft: '-1rem' }}>
+              {business.minPrice} - {business.maxPrice}
+            </ListItemText>
+          </ListItem>
+        </List>
       </Grid>
       <Grid item xs={6} sm={6} md={4} lg={6}>
         <Card>
@@ -191,9 +237,7 @@ const BusinessDetailsPage = () => {
                   {location.country}, {location.city ? location.city : location.state},{' '}
                   {location.zipCode}
                 </Typography>
-                <Typography variant="body1" color="primary">
-                  Season:
-                </Typography>
+
                 <Box mt={1}>
                   {location.season &&
                     location.season.map((tag, index) => (
@@ -209,32 +253,60 @@ const BusinessDetailsPage = () => {
                       />
                     ))}
                 </Box>
-                <Box mt={1}>
+                <List mt={1}>
                   <Typography variant="body1" color="primary">
                     Opening Hours:
                   </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Monday: {location.monday}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Tuesday: {location.tuesday}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Wednesday: {location.wednesday}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Thursday: {location.thursday}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Friday: {location.friday}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Saturday: {location.saturday}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Sunday: {location.sunday}
-                  </Typography>
-                </Box>
+                  <ListItem>
+                    <Typography variant="body2" color="textSecondary">
+                      Monday: {location.monday}
+                    </Typography>
+                  </ListItem>
+                  <ListItem>
+                    <Typography variant="body2" color="textSecondary">
+                      Tuesday: {location.tuesday}
+                    </Typography>
+                  </ListItem>
+                  <ListItem>
+                    <Typography variant="body2" color="textSecondary">
+                      Wednesday: {location.wednesday}
+                    </Typography>
+                  </ListItem>
+                  <ListItem>
+                    <Typography variant="body2" color="textSecondary">
+                      Thursday: {location.thursday}
+                    </Typography>
+                  </ListItem>
+                  <ListItem>
+                    <Typography variant="body2" color="textSecondary">
+                      Friday: {location.friday}
+                    </Typography>
+                  </ListItem>
+                  <ListItem>
+                    <Typography variant="body2" color="textSecondary">
+                      Saturday: {location.saturday}
+                    </Typography>
+                  </ListItem>
+                  <ListItem>
+                    <Typography variant="body2" color="textSecondary">
+                      Sunday: {location.sunday}
+                    </Typography>
+                  </ListItem>
+                </List>
+                <List>
+                  <ListItem>
+                    <ListItemIcon>
+                      <PhoneIcon style={{ color: '#6E6E6E' }} />
+                    </ListItemIcon>
+                    <ListItemText primary={location.phone} style={{ marginLeft: '-1rem' }} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemIcon>
+                      <EmailIcon style={{ color: '#6E6E6E' }} />
+                    </ListItemIcon>
+                    <ListItemText primary={location.email} style={{ marginLeft: '-1rem' }} />
+                  </ListItem>
+                </List>
               </CardContent>
             </Card>
           </Grid>

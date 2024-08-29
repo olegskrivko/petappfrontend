@@ -90,7 +90,7 @@ function ServicesListPage() {
                 <Typography variant="h6">{service.name[selectedLanguage]}</Typography>
                 <Box mt={1}>
                   {service.tags[selectedLanguage] &&
-                    service.tags[selectedLanguage][0].split(',').map((tag, index) => (
+                    service.tags[selectedLanguage].map((tag, index) => (
                       <Chip
                         key={index}
                         size="small"
