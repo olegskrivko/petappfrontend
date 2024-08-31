@@ -73,7 +73,6 @@ function ServicesListPage() {
       <Grid container spacing={3}>
         {services.map((service) => (
           <Grid item xs={12} sm={6} md={4} key={service._id}>
-            {services.length} a
             <Card>
               <Link
                 to={`/services/${service._id}`}

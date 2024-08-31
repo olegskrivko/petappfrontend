@@ -513,7 +513,7 @@ const PetsDetailsPage = () => {
                   <ShareIcon />
                 </IconButton>
               </Box>
-              <Box display="flex" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+              {/* <Box display="flex" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box display="flex" alignItems="center" p={2}>
                   <VisibilityIcon color="action" />
                   <Typography variant="body2" color="textSecondary" ml={1}>
@@ -526,7 +526,7 @@ const PetsDetailsPage = () => {
                     {t('petCardLabels.report')}
                   </Typography>
                 </Box>
-              </Box>
+              </Box> */}
             </Card>
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6}>
