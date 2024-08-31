@@ -1086,7 +1086,7 @@ const ProfilePage = () => {
         </Typography>
 
         <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
-          <Grid item xs={6} md={4}>
+          <Grid item xs={12} md={4}>
             <Link to="/user/profile/posts" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#f7f9fd' }}>
                 <TryIcon fontSize="large" sx={{ color: '#22badf' }} />
@@ -1094,7 +1094,7 @@ const ProfilePage = () => {
               </Paper>
             </Link>
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={12} md={4}>
             <Link to="/user/profile/settings" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#f7f9fd' }}>
                 <SettingsIcon fontSize="large" sx={{ color: '#22badf' }} />
@@ -1102,7 +1102,7 @@ const ProfilePage = () => {
               </Paper>
             </Link>
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={12} md={4}>
             <Link to="/user/profile/notifications" style={{ textDecoration: 'none' }}>
               <Paper sx={{ padding: '2rem 0', backgroundColor: '#f7f9fd' }}>
                 <NotificationsIcon fontSize="large" sx={{ color: '#22badf' }} />

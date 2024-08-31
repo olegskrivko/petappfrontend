@@ -158,7 +158,7 @@ function HomePage() {
           </Box>
         </Grid>
 
-        {/* <Grid
+        <Grid
           item
           xs={12}
           sm={12}
@@ -246,7 +246,7 @@ function HomePage() {
               )}
             </Link>
           </Box>
-        </Grid> */}
+        </Grid>
       </Grid>
       {/* Add PetCounter component */}
       {/* <Grid container spacing={3} style={{ marginTop: '1rem' }}>
