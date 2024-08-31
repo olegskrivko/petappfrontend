@@ -457,7 +457,7 @@ const ProfileNotificationsPage = () => {
         </Grid>
       </Grid>
 
-      <Grid item xs={12}>
+      {/* <Grid item xs={12}>
         <TextField
           variant="outlined"
           type="text"
@@ -492,7 +492,7 @@ const ProfileNotificationsPage = () => {
           size="small"
           label="Distance"
         />
-      </Grid>
+      </Grid> */}
 
       <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={() => setOpenSnackbar(false)}>
         <Alert onClose={() => setOpenSnackbar(false)} severity="success">
